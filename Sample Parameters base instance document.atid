@@ -18,7 +18,7 @@
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
 					<Documentation>sample amount used to prepare the test material. The unit is milligrams. See ASTM E 1947-98</Documentation>
-					<Unit label="g">
+					<Unit label="mg">
 						<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 					</Unit>
 				</ParameterBlueprint>

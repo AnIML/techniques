@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Definition name="MS" extension="false">
 		<Documentation>Technique Definition for Mass Spectrometry</Documentation>
@@ -176,7 +177,7 @@ called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990
 		<PageBlueprint name="Spectrum" modality="optional">
 			<Documentation>Mass spectrum</Documentation>
 			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
-				<Documentation>This is a set of values of dimension point-number, containing the abscissa value for each raw data ordinate value. This set of values has a unit of retention unit. See: ASTM E 1947-98.</Documentation>
+				<Documentation>This is a set of values of dimension point-number, containing the abscissa value for each raw data ordinate value. This set of values has a unit of time. See: ASTM E 1947-98.</Documentation>
 				<Unit label="s">
 					<SIUnit>s</SIUnit>
 				</Unit>
@@ -586,7 +587,7 @@ between the end of one scan and the start of the next for multiple-scan acquisit
 		<PageBlueprint name="PeakTable" modality="optional">
 			<Documentation>MS peak table</Documentation>
 			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
-				<Documentation>Peak position value on x axis</Documentation>
+				<Documentation>Peak position value on x axis See Appl. Spectrosc. 42, 1988, 151-162.</Documentation>
 				<Unit label="s">
 					<SIUnit>s</SIUnit>
 				</Unit>
@@ -688,7 +689,7 @@ See ASTM E 2077-00.</Documentation>
 					<Documentation>Scan Number; see Appl. Spectrosc. 48, 12, 1994.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ScanFunction" type="string" modality="required" maxOccurs="1">
-					<Documentation>Scanning function</Documentation>
+					<Documentation>a string specifying an entry from the set of allowed values. See ASTM E 2077-00.</Documentation>
 					<AllowedValue>
 						<string>Mass Scan</string>
 					</AllowedValue>
@@ -697,7 +698,7 @@ See ASTM E 2077-00.</Documentation>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ScanDirection" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Scanning direction</Documentation>
+					<Documentation>specifies the direction in which the mass range was scanned during acquisition. It is not necessarily the same direction in which masses are recorded in the file. See ASTM E 2077-00.</Documentation>
 					<AllowedValue>
 						<string>up</string>
 					</AllowedValue>
@@ -706,7 +707,7 @@ See ASTM E 2077-00.</Documentation>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ScanLaw" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Scanning law</Documentation>
+					<Documentation>Mass scan law. See ASTM E 2077-00.</Documentation>
 					<AllowedValue>
 						<string>exponential</string>
 					</AllowedValue>
@@ -718,13 +719,13 @@ See ASTM E 2077-00.</Documentation>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ScanTime" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Scanning time</Documentation>
+					<Documentation>specifies the time in seconds required to complete one scan of the mass range. See ASTM E 2077-00.</Documentation>
 					<Unit label="s">
 						<SIUnit>s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ScanRate" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Scanning rate</Documentation>
+					<Documentation>Scan rate in “SECONDS/DECADE” or “MASSES/SECOND”. See Appl. Spectrosc. 48, 12, 1994.</Documentation>
 					<Unit label="/s">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
@@ -811,13 +812,13 @@ See ASTM E 2077-00.</Documentation>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="EmissionCurrent" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Emission current</Documentation>
+					<Documentation>Filament emission current in microamps. Relevant principally for EI and CI ionization. See ASTM E 2077-00.</Documentation>
 					<Unit label="A">
 						<SIUnit>A</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="FilamentCurrent" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Filament current</Documentation>
+					<Documentation>Filament input current in amps. Relevant principally for EI and CI ionization. See ASTM E 2077-00.</Documentation>
 					<Unit label="A">
 						<SIUnit>A</SIUnit>
 					</Unit>
@@ -933,10 +934,10 @@ See ASTM E 2077-00.</Documentation>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ResolutionMethod" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Resolution method</Documentation>
+					<Documentation>specifies the method for determining spectrometer resolution. See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ResolutionType" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Resolution type</Documentation>
+					<Documentation>specifies the type of instrument resolution: constant over the mass range or proportional to mass. See ASTM E 2077-00.</Documentation>
 					<AllowedValue>
 						<string>constant</string>
 					</AllowedValue>

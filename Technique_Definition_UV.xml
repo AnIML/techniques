@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" name="UV" extension="false" version="1.0">
 	<Documentation>Technique definition for UV/Visible light spectroscopy</Documentation>
 	<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
@@ -11,27 +12,21 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Amount of sample used for measurement.</Documentation>
 				<Unit label="g">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Give Information about the Sample Concentration</Documentation>
 				<Unit label="g/l">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
-					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
 				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
 				<Documentation>Physical state/preparation of the sample.</Documentation>
@@ -47,12 +42,6 @@
 				<AllowedValue>
 					<string>Solution</string>
 				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's CAS registry number</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's Beilstein-Lawson number</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
 				<Documentation>Is this a stereo sample?</Documentation>
@@ -83,6 +72,136 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SamplingPreparationProcedure" type="string" modality="optional" maxOccurs="1">
 				<Documentation>Name/Description of sampling preparation  used</Documentation>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
+				<Documentation>Boiling Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of boiling temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the boiling point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="MP" maxOccurs="1" modality="optional">
+				<Documentation>Melting Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of melting temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the melting point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+				<Documentation>Refractive Index</Documentation>
+				<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+					<Documentation>Refractive index</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+		<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+			<ParameterBlueprint name="SubstanceNumber" type="int" modality="required" maxOccurs="1">
+				<Documentation>This parameter includes the substance number (consecutive number).</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceName" type="string" modality="required" maxOccurs="1">
+				<Documentation>Here is the substance name, e.g. NIST Standard material A08E15.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>CAS name of the substance.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Other substance names (e.g. trade names)</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceConcentration" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Give Information about the Substance concentration in the sample</Documentation>
+				<Unit label="g/l">
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Substance's CAS registry number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Sample's Beilstein-Lawson number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
+				<Documentation>Is this a stereo sample?</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe disposal of substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="HandlingPrecautions" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Special instructions for handling the substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe storage of substance</Documentation>
 			</ParameterBlueprint>
 			<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
@@ -193,27 +312,21 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Amount of sample used for measurement.</Documentation>
 				<Unit label="g">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Give Information about the Sample Concentration</Documentation>
 				<Unit label="g/l">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
-					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
 				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
 				<Documentation>Physical state/preparation of the sample.</Documentation>
@@ -230,12 +343,6 @@
 					<string>Solution</string>
 				</AllowedValue>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's CAS registry number</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's Beilstein-Lawson number</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
 				<Documentation>Is this a stereo sample?</Documentation>
 			</ParameterBlueprint>
@@ -247,6 +354,136 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
 				<Documentation>Instructions on safe storage of sample</Documentation>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
+				<Documentation>Boiling Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of boiling temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the boiling point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="MP" maxOccurs="1" modality="optional">
+				<Documentation>Melting Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of melting temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the melting point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+				<Documentation>Refractive Index</Documentation>
+				<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+					<Documentation>Refractive index</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+		<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+			<ParameterBlueprint name="SubstanceNumber" type="int" modality="required" maxOccurs="1">
+				<Documentation>This parameter includes the substance number (consecutive number).</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceName" type="string" modality="required" maxOccurs="1">
+				<Documentation>Here is the substance name, e.g. NIST Standard material A08E15.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>CAS name of the substance.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Other substance names (e.g. trade names)</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceConcentration" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Give Information about the Substance concentration in the sample</Documentation>
+				<Unit label="g/l">
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Substance's CAS registry number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Sample's Beilstein-Lawson number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
+				<Documentation>Is this a stereo sample?</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe disposal of substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="HandlingPrecautions" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Special instructions for handling the substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe storage of substance</Documentation>
 			</ParameterBlueprint>
 			<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
@@ -357,27 +594,21 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Amount of sample used for measurement.</Documentation>
 				<Unit label="g">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Give Information about the Sample Concentration</Documentation>
 				<Unit label="g/l">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
-					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
 				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
 				<Documentation>Physical state/preparation of the sample.</Documentation>
@@ -393,12 +624,6 @@
 				<AllowedValue>
 					<string>Solution</string>
 				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's CAS registry number</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's Beilstein-Lawson number</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
 				<Documentation>Is this a stereo sample?</Documentation>
@@ -417,6 +642,136 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="AutoSamplerPosition" type="int" modality="optional" maxOccurs="1">
 				<Documentation>Sample position in auto sampler device</Documentation>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
+				<Documentation>Boiling Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of boiling temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the boiling point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="MP" maxOccurs="1" modality="optional">
+				<Documentation>Melting Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of melting temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the melting point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+				<Documentation>Refractive Index</Documentation>
+				<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+					<Documentation>Refractive index</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+		<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+			<ParameterBlueprint name="SubstanceNumber" type="int" modality="required" maxOccurs="1">
+				<Documentation>This parameter includes the substance number (consecutive number).</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceName" type="string" modality="required" maxOccurs="1">
+				<Documentation>Here is the substance name, e.g. NIST Standard material A08E15.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>CAS name of the substance.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Other substance names (e.g. trade names)</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceConcentration" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Give Information about the Substance concentration in the sample</Documentation>
+				<Unit label="g/l">
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Substance's CAS registry number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Sample's Beilstein-Lawson number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
+				<Documentation>Is this a stereo sample?</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe disposal of substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="HandlingPrecautions" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Special instructions for handling the substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe storage of substance</Documentation>
 			</ParameterBlueprint>
 			<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
@@ -527,27 +882,21 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Amount of sample used for measurement.</Documentation>
 				<Unit label="g">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Give Information about the Sample Concentration</Documentation>
 				<Unit label="g/l">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
-					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
 				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
 				<Documentation>Physical state/preparation of the sample.</Documentation>
@@ -563,12 +912,6 @@
 				<AllowedValue>
 					<string>Solution</string>
 				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's CAS registry number</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's Beilstein-Lawson number</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
 				<Documentation>Is this a stereo sample?</Documentation>
@@ -587,6 +930,136 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="AutoSamplerPosition" type="int" modality="optional" maxOccurs="1">
 				<Documentation>Sample position in auto sampler device</Documentation>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
+				<Documentation>Boiling Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of boiling temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the boiling point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="MP" maxOccurs="1" modality="optional">
+				<Documentation>Melting Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of melting temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the melting point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+				<Documentation>Refractive Index</Documentation>
+				<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+					<Documentation>Refractive index</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+		<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+			<ParameterBlueprint name="SubstanceNumber" type="int" modality="required" maxOccurs="1">
+				<Documentation>This parameter includes the substance number (consecutive number).</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceName" type="string" modality="required" maxOccurs="1">
+				<Documentation>Here is the substance name, e.g. NIST Standard material A08E15.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>CAS name of the substance.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Other substance names (e.g. trade names)</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceConcentration" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Give Information about the Substance concentration in the sample</Documentation>
+				<Unit label="g/l">
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Substance's CAS registry number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Sample's Beilstein-Lawson number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
+				<Documentation>Is this a stereo sample?</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe disposal of substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="HandlingPrecautions" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Special instructions for handling the substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe storage of substance</Documentation>
 			</ParameterBlueprint>
 			<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
@@ -697,27 +1170,21 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Amount of sample used for measurement.</Documentation>
 				<Unit label="g">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Give Information about the Sample Concentration</Documentation>
 				<Unit label="g/l">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
-					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
 				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
 				<Documentation>Physical state/preparation of the sample.</Documentation>
@@ -733,12 +1200,6 @@
 				<AllowedValue>
 					<string>Solution</string>
 				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's CAS registry number</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's Beilstein-Lawson number</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
 				<Documentation>Is this a stereo sample?</Documentation>
@@ -757,6 +1218,136 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="AutoSamplerPosition" type="int" modality="optional" maxOccurs="1">
 				<Documentation>Sample position in auto sampler device</Documentation>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
+				<Documentation>Boiling Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of boiling temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the boiling point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="MP" maxOccurs="1" modality="optional">
+				<Documentation>Melting Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of melting temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the melting point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+				<Documentation>Refractive Index</Documentation>
+				<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+					<Documentation>Refractive index</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+		<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+			<ParameterBlueprint name="SubstanceNumber" type="int" modality="required" maxOccurs="1">
+				<Documentation>This parameter includes the substance number (consecutive number).</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceName" type="string" modality="required" maxOccurs="1">
+				<Documentation>Here is the substance name, e.g. NIST Standard material A08E15.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>CAS name of the substance.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Other substance names (e.g. trade names)</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceConcentration" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Give Information about the Substance concentration in the sample</Documentation>
+				<Unit label="g/l">
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Substance's CAS registry number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Sample's Beilstein-Lawson number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
+				<Documentation>Is this a stereo sample?</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe disposal of substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="HandlingPrecautions" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Special instructions for handling the substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe storage of substance</Documentation>
 			</ParameterBlueprint>
 			<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
@@ -867,27 +1458,21 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Amount of sample used for measurement.</Documentation>
 				<Unit label="g">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Give Information about the Sample Concentration</Documentation>
 				<Unit label="g/l">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
-					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
 				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
 				<Documentation>Physical state/preparation of the sample.</Documentation>
@@ -903,12 +1488,6 @@
 				<AllowedValue>
 					<string>Solution</string>
 				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's CAS registry number</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's Beilstein-Lawson number</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
 				<Documentation>Is this a stereo sample?</Documentation>
@@ -927,6 +1506,136 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="AutoSamplerPosition" type="int" modality="optional" maxOccurs="1">
 				<Documentation>Sample position in auto sampler device</Documentation>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
+				<Documentation>Boiling Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of boiling temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the boiling point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="MP" maxOccurs="1" modality="optional">
+				<Documentation>Melting Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of melting temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the melting point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+				<Documentation>Refractive Index</Documentation>
+				<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+					<Documentation>Refractive index</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+		<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+			<ParameterBlueprint name="SubstanceNumber" type="int" modality="required" maxOccurs="1">
+				<Documentation>This parameter includes the substance number (consecutive number).</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceName" type="string" modality="required" maxOccurs="1">
+				<Documentation>Here is the substance name, e.g. NIST Standard material A08E15.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>CAS name of the substance.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Other substance names (e.g. trade names)</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceConcentration" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Give Information about the Substance concentration in the sample</Documentation>
+				<Unit label="g/l">
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Substance's CAS registry number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Sample's Beilstein-Lawson number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
+				<Documentation>Is this a stereo sample?</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe disposal of substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="HandlingPrecautions" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Special instructions for handling the substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe storage of substance</Documentation>
 			</ParameterBlueprint>
 			<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
@@ -1037,27 +1746,21 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Amount of sample used for measurement.</Documentation>
 				<Unit label="g">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Give Information about the Sample Concentration</Documentation>
 				<Unit label="g/l">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
-					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
 				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
 				<Documentation>Physical state/preparation of the sample.</Documentation>
@@ -1073,12 +1776,6 @@
 				<AllowedValue>
 					<string>Solution</string>
 				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's CAS registry number</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's Beilstein-Lawson number</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
 				<Documentation>Is this a stereo sample?</Documentation>
@@ -1098,15 +1795,6 @@
 			<ParameterBlueprint name="AutoSamplerPosition" type="int" modality="optional" maxOccurs="1">
 				<Documentation>Sample position in auto sampler device</Documentation>
 			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
-				<Documentation>Description of the chemical structure</Documentation>
-				<ParameterBlueprint name="Smiles" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>Chemical structure as SMILES string.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Wiswesser" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>Chemical structure as Wiswesser string.</Documentation>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
 			<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
 				<Documentation>Boiling Point</Documentation>
 				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
@@ -1207,27 +1895,21 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Amount of sample used for measurement.</Documentation>
 				<Unit label="g">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Give Information about the Sample Concentration</Documentation>
 				<Unit label="g/l">
-					<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
-					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
 				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
 				<Documentation>Physical state/preparation of the sample.</Documentation>
@@ -1243,12 +1925,6 @@
 				<AllowedValue>
 					<string>Solution</string>
 				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's CAS registry number</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>Sample's Beilstein-Lawson number</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
 				<Documentation>Is this a stereo sample?</Documentation>
@@ -1267,6 +1943,136 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="AutoSamplerPosition" type="int" modality="optional" maxOccurs="1">
 				<Documentation>Sample position in auto sampler device</Documentation>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
+				<Documentation>Boiling Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of boiling temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the boiling point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="MP" maxOccurs="1" modality="optional">
+				<Documentation>Melting Point</Documentation>
+				<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<Documentation>Lower bound of melting temperature range</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Upper bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtPressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure at which the melting point has been determined.</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+				<Documentation>Refractive Index</Documentation>
+				<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+					<Documentation>Refractive index</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+		<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+			<ParameterBlueprint name="SubstanceNumber" type="int" modality="required" maxOccurs="1">
+				<Documentation>This parameter includes the substance number (consecutive number).</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceName" type="string" modality="required" maxOccurs="1">
+				<Documentation>Here is the substance name, e.g. NIST Standard material A08E15.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>CAS name of the substance.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Other substance names (e.g. trade names)</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceConcentration" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Give Information about the Substance concentration in the sample</Documentation>
+				<Unit label="g/l">
+					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Substance's CAS registry number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Sample's Beilstein-Lawson number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
+				<Documentation>Is this a stereo sample?</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe disposal of substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="HandlingPrecautions" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Special instructions for handling the substance</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Instructions on safe storage of substance</Documentation>
 			</ParameterBlueprint>
 			<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
@@ -1386,17 +2192,35 @@
 			<Unit label="m">
 				<SIUnit>m</SIUnit>
 			</Unit>
+			<Unit label="cm">
+				<SIUnit factor="0.01">m</SIUnit>
+			</Unit>
+			<Unit label="mm">
+				<SIUnit factor="0.001">m</SIUnit>
+			</Unit>
 		</VectorBlueprint>
 		<VectorBlueprint name="PositionY" type="float" modality="optional" maxOccurs="1">
 			<Documentation>Y position (e.g. for surface mapping)</Documentation>
 			<Unit label="m">
 				<SIUnit>m</SIUnit>
 			</Unit>
+			<Unit label="cm">
+				<SIUnit factor="0.01">m</SIUnit>
+			</Unit>
+			<Unit label="mm">
+				<SIUnit factor="0.001">m</SIUnit>
+			</Unit>
 		</VectorBlueprint>
 		<VectorBlueprint name="PositionZ" type="float" modality="optional" maxOccurs="1">
 			<Documentation>Z position (e.g. for surface mapping)</Documentation>
 			<Unit label="m">
 				<SIUnit>m</SIUnit>
+			</Unit>
+			<Unit label="cm">
+				<SIUnit factor="0.01">m</SIUnit>
+			</Unit>
+			<Unit label="mm">
+				<SIUnit factor="0.001">m</SIUnit>
 			</Unit>
 		</VectorBlueprint>
 		<VectorBlueprint name="Wavelength" type="float" modality="optional" maxOccurs="1">

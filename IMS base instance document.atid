@@ -233,7 +233,7 @@ the drift chamber (in volt/centimeter). See Pure Appl. Chem. 73, 2001, 1765-1782
 					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
 						<Documentation>ionization chamber</Documentation>
 						<Unit label="V/cm">
-							<SIUnit factor="">kg</SIUnit>
+							<SIUnit>kg</SIUnit>
 							<SIUnit exponent="-3">s</SIUnit>
 							<SIUnit factor="100">m</SIUnit>
 							<SIUnit exponent="-1">A</SIUnit>
@@ -536,7 +536,7 @@ the drift chamber (in volt/centimeter). See Pure Appl. Chem. 73, 2001, 1765-1782
 					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
 						<Documentation>ionization chamber</Documentation>
 						<Unit label="V/cm">
-							<SIUnit factor="">kg</SIUnit>
+							<SIUnit>kg</SIUnit>
 							<SIUnit exponent="-3">s</SIUnit>
 							<SIUnit factor="100">m</SIUnit>
 							<SIUnit exponent="-1">A</SIUnit>

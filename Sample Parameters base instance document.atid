@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Module name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid">
 		<Documentation>Technique-independent parameters describing an AnIML sample</Documentation>
@@ -16,9 +17,12 @@
 					<Documentation>Common, trade, or other names. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
-					<Documentation>sample amount used to prepare the test material. The unit is milligrams. See ASTM E 1947-98</Documentation>
+					<Documentation>sample amount used to prepare the test material. The unit is milligrams or milliliters. See ASTM E 1947-98</Documentation>
 					<Unit label="mg">
 						<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+					</Unit>
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="0.001">m</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
@@ -26,6 +30,9 @@
 					<Unit label="g/l">
 						<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 						<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="%">
+						<SIUnit factor="1e-2">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
@@ -96,6 +103,9 @@
 						<SIUnit exponent="1" factor="0.001">kg</SIUnit>
 						<SIUnit exponent="-3" factor="0.01">m</SIUnit>
 					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Lot" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Lot name/number</Documentation>
 				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
 					<Documentation>Boiling Point</Documentation>
@@ -215,6 +225,9 @@ oraanizations. Chem. and Ena. News, Julv 13, 1987, DV. 30-31.).</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
 					<Documentation>a description of the storage conditions for the substance, which includes the storage location. This is for OSHA compliance. See ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Lot" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Lot name/number</Documentation>
 				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
 					<Documentation>Description of the chemical structure</Documentation>

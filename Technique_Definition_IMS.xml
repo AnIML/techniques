@@ -999,12 +999,6 @@
 				<SIUnit factor="0.000000000001">A</SIUnit>
 			</Unit>
 		</VectorBlueprint>
-		<PageBlueprint name="Annotations" modality="optional">
-			<VectorBlueprint name="TextAnnotation" type="string" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationPNG" type="png" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationSVG" type="svg" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="XMLAnnotation" type="xml" maxOccurs="unbounded" modality="optional"/>
-		</PageBlueprint>
 		<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
 			<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">

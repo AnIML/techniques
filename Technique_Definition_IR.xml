@@ -676,12 +676,6 @@
 				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
 			</Unit>
 		</VectorBlueprint>
-		<PageBlueprint name="Annotations" modality="optional">
-			<VectorBlueprint name="TextAnnotation" type="string" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationPNG" type="png" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationSVG" type="svg" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="XMLAnnotation" type="xml" maxOccurs="unbounded" modality="optional"/>
-		</PageBlueprint>
 		<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
 			<ParameterBlueprint name="PathLength" type="float" modality="required" maxOccurs="1">
@@ -779,12 +773,6 @@
 				<SIUnit exponent="-1" factor="1" offset="0">A</SIUnit>
 			</Unit>
 		</VectorBlueprint>
-		<PageBlueprint name="Annotations" modality="optional">
-			<VectorBlueprint name="TextAnnotation" type="string" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationPNG" type="png" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationSVG" type="svg" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="XMLAnnotation" type="xml" maxOccurs="unbounded" modality="optional"/>
-		</PageBlueprint>
 		<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
 			<ParameterBlueprint name="AliasingRatio" type="float" modality="optional" maxOccurs="1">

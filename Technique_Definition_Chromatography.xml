@@ -742,12 +742,6 @@
 				<SIUnit factor="0.001">A</SIUnit>
 			</Unit>
 		</VectorBlueprint>
-		<PageBlueprint name="Annotations" modality="optional">
-			<VectorBlueprint name="TextAnnotation" type="string" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationPNG" type="png" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationSVG" type="svg" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="XMLAnnotation" type="xml" maxOccurs="unbounded" modality="optional"/>
-		</PageBlueprint>
 		<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
 			<ParameterBlueprint name="ChromatographyType" type="string" modality="required" maxOccurs="1">
@@ -874,12 +868,6 @@
 				<SIUnit factor="0.001">A</SIUnit>
 			</Unit>
 		</VectorBlueprint>
-		<PageBlueprint name="Annotations" modality="optional">
-			<VectorBlueprint name="TextAnnotation" type="string" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationPNG" type="png" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationSVG" type="svg" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="XMLAnnotation" type="xml" maxOccurs="unbounded" modality="optional"/>
-		</PageBlueprint>
 		<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
 			<ParameterBlueprint name="ChromatographyType" type="string" modality="required" maxOccurs="1">

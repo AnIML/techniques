@@ -281,13 +281,10 @@
 	</SampleRole>
 	<SampleRole name="ReagentGas" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
 		<Documentation>Reagent gas used for CI</Documentation>
-		<ParameterCategoryBlueprint name="SampleDescription">
+		<ParameterCategoryBlueprint name="SampleDescription" maxOccurs="1" modality="required">
 			<Documentation>Parameters describing the reagent gas</Documentation>
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
@@ -525,9 +522,6 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
@@ -764,9 +758,6 @@
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
 			</ParameterBlueprint>
@@ -994,9 +985,6 @@
 			<Documentation>Parameters describing the FAB matrix material</Documentation>
 			<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
 				<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-				<Documentation>CAS name of the sample.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 				<Documentation>Other sample names (e.g. trade names)</Documentation>
@@ -1251,12 +1239,6 @@
 				<SIUnit>1</SIUnit>
 			</Unit>
 		</VectorBlueprint>
-		<PageBlueprint name="Annotations" modality="optional">
-			<VectorBlueprint name="TextAnnotation" type="string" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationPNG" type="png" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="ImageAnnotationSVG" type="svg" maxOccurs="unbounded" modality="optional"/>
-			<VectorBlueprint name="XMLAnnotation" type="xml" maxOccurs="unbounded" modality="optional"/>
-		</PageBlueprint>
 		<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
 			<ParameterBlueprint name="ScanNumber" type="int" modality="optional" maxOccurs="1">

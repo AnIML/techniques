@@ -5,13 +5,13 @@
 		<Documentation>Technique definition for Infrared spectroscopy</Documentation>
 		<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
 			<Documentation>This is the analyzed substance</Documentation>
-			<ParameterCategoryBlueprint name="SampleDescription" modality="required">
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
 				<Documentation>Parameters describing the measurement sample</Documentation>
 				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
 					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
 G.B. 30; 1996, 68, 989</Documentation>
 					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
-						<Documentation>Refractive index</Documentation>
+						<Documentation>Refractive index value</Documentation>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
 						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
@@ -28,11 +28,12 @@ G.B. 30; 1996, 68, 989</Documentation>
 				</ParameterCategoryBlueprint>
 			</ParameterCategoryBlueprint>
 			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<Documentation>Parameters describing a substance in the measurement sample</Documentation>
 				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
 					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
 G.B. 30; 1996, 68, 989</Documentation>
 					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
-						<Documentation>Refractive index</Documentation>
+						<Documentation>Refractive index value</Documentation>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
 						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
@@ -52,13 +53,13 @@ G.B. 30; 1996, 68, 989</Documentation>
 		</SampleRole>
 		<SampleRole name="Reference" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
 			<Documentation>Blank reference</Documentation>
-			<ParameterCategoryBlueprint name="SampleDescription" modality="required">
-				<Documentation>Parameters describing the measurement sample</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
+				<Documentation>Parameters describing the reference</Documentation>
 				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
 					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
 G.B. 30; 1996, 68, 989</Documentation>
 					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
-						<Documentation>Refractive index</Documentation>
+						<Documentation>Refractive index value</Documentation>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
 						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
@@ -75,11 +76,12 @@ G.B. 30; 1996, 68, 989</Documentation>
 				</ParameterCategoryBlueprint>
 			</ParameterCategoryBlueprint>
 			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<Documentation>Parameters describing a substance in the reference</Documentation>
 				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
 					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
 G.B. 30; 1996, 68, 989</Documentation>
 					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
-						<Documentation>Refractive index</Documentation>
+						<Documentation>Refractive index value</Documentation>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
 						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
@@ -183,7 +185,8 @@ G.B. 30; 1996, 68, 989</Documentation>
 			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the measurement</Documentation>
 				<ParameterBlueprint name="PathLength" type="float" modality="required" maxOccurs="1">
-					<Documentation>Path length during measurement.</Documentation>
+					<Documentation>Pathlength
+in cm. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 					<Unit label="cm">
 						<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
 					</Unit>
@@ -342,7 +345,7 @@ O.B. 101</Documentation>
 			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the measurement</Documentation>
 				<ParameterBlueprint name="PathLength" type="float" modality="required" maxOccurs="1">
-					<Documentation>Path length during measurement.</Documentation>
+					<Documentation>Pathlength in cm. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 					<Unit label="cm">
 						<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
 					</Unit>

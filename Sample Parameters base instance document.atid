@@ -2,28 +2,28 @@
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Module name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid">
-		<Documentation/>
+		<Documentation>Technique-independent parameters describing an AnIML sample</Documentation>
 		<SampleRole name="Sample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
-			<Documentation/>
+			<Documentation>Arbitrary AnIML sample</Documentation>
 			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
 				<Documentation>Parameters describing the measurement sample</Documentation>
 				<ParameterBlueprint name="SampleNumber" type="int" modality="optional" maxOccurs="1">
 					<Documentation>This parameter includes the sample number, it is just required when different sample numbers are required  </Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleName" type="string" modality="required" maxOccurs="1">
-					<Documentation>Here is the sample name, e.g. NIST Standard material A08E15.</Documentation>
+					<Documentation>user-assigned name of the sample. See ASTM E 1947-98.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>Other sample names (e.g. trade names)</Documentation>
+					<Documentation>Common, trade, or other names. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Amount of sample used for measurement.</Documentation>
+					<Documentation>sample amount used to prepare the test material. The unit is milligrams. See ASTM E 1947-98</Documentation>
 					<Unit label="g">
 						<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleConcentration" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Give Information about the Sample Concentration</Documentation>
+					<Documentation>Give Information about the Sample Concentration in Solvent, if applicable.</Documentation>
 					<Unit label="g/l">
 						<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 						<SIUnit exponent="-3" factor="0.001" offset="0">m</SIUnit>
@@ -45,34 +45,34 @@
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
-					<Documentation>Is this a stereo sample?</Documentation>
+					<Documentation>Is this a stereo sample? see Pure Appl. Chem., Vol. 73, No. 11, pp. 1749–1764, 2001.  "Guidelines for the Representation of Pulse Sequences for Solution State Nuclear Magnetic Resonance Spectrometry" and Appl Spectrosc, Vol 45(1), pp. 4-11, 1991 "JCAMP-CS: A Standard Exchange Format for Chemical Structure Information in Computer-Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Disposal" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Instructions on safe disposal of sample</Documentation>
+					<Documentation>a description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="HandlingPrecautions" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Special instructions for handling the sample</Documentation>
+					<Documentation>any safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Instructions on safe storage of sample</Documentation>
+					<Documentation>a description of the storage conditions for the sample, which includes the storage location. This is for OSHA compliance. See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="UniformSampling" type="boolean" modality="optional" maxOccurs="1">
 					<Documentation>"True" if uniform sampling used</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="AutoSamplerPosition" type="int" modality="optional" maxOccurs="1">
-					<Documentation>Sample position in auto sampler device</Documentation>
+				<ParameterBlueprint name="AutoSamplerPosition" type="string" modality="optional" maxOccurs="1">
+					<Documentation>The position in the autosampler tray. The default datatype for this was chosen to be a string because some companies have concentric rows of sample vials in the sample tray; others may use cartesian coordinates. The format of this is a free-form string, with two substrings, using a period as a delimiter, for example, “coordinate1.coordinate2” or (tray.vial). See ASTM E 1947-98.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleOwner" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Name of sample's owner</Documentation>
+					<Documentation>the name of the sample owner or submitter. This may be different from the data set owner. See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleReceipt" type="dateTime" modality="optional" maxOccurs="1">
-					<Documentation>Date and time when sample was received</Documentation>
+					<Documentation>the date and time the sample was received in the laboratory or submitted for analysis. The ISO 8601 format is used for this field. This date and time is usually earlier than the data set date/time stamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SamplePreparationProcedure" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Name/Description of sample preparation  used</Documentation>
+					<Documentation>a textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: “supercritical fluid extraction.” See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Pressure" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Sample pressure in appropriate units if significantly different from room temperature. see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<Documentation>a textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: “supercritical fluid extraction.” See ASTM E 2077-00.</Documentation>
 					<Unit label="Pa">
 						<SIUnit exponent="-1">m</SIUnit>
 						<SIUnit exponent="1">kg</SIUnit>
@@ -91,9 +91,16 @@
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="Density" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Density in g/cc. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
+					<Unit label="g/cm3">
+						<SIUnit exponent="1" factor="0.001">kg</SIUnit>
+						<SIUnit exponent="-3" factor="0.01">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
 					<Documentation>Boiling Point</Documentation>
-					<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<ParameterBlueprint name="Min" type="float" modality="optional" maxOccurs="1">
 						<Documentation>Lower bound of boiling temperature range</Documentation>
 						<Unit label="K">
 							<SIUnit>K</SIUnit>
@@ -105,7 +112,7 @@
 							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
-					<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<ParameterBlueprint name="Max" type="float" modality="required" maxOccurs="1">
 						<Documentation>Upper bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
 						<Unit label="K">
 							<SIUnit>K</SIUnit>
@@ -128,7 +135,7 @@
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="MP" maxOccurs="1" modality="optional">
 					<Documentation>Melting Point</Documentation>
-					<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
+					<ParameterBlueprint name="Min" type="float" modality="optional" maxOccurs="1">
 						<Documentation>Lower bound of melting temperature range</Documentation>
 						<Unit label="K">
 							<SIUnit>K</SIUnit>
@@ -140,7 +147,7 @@
 							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
-					<ParameterBlueprint name="Max" type="float" modality="optional" maxOccurs="1">
+					<ParameterBlueprint name="Max" type="float" modality="required" maxOccurs="1">
 						<Documentation>Upper bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
 						<Unit label="K">
 							<SIUnit>K</SIUnit>
@@ -168,111 +175,66 @@
 					<Documentation>This parameter includes the substance number (consecutive number).</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SubstanceName" type="string" modality="required" maxOccurs="1">
-					<Documentation>Here is the substance name, e.g. NIST Standard material A08E15.</Documentation>
+					<Documentation>user-assigned name. See SampleName.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>Name according
-to Chemical Abstracts naming conventions as described
-in Appendix IV of the 1985 CAS Index Guide. Examples
-can be found in Chemical Abstracts indices or the Merck
-Index. Greek letters are spelled out, and standard ASCII
-capitals are used for small capitals. Sub-/superscripts are
-indicated by prefixes / and A, respectively. Example:
+				<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and A, respectively. Example:
 alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
 					<Documentation>Common, trade, or other names. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SubstanceConcentration" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Give Information about the Substance concentration in the sample</Documentation>
+					<Documentation>Concentrations of known components and impurities; see Appl. Spectrosc. 42, 1, 1988.</Documentation>
 					<Unit label="g/l">
 						<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 						<SIUnit exponent="-3" factor="0.0001" offset="0">m</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>(7.2.4) ##MOLFORM= (STRING). Molecular for-
-mula. Elemental symbols are arranged with carbon first,
-followed by hydrogen, and then remaining element sym-
-bols in alphabetic order. The first letter of each elemental
-symbol is capitalized. The second letter, if required, is
-lower case. One-letter symbols must be separated from
-the next symbol by a blank or digit. Sub-/superscripts
-are indicated by the prefixes: I and A, respectively. Sub-
-/superscripts are terminated by the next nondigit. Slash
-may be omitted for subscripts. For readability, each
-atomic symbol may be separated from its predecessor by
-a space. For substances which are represented by dot-
-disconnected formulas (hydrates, etc.), each fragment is
-represented in the above order, and the dot is repre-
-sented by *. Isotopic mass is specified by a leading su-
-perscript. D and T may be used for deuterium and tri-
-tium, respectively. Examples:
+				<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="1">
+					<Documentation>##MOLFORM= (STRING). Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetic order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes: I and A, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot- disconnected formulas (hydrates, etc.), each fragment is
+represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
 C2H402 or C2 H4 02 (acetic acid)
 C6 H9 Cr 06 * H2 0 (chromic acetate monohydrate)
 H2 A170 (water, mass 17 oxygen); see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>CAS Registry Numbers for many compounds can be found in
-Chemical Abstracts indices, Merck Index, or CAS ON-
-LINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>The Beilstein Lawson Number is a structural formula
-clustering code based on the Beilstein System. It is used
-for locating information in Beilstein databases, including
-the STN online database. The code contains only struc-
-tural information and can be generated locally on mi-
-crocomputers from connection table data alone. A simple
-description of the algorithm has been published (see A. J. Lawson, “Structure Graphics, ” in Pointers to Beilstein Out,
-ACS Symposium 341, Graphics for.Chemical Structures-Integra-
-tion with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,
-1987), pp. 80-87. STN International is an online information net-
-work operated cooperatively by ACS, West German, and Japanese
+				<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases, including the STN online database. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, “Structure Graphics, ” in Pointers to Beilstein Out, ACS Symposium 341, Graphics for.Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87. STN International is an online information network operated cooperatively by ACS, West German, and Japanese
 oraanizations. Chem. and Ena. News, Julv 13, 1987, DV. 30-31.).</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
-					<Documentation>Is this a stereo sample?</Documentation>
+					<Documentation>Is this substance a stereo compound? see Pure Appl. Chem., Vol. 73, No. 11, pp. 1749–1764, 2001.  "Guidelines for the Representation of Pulse Sequencesfor Solution State Nuclear Magnetic Resonance Spectrometry" and Appl Spectrosc, Vol 45(1), pp. 4-11, 1991 "JCAMP-CS: A Standard Exchange Format for Chemical Structure Information in Computer-Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Disposal" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Instructions on safe disposal of substance</Documentation>
+					<Documentation>a description of the disposal procedure for the substance (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="HandlingPrecautions" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Special instructions for handling the substance</Documentation>
+					<Documentation>any safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Storage" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Instructions on safe storage of substance</Documentation>
+					<Documentation>a description of the storage conditions for the substance, which includes the storage location. This is for OSHA compliance. See ASTM E 2077-00.</Documentation>
 				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="ChemicalStructure" maxOccurs="1" modality="optional">
 					<Documentation>Description of the chemical structure</Documentation>
-					<ParameterBlueprint name="Smiles" type="string" modality="optional" maxOccurs="unbounded">
+					<ParameterBlueprint name="Smiles" type="string" modality="optional" maxOccurs="1">
 						<Documentation>Chemical structure as SMILES string.</Documentation>
 					</ParameterBlueprint>
-					<ParameterBlueprint name="Wiswesser" type="string" modality="optional" maxOccurs="unbounded">
-						<Documentation>The Wiswesser
-line notation is a precise and concise means of expressing
-structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and
-numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by
-Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation
-(McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Informa-
-tion Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.). Wiswesser notation for many compounds is tab-
-ulated by Smith (see above) and by Grasselli and Ritchey (see Atlas of Spectral Data and Physical Constants for Organic Com-
-pounds, J. G. Grasselli and W. G. Ritchey, Eds. (Chemical Rubber
-Co., Boca Raton, Florida, 1975), 2nd ed.). Wis-
-wesser notation should be enclosed in angle brackets if
-it extends for more than one line, and care should be
-taken to terminate lines between expressions separated
-by blank.</Documentation>
+					<ParameterBlueprint name="Wiswesser" type="string" modality="optional" maxOccurs="1">
+						<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation
+(McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.). Wiswesser notation for many compounds is tabulated by Smith (see above) and by Grasselli and Ritchey (see Atlas of Spectral Data and Physical Constants for Organic Compounds, J. G. Grasselli and W. G. Ritchey, Eds. (Chemical Rubber Co., Boca Raton, Florida, 1975), 2nd ed.). Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
 					</ParameterBlueprint>
-					<ParameterBlueprint name="MOLfile" type="string" modality="optional" maxOccurs="unbounded">
+					<ParameterBlueprint name="MOLfile" type="string" modality="optional" maxOccurs="1">
 						<Documentation>Chemical structure as MOLfile</Documentation>
 					</ParameterBlueprint>
-					<ParameterBlueprint name="CML" type="xml" modality="optional" maxOccurs="unbounded">
+					<ParameterBlueprint name="CML" type="xml" modality="optional" maxOccurs="1">
 						<Documentation>Chemical structure as CML.</Documentation>
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
-					<Documentation>Boiling Point</Documentation>
+					<Documentation>Boiling point in degrees C. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
 					<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
 						<Documentation>Lower bound of boiling temperature range</Documentation>
 						<Unit label="K">
@@ -307,7 +269,7 @@ by blank.</Documentation>
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="MP" maxOccurs="1" modality="optional">
-					<Documentation>Melting Point</Documentation>
+					<Documentation>Melting point in degrees C. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
 					<ParameterBlueprint name="Min" type="float" modality="required" maxOccurs="1">
 						<Documentation>Lower bound of melting temperature range</Documentation>
 						<Unit label="K">

@@ -7,7 +7,9 @@
 			<Documentation>Actual measurement sample</Documentation>
 			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
 				<Documentation>Parameters describing the measurement sample</Documentation>
-				<ParameterCategoryBlueprint name="RelaxationTimes">
+				<ParameterCategoryBlueprint name="RelaxationTimes" maxOccurs="1" modality="optional">
+					<Documentation>List of relaxation times with the variable list (XYR) where X and Y are the abscissa and intensity values and R the relaxation time in seconds.
+See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="RTX" type="float">
 						<Documentation>X</Documentation>
 						<Unit label="s">
@@ -31,7 +33,7 @@
 			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
 				<Documentation>Parameters describing the measurement sample</Documentation>
 				<ParameterCategoryBlueprint name="RelaxationTimes" maxOccurs="1" modality="optional">
-					<Documentation>Relaxation times</Documentation>
+					<Documentation>List of relaxation times with the variable list (XYR) where X and Y are the abscissa and intensity values and R the relaxation time in seconds. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="RTX" type="float">
 						<Documentation>X</Documentation>
 						<Unit label="s">
@@ -82,9 +84,18 @@
 			</VectorBlueprint>
 			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
 				<Documentation>Total intensity (R+I)</Documentation>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Power">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Magnitude">
+					<SIUnit>1</SIUnit>
+				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="IntensityReal" type="float" modality="optional" maxOccurs="1">
-				<Documentation>Real part</Documentation>
+				<Documentation>Intensity, Real part</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit>1</SIUnit>
 				</Unit>
@@ -96,7 +107,7 @@
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="IntensityImaginary" type="float" modality="optional" maxOccurs="1">
-				<Documentation>Imaginary part</Documentation>
+				<Documentation>Intensity, Imaginary part</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit>1</SIUnit>
 				</Unit>
@@ -110,22 +121,22 @@
 			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the measurement</Documentation>
 				<ParameterBlueprint name="Nucleus" type="string" modality="required" maxOccurs="1">
-					<Documentation>Observed nucleus</Documentation>
+					<Documentation>Observed nucleus. See Appl. Spectrosc. 47, 8, 1993.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ObserveFrequency" type="float" modality="required" maxOccurs="1">
-					<Documentation>Observer frequency</Documentation>
-					<Unit label="Hz">
-						<SIUnit exponent="-1">s</SIUnit>
+					<Documentation>Observer frequency in MHz. See Appl. Spectrosc. 47, 8, 1993.</Documentation>
+					<Unit label="MHz">
+						<SIUnit exponent="-1" factor="1e6">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="AcquisitionTime" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Acquisition time</Documentation>
+					<Documentation>Required for calculations involving resolution. Value given in seconds. Priority OPTIONAL. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="s">
 						<SIUnit>s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="AcquisitionMode" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Acquisition mode</Documentation>
+					<Documentation>This is REQUIRED for NMR FIDs but only OPTIONAL for NMR SPECTRA and NMR PEAK TABLEs. It can take the value SIMULTANEOUS for data obtained from true quadrature detection using two detectors and two ADCs, SINGLE for Time Proportional Phase Increment detection with a single detector and ADC, and the value SEQUENTIAL when data are obtained from two detectors with the use of only a single ADC. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<AllowedValue>
 						<string>simultaneous</string>
 					</AllowedValue>
@@ -137,10 +148,10 @@
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
-					<Documentation>Number of transient averages</Documentation>
+					<Documentation>Number of transient averages. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MagneticField" type="float" modality="optional" maxOccurs="unbounded">
-					<Documentation>Magnetic field flux density in T</Documentation>
+					<Documentation>The magnetic field strength in Tesla should be included with the use of this label. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="T">
 						<SIUnit exponent="1">kg</SIUnit>
 						<SIUnit exponent="-2">m</SIUnit>
@@ -148,52 +159,40 @@
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
-					<Documentation>Solvent reference</Documentation>
+					<Documentation>Solvent lock signal in ppm. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="ppm">
 						<SIUnit factor="1e-6">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
-					<Documentation>Reference Point</Documentation>
-					<Unit label="Hz">
-						<SIUnit exponent="-1">s</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
 				<ParameterBlueprint name="Observe90" type="float" modality="optional" maxOccurs="1">
-					<Documentation>90° observe pulse in us</Documentation>
+					<Documentation>90° observe pulse time in us. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="us">
 						<SIUnit factor="0.000001">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MASFrequency" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Magic Angle Spinning frequency (for solid state NMR only)</Documentation>
+					<Documentation>Rate of sample spinning at the magic angle in Hz. (for solid state NMR only) See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SpinningRate" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Sample spinning rate in Hz</Documentation>
+					<Documentation>Sample spinning rate in Hz. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="NoiseLevel" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Noise Level</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="NPointsOrigin" type="int" modality="required" maxOccurs="unbounded">
-					<Documentation>N Points Origin</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="PointOffset" type="int" modality="required" maxOccurs="1">
-					<Documentation>Point Offset</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="QuadratureInfo" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Info about quadrature detection</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="OversamplingInfo" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Oversampling info</Documentation>
-				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="ShiftReference" modality="optional" maxOccurs="1">
-					<Documentation>Chemical shift reference</Documentation>
+					<Documentation>Where a solvent reference signal is used instead of TMS then SOLVENTREFERENCE is required.
+However, the name of the reference substance should also be given. It is important to know the source of the referencing as
+this allows an additional level of quality control. Additionally, in certain types of NMR spectroscopy such as 31P NMR
+there is still no unified p.p.m. scale based on a single referencing substance. It should be noted that by convention NMR
+spectra are stored in Hz but displayed in p.p.m.
+Type can be either INTERNAL or EXTERNAL.
+ReferenceCompound is the name of the chemical shift reference compound.
+SpectrumShiftValue gives the current x value of the reference compound signal.
+ReferenceShiftValue is the shift value of the reference compound signal in p.p.m.
+See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<ParameterBlueprint name="Type" type="string" modality="required" maxOccurs="1">
 						<AllowedValue>
 							<string>internal</string>
@@ -215,7 +214,7 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="optional" maxOccurs="1">
-					<Documentation>Pre-acquisition delay</Documentation>
+					<Documentation>Pre-acquisition delays for the real values (RD) and the imaginary values (ID) in ps. This agreement allows for the storage of simultaneously recorded real and imaginary data FIDs where the two delays will be identical, or alternating recorded real and imaginary FIDs where the two delays will be different. This is REQUIRED for NMR FIDs OPTIONAL for NMR SPECTRA and NMR PEAK TABLES. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="Real" type="float" modality="required" maxOccurs="1">
 						<Unit label="us">
 							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
@@ -228,11 +227,11 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="PulseSequence" modality="required" maxOccurs="1">
-					<Documentation>Pulse sequence name</Documentation>
+					<Documentation>This will contain all pertinent information concerning pulse sequences, pulse delays, relaxation delays, pulse angles, etc. Whenever possible, this LDR should include the name of the pulse sequence. The text in this field should preferentially be based on the standard reporting format for NMR pulse sequences [Pure and Applied Chemistry 73, 2001, 1749–1764], or may be written in the instrument’s native macro language provided enough information is supplied to clearly enable post processing of the data by third parties. See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<ParameterBlueprint name="Name" type="string" modality="required" maxOccurs="unbounded"/>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="DecouplerFrequencies" modality="optional" maxOccurs="unbounded">
-					<Documentation>Decoupler frequencies</Documentation>
+					<Documentation>Table of decoupler frequencies where frequencies (F) are given in MHz and decoupler 90° pulses (90) in us. See Appl. Spectrosc. 47, 8, 1993, 1093-1099. </Documentation>
 					<ParameterBlueprint name="PulseFrequency" type="float">
 						<Unit label="MHz">
 							<SIUnit factor="100000" exponent="-1">s</SIUnit>
@@ -245,7 +244,7 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="FilterWidth" modality="optional" maxOccurs="1">
-					<Documentation>Filter width</Documentation>
+					<Documentation>Filter width in Hz followed by a description of the filter algorithm. See Appl. Spectrosc. 47, 8, 1993, 1093-1099. </Documentation>
 					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
 						<Unit label="Hz">
 							<SIUnit exponent="-1">s</SIUnit>
@@ -257,21 +256,28 @@
 			<ParameterCategoryBlueprint name="ProcessingParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the data processing</Documentation>
 				<ParameterBlueprint name="PhaseCorr0" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Zero order phase correction</Documentation>
-					<Unit label="degrees"/>
+					<Documentation>Zero-order phase correction in deg. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
+					<Unit label="deg">
+						<SIUnit>1</SIUnit>
+					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="PhaseCorr1" type="string" modality="optional" maxOccurs="1">
-					<Documentation>First order phase correction rel. to max X value</Documentation>
-					<Unit label="degrees"/>
+					<Documentation>First-order phase correction in deg per Hz relative to the maximum X-value. If a pivot point other than the maximum X-value was used, then the phase correction figure should be recalculated for a pivot point at maximum X. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
+					<Unit label="deg">
+						<SIUnit>1</SIUnit>
+					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ZeroFillingPoints" type="int" modality="optional" maxOccurs="1">
-					<Documentation>Number of complex zero filling points</Documentation>
+					<Documentation>Number of complex zero filling points used. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="LB" type="float" modality="required" maxOccurs="unbounded">
+				<ParameterBlueprint name="LB" type="float" modality="optional" maxOccurs="1">
 					<Documentation>Line Broadening</Documentation>
 				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="CouplingConstants" modality="optional" maxOccurs="unbounded">
-					<Documentation>Atom-Atom-Constant triples</Documentation>
+					<Documentation>Atom-Atom-Constant triples
+
+J is the coupling constant in Hz, A the atom number, and B the heteroatom number.
+See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="A" type="int">
 						<Documentation>Number of first atom</Documentation>
 					</ParameterBlueprint>
@@ -298,7 +304,7 @@
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Pd" type="float" modality="optional" maxOccurs="1">
 						<Documentation>Between 0° and 90°; for sine bell.</Documentation>
-						<Unit label="degrees">
+						<Unit label="deg">
 							<SIUnit>1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
@@ -335,19 +341,19 @@
 		<PageBlueprint name="Spectrum_nD" modality="optional">
 			<Documentation>Page for 2D, 3D, ... nD NMR spectrum</Documentation>
 			<VectorBlueprint name="F1" type="float" modality="required" maxOccurs="1">
-				<Documentation>Shift vector 1</Documentation>
+				<Documentation>Chemical Shift vector 1</Documentation>
 				<Unit label="ppm">
 					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="F2" type="float" modality="required" maxOccurs="1">
-				<Documentation>Shift vector 2</Documentation>
+				<Documentation>Chemical Shift vector 2</Documentation>
 				<Unit label="ppm">
 					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="F3" type="float" modality="optional" maxOccurs="1">
-				<Documentation>Shift vector 3</Documentation>
+				<Documentation>Chemical Shift vector 3</Documentation>
 				<Unit label="ppm">
 					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
@@ -397,22 +403,22 @@
 			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the measurement</Documentation>
 				<ParameterBlueprint name="Nucleus" type="string" modality="required" maxOccurs="1">
-					<Documentation>Observed nucleus</Documentation>
+					<Documentation>Observed nucleus. See Appl. Spectrosc. 47, 8, 1993.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ObserveFrequency" type="float" modality="required" maxOccurs="1">
-					<Documentation>Observer frequency</Documentation>
+					<Documentation>Observer frequency in MHz. See Appl. Spectrosc. 47, 8, 1993.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="AcquisitionTime" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Acquisition time</Documentation>
+					<Documentation>Required for calculations involving resolution. Value given in seconds. Priority OPTIONAL. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="s">
 						<SIUnit>s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="AcquisitionMode" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Acquisition mode</Documentation>
+					<Documentation>This is REQUIRED for NMR FIDs but only OPTIONAL for NMR SPECTRA and NMR PEAK TABLEs. It can take the value SIMULTANEOUS for data obtained from true quadrature detection using two detectors and two ADCs, SINGLE for Time Proportional Phase Increment detection with a single detector and ADC, and the value SEQUENTIAL when data are obtained from two detectors with the use of only a single ADC. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<AllowedValue>
 						<string>simultaneous</string>
 					</AllowedValue>
@@ -424,10 +430,10 @@
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
-					<Documentation>Number of transient averages</Documentation>
+					<Documentation>Number of transient averages. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MagneticField" type="float" modality="optional" maxOccurs="unbounded">
-					<Documentation>Magnetic field flux density in T</Documentation>
+					<Documentation>The magnetic field strength in Tesla should be included with the use of this label. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="T">
 						<SIUnit>kg</SIUnit>
 						<SIUnit exponent="-2">m</SIUnit>
@@ -435,52 +441,40 @@
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
-					<Documentation>Solvent reference</Documentation>
+					<Documentation>Solvent lock signal in ppm. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="ppm">
 						<SIUnit factor="1e-6">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
-					<Documentation>Reference Point</Documentation>
-					<Unit label="Hz">
-						<SIUnit exponent="-1">s</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
 				<ParameterBlueprint name="Observe90" type="float" modality="optional" maxOccurs="1">
-					<Documentation>90° observe pulse in us</Documentation>
+					<Documentation>90° observe pulse time in us. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="us">
 						<SIUnit factor="0.000001">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MASFrequency" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Magic Angle Spinning frequency (for solid state NMR only)</Documentation>
+					<Documentation>Rate of sample spinning at the magic angle in Hz. (for solid state NMR only) See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SpinningRate" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Sample spinning rate in Hz</Documentation>
+					<Documentation>Sample spinning rate in Hz. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="NoiseLevel" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Noise Level</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="NPointsOrigin" type="int" modality="required" maxOccurs="unbounded">
-					<Documentation>N Points Origin</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="PointOffset" type="int" modality="required" maxOccurs="1">
-					<Documentation>Point Offset</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="QuadratureInfo" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Info about quadrature detection</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="OversamplingInfo" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Oversampling info</Documentation>
-				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="ShiftReference" modality="optional" maxOccurs="1">
-					<Documentation>Chemical shift reference</Documentation>
+					<Documentation>Where a solvent reference signal is used instead of TMS then SOLVENTREFERENCE is required.
+However, the name of the reference substance should also be given. It is important to know the source of the referencing as
+this allows an additional level of quality control. Additionally, in certain types of NMR spectroscopy such as 31P NMR
+there is still no unified p.p.m. scale based on a single referencing substance. It should be noted that by convention NMR
+spectra are stored in Hz but displayed in p.p.m.
+Type can be either INTERNAL or EXTERNAL.
+ReferenceCompound is the name of the chemical shift reference compound.
+SpectrumShiftValue gives the current x value of the reference compound signal.
+ReferenceShiftValue is the shift value of the reference compound signal in p.p.m.
+See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<ParameterBlueprint name="Type" type="string" modality="required" maxOccurs="1">
 						<AllowedValue>
 							<string>internal</string>
@@ -502,7 +496,7 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="optional" maxOccurs="1">
-					<Documentation>Pre-acquisition delay</Documentation>
+					<Documentation>Pre-acquisition delays for the real values (RD) and the imaginary values (ID) in ps. This agreement allows for the storage of simultaneously recorded real and imaginary data FIDs where the two delays will be identical, or alternating recorded real and imaginary FIDs where the two delays will be different. This is REQUIRED for NMR FIDs OPTIONAL for NMR SPECTRA and NMR PEAK TABLES. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="Real" type="float" modality="required" maxOccurs="1">
 						<Unit label="us">
 							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
@@ -515,11 +509,11 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="PulseSequence" modality="required" maxOccurs="1">
-					<Documentation>Pulse sequence name</Documentation>
+					<Documentation>This will contain all pertinent information concerning pulse sequences, pulse delays, relaxation delays, pulse angles, etc. Whenever possible, this LDR should include the name of the pulse sequence. The text in this field should preferentially be based on the standard reporting format for NMR pulse sequences [Pure and Applied Chemistry 73, 2001, 1749–1764], or may be written in the instrument’s native macro language provided enough information is supplied to clearly enable post processing of the data by third parties. See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<ParameterBlueprint name="Name" type="string" modality="required" maxOccurs="unbounded"/>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="DecouplerFrequencies" modality="optional" maxOccurs="unbounded">
-					<Documentation>Decoupler frequencies</Documentation>
+					<Documentation>Table of decoupler frequencies in the form ##.DECOUPLER=(F,90), where frequencies (F) are given in MHz and decoupler 90° pulses (90) in us. See Appl. Spectrosc. 47, 8, 1993, 1093-1099. </Documentation>
 					<ParameterBlueprint name="PulseFrequency" type="float">
 						<Unit label="MHz">
 							<SIUnit factor="100000" exponent="-1">s</SIUnit>
@@ -532,7 +526,7 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="FilterWidth" modality="optional" maxOccurs="1">
-					<Documentation>Filter width</Documentation>
+					<Documentation>Filter width in Hz followed by a description of the filter algorithm. See Appl. Spectrosc. 47, 8, 1993, 1093-1099. </Documentation>
 					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
 						<Unit label="Hz">
 							<SIUnit exponent="-1">s</SIUnit>
@@ -544,21 +538,28 @@
 			<ParameterCategoryBlueprint name="ProcessingParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the data processing</Documentation>
 				<ParameterBlueprint name="PhaseCorr0" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Zero order phase correction</Documentation>
-					<Unit label="degrees"/>
+					<Documentation>Zero-order phase correction in deg. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
+					<Unit label="deg">
+						<SIUnit>1</SIUnit>
+					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="PhaseCorr1" type="string" modality="optional" maxOccurs="1">
-					<Documentation>First order phase correction rel. to max X value</Documentation>
-					<Unit label="degrees"/>
+					<Documentation>First-order phase correction in deg per Hz relative to the maximum X-value. If a pivot point other than the maximum X-value was used, then the phase correction figure should be recalculated for a pivot point at maximum X. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
+					<Unit label="deg">
+						<SIUnit>1</SIUnit>
+					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ZeroFillingPoints" type="int" modality="optional" maxOccurs="1">
-					<Documentation>Number of complex zero filling points</Documentation>
+					<Documentation>Number of complex zero filling points used. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="LB" type="float" modality="required" maxOccurs="unbounded">
+				<ParameterBlueprint name="LB" type="float" modality="optional" maxOccurs="1">
 					<Documentation>Line Broadening</Documentation>
 				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="CouplingConstants" modality="optional" maxOccurs="unbounded">
-					<Documentation>Atom-Atom-Constant triples</Documentation>
+					<Documentation>Atom-Atom-Constant triples
+
+J is the coupling constant in Hz, A the atom number, and B the heteroatom number.
+See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="A" type="int">
 						<Documentation>Number of first atom</Documentation>
 					</ParameterBlueprint>
@@ -585,7 +586,7 @@
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Pd" type="float" modality="optional" maxOccurs="1">
 						<Documentation>Between 0° and 90°; for sine bell.</Documentation>
-						<Unit label="degrees">
+						<Unit label="deg">
 							<SIUnit>1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
@@ -654,22 +655,22 @@
 			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the measurement</Documentation>
 				<ParameterBlueprint name="Nucleus" type="string" modality="required" maxOccurs="1">
-					<Documentation>Observed nucleus</Documentation>
+					<Documentation>Observed nucleus. See Appl. Spectrosc. 47, 8, 1993.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ObserveFrequency" type="float" modality="required" maxOccurs="1">
-					<Documentation>Observer frequency</Documentation>
+					<Documentation>Observer frequency in MHz. See Appl. Spectrosc. 47, 8, 1993.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="AcquisitionTime" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Acquisition time</Documentation>
+					<Documentation>Required for calculations involving resolution. Value given in seconds. Priority OPTIONAL. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="s">
 						<SIUnit>s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="AcquisitionMode" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Acquisition mode</Documentation>
+				<ParameterBlueprint name="AcquisitionMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>This is REQUIRED for NMR FIDs but only OPTIONAL for NMR SPECTRA and NMR PEAK TABLEs. It can take the value SIMULTANEOUS for data obtained from true quadrature detection using two detectors and two ADCs, SINGLE for Time Proportional Phase Increment detection with a single detector and ADC, and the value SEQUENTIAL when data are obtained from two detectors with the use of only a single ADC. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<AllowedValue>
 						<string>simultaneous</string>
 					</AllowedValue>
@@ -681,10 +682,10 @@
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
-					<Documentation>Number of transient averages</Documentation>
+					<Documentation>Number of transient averages. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MagneticField" type="float" modality="optional" maxOccurs="unbounded">
-					<Documentation>Magnetic field flux density in T</Documentation>
+					<Documentation>The magnetic field strength in Tesla should be included with the use of this label. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="T">
 						<SIUnit>kg</SIUnit>
 						<SIUnit exponent="-2">m</SIUnit>
@@ -692,52 +693,40 @@
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
-					<Documentation>Solvent reference</Documentation>
+					<Documentation>Solvent lock signal in ppm. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="ppm">
 						<SIUnit factor="1e-6">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
-					<Documentation>Reference Point</Documentation>
-					<Unit label="Hz">
-						<SIUnit exponent="-1">s</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
 				<ParameterBlueprint name="Observe90" type="float" modality="optional" maxOccurs="1">
-					<Documentation>90° observe pulse in us</Documentation>
+					<Documentation>90° observe pulse time in us. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="us">
 						<SIUnit factor="0.000001">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MASFrequency" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Magic Angle Spinning frequency (for solid state NMR only)</Documentation>
+					<Documentation>Rate of sample spinning at the magic angle in Hz. (for solid state NMR only) See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SpinningRate" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Sample spinning rate in Hz</Documentation>
+					<Documentation>Sample spinning rate in Hz. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="NoiseLevel" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Noise Level</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="NPointsOrigin" type="int" modality="required" maxOccurs="unbounded">
-					<Documentation>N Points Origin</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="PointOffset" type="int" modality="required" maxOccurs="1">
-					<Documentation>Point Offset</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="QuadratureInfo" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Info about quadrature detection</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="OversamplingInfo" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Oversampling info</Documentation>
-				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="ShiftReference" modality="optional" maxOccurs="1">
-					<Documentation>Chemical shift reference</Documentation>
+					<Documentation>Where a solvent reference signal is used instead of TMS then SOLVENTREFERENCE is required.
+However, the name of the reference substance should also be given. It is important to know the source of the referencing as
+this allows an additional level of quality control. Additionally, in certain types of NMR spectroscopy such as 31P NMR
+there is still no unified p.p.m. scale based on a single referencing substance. It should be noted that by convention NMR
+spectra are stored in Hz but displayed in p.p.m.
+Type can be either INTERNAL or EXTERNAL.
+ReferenceCompound is the name of the chemical shift reference compound.
+SpectrumShiftValue gives the current x value of the reference compound signal.
+ReferenceShiftValue is the shift value of the reference compound signal in p.p.m.
+See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<ParameterBlueprint name="Type" type="string" modality="required" maxOccurs="1">
 						<AllowedValue>
 							<string>internal</string>
@@ -758,8 +747,8 @@
 						</Unit>
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
-				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="optional" maxOccurs="1">
-					<Documentation>Pre-acquisition delay</Documentation>
+				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="required" maxOccurs="1">
+					<Documentation>Pre-acquisition delays for the real values (RD) and the imaginary values (ID) in ps. This agreement allows for the storage of simultaneously recorded real and imaginary data FIDs where the two delays will be identical, or alternating recorded real and imaginary FIDs where the two delays will be different. This is REQUIRED for NMR FIDs OPTIONAL for NMR SPECTRA and NMR PEAK TABLES. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="Real" type="float" modality="required" maxOccurs="1">
 						<Unit label="us">
 							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
@@ -772,11 +761,11 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="PulseSequence" modality="required" maxOccurs="1">
-					<Documentation>Pulse sequence name</Documentation>
+					<Documentation>This will contain all pertinent information concerning pulse sequences, pulse delays, relaxation delays, pulse angles, etc. Whenever possible, this LDR should include the name of the pulse sequence. The text in this field should preferentially be based on the standard reporting format for NMR pulse sequences [Pure and Applied Chemistry 73, 2001, 1749–1764], or may be written in the instrument’s native macro language provided enough information is supplied to clearly enable post processing of the data by third parties. See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<ParameterBlueprint name="Name" type="string" modality="required" maxOccurs="unbounded"/>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="DecouplerFrequencies" modality="optional" maxOccurs="unbounded">
-					<Documentation>Decoupler frequencies</Documentation>
+					<Documentation>Table of decoupler frequencies in the form ##.DECOUPLER=(F,90), where frequencies (F) are given in MHz and decoupler 90° pulses (90) in us. See Appl. Spectrosc. 47, 8, 1993, 1093-1099. </Documentation>
 					<ParameterBlueprint name="PulseFrequency" type="float">
 						<Unit label="MHz">
 							<SIUnit factor="100000" exponent="-1">s</SIUnit>
@@ -789,7 +778,7 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="FilterWidth" modality="optional" maxOccurs="1">
-					<Documentation>Filter width</Documentation>
+					<Documentation>Filter width in Hz followed by a description of the filter algorithm. See Appl. Spectrosc. 47, 8, 1993, 1093-1099. </Documentation>
 					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
 						<Unit label="Hz">
 							<SIUnit exponent="-1">s</SIUnit>
@@ -849,7 +838,7 @@
 			<VectorBlueprint name="Multiplicity" type="string" maxOccurs="1" modality="optional">
 				<Documentation>Letter code: s, d, td, ...</Documentation>
 			</VectorBlueprint>
-			<VectorBlueprint name="PeakAssignment" type="int" maxOccurs="1" modality="optional">
+			<VectorBlueprint name="PeakAssignment" type="int" maxOccurs="unbounded" modality="optional">
 				<Documentation>Assigned atom number(s), comma-separated</Documentation>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakAssignmentText" type="string" maxOccurs="1" modality="optional">
@@ -858,22 +847,22 @@
 			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the measurement</Documentation>
 				<ParameterBlueprint name="Nucleus" type="string" modality="required" maxOccurs="1">
-					<Documentation>Observed nucleus</Documentation>
+					<Documentation>Observed nucleus. See Appl. Spectrosc. 47, 8, 1993.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ObserveFrequency" type="float" modality="required" maxOccurs="1">
-					<Documentation>Observer frequency</Documentation>
+					<Documentation>Observer frequency in MHz. See Appl. Spectrosc. 47, 8, 1993.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="AcquisitionTime" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Acquisition time</Documentation>
+					<Documentation>Required for calculations involving resolution. Value given in seconds. Priority OPTIONAL. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="s">
 						<SIUnit>s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="AcquisitionMode" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Acquisition mode</Documentation>
+					<Documentation>This is REQUIRED for NMR FIDs but only OPTIONAL for NMR SPECTRA and NMR PEAK TABLEs. It can take the value SIMULTANEOUS for data obtained from true quadrature detection using two detectors and two ADCs, SINGLE for Time Proportional Phase Increment detection with a single detector and ADC, and the value SEQUENTIAL when data are obtained from two detectors with the use of only a single ADC. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<AllowedValue>
 						<string>simultaneous</string>
 					</AllowedValue>
@@ -885,10 +874,10 @@
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
-					<Documentation>Number of transient averages</Documentation>
+					<Documentation>Number of transient averages. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MagneticField" type="float" modality="optional" maxOccurs="unbounded">
-					<Documentation>Magnetic field flux density in T</Documentation>
+					<Documentation>The magnetic field strength in Tesla should be included with the use of this label. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="T">
 						<SIUnit>kg</SIUnit>
 						<SIUnit exponent="-2">m</SIUnit>
@@ -896,52 +885,40 @@
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
-					<Documentation>Solvent reference</Documentation>
+					<Documentation>Solvent lock signal in ppm. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="ppm">
 						<SIUnit factor="1e-6">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
-					<Documentation>Reference Point</Documentation>
-					<Unit label="Hz">
-						<SIUnit exponent="-1">s</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
 				<ParameterBlueprint name="Observe90" type="float" modality="optional" maxOccurs="1">
-					<Documentation>90° observe pulse in us</Documentation>
+					<Documentation>90° observe pulse time in us. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="us">
 						<SIUnit factor="0.000001">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MASFrequency" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Magic Angle Spinning frequency (for solid state NMR only)</Documentation>
+					<Documentation>Rate of sample spinning at the magic angle in Hz. (for solid state NMR only) See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SpinningRate" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Sample spinning rate in Hz</Documentation>
+					<Documentation>Sample spinning rate in Hz. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Unit label="Hz">
 						<SIUnit exponent="-1">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="NoiseLevel" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Noise Level</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="NPointsOrigin" type="int" modality="required" maxOccurs="unbounded">
-					<Documentation>N Points Origin</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="PointOffset" type="int" modality="required" maxOccurs="1">
-					<Documentation>Point Offset</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="QuadratureInfo" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Info about quadrature detection</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="OversamplingInfo" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Oversampling info</Documentation>
-				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="ShiftReference" modality="optional" maxOccurs="1">
-					<Documentation>Chemical shift reference</Documentation>
+					<Documentation>Where a solvent reference signal is used instead of TMS then SOLVENTREFERENCE is required.
+However, the name of the reference substance should also be given. It is important to know the source of the referencing as
+this allows an additional level of quality control. Additionally, in certain types of NMR spectroscopy such as 31P NMR
+there is still no unified p.p.m. scale based on a single referencing substance. It should be noted that by convention NMR
+spectra are stored in Hz but displayed in p.p.m.
+Type can be either INTERNAL or EXTERNAL.
+ReferenceCompound is the name of the chemical shift reference compound.
+SpectrumShiftValue gives the current x value of the reference compound signal.
+ReferenceShiftValue is the shift value of the reference compound signal in p.p.m.
+See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<ParameterBlueprint name="Type" type="string" modality="required" maxOccurs="1">
 						<AllowedValue>
 							<string>internal</string>
@@ -963,7 +940,7 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="optional" maxOccurs="1">
-					<Documentation>Pre-acquisition delay</Documentation>
+					<Documentation>Pre-acquisition delays for the real values (RD) and the imaginary values (ID) in ps. This agreement allows for the storage of simultaneously recorded real and imaginary data FIDs where the two delays will be identical, or alternating recorded real and imaginary FIDs where the two delays will be different. This is REQUIRED for NMR FIDs OPTIONAL for NMR SPECTRA and NMR PEAK TABLES. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="Real" type="float" modality="required" maxOccurs="1">
 						<Unit label="us">
 							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
@@ -976,11 +953,11 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="PulseSequence" modality="required" maxOccurs="1">
-					<Documentation>Pulse sequence name</Documentation>
+					<Documentation>This will contain all pertinent information concerning pulse sequences, pulse delays, relaxation delays, pulse angles, etc. Whenever possible, this LDR should include the name of the pulse sequence. The text in this field should preferentially be based on the standard reporting format for NMR pulse sequences [Pure and Applied Chemistry 73, 2001, 1749–1764], or may be written in the instrument’s native macro language provided enough information is supplied to clearly enable post processing of the data by third parties. See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 					<ParameterBlueprint name="Name" type="string" modality="required" maxOccurs="unbounded"/>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="DecouplerFrequencies" modality="optional" maxOccurs="unbounded">
-					<Documentation>Decoupler frequencies</Documentation>
+					<Documentation>Table of decoupler frequencies in the form ##.DECOUPLER=(F,90), where frequencies (F) are given in MHz and decoupler 90° pulses (90) in us. See Appl. Spectrosc. 47, 8, 1993, 1093-1099. </Documentation>
 					<ParameterBlueprint name="PulseFrequency" type="float">
 						<Unit label="MHz">
 							<SIUnit factor="100000" exponent="-1">s</SIUnit>
@@ -993,7 +970,7 @@
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="FilterWidth" modality="optional" maxOccurs="1">
-					<Documentation>Filter width</Documentation>
+					<Documentation>Filter width in Hz followed by a description of the filter algorithm. See Appl. Spectrosc. 47, 8, 1993, 1093-1099. </Documentation>
 					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
 						<Unit label="Hz">
 							<SIUnit exponent="-1">s</SIUnit>
@@ -1005,21 +982,28 @@
 			<ParameterCategoryBlueprint name="ProcessingParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the data processing</Documentation>
 				<ParameterBlueprint name="PhaseCorr0" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Zero order phase correction</Documentation>
-					<Unit label="degrees"/>
+					<Documentation>Zero-order phase correction in deg. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
+					<Unit label="deg">
+						<SIUnit>1</SIUnit>
+					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="PhaseCorr1" type="string" modality="optional" maxOccurs="1">
-					<Documentation>First order phase correction rel. to max X value</Documentation>
-					<Unit label="degrees"/>
+					<Documentation>First-order phase correction in deg per Hz relative to the maximum X-value. If a pivot point other than the maximum X-value was used, then the phase correction figure should be recalculated for a pivot point at maximum X. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
+					<Unit label="deg">
+						<SIUnit>1</SIUnit>
+					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ZeroFillingPoints" type="int" modality="optional" maxOccurs="1">
-					<Documentation>Number of complex zero filling points</Documentation>
+					<Documentation>Number of complex zero filling points used. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="LB" type="float" modality="required" maxOccurs="unbounded">
+				<ParameterBlueprint name="LB" type="float" modality="optional" maxOccurs="1">
 					<Documentation>Line Broadening</Documentation>
 				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="CouplingConstants" modality="optional" maxOccurs="unbounded">
-					<Documentation>Atom-Atom-Constant triples</Documentation>
+					<Documentation>Atom-Atom-Constant triples
+
+J is the coupling constant in Hz, A the atom number, and B the heteroatom number.
+See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="A" type="int">
 						<Documentation>Number of first atom</Documentation>
 					</ParameterBlueprint>
@@ -1046,7 +1030,7 @@
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Pd" type="float" modality="optional" maxOccurs="1">
 						<Documentation>Between 0° and 90°; for sine bell.</Documentation>
-						<Unit label="degrees">
+						<Unit label="deg">
 							<SIUnit>1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
@@ -1082,13 +1066,13 @@
 			<ParameterCategoryBlueprint name="PeakPickingParameters" modality="optional" maxOccurs="1">
 				<Documentation>Parameters defining the peak picking</Documentation>
 				<ParameterBlueprint name="PeakPickMinInt" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Maximum intensity for peak picking</Documentation>
+					<Documentation>Minimum intensity for peak picking</Documentation>
 					<Unit label="Arb. Units">
 						<SIUnit>1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="PeakPickMaxInt" type="float" modality="optional" maxOccurs="1">
-					<Documentation>Minimum intensity for peak picking</Documentation>
+					<Documentation>Maximum intensity for peak picking</Documentation>
 					<Unit label="Arb. Units">
 						<SIUnit>1</SIUnit>
 					</Unit>
@@ -1107,7 +1091,7 @@
 				<Documentation>Name of the magnet model.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="DigitizerRes" type="int" modality="optional">
-				<Documentation>Digitizer Resolution in bits</Documentation>
+				<Documentation>Digitizer Resolution in bits. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 			</ParameterBlueprint>
 		</ParameterCategoryBlueprint>
 	</Definition>

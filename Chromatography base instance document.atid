@@ -10,7 +10,7 @@ phase) while the other (the mobile phase) moves in a definite direction. 1993, 6
 			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
 				<Documentation>Parameters describing the measurement sample</Documentation>
 				<ParameterBlueprint maxOccurs="1" name="MassOnColumn" type="float" modality="optional">
-					<Documentation>Mass of sample on column</Documentation>
+					<Documentation>Mass on column from ASTM E 1947-98.</Documentation>
 					<Unit label="mg">
 						<SIUnit exponent="1" offset="0" factor="1e-6">kg</SIUnit>
 					</Unit>
@@ -22,7 +22,7 @@ phase) while the other (the mobile phase) moves in a definite direction. 1993, 6
 			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
 				<Documentation>Parameters describing a substance in the measurement sample</Documentation>
 				<ParameterBlueprint maxOccurs="1" name="MassOnColumn" type="float" modality="optional">
-					<Documentation/>
+					<Documentation>Mass on column from ASTM E 1947-98.</Documentation>
 					<Unit label="mg">
 						<SIUnit exponent="1" offset="0" factor="1e-6">kg</SIUnit>
 					</Unit>

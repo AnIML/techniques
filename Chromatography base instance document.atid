@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 U (http://www.xmlspy.com) by Maren Fiege (Waters) -->
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
-<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
+<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique 1.01.xsd" version="1.1">
 	<Definition name="Chromatography" extension="false">
 		<Documentation>Technique Definition for Chromatography (A physical method of separation in which the components to be separated
 are distributed between two phases, one of which is stationary (stationary
@@ -68,14 +69,32 @@ unit. See: ASTM E 1947-98.</Documentation>
 has a unit of detector-unit. This is a required field for datasets
 containing raw data.
 See: ASTM E 1947-98.</Documentation>
-				<Unit label="Counts"/>
-				<Unit label="Arb. Units"/>
-				<Unit label="Relative Abundance"/>
+				<Unit label="Counts">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Relative Abundance">
+					<SIUnit>1</SIUnit>
+				</Unit>
 				<Unit label="A">
 					<SIUnit>A</SIUnit>
 				</Unit>
 				<Unit label="mA">
 					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+				<Unit label="V">
+					<SIUnit>kg</SIUnit>
+					<SIUnit exponent="2">m</SIUnit>
+					<SIUnit exponent="-3">s</SIUnit>
+					<SIUnit exponent="-1">A</SIUnit>
+				</Unit>
+				<Unit label="mV">
+					<SIUnit factor="0.001">kg</SIUnit>
+					<SIUnit exponent="2">m</SIUnit>
+					<SIUnit exponent="-3">s</SIUnit>
+					<SIUnit exponent="-1">A</SIUnit>
 				</Unit>
 			</VectorBlueprint>
 			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">

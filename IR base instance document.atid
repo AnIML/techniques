@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Definition name="IR" extension="false">
 		<Documentation>Technique definition for Infrared spectroscopy</Documentation>
@@ -7,7 +8,7 @@
 			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
 				<Documentation>Parameters describing the measurement sample</Documentation>
 				<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
-					<Documentation>Physical state of the sample</Documentation>
+					<Documentation>Solid, liquid, gas, solution; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 					<AllowedValue>
 						<string>KBr Pellet</string>
 					</AllowedValue>
@@ -67,7 +68,7 @@ G.B. 30; 1996, 68, 989</Documentation>
 			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
 				<Documentation>Parameters describing the reference</Documentation>
 				<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
-					<Documentation>Physical state of the sample</Documentation>
+					<Documentation>Solid, liquid, gas, solution; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 					<AllowedValue>
 						<string>KBr Pellet</string>
 					</AllowedValue>
@@ -125,7 +126,9 @@ G.B. 30; 1996, 68, 989</Documentation>
 		<PageBlueprint name="Spectrum" modality="optional">
 			<Documentation>The actual IR spectrum</Documentation>
 			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
-				<Documentation>Time axis, if needed</Documentation>
+				<Documentation>This is a set of values of dimension
+@length, containing the abscissa value for each raw
+data ordinate value. This set of values has a unit of time. See: ASTM E 1947-98. and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
 				<Unit label="s">
 					<SIUnit>s</SIUnit>
 				</Unit>
@@ -176,7 +179,9 @@ G.B. 30; 1996, 68, 989</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="Wavenumber" type="float" modality="required" maxOccurs="1">
-				<Documentation>Wavelength/Wavenumber</Documentation>
+				<Documentation>This is a set of values of dimension
+@length, containing the abscissa value for each raw
+data ordinate value. This set of values has a unit of wavelength or wavenumber. See: ASTM E 1947-98. and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
 				</Unit>
@@ -188,7 +193,11 @@ G.B. 30; 1996, 68, 989</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
-				<Documentation>Can be in Absorbance,  Transmittance, or %T  units, Kubelka-Munk, or Reflectance</Documentation>
+				<Documentation>This is a set of values of dimension
+@length, containing the ordinate values. This set of values
+has a unit of detector-unit. This is a required field for datasets
+containing raw data.
+See: ASTM E 1947-98. Can be in Absorbance,  Transmittance, or %T  units, Kubelka-Munk, or Reflectance. See also Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
 				<Unit label="Absorbance">
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
 				</Unit>
@@ -310,7 +319,7 @@ techniques, as discussed by Grasselli et al (see J. G. Grasselli, P. R. Griffith
 		<PageBlueprint name="PeakTable" modality="optional">
 			<Documentation>IR peak table</Documentation>
 			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
-				<Documentation>Peak position value on x axis</Documentation>
+				<Documentation>Peak position value on x axis See Appl. Spectrosc. 42, 1988, 151-162.</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
 				</Unit>
@@ -322,7 +331,9 @@ techniques, as discussed by Grasselli et al (see J. G. Grasselli, P. R. Griffith
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakNumber" type="int" modality="optional" maxOccurs="1">
-				<Documentation>Consecutive number of current peak/band</Documentation>
+				<Documentation>Peak number used to identify a particular
+peak. 
+See: ASTM E 1947-98.</Documentation>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakHeight" type="float" modality="optional" maxOccurs="1">
 				<Documentation>The distance between the peak maximum and the peak base, measured in a direction parallel to the axis representing the detector response.
@@ -344,7 +355,9 @@ O.B. 102</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakWidth" type="float" modality="optional" maxOccurs="1">
-				<Documentation>Peak width</Documentation>
+				<Documentation>The calculated width of the peak, given
+in a unit of retention-unit.
+See: ASTM E 1947-98.</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
 				</Unit>
@@ -378,13 +391,19 @@ O.B. 101</Documentation>
 		<PageBlueprint name="Interferogram" modality="optional">
 			<Documentation>IR Interferogram</Documentation>
 			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
-				<Documentation>Time axis, if needed</Documentation>
+				<Documentation>This is a set of values of dimension
+@length, containing the abscissa value for each raw
+data ordinate value. This set of values has a unit of time. See: ASTM E 1947-98. and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
 				<Unit label="s">
 					<SIUnit>s</SIUnit>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
-				<Documentation>Can be in Intensity units</Documentation>
+				<Documentation>This is a set of values of dimension
+@length, containing the ordinate values. This set of values
+has a unit of detector-unit. This is a required field for datasets
+containing raw data.
+See: ASTM E 1947-98. Can be in Absorbance,  Transmittance, or %T  units, Kubelka-Munk, or Reflectance. See also Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
 				<Unit label="Arb. Units"/>
 				<Unit label="V">
 					<SIUnit exponent="1" factor="1" offset="0">kg</SIUnit>

@@ -7,6 +7,18 @@
 			<Documentation>This is the analyzed substance</Documentation>
 			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
 				<Documentation>Parameters describing the measurement sample</Documentation>
+				<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
+					<Documentation>Physical state of the sample</Documentation>
+					<AllowedValue>
+						<string>KBr Pellet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Powder</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Nujol Mull</string>
+					</AllowedValue>
+				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
 					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
 G.B. 30; 1996, 68, 989</Documentation>
@@ -55,6 +67,18 @@ G.B. 30; 1996, 68, 989</Documentation>
 			<Documentation>Blank reference</Documentation>
 			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
 				<Documentation>Parameters describing the reference</Documentation>
+				<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
+					<Documentation>Physical state of the sample</Documentation>
+					<AllowedValue>
+						<string>KBr Pellet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Powder</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Nujol Mull</string>
+					</AllowedValue>
+				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
 					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
 G.B. 30; 1996, 68, 989</Documentation>

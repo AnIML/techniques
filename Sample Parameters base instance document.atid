@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Module name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid">
 		<Documentation/>
@@ -29,7 +30,7 @@
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
-					<Documentation>Physical state/preparation of the sample.</Documentation>
+					<Documentation>Solid, liquid, gas, solution; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 					<AllowedValue>
 						<string>Solid</string>
 					</AllowedValue>
@@ -67,11 +68,28 @@
 				<ParameterBlueprint name="SampleReceipt" type="dateTime" modality="optional" maxOccurs="1">
 					<Documentation>Date and time when sample was received</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="SamplingProcedureName" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Name/Description of sampling procedure used</Documentation>
+				<ParameterBlueprint name="SamplePreparationProcedure" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Name/Description of sample preparation  used</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="SamplingPreparationProcedure" type="string" modality="optional" maxOccurs="1">
-					<Documentation>Name/Description of sampling preparation  used</Documentation>
+				<ParameterBlueprint name="Pressure" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Sample pressure in appropriate units if significantly different from room temperature. see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<Unit label="Pa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Temperature" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Sample temperature if significantly different from room temperature. see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
 				</ParameterBlueprint>
 				<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
 					<Documentation>Boiling Point</Documentation>
@@ -143,26 +161,9 @@
 						</Unit>
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
-				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
-					<Documentation>Refractive Index</Documentation>
-					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
-						<Documentation>Refractive index</Documentation>
-					</ParameterBlueprint>
-					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
-						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
-						</Unit>
-					</ParameterBlueprint>
-				</ParameterCategoryBlueprint>
 			</ParameterCategoryBlueprint>
 			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<Documentation>Parameters describing a substance in the measurement sample</Documentation>
 				<ParameterBlueprint name="SubstanceNumber" type="int" modality="required" maxOccurs="1">
 					<Documentation>This parameter includes the substance number (consecutive number).</Documentation>
 				</ParameterBlueprint>
@@ -170,10 +171,17 @@
 					<Documentation>Here is the substance name, e.g. NIST Standard material A08E15.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="CASName" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>CAS name of the substance.</Documentation>
+					<Documentation>Name according
+to Chemical Abstracts naming conventions as described
+in Appendix IV of the 1985 CAS Index Guide. Examples
+can be found in Chemical Abstracts indices or the Merck
+Index. Greek letters are spelled out, and standard ASCII
+capitals are used for small capitals. Sub-/superscripts are
+indicated by prefixes / and A, respectively. Example:
+alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Name" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>Other substance names (e.g. trade names)</Documentation>
+					<Documentation>Common, trade, or other names. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SubstanceConcentration" type="float" modality="optional" maxOccurs="1">
 					<Documentation>Give Information about the Substance concentration in the sample</Documentation>
@@ -183,13 +191,45 @@
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MolFormula" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>Totals Formula, e.g. C2H6O.</Documentation>
+					<Documentation>(7.2.4) ##MOLFORM= (STRING). Molecular for-
+mula. Elemental symbols are arranged with carbon first,
+followed by hydrogen, and then remaining element sym-
+bols in alphabetic order. The first letter of each elemental
+symbol is capitalized. The second letter, if required, is
+lower case. One-letter symbols must be separated from
+the next symbol by a blank or digit. Sub-/superscripts
+are indicated by the prefixes: I and A, respectively. Sub-
+/superscripts are terminated by the next nondigit. Slash
+may be omitted for subscripts. For readability, each
+atomic symbol may be separated from its predecessor by
+a space. For substances which are represented by dot-
+disconnected formulas (hydrates, etc.), each fragment is
+represented in the above order, and the dot is repre-
+sented by *. Isotopic mass is specified by a leading su-
+perscript. D and T may be used for deuterium and tri-
+tium, respectively. Examples:
+C2H402 or C2 H4 02 (acetic acid)
+C6 H9 Cr 06 * H2 0 (chromic acetate monohydrate)
+H2 A170 (water, mass 17 oxygen); see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>Substance's CAS registry number</Documentation>
+					<Documentation>CAS Registry Numbers for many compounds can be found in
+Chemical Abstracts indices, Merck Index, or CAS ON-
+LINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="BeilsteinLawsonNo" type="string" modality="optional" maxOccurs="unbounded">
-					<Documentation>Sample's Beilstein-Lawson number</Documentation>
+					<Documentation>The Beilstein Lawson Number is a structural formula
+clustering code based on the Beilstein System. It is used
+for locating information in Beilstein databases, including
+the STN online database. The code contains only struc-
+tural information and can be generated locally on mi-
+crocomputers from connection table data alone. A simple
+description of the algorithm has been published (see A. J. Lawson, “Structure Graphics, ” in Pointers to Beilstein Out,
+ACS Symposium 341, Graphics for.Chemical Structures-Integra-
+tion with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,
+1987), pp. 80-87. STN International is an online information net-
+work operated cooperatively by ACS, West German, and Japanese
+oraanizations. Chem. and Ena. News, Julv 13, 1987, DV. 30-31.).</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="StereoSample" type="boolean" modality="optional" maxOccurs="1">
 					<Documentation>Is this a stereo sample?</Documentation>
@@ -209,7 +249,20 @@
 						<Documentation>Chemical structure as SMILES string.</Documentation>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Wiswesser" type="string" modality="optional" maxOccurs="unbounded">
-						<Documentation>Chemical structure as Wiswesser string.</Documentation>
+						<Documentation>The Wiswesser
+line notation is a precise and concise means of expressing
+structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and
+numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by
+Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation
+(McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Informa-
+tion Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.). Wiswesser notation for many compounds is tab-
+ulated by Smith (see above) and by Grasselli and Ritchey (see Atlas of Spectral Data and Physical Constants for Organic Com-
+pounds, J. G. Grasselli and W. G. Ritchey, Eds. (Chemical Rubber
+Co., Boca Raton, Florida, 1975), 2nd ed.). Wis-
+wesser notation should be enclosed in angle brackets if
+it extends for more than one line, and care should be
+taken to terminate lines between expressions separated
+by blank.</Documentation>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="MOLfile" type="string" modality="optional" maxOccurs="unbounded">
 						<Documentation>Chemical structure as MOLfile</Documentation>
@@ -285,24 +338,6 @@
 							<SIUnit exponent="-1">m</SIUnit>
 							<SIUnit exponent="1">kg</SIUnit>
 							<SIUnit exponent="-2">s</SIUnit>
-						</Unit>
-					</ParameterBlueprint>
-				</ParameterCategoryBlueprint>
-				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
-					<Documentation>Refractive Index</Documentation>
-					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
-						<Documentation>Refractive index</Documentation>
-					</ParameterBlueprint>
-					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
-						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>

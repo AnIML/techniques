@@ -41,7 +41,7 @@ called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990
 					</Unit>
 				</ParameterBlueprint>
 			</ParameterCategoryBlueprint>
-			<UsedModule elementName="Sample" name="SampleRole" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
 		</SampleRole>
 		<SampleRole name="ReagentGas" purpose="consumed" modality="optional" maxOccurs="1" inheritable="true" upwardsInherited="false">
 			<Documentation>Reagent gas used for CI; see ASTM E 2077-00.</Documentation>
@@ -74,7 +74,7 @@ called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990
 					</Unit>
 				</ParameterBlueprint>
 			</ParameterCategoryBlueprint>
-			<UsedModule elementName="Sample" name="SampleRole" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
 		</SampleRole>
 		<SampleRole name="CurtainGas" purpose="consumed" modality="optional" maxOccurs="1" inheritable="true" upwardsInherited="false">
 			<Documentation>Curtain gas used for ESI</Documentation>
@@ -107,7 +107,7 @@ called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990
 					</Unit>
 				</ParameterBlueprint>
 			</ParameterCategoryBlueprint>
-			<UsedModule elementName="Sample" name="SampleRole" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
 		</SampleRole>
 		<SampleRole name="Solvent" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
 			<Documentation>Solvent(s) used</Documentation>
@@ -140,7 +140,7 @@ called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990
 					</Unit>
 				</ParameterBlueprint>
 			</ParameterCategoryBlueprint>
-			<UsedModule elementName="Sample" name="SampleRole" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
 		</SampleRole>
 		<SampleRole name="FABMatrix" purpose="consumed" modality="optional" maxOccurs="1" inheritable="true" upwardsInherited="false">
 			<Documentation>Matrix for FAB, if any. See ASTM E 2077-00.</Documentation>
@@ -172,7 +172,7 @@ called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990
 					</Unit>
 				</ParameterBlueprint>
 			</ParameterCategoryBlueprint>
-			<UsedModule elementName="Sample" name="SampleRole" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
 		</SampleRole>
 		<PageBlueprint name="Spectrum" modality="optional">
 			<Documentation>Mass spectrum</Documentation>

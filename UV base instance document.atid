@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Definition name="UV" extension="false">
 		<Documentation>Technique definition for UV/Visible light spectroscopy</Documentation>
@@ -433,7 +434,7 @@
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
 				</Unit>
 				<Unit label="%Transmittance">
-					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+					<SIUnit factor="1e-2" exponent="1" offset="0">1</SIUnit>
 				</Unit>
 				<Unit label="Transmittance">
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
@@ -501,7 +502,7 @@
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
 				</Unit>
 				<Unit label="%Transmittance">
-					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+					<SIUnit factor="1e-2" exponent="1" offset="0">1</SIUnit>
 				</Unit>
 				<Unit label="Arb. Units">
 					<SIUnit>1</SIUnit>

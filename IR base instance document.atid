@@ -171,7 +171,7 @@ G.B. 30; 1996, 68, 989</Documentation>
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
 				</Unit>
 				<Unit label="%T">
-					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+					<SIUnit factor="1e-2" exponent="1" offset="0">1</SIUnit>
 				</Unit>
 				<Unit label="KM">
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
@@ -305,7 +305,7 @@ O.B. 102</Documentation>
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
 				</Unit>
 				<Unit label="%T">
-					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+					<SIUnit factor="1e-2" exponent="1" offset="0">1</SIUnit>
 				</Unit>
 				<Unit label="KM">
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>

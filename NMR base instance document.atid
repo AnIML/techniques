@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Definition name="NMR" extension="false">
 		<Documentation>Technique definition for Nuclear Magnetic Resonance spectroscopy</Documentation>
@@ -70,7 +71,7 @@
 			<VectorBlueprint name="ChemicalShift" type="float" modality="required" maxOccurs="1">
 				<Documentation>Chemical Shift</Documentation>
 				<Unit label="ppm">
-					<SIUnit>1</SIUnit>
+					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="Frequency" type="float" modality="optional" maxOccurs="1">
@@ -149,7 +150,7 @@
 				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
 					<Documentation>Solvent reference</Documentation>
 					<Unit label="ppm">
-						<SIUnit>1</SIUnit>
+						<SIUnit factor="1e-6">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
@@ -204,12 +205,12 @@
 					<ParameterBlueprint name="ReferenceCompound" type="string" modality="required" maxOccurs="1"/>
 					<ParameterBlueprint name="ReferenceShiftValue" type="float" modality="required" maxOccurs="1">
 						<Unit label="ppm">
-							<SIUnit>1</SIUnit>
+							<SIUnit factor="1e-6">1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="SpectrumShiftValue" type="float" modality="required" maxOccurs="1">
 						<Unit label="ppm">
-							<SIUnit>1</SIUnit>
+							<SIUnit factor="1e-6">1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
@@ -292,7 +293,7 @@
 					<ParameterBlueprint name="Pp" type="float" modality="optional" maxOccurs="1">
 						<Documentation>Amount of shift (as fraction of total data length M); for shifted GM</Documentation>
 						<Unit label="%">
-							<SIUnit>1</SIUnit>
+							<SIUnit factor="1e-2">1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Pd" type="float" modality="optional" maxOccurs="1">
@@ -336,19 +337,19 @@
 			<VectorBlueprint name="F1" type="float" modality="required" maxOccurs="1">
 				<Documentation>Shift vector 1</Documentation>
 				<Unit label="ppm">
-					<SIUnit>1</SIUnit>
+					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="F2" type="float" modality="required" maxOccurs="1">
 				<Documentation>Shift vector 2</Documentation>
 				<Unit label="ppm">
-					<SIUnit>1</SIUnit>
+					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="F3" type="float" modality="optional" maxOccurs="1">
 				<Documentation>Shift vector 3</Documentation>
 				<Unit label="ppm">
-					<SIUnit>1</SIUnit>
+					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
@@ -436,7 +437,7 @@
 				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
 					<Documentation>Solvent reference</Documentation>
 					<Unit label="ppm">
-						<SIUnit>1</SIUnit>
+						<SIUnit factor="1e-6">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
@@ -491,12 +492,12 @@
 					<ParameterBlueprint name="ReferenceCompound" type="string" modality="required" maxOccurs="1"/>
 					<ParameterBlueprint name="ReferenceShiftValue" type="float" modality="required" maxOccurs="1">
 						<Unit label="ppm">
-							<SIUnit>1</SIUnit>
+							<SIUnit factor="1e-6">1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="SpectrumShiftValue" type="float" modality="required" maxOccurs="1">
 						<Unit label="ppm">
-							<SIUnit>1</SIUnit>
+							<SIUnit factor="1e-6">1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
@@ -579,7 +580,7 @@
 					<ParameterBlueprint name="Pp" type="float" modality="optional" maxOccurs="1">
 						<Documentation>Amount of shift (as fraction of total data length M); for shifted GM</Documentation>
 						<Unit label="%">
-							<SIUnit>1</SIUnit>
+							<SIUnit factor="1e-2">1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Pd" type="float" modality="optional" maxOccurs="1">
@@ -692,7 +693,9 @@
 				</ParameterBlueprint>
 				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
 					<Documentation>Solvent reference</Documentation>
-					<Unit label="ppm"/>
+					<Unit label="ppm">
+						<SIUnit factor="1e-6">1</SIUnit>
+					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
 					<Documentation>Reference Point</Documentation>
@@ -745,10 +748,14 @@
 					</ParameterBlueprint>
 					<ParameterBlueprint name="ReferenceCompound" type="string" modality="required" maxOccurs="1"/>
 					<ParameterBlueprint name="ReferenceShiftValue" type="float" modality="required" maxOccurs="1">
-						<Unit label="ppm"/>
+						<Unit label="ppm">
+							<SIUnit factor="1e-6">1</SIUnit>
+						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="SpectrumShiftValue" type="float" modality="required" maxOccurs="1">
-						<Unit label="ppm"/>
+						<Unit label="ppm">
+							<SIUnit factor="1e-6">1</SIUnit>
+						</Unit>
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
 				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="optional" maxOccurs="1">
@@ -800,7 +807,7 @@
 			<VectorBlueprint name="PeakPosition" type="float" maxOccurs="3" modality="required">
 				<Documentation>Peak top position on x axis</Documentation>
 				<Unit label="ppm">
-					<SIUnit>1</SIUnit>
+					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
 				<Unit label="Hz">
 					<SIUnit exponent="-1">s</SIUnit>
@@ -809,7 +816,7 @@
 			<VectorBlueprint name="PeakStart" type="float" maxOccurs="3" modality="optional">
 				<Documentation>Peak start on x axis</Documentation>
 				<Unit label="ppm">
-					<SIUnit>1</SIUnit>
+					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
 				<Unit label="Hz">
 					<SIUnit exponent="-1">s</SIUnit>
@@ -818,7 +825,7 @@
 			<VectorBlueprint name="PeakEnd" type="float" maxOccurs="3" modality="optional">
 				<Documentation>Peak end on x axis</Documentation>
 				<Unit label="ppm">
-					<SIUnit>1</SIUnit>
+					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
 				<Unit label="Hz">
 					<SIUnit exponent="-1">s</SIUnit>
@@ -891,7 +898,7 @@
 				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
 					<Documentation>Solvent reference</Documentation>
 					<Unit label="ppm">
-						<SIUnit>1</SIUnit>
+						<SIUnit factor="1e-6">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
@@ -946,12 +953,12 @@
 					<ParameterBlueprint name="ReferenceCompound" type="string" modality="required" maxOccurs="1"/>
 					<ParameterBlueprint name="ReferenceShiftValue" type="float" modality="required" maxOccurs="1">
 						<Unit label="ppm">
-							<SIUnit>1</SIUnit>
+							<SIUnit factor="1e-6">1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="SpectrumShiftValue" type="float" modality="required" maxOccurs="1">
 						<Unit label="ppm">
-							<SIUnit>1</SIUnit>
+							<SIUnit factor="1e-6">1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 				</ParameterCategoryBlueprint>
@@ -1034,7 +1041,7 @@
 					<ParameterBlueprint name="Pp" type="float" modality="optional" maxOccurs="1">
 						<Documentation>Amount of shift (as fraction of total data length M); for shifted GM</Documentation>
 						<Unit label="%">
-							<SIUnit>1</SIUnit>
+							<SIUnit factor="1e-2">1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Pd" type="float" modality="optional" maxOccurs="1">

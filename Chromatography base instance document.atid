@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Definition name="Chromatography" extension="false">
 		<Documentation>Technique Definition for Chromatography (A physical method of separation in which the components to be separated
@@ -34,22 +35,10 @@ phase) while the other (the mobile phase) moves in a definite direction. 1993, 6
 		</SampleRole>
 		<SampleRole name="Solvent" purpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
 			<Documentation>Solvent(s) used</Documentation>
-			<ParameterCategoryBlueprint name="SampleDescription" maxOccurs="1" modality="required">
-				<Documentation>Parameters describing the solvent</Documentation>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="SubstanceDescription" maxOccurs="unbounded" modality="required">
-				<Documentation>Parameters describing a substance in the solvent</Documentation>
-			</ParameterCategoryBlueprint>
 			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
 		</SampleRole>
 		<SampleRole name="Additive" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
 			<Documentation>Additive(s) used</Documentation>
-			<ParameterCategoryBlueprint name="SampleDescription" maxOccurs="1" modality="required">
-				<Documentation>Parameters describing the additive(s)</Documentation>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="SubstanceDescription" maxOccurs="unbounded" modality="required">
-				<Documentation>Parameters describing a substance in the additive(s)</Documentation>
-			</ParameterCategoryBlueprint>
 			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
 		</SampleRole>
 		<PageBlueprint name="Chromatogram" modality="optional">
@@ -60,7 +49,7 @@ concentration versus effluent volume or time. In planar chromatography
 1993, 65, 823; 1990, 62, 2179; see IUPAC gold book)</Documentation>
 			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
 				<Documentation>This is a set of values of dimension
-point-number, containing the abscissa value for each raw
+@length, containing the abscissa value for each raw
 data ordinate value. This set of values has a unit of retention
 unit. See: ASTM E 1947-98.</Documentation>
 				<Unit label="s">
@@ -75,7 +64,7 @@ unit. See: ASTM E 1947-98.</Documentation>
 			</VectorBlueprint>
 			<VectorBlueprint name="Intensity" type="float" modality="optional" maxOccurs="unbounded">
 				<Documentation>This is a set of values of dimension
-point-number, containing the ordinate values. This set of values
+@length, containing the ordinate values. This set of values
 has a unit of detector-unit. This is a required field for datasets
 containing raw data.
 See: ASTM E 1947-98.</Documentation>
@@ -214,7 +203,7 @@ See: ASTM E 1947-98.</Documentation>
 		<PageBlueprint name="PeakTable" modality="optional">
 			<Documentation>A chromatogram peak table derived from a chromatogram</Documentation>
 			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
-				<Documentation>Peak position value on x axis</Documentation>
+				<Documentation>Peak position value on x axis See Appl. Spectrosc. 42, 1988, 151-162.</Documentation>
 				<Unit label="s">
 					<SIUnit>s</SIUnit>
 				</Unit>

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Definition name="NMR" extension="false">
 		<Documentation>Technique definition for Nuclear Magnetic Resonance spectroscopy</Documentation>
@@ -11,14 +12,23 @@
 See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="RTX" type="float">
 						<Documentation>X</Documentation>
-						<Unit label="s">
-							<SIUnit>s</SIUnit>
+						<Unit label="ppm">
+							<SIUnit factor="1e-6">1</SIUnit>
+						</Unit>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="RTY" type="float">
 						<Documentation>Y</Documentation>
-						<Unit label="s">
-							<SIUnit>s</SIUnit>
+						<Unit label="Arb. Units">
+							<SIUnit>1</SIUnit>
+						</Unit>
+						<Unit label="Power">
+							<SIUnit>1</SIUnit>
+						</Unit>
+						<Unit label="Magnitude">
+							<SIUnit>1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="RTR" type="float">
@@ -35,14 +45,23 @@ See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<Documentation>List of relaxation times with the variable list (XYR) where X and Y are the abscissa and intensity values and R the relaxation time in seconds. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 					<ParameterBlueprint name="RTX" type="float">
 						<Documentation>X</Documentation>
-						<Unit label="s">
-							<SIUnit>s</SIUnit>
+						<Unit label="ppm">
+							<SIUnit factor="1e-6">1</SIUnit>
+						</Unit>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="RTY" type="float">
 						<Documentation>Y</Documentation>
-						<Unit label="s">
-							<SIUnit>s</SIUnit>
+						<Unit label="Arb. Units">
+							<SIUnit>1</SIUnit>
+						</Unit>
+						<Unit label="Power">
+							<SIUnit>1</SIUnit>
+						</Unit>
+						<Unit label="Magnitude">
+							<SIUnit>1</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="RTR" type="float">
@@ -82,7 +101,11 @@ See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
-				<Documentation>Total intensity (R+I)</Documentation>
+				<Documentation>Total intensity (R+I). This is a set of values of dimension
+@length, containing the ordinate values. This set of values
+has a unit of detector-unit. This is a required field for datasets
+containing raw data.
+See: ASTM E 1947-98.</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit>1</SIUnit>
 				</Unit>
@@ -94,7 +117,11 @@ See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="IntensityReal" type="float" modality="optional" maxOccurs="1">
-				<Documentation>Intensity, Real part</Documentation>
+				<Documentation>Intensity, Real part. This is a set of values of dimension
+@length, containing the ordinate values. This set of values
+has a unit of detector-unit. This is a required field for datasets
+containing raw data.
+See: ASTM E 1947-98.</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit>1</SIUnit>
 				</Unit>
@@ -106,7 +133,11 @@ See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="IntensityImaginary" type="float" modality="optional" maxOccurs="1">
-				<Documentation>Intensity, Imaginary part</Documentation>
+				<Documentation>Intensity, Imaginary part. This is a set of values of dimension
+@length, containing the ordinate values. This set of values
+has a unit of detector-unit. This is a required field for datasets
+containing raw data.
+See: ASTM E 1947-98.</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit>1</SIUnit>
 				</Unit>
@@ -358,7 +389,11 @@ See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
-				<Documentation>Total intensity (R+I)</Documentation>
+				<Documentation>Total intensity (R+I). This is a set of values of dimension
+@length, containing the ordinate values. This set of values
+has a unit of detector-unit. This is a required field for datasets
+containing raw data.
+See: ASTM E 1947-98.</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit>1</SIUnit>
 				</Unit>
@@ -370,7 +405,10 @@ See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
-				<Documentation>Time axis</Documentation>
+				<Documentation>This is a set of values of dimension
+@length, containing the abscissa value for each raw
+data ordinate value. This set of values has a unit of retention
+unit. See: ASTM E 1947-98.</Documentation>
 				<Unit label="min">
 					<SIUnit factor="60">s</SIUnit>
 				</Unit>
@@ -622,7 +660,10 @@ See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 		<PageBlueprint name="FID" modality="optional">
 			<Documentation>Page for untransformed FID</Documentation>
 			<VectorBlueprint name="Time" type="float" modality="required" maxOccurs="unbounded">
-				<Documentation>Time axis</Documentation>
+				<Documentation>This is a set of values of dimension
+@length, containing the abscissa value for each raw
+data ordinate value. This set of values has a unit of retention
+unit. See: ASTM E 1947-98.</Documentation>
 				<Unit label="min">
 					<SIUnit factor="60">s</SIUnit>
 				</Unit>
@@ -640,7 +681,11 @@ See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
-				<Documentation>Total intensity (R+I)</Documentation>
+				<Documentation>Total intensity (R+I). This is a set of values of dimension
+@length, containing the ordinate values. This set of values
+has a unit of detector-unit. This is a required field for datasets
+containing raw data.
+See: ASTM E 1947-98.</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit>1</SIUnit>
 				</Unit>
@@ -790,10 +835,12 @@ See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 		<PageBlueprint name="PeakTable" modality="optional">
 			<Documentation>Page for peak table</Documentation>
 			<VectorBlueprint name="PeakNumber" type="int" maxOccurs="1" modality="required">
-				<Documentation>Consecutive number of current peak/band</Documentation>
+				<Documentation>Peak number used to identify a particular
+peak. 
+See: ASTM E 1947-98.</Documentation>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakPosition" type="float" maxOccurs="3" modality="required">
-				<Documentation>Peak top position on x axis</Documentation>
+				<Documentation>Peak position value on x axis See Appl. Spectrosc. 42, 1988, 151-162.</Documentation>
 				<Unit label="ppm">
 					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
@@ -802,7 +849,9 @@ See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakStart" type="float" maxOccurs="3" modality="optional">
-				<Documentation>Peak start on x axis</Documentation>
+				<Documentation>The starting point of the peak,
+given in a x axis units.
+See: ASTM E 1947-98.</Documentation>
 				<Unit label="ppm">
 					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
@@ -811,7 +860,8 @@ See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakEnd" type="float" maxOccurs="3" modality="optional">
-				<Documentation>Peak end on x axis</Documentation>
+				<Documentation>ending point of the peak, given in x axis units.
+See: ASTM E 1947-98.</Documentation>
 				<Unit label="ppm">
 					<SIUnit factor="1e-6">1</SIUnit>
 				</Unit>
@@ -820,7 +870,9 @@ See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakHeight" type="float" maxOccurs="1" modality="optional">
-				<Documentation>Peak height</Documentation>
+				<Documentation>Computed height of the peak; in a scaled data unit. The unit for this is the same as that of the
+raw-data.
+See: ASTM E 1947-98.</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit>1</SIUnit>
 				</Unit>
@@ -832,16 +884,20 @@ See Pure Appl. Chem. 71, 1999, 1549-1556.</Documentation>
 				</Unit>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakArea" type="float" maxOccurs="1" modality="optional">
-				<Documentation>Peak area</Documentation>
+				<Documentation>Computed area of the peak.
+See: ASTM E 1947-98.</Documentation>
 			</VectorBlueprint>
 			<VectorBlueprint name="Multiplicity" type="string" maxOccurs="1" modality="optional">
-				<Documentation>Letter code: s, d, td, ...</Documentation>
+				<Documentation>Peak Multiplicity, being S, D, T, Q for singlets, doublets, triplets, or quadruplets, M for multiple, and U for unassigned. See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 			</VectorBlueprint>
-			<VectorBlueprint name="PeakAssignment" type="int" maxOccurs="unbounded" modality="optional">
-				<Documentation>Assigned atom number(s), comma-separated</Documentation>
+			<VectorBlueprint name="PeakAssignmentAtom" type="int" maxOccurs="unbounded" modality="optional">
+				<Documentation>string detailing the assignment (atom number). See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 			</VectorBlueprint>
 			<VectorBlueprint name="PeakAssignmentText" type="string" maxOccurs="1" modality="optional">
 				<Documentation>Peak annotations, e.g. "CH2"</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignmentStructure" type="string" maxOccurs="1" modality="optional">
+				<Documentation>Chemical structure assigned to this peak (use Substance ID) . See Appl. Spectrosc. 47, 8, 1993, 1093-1099.</Documentation>
 			</VectorBlueprint>
 			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
 				<Documentation>Parameters defining the measurement</Documentation>

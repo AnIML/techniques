@@ -1,0 +1,1108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
+<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Dokumente und Einstellungen\MarenF.CLCDOM\Eigene Dateien\Projekte\AnIML\CVS\schema\animl-technique-1_1\animl-technique-1_1_MF.xsd" version="1.1">
+	<Definition name="NMR" extension="false">
+		<Documentation>Technique definition for Nuclear Magnetic Resonance spectroscopy</Documentation>
+		<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>Actual measurement sample</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
+				<Documentation>Parameters describing the measurement sample</Documentation>
+				<ParameterCategoryBlueprint name="RelaxationTimes">
+					<ParameterBlueprint name="RTX" type="float">
+						<Documentation>X</Documentation>
+						<Unit label="s">
+							<SIUnit>s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RTY" type="float">
+						<Documentation>Y</Documentation>
+						<Unit label="s">
+							<SIUnit>s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RTR" type="float">
+						<Documentation>R</Documentation>
+						<Unit label="s">
+							<SIUnit>s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<Documentation>Parameters describing the measurement sample</Documentation>
+				<ParameterCategoryBlueprint name="RelaxationTimes" maxOccurs="1" modality="optional">
+					<Documentation>Relaxation times</Documentation>
+					<ParameterBlueprint name="RTX" type="float">
+						<Documentation>X</Documentation>
+						<Unit label="s">
+							<SIUnit>s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RTY" type="float">
+						<Documentation>Y</Documentation>
+						<Unit label="s">
+							<SIUnit>s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RTR" type="float">
+						<Documentation>R</Documentation>
+						<Unit label="s">
+							<SIUnit>s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="Solvent" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="false" upwardsInherited="false">
+			<Documentation>Solvent used</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="Acid" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="false" upwardsInherited="false">
+			<Documentation>Added acid</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="Lanthanoid" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="false" upwardsInherited="false">
+			<Documentation>Lanthanoid shift reagent</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<PageBlueprint name="Spectrum_1D" modality="optional">
+			<Documentation>Page for 1D NMR spectrum</Documentation>
+			<VectorBlueprint name="ChemicalShift" type="float" modality="required" maxOccurs="1">
+				<Documentation>Chemical Shift</Documentation>
+				<Unit label="ppm">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Frequency" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Frequency</Documentation>
+				<Unit label="Hz">
+					<SIUnit exponent="-1">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
+				<Documentation>Total intensity (R+I)</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="IntensityReal" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Real part</Documentation>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Power">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Magnitude">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="IntensityImaginary" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Imaginary part</Documentation>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Power">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Magnitude">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="Nucleus" type="string" modality="required" maxOccurs="1">
+					<Documentation>Observed nucleus</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ObserveFrequency" type="float" modality="required" maxOccurs="1">
+					<Documentation>Observer frequency</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcquisitionTime" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Acquisition time</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcquisitionMode" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Acquisition mode</Documentation>
+					<AllowedValue>
+						<string>simultaneous</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>single</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>sequential</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of transient averages</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MagneticField" type="float" modality="optional" maxOccurs="unbounded">
+					<Documentation>Magnetic field flux density in T</Documentation>
+					<Unit label="T">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-2">m</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
+					<Documentation>Solvent reference</Documentation>
+					<Unit label="ppm">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
+					<Documentation>Reference Point</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Observe90" type="float" modality="optional" maxOccurs="1">
+					<Documentation>90° observe pulse in us</Documentation>
+					<Unit label="us">
+						<SIUnit factor="0.000001">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MASFrequency" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Magic Angle Spinning frequency (for solid state NMR only)</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SpinningRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Sample spinning rate in Hz</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NoiseLevel" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Noise Level</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NPointsOrigin" type="int" modality="required" maxOccurs="unbounded">
+					<Documentation>N Points Origin</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PointOffset" type="int" modality="required" maxOccurs="1">
+					<Documentation>Point Offset</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="QuadratureInfo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Info about quadrature detection</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="OversamplingInfo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Oversampling info</Documentation>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="ShiftReference" modality="optional" maxOccurs="1">
+					<Documentation>Chemical shift reference</Documentation>
+					<ParameterBlueprint name="Type" type="string" modality="required" maxOccurs="1">
+						<AllowedValue>
+							<string>internal</string>
+						</AllowedValue>
+						<AllowedValue>
+							<string>external</string>
+						</AllowedValue>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="ReferenceCompound" type="string" modality="required" maxOccurs="1"/>
+					<ParameterBlueprint name="ReferenceShiftValue" type="float" modality="required" maxOccurs="1">
+						<Unit label="ppm">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="SpectrumShiftValue" type="float" modality="required" maxOccurs="1">
+						<Unit label="ppm">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="optional" maxOccurs="1">
+					<Documentation>Pre-acquisition delay</Documentation>
+					<ParameterBlueprint name="Real" type="float" modality="required" maxOccurs="1">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Imaginary" type="float" modality="required" maxOccurs="1">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="PulseSequence" modality="required" maxOccurs="1">
+					<Documentation>Pulse sequence name</Documentation>
+					<ParameterBlueprint name="Name" type="string" modality="required" maxOccurs="unbounded"/>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="DecouplerFrequencies" modality="optional" maxOccurs="unbounded">
+					<Documentation>Decoupler frequencies</Documentation>
+					<ParameterBlueprint name="PulseFrequency" type="float">
+						<Unit label="MHz">
+							<SIUnit factor="100000" exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="PulseLength" type="float">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="FilterWidth" modality="optional" maxOccurs="1">
+					<Documentation>Filter width</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Algorithm" type="string" modality="required" maxOccurs="1"/>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="ProcessingParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the data processing</Documentation>
+				<ParameterBlueprint name="PhaseCorr0" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Zero order phase correction</Documentation>
+					<Unit label="degrees"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PhaseCorr1" type="string" modality="optional" maxOccurs="1">
+					<Documentation>First order phase correction rel. to max X value</Documentation>
+					<Unit label="degrees"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ZeroFillingPoints" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of complex zero filling points</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="LB" type="float" modality="required" maxOccurs="unbounded">
+					<Documentation>Line Broadening</Documentation>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="CouplingConstants" modality="optional" maxOccurs="unbounded">
+					<Documentation>Atom-Atom-Constant triples</Documentation>
+					<ParameterBlueprint name="A" type="int">
+						<Documentation>Number of first atom</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="B" type="int">
+						<Documentation>Number of second atom</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="J" type="float">
+						<Documentation>Coupling constant in Hz</Documentation>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="Apodization" modality="required" maxOccurs="1">
+					<Documentation>ApodizationFunction used</Documentation>
+					<ParameterBlueprint name="Algorithm" type="string" modality="required" maxOccurs="1">
+						<Documentation>Apodization function used</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Pp" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Amount of shift (as fraction of total data length M); for shifted GM</Documentation>
+						<Unit label="%">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Pd" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Between 0° and 90°; for sine bell.</Documentation>
+						<Unit label="degrees">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="W" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Broadening constant (for EM or GM)</Documentation>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="We" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Exponential narrowing constant (for DM)</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Wg" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Gaussian broadening constant (for DM)</Documentation>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="W1" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Width parameter for CD</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="W2" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Width parameter for CD</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="S" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Scale factor for CD</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="TrapezoidIndex" type="float" modality="optional" maxOccurs="unbounded">
+						<Documentation>Indices for trapezoid function</Documentation>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="Spectrum_nD" modality="optional">
+			<Documentation>Page for 2D, 3D, ... nD NMR spectrum</Documentation>
+			<VectorBlueprint name="F1" type="float" modality="required" maxOccurs="1">
+				<Documentation>Shift vector 1</Documentation>
+				<Unit label="ppm">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="F2" type="float" modality="required" maxOccurs="1">
+				<Documentation>Shift vector 2</Documentation>
+				<Unit label="ppm">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="F3" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Shift vector 3</Documentation>
+				<Unit label="ppm">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
+				<Documentation>Total intensity (R+I)</Documentation>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Power">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Magnitude">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Time axis</Documentation>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="ms">
+					<SIUnit factor="0.001">s</SIUnit>
+				</Unit>
+				<Unit label="us">
+					<SIUnit factor="0.000001">s</SIUnit>
+				</Unit>
+				<Unit label="ns">
+					<SIUnit factor="0.000000001">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Temperature" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Temperature vector</Documentation>
+				<Unit label="K">
+					<SIUnit>K</SIUnit>
+				</Unit>
+				<Unit label="°C">
+					<SIUnit offset="-273.15">K</SIUnit>
+				</Unit>
+				<Unit label="°F">
+					<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="Nucleus" type="string" modality="required" maxOccurs="1">
+					<Documentation>Observed nucleus</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ObserveFrequency" type="float" modality="required" maxOccurs="1">
+					<Documentation>Observer frequency</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcquisitionTime" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Acquisition time</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcquisitionMode" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Acquisition mode</Documentation>
+					<AllowedValue>
+						<string>simultaneous</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>single</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>sequential</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of transient averages</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MagneticField" type="float" modality="optional" maxOccurs="unbounded">
+					<Documentation>Magnetic field flux density in T</Documentation>
+					<Unit label="T">
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-2">m</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
+					<Documentation>Solvent reference</Documentation>
+					<Unit label="ppm">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
+					<Documentation>Reference Point</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Observe90" type="float" modality="optional" maxOccurs="1">
+					<Documentation>90° observe pulse in us</Documentation>
+					<Unit label="us">
+						<SIUnit factor="0.000001">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MASFrequency" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Magic Angle Spinning frequency (for solid state NMR only)</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SpinningRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Sample spinning rate in Hz</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NoiseLevel" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Noise Level</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NPointsOrigin" type="int" modality="required" maxOccurs="unbounded">
+					<Documentation>N Points Origin</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PointOffset" type="int" modality="required" maxOccurs="1">
+					<Documentation>Point Offset</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="QuadratureInfo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Info about quadrature detection</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="OversamplingInfo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Oversampling info</Documentation>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="ShiftReference" modality="optional" maxOccurs="1">
+					<Documentation>Chemical shift reference</Documentation>
+					<ParameterBlueprint name="Type" type="string" modality="required" maxOccurs="1">
+						<AllowedValue>
+							<string>internal</string>
+						</AllowedValue>
+						<AllowedValue>
+							<string>external</string>
+						</AllowedValue>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="ReferenceCompound" type="string" modality="required" maxOccurs="1"/>
+					<ParameterBlueprint name="ReferenceShiftValue" type="float" modality="required" maxOccurs="1">
+						<Unit label="ppm">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="SpectrumShiftValue" type="float" modality="required" maxOccurs="1">
+						<Unit label="ppm">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="optional" maxOccurs="1">
+					<Documentation>Pre-acquisition delay</Documentation>
+					<ParameterBlueprint name="Real" type="float" modality="required" maxOccurs="1">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Imaginary" type="float" modality="required" maxOccurs="1">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="PulseSequence" modality="required" maxOccurs="1">
+					<Documentation>Pulse sequence name</Documentation>
+					<ParameterBlueprint name="Name" type="string" modality="required" maxOccurs="unbounded"/>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="DecouplerFrequencies" modality="optional" maxOccurs="unbounded">
+					<Documentation>Decoupler frequencies</Documentation>
+					<ParameterBlueprint name="PulseFrequency" type="float">
+						<Unit label="MHz">
+							<SIUnit factor="100000" exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="PulseLength" type="float">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="FilterWidth" modality="optional" maxOccurs="1">
+					<Documentation>Filter width</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Algorithm" type="string" modality="required" maxOccurs="1"/>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="ProcessingParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the data processing</Documentation>
+				<ParameterBlueprint name="PhaseCorr0" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Zero order phase correction</Documentation>
+					<Unit label="degrees"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PhaseCorr1" type="string" modality="optional" maxOccurs="1">
+					<Documentation>First order phase correction rel. to max X value</Documentation>
+					<Unit label="degrees"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ZeroFillingPoints" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of complex zero filling points</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="LB" type="float" modality="required" maxOccurs="unbounded">
+					<Documentation>Line Broadening</Documentation>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="CouplingConstants" modality="optional" maxOccurs="unbounded">
+					<Documentation>Atom-Atom-Constant triples</Documentation>
+					<ParameterBlueprint name="A" type="int">
+						<Documentation>Number of first atom</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="B" type="int">
+						<Documentation>Number of second atom</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="J" type="float">
+						<Documentation>Coupling constant in Hz</Documentation>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="Apodization" modality="required" maxOccurs="1">
+					<Documentation>ApodizationFunction used</Documentation>
+					<ParameterBlueprint name="Algorithm" type="string" modality="required" maxOccurs="1">
+						<Documentation>Apodization function used</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Pp" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Amount of shift (as fraction of total data length M); for shifted GM</Documentation>
+						<Unit label="%">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Pd" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Between 0° and 90°; for sine bell.</Documentation>
+						<Unit label="degrees">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="W" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Broadening constant (for EM or GM)</Documentation>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="We" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Exponential narrowing constant (for DM)</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Wg" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Gaussian broadening constant (for DM)</Documentation>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="W1" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Width parameter for CD</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="W2" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Width parameter for CD</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="S" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Scale factor for CD</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="TrapezoidIndex" type="float" modality="optional" maxOccurs="unbounded">
+						<Documentation>Indices for trapezoid function</Documentation>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="FID" modality="optional">
+			<Documentation>Page for untransformed FID</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="required" maxOccurs="unbounded">
+				<Documentation>Time axis</Documentation>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="ms">
+					<SIUnit factor="0.001">s</SIUnit>
+				</Unit>
+				<Unit label="us">
+					<SIUnit factor="0.000001">s</SIUnit>
+				</Unit>
+				<Unit label="ns">
+					<SIUnit factor="0.000000001">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
+				<Documentation>Total intensity (R+I)</Documentation>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Power">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Magnitude">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="Nucleus" type="string" modality="required" maxOccurs="1">
+					<Documentation>Observed nucleus</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ObserveFrequency" type="float" modality="required" maxOccurs="1">
+					<Documentation>Observer frequency</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcquisitionTime" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Acquisition time</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcquisitionMode" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Acquisition mode</Documentation>
+					<AllowedValue>
+						<string>simultaneous</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>single</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>sequential</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of transient averages</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MagneticField" type="float" modality="optional" maxOccurs="unbounded">
+					<Documentation>Magnetic field flux density in T</Documentation>
+					<Unit label="T">
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-2">m</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
+					<Documentation>Solvent reference</Documentation>
+					<Unit label="ppm"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
+					<Documentation>Reference Point</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Observe90" type="float" modality="optional" maxOccurs="1">
+					<Documentation>90° observe pulse in us</Documentation>
+					<Unit label="us">
+						<SIUnit factor="0.000001">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MASFrequency" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Magic Angle Spinning frequency (for solid state NMR only)</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SpinningRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Sample spinning rate in Hz</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NoiseLevel" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Noise Level</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NPointsOrigin" type="int" modality="required" maxOccurs="unbounded">
+					<Documentation>N Points Origin</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PointOffset" type="int" modality="required" maxOccurs="1">
+					<Documentation>Point Offset</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="QuadratureInfo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Info about quadrature detection</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="OversamplingInfo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Oversampling info</Documentation>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="ShiftReference" modality="optional" maxOccurs="1">
+					<Documentation>Chemical shift reference</Documentation>
+					<ParameterBlueprint name="Type" type="string" modality="required" maxOccurs="1">
+						<AllowedValue>
+							<string>internal</string>
+						</AllowedValue>
+						<AllowedValue>
+							<string>external</string>
+						</AllowedValue>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="ReferenceCompound" type="string" modality="required" maxOccurs="1"/>
+					<ParameterBlueprint name="ReferenceShiftValue" type="float" modality="required" maxOccurs="1">
+						<Unit label="ppm"/>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="SpectrumShiftValue" type="float" modality="required" maxOccurs="1">
+						<Unit label="ppm"/>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="optional" maxOccurs="1">
+					<Documentation>Pre-acquisition delay</Documentation>
+					<ParameterBlueprint name="Real" type="float" modality="required" maxOccurs="1">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Imaginary" type="float" modality="required" maxOccurs="1">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="PulseSequence" modality="required" maxOccurs="1">
+					<Documentation>Pulse sequence name</Documentation>
+					<ParameterBlueprint name="Name" type="string" modality="required" maxOccurs="unbounded"/>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="DecouplerFrequencies" modality="optional" maxOccurs="unbounded">
+					<Documentation>Decoupler frequencies</Documentation>
+					<ParameterBlueprint name="PulseFrequency" type="float">
+						<Unit label="MHz">
+							<SIUnit factor="100000" exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="PulseLength" type="float">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="FilterWidth" modality="optional" maxOccurs="1">
+					<Documentation>Filter width</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Algorithm" type="string" modality="required" maxOccurs="1"/>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="PeakTable" modality="optional">
+			<Documentation>Page for peak table</Documentation>
+			<VectorBlueprint name="PeakNumber" type="int" maxOccurs="1" modality="required">
+				<Documentation>Consecutive number of current peak/band</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakPosition" type="float" maxOccurs="3" modality="required">
+				<Documentation>Peak top position on x axis</Documentation>
+				<Unit label="ppm">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Hz">
+					<SIUnit exponent="-1">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakStart" type="float" maxOccurs="3" modality="optional">
+				<Documentation>Peak start on x axis</Documentation>
+				<Unit label="ppm">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Hz">
+					<SIUnit exponent="-1">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakEnd" type="float" maxOccurs="3" modality="optional">
+				<Documentation>Peak end on x axis</Documentation>
+				<Unit label="ppm">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Hz">
+					<SIUnit exponent="-1">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakHeight" type="float" maxOccurs="1" modality="optional">
+				<Documentation>Peak height</Documentation>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Power">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Magnitude">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakArea" type="float" maxOccurs="1" modality="optional">
+				<Documentation>Peak area</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Multiplicity" type="string" maxOccurs="1" modality="optional">
+				<Documentation>Letter code: s, d, td, ...</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignment" type="int" maxOccurs="1" modality="optional">
+				<Documentation>Assigned atom number(s), comma-separated</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignmentText" type="string" maxOccurs="1" modality="optional">
+				<Documentation>Peak annotations, e.g. "CH2"</Documentation>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="Nucleus" type="string" modality="required" maxOccurs="1">
+					<Documentation>Observed nucleus</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ObserveFrequency" type="float" modality="required" maxOccurs="1">
+					<Documentation>Observer frequency</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcquisitionTime" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Acquisition time</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcquisitionMode" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Acquisition mode</Documentation>
+					<AllowedValue>
+						<string>simultaneous</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>single</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>sequential</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of transient averages</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MagneticField" type="float" modality="optional" maxOccurs="unbounded">
+					<Documentation>Magnetic field flux density in T</Documentation>
+					<Unit label="T">
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-2">m</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SolventReference" type="float" modality="required" maxOccurs="unbounded">
+					<Documentation>Solvent reference</Documentation>
+					<Unit label="ppm">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReferencePoint" type="float" modality="required" maxOccurs="1">
+					<Documentation>Reference Point</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Observe90" type="float" modality="optional" maxOccurs="1">
+					<Documentation>90° observe pulse in us</Documentation>
+					<Unit label="us">
+						<SIUnit factor="0.000001">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MASFrequency" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Magic Angle Spinning frequency (for solid state NMR only)</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SpinningRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Sample spinning rate in Hz</Documentation>
+					<Unit label="Hz">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NoiseLevel" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Noise Level</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NPointsOrigin" type="int" modality="required" maxOccurs="unbounded">
+					<Documentation>N Points Origin</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PointOffset" type="int" modality="required" maxOccurs="1">
+					<Documentation>Point Offset</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="QuadratureInfo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Info about quadrature detection</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="OversamplingInfo" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Oversampling info</Documentation>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="ShiftReference" modality="optional" maxOccurs="1">
+					<Documentation>Chemical shift reference</Documentation>
+					<ParameterBlueprint name="Type" type="string" modality="required" maxOccurs="1">
+						<AllowedValue>
+							<string>internal</string>
+						</AllowedValue>
+						<AllowedValue>
+							<string>external</string>
+						</AllowedValue>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="ReferenceCompound" type="string" modality="required" maxOccurs="1"/>
+					<ParameterBlueprint name="ReferenceShiftValue" type="float" modality="required" maxOccurs="1">
+						<Unit label="ppm">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="SpectrumShiftValue" type="float" modality="required" maxOccurs="1">
+						<Unit label="ppm">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="PreAcquisitionDelay" modality="optional" maxOccurs="1">
+					<Documentation>Pre-acquisition delay</Documentation>
+					<ParameterBlueprint name="Real" type="float" modality="required" maxOccurs="1">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Imaginary" type="float" modality="required" maxOccurs="1">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="PulseSequence" modality="required" maxOccurs="1">
+					<Documentation>Pulse sequence name</Documentation>
+					<ParameterBlueprint name="Name" type="string" modality="required" maxOccurs="unbounded"/>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="DecouplerFrequencies" modality="optional" maxOccurs="unbounded">
+					<Documentation>Decoupler frequencies</Documentation>
+					<ParameterBlueprint name="PulseFrequency" type="float">
+						<Unit label="MHz">
+							<SIUnit factor="100000" exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="PulseLength" type="float">
+						<Unit label="us">
+							<SIUnit exponent="1" factor="0.000001" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="FilterWidth" modality="optional" maxOccurs="1">
+					<Documentation>Filter width</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Algorithm" type="string" modality="required" maxOccurs="1"/>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="ProcessingParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the data processing</Documentation>
+				<ParameterBlueprint name="PhaseCorr0" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Zero order phase correction</Documentation>
+					<Unit label="degrees"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PhaseCorr1" type="string" modality="optional" maxOccurs="1">
+					<Documentation>First order phase correction rel. to max X value</Documentation>
+					<Unit label="degrees"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ZeroFillingPoints" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of complex zero filling points</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="LB" type="float" modality="required" maxOccurs="unbounded">
+					<Documentation>Line Broadening</Documentation>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="CouplingConstants" modality="optional" maxOccurs="unbounded">
+					<Documentation>Atom-Atom-Constant triples</Documentation>
+					<ParameterBlueprint name="A" type="int">
+						<Documentation>Number of first atom</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="B" type="int">
+						<Documentation>Number of second atom</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="J" type="float">
+						<Documentation>Coupling constant in Hz</Documentation>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="Apodization" modality="required" maxOccurs="1">
+					<Documentation>ApodizationFunction used</Documentation>
+					<ParameterBlueprint name="Algorithm" type="string" modality="required" maxOccurs="1">
+						<Documentation>Apodization function used</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Pp" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Amount of shift (as fraction of total data length M); for shifted GM</Documentation>
+						<Unit label="%">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Pd" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Between 0° and 90°; for sine bell.</Documentation>
+						<Unit label="degrees">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="W" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Broadening constant (for EM or GM)</Documentation>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="We" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Exponential narrowing constant (for DM)</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Wg" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Gaussian broadening constant (for DM)</Documentation>
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="W1" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Width parameter for CD</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="W2" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Width parameter for CD</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="S" type="float" modality="optional" maxOccurs="1">
+						<Documentation>Scale factor for CD</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="TrapezoidIndex" type="float" modality="optional" maxOccurs="unbounded">
+						<Documentation>Indices for trapezoid function</Documentation>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="PeakPickingParameters" modality="optional" maxOccurs="1">
+				<Documentation>Parameters defining the peak picking</Documentation>
+				<ParameterBlueprint name="PeakPickMinInt" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Maximum intensity for peak picking</Documentation>
+					<Unit label="Arb. Units">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PeakPickMaxInt" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Minimum intensity for peak picking</Documentation>
+					<Unit label="Arb. Units">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<ParameterCategoryBlueprint name="Instrument" modality="optional">
+			<Documentation>Parameters describing the instrument</Documentation>
+			<ParameterBlueprint name="Vendor" type="string" modality="required">
+				<Documentation>Name of the instrument  vendor.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Model" type="string" modality="required">
+				<Documentation>Name of the instrument model. </Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Magnet" type="string" modality="optional">
+				<Documentation>Name of the magnet model.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="DigitizerRes" type="int" modality="optional">
+				<Documentation>Digitizer Resolution in bits</Documentation>
+			</ParameterBlueprint>
+		</ParameterCategoryBlueprint>
+	</Definition>
+</Technique>

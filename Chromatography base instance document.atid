@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
+<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Dokumente und Einstellungen\MarenF.CLCDOM\Eigene Dateien\Projekte\AnIML\CVS\schema\animl-technique-1_1\animl-technique-1_1_MF.xsd" version="1.1">
+	<Definition name="Chromatography" extension="false">
+		<Documentation>Technique Definition for Chromatography</Documentation>
+		<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>The actual measurement sample</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
+				<Documentation>Parameters describing the measurement sample</Documentation>
+				<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			</ParameterCategoryBlueprint>
+		</SampleRole>
+		<SampleRole name="Solvent" purpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Solvent used</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription">
+				<Documentation>Parameters describing the solvent</Documentation>
+				<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SubstanceDescription" maxOccurs="unbounded" modality="required">
+				<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			</ParameterCategoryBlueprint>
+		</SampleRole>
+		<SampleRole name="Additive" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Additive used</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription">
+				<Documentation>Parameters describing the additive(s)</Documentation>
+				<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SubstanceDescription" maxOccurs="unbounded" modality="required">
+				<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+			</ParameterCategoryBlueprint>
+		</SampleRole>
+		<PageBlueprint name="Chromatogram" modality="optional">
+			<Documentation>A "normal" full chromatogram</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Time axis</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="ChannelNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Channel number axis</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="optional" maxOccurs="unbounded">
+				<Documentation>Intensity axis</Documentation>
+				<Unit label="Counts"/>
+				<Unit label="Arb. Units"/>
+				<Unit label="Relative Abundance"/>
+				<Unit label="A">
+					<SIUnit>A</SIUnit>
+				</Unit>
+				<Unit label="mA">
+					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="ChromatographyType" type="string" modality="required" maxOccurs="1">
+					<Documentation>Name of chromatographic technique used</Documentation>
+					<AllowedValue>
+						<string>Affinity</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Anion Exchange</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Electrophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Electrochromatography</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Zone Electrophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Cation Exchange</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Displacement</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Enzymophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Ion Exclusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Isotachophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Normal Phase</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Reversed Phase</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Size Exclusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Supercritical Fluid</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Thin Layer</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Gas-Solid</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Gas-Liquid</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Ion Pair</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Field Flow Fractionation</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>UPLC</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InjectionVolume" type="float" modality="required" maxOccurs="1">
+					<Documentation>Volume of injected sample</Documentation>
+					<Unit label="ul">
+						<SIUnit exponent="3" factor="0.000001">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InjectionTime" type="dateTime" modality="required" maxOccurs="1">
+					<Documentation>Date and time of injection</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="DelayTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Delay time</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EquilibrationTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Equilibration time of the column</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ADC Delay" type="float" modality="required" maxOccurs="1">
+					<Documentation>Delay time of ADC</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Chromatographic Offset" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Chromatographic offset value</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="BasePeakChromatogram" modality="optional">
+			<Documentation>A base peak chromatogram</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Time axis</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="ChannelNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Channel number axis</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="unbounded">
+				<Documentation>Intensity axis</Documentation>
+				<Unit label="Counts"/>
+				<Unit label="Arb. Units"/>
+				<Unit label="Relative Abundance"/>
+				<Unit label="A">
+					<SIUnit>A</SIUnit>
+				</Unit>
+				<Unit label="mA">
+					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="ChromatographyType" type="string" modality="required" maxOccurs="1">
+					<Documentation>Name of chromatographic technique used</Documentation>
+					<AllowedValue>
+						<string>Affinity</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Anion Exchange</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Electrophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Electrochromatography</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Zone Electrophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Cation Exchange</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Displacement</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Enzymophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Ion Exclusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Isotachophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Normal Phase</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Reversed Phase</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Size Exclusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Supercritical Fluid</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Thin Layer</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Gas-Solid</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Gas-Liquid</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Size Exclusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Ion Pair</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Field Flow Fractionation</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>UPLC</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InjectionVolume" type="float" modality="required" maxOccurs="1">
+					<Documentation>Volume of injected sample</Documentation>
+					<Unit label="ul">
+						<SIUnit exponent="3" factor="0.000001">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InjectionTime" type="dateTime" modality="required" maxOccurs="1">
+					<Documentation>Date and time of injection</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="DelayTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Delay time</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EquilibrationTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Equilibration time of the column</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ADC Delay" type="float" modality="required" maxOccurs="1">
+					<Documentation>Delay time of ADC</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Chromatographic Offset" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Chromatographic offset value</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="PeakTable" modality="optional">
+			<Documentation>A chromatogram peak table derived from a chromatogram</Documentation>
+			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
+				<Documentation>Peak position value on x axis</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Consecutive number of current peak/band</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakHeight" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak height</Documentation>
+				<Unit label="Counts">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Relative Abundance">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="A">
+					<SIUnit>A</SIUnit>
+				</Unit>
+				<Unit label="mA">
+					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakPercentHeight" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Percential peak height</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakWidth" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak width</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakArea" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak area</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakPercentArea" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Percential peak area</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignment" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Peak assignment</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAsymmetry" type="string" modality="optional" maxOccurs="unbounded">
+				<Documentation>Peak asymmetry</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakEfficiency" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak efficiency</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAmount" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak amount</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakMigrationTime" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak migration time</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakRetentionIndex" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak Retention index</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakStartDetectionCode" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Peak Start Detection code</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakStopDetectionCode" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Peak Stop Detection code</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakBaselineStart" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Start x value of peak baseline</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakBaselineStop" type="float" modality="optional" maxOccurs="1">
+				<Documentation>End x value of peak baseline</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakBaselineStartValue" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Start y value of peak baseline</Documentation>
+				<Unit label="Counts">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Relative Abundance">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="A">
+					<SIUnit>A</SIUnit>
+				</Unit>
+				<Unit label="mA">
+					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakBaselineStopValue" type="float" modality="optional" maxOccurs="1">
+				<Documentation>End y value of peak baseline</Documentation>
+				<Unit label="Counts">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Relative Abundance">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="A">
+					<SIUnit>A</SIUnit>
+				</Unit>
+				<Unit label="mA">
+					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="ManualReIntegration" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Result of manual reintegration</Documentation>
+				<Unit label="Counts">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Relative Abundance">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="A">
+					<SIUnit>A</SIUnit>
+				</Unit>
+				<Unit label="mA">
+					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakStart" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Start x value of peak</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakStop" type="float" modality="optional" maxOccurs="1">
+				<Documentation>End x value of peak</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="ChromatographyType" type="string" modality="required" maxOccurs="1">
+					<Documentation>Name of chromatographic technique used</Documentation>
+					<AllowedValue>
+						<string>Affinity</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Anion Exchange</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Electrophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Electrochromatography</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Zone Electrophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Cation Exchange</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Displacement</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Enzymophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Ion Exclusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Isotachophoresis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Normal Phase</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Reversed Phase</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Size Exclusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Supercritical Fluid</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Thin Layer</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Gas-Solid</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Gas-Liquid</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Ion Pair</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Size Exclusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Field Flow Fractionation</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>UPLC</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InjectionVolume" type="float" modality="required" maxOccurs="1">
+					<Documentation>Volume of injected sample</Documentation>
+					<Unit label="ul">
+						<SIUnit exponent="3" factor="0.000001">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InjectionTime" type="dateTime" modality="required" maxOccurs="1">
+					<Documentation>Date and time of injection</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="DelayTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Delay time</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EquilibrationTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Equilibration time of the column</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ADC Delay" type="float" modality="required" maxOccurs="1">
+					<Documentation>Delay time of ADC</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Chromatographic Offset" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Chromatographic offset value</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PeakProcessingMethodName" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Name of peak processing method used</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PeakProcessingTimestamp" type="dateTime" modality="required" maxOccurs="1">
+					<Documentation>Date and time when peak processing was done</Documentation>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<ParameterCategoryBlueprint name="Instrument" modality="optional">
+			<Documentation>Parameters describing the instrument</Documentation>
+			<ParameterBlueprint name="Vendor" type="string" modality="required">
+				<Documentation>Name of the instrument  vendor.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Model" type="string" modality="required">
+				<Documentation>Name of the instrument model. </Documentation>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="Detector">
+				<ParameterBlueprint name="DetectionMethod" type="string" maxOccurs="1" modality="required">
+					<Documentation>Chromatography detection method</Documentation>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+	</Definition>
+</Technique>

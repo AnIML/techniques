@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
+<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Dokumente und Einstellungen\MarenF.CLCDOM\Eigene Dateien\Projekte\AnIML\CVS\schema\animl-technique-1_1\animl-technique-1_1_MF.xsd" version="1.1">
+	<Definition name="IMS" extension="false">
+		<Documentation>Technique Definition for Ion Mobility Spectroscopy</Documentation>
+		<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>The actual measurement sample</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="CarrierGas" purpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Carrier gas used</Documentation>
+			<ParameterCategoryBlueprint name="Flow" maxOccurs="1" modality="required">
+				<Documentation>Gas flow</Documentation>
+				<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+					<Documentation>Gas flow in drift chamber</Documentation>
+					<Unit label="l/min">
+						<SIUnit exponent="3" factor="0.001">m</SIUnit>
+						<SIUnit exponent="-1" factor="0.01666">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
+					<Documentation>Gas flow in ionization  chamber</Documentation>
+					<Unit label="l/min">
+						<SIUnit exponent="3" factor="0.001">m</SIUnit>
+						<SIUnit exponent="-1" factor="0.01666">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="DriftGas" purpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Drift gas used</Documentation>
+			<ParameterCategoryBlueprint name="Flow">
+				<Documentation>Gas Flow</Documentation>
+				<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+					<Documentation>Gas flow in drift chamber</Documentation>
+					<Unit label="l/min">
+						<SIUnit exponent="3" factor="0.001">m</SIUnit>
+						<SIUnit exponent="-1" factor="0.01666">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="Solvent" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Solvent used</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<PageBlueprint name="Spectrum" modality="optional">
+			<Documentation>IMS full spectrum</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="required" maxOccurs="1">
+				<Documentation>time axis</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="ms">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+				<Unit label="us">
+					<SIUnit factor="0.000001">s</SIUnit>
+				</Unit>
+				<Unit label="ns">
+					<SIUnit factor="0.000000001">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Current" type="float" modality="required" maxOccurs="1">
+				<Documentation>electrical current axis</Documentation>
+				<Unit label="mA">
+					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+				<Unit label="nA">
+					<SIUnit factor="0.000000001">A</SIUnit>
+				</Unit>
+				<Unit label="pA">
+					<SIUnit factor="0.000000000001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of transient averages</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Pressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure in kPa</Documentation>
+					<Unit label="kPa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit factor="1000">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>Ionization mode</Documentation>
+					<AllowedValue>
+						<string>UV</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>BR</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>AL</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>PD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ESI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SY</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationSource" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Description of the ionization source</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationEnergy" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Ionization energy in electron volts</Documentation>
+					<Unit label="eV">
+						<SIUnit factor="1.602176462E-19">kg</SIUnit>
+						<SIUnit factor="1" exponent="2">m</SIUnit>
+						<SIUnit factor="1" exponent="-3">s</SIUnit>
+						<SIUnit factor="1" exponent="1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonPolarity" type="string" modality="required" maxOccurs="1">
+					<Documentation>Ion polarity (positive or negative)</Documentation>
+					<AllowedValue>
+						<string>positive</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>negative</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReducedMobility" type="float" modality="optional" maxOccurs="1">
+					<Documentation>K0 in cm²/V/s</Documentation>
+					<Unit label="cm2/V/s">
+						<SIUnit exponent="4" factor="0.0001">m</SIUnit>
+						<SIUnit exponent="-4">s</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="RepetitionRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Repetition rate</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ShutterPotential" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Shutter Grid Potential in V</Documentation>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ShutterOpeningTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Shutter openint time in us</Documentation>
+					<Unit label="us">
+						<SIUnit factor="0.000001">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="Temperature">
+					<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>drift chamber</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>ionization chamber</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="ElectricField">
+					<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>drift chamber</Documentation>
+						<Unit label="V/cm">
+							<SIUnit>kg</SIUnit>
+							<SIUnit exponent="-3">s</SIUnit>
+							<SIUnit factor="100">m</SIUnit>
+							<SIUnit exponent="-1">A</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>ionization chamber</Documentation>
+						<Unit label="V/cm">
+							<SIUnit factor="">kg</SIUnit>
+							<SIUnit exponent="-3">s</SIUnit>
+							<SIUnit factor="100">m</SIUnit>
+							<SIUnit exponent="-1">A</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="IonizationChamberShape">
+					<ParameterBlueprint name="RectLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectWidth" type="float" maxOccurs="1" modality="optional">
+						<Documentation>width for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectHeight" type="float" maxOccurs="1" modality="optional">
+						<Documentation>height for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylRadius" type="float" maxOccurs="1" modality="optional">
+						<Documentation>radius for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="DriftChamberShape">
+					<ParameterBlueprint name="RectLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectWidth" type="float" maxOccurs="1" modality="optional">
+						<Documentation>width for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectHeight" type="float" maxOccurs="1" modality="optional">
+						<Documentation>height for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylRadius" type="float" maxOccurs="1" modality="optional">
+						<Documentation>radius for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="PeakTable" modality="optional">
+			<Documentation>IMS peak table</Documentation>
+			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
+				<Documentation>Peak position value on x axis</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="ms">
+					<SIUnit factor="0.001">s</SIUnit>
+				</Unit>
+				<Unit label="us">
+					<SIUnit factor="0.000001">s</SIUnit>
+				</Unit>
+				<Unit label="ns">
+					<SIUnit factor="0.000000001">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Consecutive number of current peak/band</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakHeight" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak height</Documentation>
+				<Unit label="uA">
+					<SIUnit factor="0.000001">A</SIUnit>
+				</Unit>
+				<Unit label="nA">
+					<SIUnit factor="0.000000001">A</SIUnit>
+				</Unit>
+				<Unit label="pA">
+					<SIUnit factor="0.000000000001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakWidth" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak width</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="ms">
+					<SIUnit factor="0.001">s</SIUnit>
+				</Unit>
+				<Unit label="us">
+					<SIUnit factor="0.000001">s</SIUnit>
+				</Unit>
+				<Unit label="ns">
+					<SIUnit factor="0.000000001">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakArea" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak area</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignment" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Peak assignment</Documentation>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of transient averages</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Pressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure in kPa</Documentation>
+					<Unit label="kPa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit factor="1000">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>Ionization mode</Documentation>
+					<AllowedValue>
+						<string>UV</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>BR</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>AL</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>PD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ESI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SY</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationSource" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Description of the ionization source</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationEnergy" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Ionization energy in electron volts</Documentation>
+					<Unit label="eV">
+						<SIUnit factor="1.602176462E-19">kg</SIUnit>
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonPolarity" type="string" modality="required" maxOccurs="1">
+					<Documentation>Ion polarity (positive or negative)</Documentation>
+					<AllowedValue>
+						<string>positive</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>negative</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReducedMobility" type="float" modality="optional" maxOccurs="1">
+					<Documentation>K0 in cm²/V/s</Documentation>
+					<Unit label="cm2/V/s">
+						<SIUnit exponent="4" factor="0.0001">m</SIUnit>
+						<SIUnit exponent="-4">s</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="RepetitionRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Repetition rate</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ShutterPotential" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Shutter Grid Potential in V</Documentation>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ShutterOpeningTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Shutter openint time in us</Documentation>
+					<Unit label="us">
+						<SIUnit factor="0.000001">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="Temperature">
+					<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>drift chamber</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>ionization chamber</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="ElectricField">
+					<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>drift chamber</Documentation>
+						<Unit label="V/cm">
+							<SIUnit>kg</SIUnit>
+							<SIUnit exponent="-3">s</SIUnit>
+							<SIUnit factor="100">m</SIUnit>
+							<SIUnit exponent="-1">A</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>ionization chamber</Documentation>
+						<Unit label="V/cm">
+							<SIUnit factor="">kg</SIUnit>
+							<SIUnit exponent="-3">s</SIUnit>
+							<SIUnit factor="100">m</SIUnit>
+							<SIUnit exponent="-1">A</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="IonizationChamberShape">
+					<ParameterBlueprint name="RectLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectWidth" type="float" maxOccurs="1" modality="optional">
+						<Documentation>width for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectHeight" type="float" maxOccurs="1" modality="optional">
+						<Documentation>height for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylRadius" type="float" maxOccurs="1" modality="optional">
+						<Documentation>radius for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="DriftChamberShape">
+					<ParameterBlueprint name="RectLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectWidth" type="float" maxOccurs="1" modality="optional">
+						<Documentation>width for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectHeight" type="float" maxOccurs="1" modality="optional">
+						<Documentation>height for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylRadius" type="float" maxOccurs="1" modality="optional">
+						<Documentation>radius for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<ParameterCategoryBlueprint name="Instrument" modality="optional">
+			<Documentation>Parameters describing the instrument</Documentation>
+			<ParameterBlueprint name="Vendor" type="string" modality="required">
+				<Documentation>Name of the instrument  vendor.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Model" type="string" modality="required">
+				<Documentation>Name of the instrument model. </Documentation>
+			</ParameterBlueprint>
+		</ParameterCategoryBlueprint>
+	</Definition>
+</Technique>

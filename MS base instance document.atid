@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
+<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Dokumente und Einstellungen\MarenF.CLCDOM\Eigene Dateien\Projekte\AnIML\CVS\schema\animl-technique-1_1\animl-technique-1_1_MF.xsd" version="1.1">
+	<Definition name="MS" extension="false">
+		<Documentation>Technique Definition for Mass Spectrometry</Documentation>
+		<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>Actual measurement sample</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="ReagentGas" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Reagent gas used for CI</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="CurtainGas" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Curtain gas used</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="Solvent" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Solvent used</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="FABMatrix" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Matrix for FAB</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<PageBlueprint name="Spectrum" modality="optional">
+			<Documentation>Mass spectrum</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Time axis (optional)</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Mass" type="float" modality="required" maxOccurs="unbounded">
+				<Documentation>m/z vector</Documentation>
+				<Unit label="m/z">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="ChannelNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>channel number</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="unbounded">
+				<Documentation>Intensity vector</Documentation>
+				<Unit label="Counts">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Relative Abundance">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="ScanNumber" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Scan Number</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanFunction" type="string" modality="required" maxOccurs="1">
+					<Documentation>Scanning function</Documentation>
+					<AllowedValue>
+						<string>Mass Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Selected Ion Detection</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanDirection" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Scanning direction</Documentation>
+					<AllowedValue>
+						<string>up</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>down</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanLaw" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Scanning law</Documentation>
+					<AllowedValue>
+						<string>exponential</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>linear</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>quadratic</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanTime" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Scanning time</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Scanning rate</Documentation>
+					<Unit label="/s">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InletType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Type of inlet used</Documentation>
+					<AllowedValue>
+						<string>Direct</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Batch</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Chromatography</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Particle Beam</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>MOB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Membrane Separator</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Open Split</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Jet Separator</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Septum</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Reservoir</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Moving Belt</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Moving Wire</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Flow Injection Analysis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Electrospray Inlet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Thermospray Inlet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Infusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CFFAB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Inductively Coupled Plasma</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InletTemperature" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Temperature of inlet</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SourceTemperature" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Temperature of source</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EmissionCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Emission current</Documentation>
+					<Unit label="A">
+						<SIUnit>A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="FilamentCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Filament current</Documentation>
+					<Unit label="A">
+						<SIUnit>A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>Ionization mode</Documentation>
+					<AllowedValue>
+						<string>EI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ESI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FAB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>TSP</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>APCI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>PD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>TI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>API</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ISI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CID</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CAD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>HN</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonPolarity" type="string" modality="required" maxOccurs="1">
+					<Documentation>positive or negative</Documentation>
+					<AllowedValue>
+						<string>positive</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>negative</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationEnergy" type="float" modality="optional" maxOccurs="1">
+					<Documentation>for EI only</Documentation>
+					<Unit label="eV">
+						<SIUnit exponent="2" factor="1.602176462E-19">m</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="LaserWavelength" type="float" modality="optional" maxOccurs="1">
+					<Documentation>for LD only</Documentation>
+					<Unit label="nm">
+						<SIUnit factor="0.000000001">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="FABType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>for FAB only</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcceleratingVoltage" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Accelerating voltage</Documentation>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TandemScanningMethod" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Tandem scanning method</Documentation>
+					<AllowedValue>
+						<string>Product Ion Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Precursor Ion Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Constant Neutral Loss</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Single Reaction Monitoring</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Multiple Reaction Monitoring</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Single/Multiple RM</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ResolutionMethod" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Resolution method</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ResolutionType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Resolution type</Documentation>
+					<AllowedValue>
+						<string>constant</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>proportional</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TIC" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Total Ion Current</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReconstructedIonCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Reconstructed ion current</Documentation>
+					<Unit label="Counts"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="BasePeakPosition" type="float" modality="optional" maxOccurs="1">
+					<Documentation>x axis position of base peak</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="BasePeakIntensity" type="float" modality="optional" maxOccurs="1">
+					<Documentation>intensity of base peak</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="LockMass" type="float" modality="required" maxOccurs="1">
+					<Documentation>lock mass</Documentation>
+					<Unit label="amu"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ExperimentType" type="string" modality="required" maxOccurs="1">
+					<Documentation>experiment type</Documentation>
+					<AllowedValue>
+						<string>Centroided Mass Spectrum</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Continuum Mass Spectrum</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Library Mass Spectrum</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SpectrumQuality" modality="optional" maxOccurs="1">
+				<Documentation>Spectrum quality description</Documentation>
+				<ParameterBlueprint name="Coblentz" type="int">
+					<Documentation>Coblentz society class</Documentation>
+					<AllowedValue>
+						<int>1</int>
+					</AllowedValue>
+					<AllowedValue>
+						<int>2</int>
+					</AllowedValue>
+					<AllowedValue>
+						<int>3</int>
+					</AllowedValue>
+					<AllowedValue>
+						<int>4</int>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IUPAC" type="string">
+					<Documentation>IUPAC class</Documentation>
+					<AllowedValue>
+						<string>A</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>B</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>C</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="PeakTable" modality="optional">
+			<Documentation>MS peak table</Documentation>
+			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
+				<Documentation>Peak position value on x axis</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+				<Unit label="m/z">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="No.">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Consecutive number of current peak/band</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakHeight" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak height</Documentation>
+				<Unit label="Counts">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Relative Abundance">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakWidth" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak width</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+				<Unit label="m/z">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="No.">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakArea" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak area</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignment" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Peak assignment</Documentation>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="ScanNumber" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Scan Number</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanFunction" type="string" modality="required" maxOccurs="1">
+					<Documentation>Scanning function</Documentation>
+					<AllowedValue>
+						<string>Mass Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Selected Ion Detection</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanDirection" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Scanning direction</Documentation>
+					<AllowedValue>
+						<string>up</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>down</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanLaw" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Scanning law</Documentation>
+					<AllowedValue>
+						<string>exponential</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>linear</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>quadratic</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanTime" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Scanning time</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Scanning rate</Documentation>
+					<Unit label="/s">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InletType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Type of inlet used</Documentation>
+					<AllowedValue>
+						<string>Direct</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Batch</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Chromatography</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Particle Beam</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>MOB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Membrane Separator</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Open Split</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Jet Separator</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Septum</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Reservoir</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Moving Belt</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Moving Wire</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Flow Injection Analysis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Electrospray Inlet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Thermospray Inlet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Infusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CFFAB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Inductively Coupled Plasma</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InletTemperature" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Temperature of inlet</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SourceTemperature" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Temperature of source</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EmissionCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Emission current</Documentation>
+					<Unit label="A">
+						<SIUnit>A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="FilamentCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Filament current</Documentation>
+					<Unit label="A">
+						<SIUnit>A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>Ionization mode</Documentation>
+					<AllowedValue>
+						<string>EI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ESI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FAB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>TSP</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>APCI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>PD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>TI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>API</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ISI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CID</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CAD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>HN</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonPolarity" type="string" modality="required" maxOccurs="1">
+					<Documentation>positive or negative</Documentation>
+					<AllowedValue>
+						<string>positive</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>negative</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationEnergy" type="float" modality="optional" maxOccurs="1">
+					<Documentation>for EI only</Documentation>
+					<Unit label="eV">
+						<SIUnit exponent="2" factor="1.602176462E-19">m</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="LaserWavelength" type="float" modality="optional" maxOccurs="1">
+					<Documentation>for LD only</Documentation>
+					<Unit label="nm">
+						<SIUnit factor="0.000000001">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="FABType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>for FAB only</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcceleratingVoltage" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Accelerating voltage</Documentation>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TandemScanningMethod" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Tandem scanning method</Documentation>
+					<AllowedValue>
+						<string>Product Ion Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Precursor Ion Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Constant Neutral Loss</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Single Reaction Monitoring</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Multiple Reaction Monitoring</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Single/Multiple RM</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ResolutionMethod" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Resolution method</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ResolutionType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Resolution type</Documentation>
+					<AllowedValue>
+						<string>constant</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>proportional</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TIC" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Total Ion Current</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReconstructedIonCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Reconstructed ion current</Documentation>
+					<Unit label="Counts"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="BasePeakPosition" type="float" modality="optional" maxOccurs="1">
+					<Documentation>x axis position of base peak</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="BasePeakIntensity" type="float" modality="optional" maxOccurs="1">
+					<Documentation>intensity of base peak</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="LockMass" type="float" modality="required" maxOccurs="1">
+					<Documentation>lock mass</Documentation>
+					<Unit label="amu"/>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<ParameterCategoryBlueprint name="Instrument" modality="optional">
+			<Documentation>Parameters describing the instrument</Documentation>
+			<ParameterBlueprint name="Vendor" type="string" modality="required">
+				<Documentation>Name of the instrument  vendor.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Model" type="string" modality="required">
+				<Documentation>Name of the instrument model. </Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MassAnalyzer" type="string" modality="required">
+				<Documentation>Type of mass analyzer</Documentation>
+				<AllowedValue>
+					<string>Quadrupole</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Ion Trap</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>TOF</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Sector</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Fourier Transform</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Tandem</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Triple Quadrupole</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Quadrupole-TOF</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Ion Storage</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Multiple Sector</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>B</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>EB</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>BE</string>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Resolution" type="float" modality="optional">
+				<Documentation>Instrument resolution</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="m/z">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="Detector">
+				<ParameterBlueprint name="Type" type="string" maxOccurs="1" modality="optional">
+					<Documentation>Detector type</Documentation>
+					<AllowedValue>
+						<string>Electron Multiplier</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Photomultiplier</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Focal Plane Array</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Faraday Cup</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Conversion Dynode Electron Multiplier</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Conversion Dynode Photomultiplier</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Multi-Collector</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Channel Electron Multiplier</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EntrancePotential" type="float" maxOccurs="1" modality="optional">
+					<Documentation>Detector entrance potential</Documentation>
+					<Unit label="V">
+						<SIUnit factor="1" exponent="1">kg</SIUnit>
+						<SIUnit factor="1" exponent="2">m</SIUnit>
+						<SIUnit factor="1" exponent="-3">s</SIUnit>
+						<SIUnit factor="1" exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Potential" type="float" maxOccurs="1" modality="optional">
+					<Documentation>Detector potential</Documentation>
+					<Unit label="V">
+						<SIUnit factor="1" exponent="1">kg</SIUnit>
+						<SIUnit factor="1" exponent="2">m</SIUnit>
+						<SIUnit factor="1" exponent="-3">s</SIUnit>
+						<SIUnit factor="1" exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+	</Definition>
+</Technique>

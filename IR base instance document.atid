@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
+<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\Dokumente und Einstellungen\MarenF.CLCDOM\Eigene Dateien\Projekte\AnIML\CVS\schema\animl-technique-1_1\animl-technique-1_1_MF.xsd" version="1.1">
+	<Definition name="IR" extension="false">
+		<Documentation>Technique definition for Infrared spectroscopy</Documentation>
+		<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>This is the analyzed substance</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required">
+				<Documentation>Parameters describing the measurement sample</Documentation>
+				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+					<Documentation>Refractive Index</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Documentation>Refractive index</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+					<Documentation>Refractive Index</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Documentation>Refractive index</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="KBr" purpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
+			<Documentation>Potassium Bromide for sample preparation as pellet</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required">
+				<Documentation>Parameters describing the KBr</Documentation>
+				<ParameterBlueprint name="SampleAmount" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Amount of sample used for measurement.</Documentation>
+					<Unit label="g">
+						<SIUnit exponent="1" factor="0.01" offset="0">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="0.00001" offset="0">kg</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</SampleRole>
+		<SampleRole name="Solvent" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="false" upwardsInherited="false">
+			<Documentation>Solvent for liquid sample preparation</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required">
+				<Documentation>Parameters describing the solvent</Documentation>
+				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+					<Documentation>Refractive Index</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Documentation>Refractive index value</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit factor="1.8" offset="-434.07">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+					<Documentation>Refractive Index</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Documentation>Refractive index</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="Blank" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>Blank reference</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<PageBlueprint name="Spectrum" modality="optional">
+			<Documentation>The actual IR spectrum</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Time axis, if needed</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PositionX" type="float" modality="optional" maxOccurs="1">
+				<Documentation>X position (e.g. for surface mapping)</Documentation>
+				<Unit label="m">
+					<SIUnit>m</SIUnit>
+				</Unit>
+				<Unit label="cm">
+					<SIUnit factor="0.01">m</SIUnit>
+				</Unit>
+				<Unit label="mm">
+					<SIUnit factor="0.001">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PositionY" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Y position (e.g. for surface mapping)</Documentation>
+				<Unit label="m">
+					<SIUnit>m</SIUnit>
+				</Unit>
+				<Unit label="cm">
+					<SIUnit factor="0.01">m</SIUnit>
+				</Unit>
+				<Unit label="mm">
+					<SIUnit factor="0.001">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PositionZ" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Z position (e.g. for surface mapping)</Documentation>
+				<Unit label="m">
+					<SIUnit>m</SIUnit>
+				</Unit>
+				<Unit label="cm">
+					<SIUnit factor="0.01">m</SIUnit>
+				</Unit>
+				<Unit label="mm">
+					<SIUnit factor="0.001">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Wavenumber" type="float" modality="required" maxOccurs="1">
+				<Documentation>Wavelength/Wavenumber</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
+				<Documentation>Can be in Absorbance or Transmittance units, Kubelka-Munk, or Reflectance</Documentation>
+				<Unit label="Absorbance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="%T">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="KM">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="R">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="PathLength" type="float" modality="required" maxOccurs="1">
+					<Documentation>Path length during measurement.</Documentation>
+					<Unit label="cm">
+						<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="PeakTable" modality="optional">
+			<Documentation>IR peak table</Documentation>
+			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
+				<Documentation>Peak position value on x axis</Documentation>
+				<Unit label="Absorbance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="%T">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="KM">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="R">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Consecutive number of current peak/band</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakHeight" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak height</Documentation>
+				<Unit label="Absorbance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="%T">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="KM">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="R">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakWidth" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak width</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakArea" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Peak area</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignment" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Peak assignment</Documentation>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="PathLength" type="float" modality="required" maxOccurs="1">
+					<Documentation>Path length during measurement.</Documentation>
+					<Unit label="cm">
+						<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="Interferogram" modality="optional">
+			<Documentation>IR Interferogram</Documentation>
+			<VectorBlueprint name="Wavelength" type="float" modality="required" maxOccurs="1">
+				<Documentation>Wavelength</Documentation>
+				<Unit label="um">
+					<SIUnit factor="0.000001">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
+				<Documentation>Can be in Absorbance or Transmittance units</Documentation>
+				<Unit label="Arb. Units"/>
+				<Unit label="V">
+					<SIUnit exponent="1" factor="1" offset="0">kg</SIUnit>
+					<SIUnit exponent="2" factor="1" offset="0">m</SIUnit>
+					<SIUnit exponent="-3" factor="1" offset="0">s</SIUnit>
+					<SIUnit exponent="-1" factor="1" offset="0">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="AliasingRatio" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Aliasing Ratio for Interferograms.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PathLength" type="float" modality="required" maxOccurs="1">
+					<Documentation>Path length during measurement.</Documentation>
+					<Unit label="cm">
+						<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ZeroPathDifference" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Zero path difference for interferograms.</Documentation>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<ParameterCategoryBlueprint name="Instrument" modality="optional">
+			<Documentation>Parameters describing the instrument</Documentation>
+			<ParameterBlueprint name="Vendor" type="string" modality="required">
+				<Documentation>Name of the instrument  vendor.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Model" type="string" modality="required">
+				<Documentation>Name of the instrument model. </Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Resolution" type="float" modality="required">
+				<Documentation>Detector's resolution</Documentation>
+				<Unit label="1/cm">
+					<SIUnit exponent="-1" factor="0.01" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit exponent="1" factor="0.000001" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit exponent="1" factor="0.000000001" offset="0">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+		</ParameterCategoryBlueprint>
+	</Definition>
+</Technique>

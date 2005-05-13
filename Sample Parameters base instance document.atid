@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by Maren Fiege (Waters GmbH) -->
 <!-- edited with XMLSPY v5 rel. 4 U (http://www.xmlspy.com) by Maren Fiege (Creon·Lab·Control AG) -->
 <Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
 	<Module name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid">
@@ -107,6 +108,10 @@
 				<ParameterBlueprint name="Lot" type="string" modality="optional" maxOccurs="1">
 					<Documentation>Lot name/number</Documentation>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="SampleOwner" type="string" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="SampleLocation" type="string" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="SamplePreparedOperator" type="string" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="SampleSupplier" type="string" modality="optional" maxOccurs="1"/>
 				<ParameterCategoryBlueprint name="BP" maxOccurs="1" modality="optional">
 					<Documentation>Boiling Point</Documentation>
 					<ParameterBlueprint name="Min" type="float" modality="optional" maxOccurs="1">
@@ -206,6 +211,12 @@ represented in the above order, and the dot is represented by *. Isotopic mass i
 C2H402 or C2 H4 02 (acetic acid)
 C6 H9 Cr 06 * H2 0 (chromic acetate monohydrate)
 H2 A170 (water, mass 17 oxygen); see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MolecularWeight" type="float" modality="optional" maxOccurs="1">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1" offset="0">mol</SIUnit>
+					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="CASRegistryNo" type="string" modality="optional" maxOccurs="1">
 					<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>

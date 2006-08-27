@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
+	<Definition name="IR" extension="false">
+		<Documentation>Technique definition for Infrared spectroscopy</Documentation>
+		<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>This is the analyzed substance</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
+				<Documentation>Parameters describing the measurement sample</Documentation>
+				<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
+					<Documentation>Solid, liquid, gas, solution; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<AllowedValue>
+						<string>KBr Pellet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Powder</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Nujol Mull</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
+G.B. 30; 1996, 68, 989</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Documentation>Refractive index value</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<Documentation>Parameters describing a substance in the measurement sample</Documentation>
+				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
+G.B. 30; 1996, 68, 989</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Documentation>Refractive index value</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="Reference" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>Blank reference</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
+				<Documentation>Parameters describing the reference</Documentation>
+				<ParameterBlueprint name="SampleState" type="string" modality="required" maxOccurs="1">
+					<Documentation>Solid, liquid, gas, solution; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<AllowedValue>
+						<string>KBr Pellet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Powder</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Nujol Mull</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
+G.B. 30; 1996, 68, 989</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Documentation>Refractive index value</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<Documentation>Parameters describing a substance in the reference</Documentation>
+				<ParameterCategoryBlueprint name="RefractiveIndex" maxOccurs="1" modality="optional">
+					<Documentation>The ratio of the speed of light in vacuum to that in a given medium.
+G.B. 30; 1996, 68, 989</Documentation>
+					<ParameterBlueprint name="Value" type="float" modality="required" maxOccurs="1">
+						<Documentation>Refractive index value</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="AtTemperature" type="float" modality="required" maxOccurs="1">
+						<Documentation>Temperature at which the refractive index has been determined.</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<PageBlueprint name="Spectrum" modality="optional">
+			<Documentation>The actual IR spectrum</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
+				<Documentation>This is a set of values of dimension
+@length, containing the abscissa value for each raw
+data ordinate value. This set of values has a unit of time. See: ASTM E 1947-98. and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PositionX" type="float" modality="optional" maxOccurs="1">
+				<Documentation>X position (e.g. for surface mapping)</Documentation>
+				<Unit label="m">
+					<SIUnit>m</SIUnit>
+				</Unit>
+				<Unit label="cm">
+					<SIUnit factor="0.01">m</SIUnit>
+				</Unit>
+				<Unit label="mm">
+					<SIUnit factor="0.001">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PositionY" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Y position (e.g. for surface mapping)</Documentation>
+				<Unit label="m">
+					<SIUnit>m</SIUnit>
+				</Unit>
+				<Unit label="cm">
+					<SIUnit factor="0.01">m</SIUnit>
+				</Unit>
+				<Unit label="mm">
+					<SIUnit factor="0.001">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PositionZ" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Z position (e.g. for surface mapping)</Documentation>
+				<Unit label="m">
+					<SIUnit>m</SIUnit>
+				</Unit>
+				<Unit label="cm">
+					<SIUnit factor="0.01">m</SIUnit>
+				</Unit>
+				<Unit label="mm">
+					<SIUnit factor="0.001">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Wavenumber" type="float" modality="required" maxOccurs="1">
+				<Documentation>This is a set of values of dimension
+@length, containing the abscissa value for each raw
+data ordinate value. This set of values has a unit of wavelength or wavenumber. See: ASTM E 1947-98. and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
+				<Documentation>This is a set of values of dimension
+@length, containing the ordinate values. This set of values
+has a unit of detector-unit. This is a required field for datasets
+containing raw data.
+See: ASTM E 1947-98. Can be in Absorbance,  Transmittance, or %T  units, Kubelka-Munk, or Reflectance. See also Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
+				<Unit label="Absorbance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="T">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="%T">
+					<SIUnit factor="1e-2" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="KM">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="R">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="PathLength" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pathlength
+in cm. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<Unit label="cm">
+						<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="CoblentzClass" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Specifies the Coblentz
+Class of the spectrum (1,2,3, or 4) (see 
+“The Coblentz Society Specifications for Evaluation of Research
+Quality Analytical Infrared Spectra (Class II),” Anal. Chem. 47,2339
+(1975).).</Documentation>
+					<AllowedRange>
+						<Min>
+							<int>1</int>
+						</Min>
+						<Max>
+							<int>4</int>
+						</Max>
+					</AllowedRange>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IUPACClass" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Specifies the IUPAC Class of digital representation (A, B, C). See W. B. Derendjaev, Appl. Spectrosc. 40, 707 (1986).</Documentation>
+					<AllowedValue>
+						<string>A</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>B</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>C</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ObservationMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>(7.4.1) ##SAMPLING PROCEDURE= (TEXT). First
+entry in this field should be MODE of observation (trans-
+mission, specular reflection, PAS, matrix isolation, pho-
+tothermal beam deflection, etc.), followed by appropriate
+additional information, i.e., name and model of acces-
+sories, cell thickness, and window material for fixed liq-
+uid cells, ATR plate material, angle and cone of inci-
+dence, and effective number of reflections for ATR
+measurements, polarization, and special modulation
+techniques, as discussed by Grasselli et al (see J. G. Grasselli, P. R. Griffithsy and R. W. Hannah, Appl. Spectrosc.
+36, 87 (1982)). From: Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<AllowedValue>
+						<string>transmission</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>specular reflection</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>PAS</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>matrix isolation</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>photothermal beam deflection</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ATR</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="CellThickness" type="float" modality="optional" maxOccurs="1">
+					<Documentation>see: Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<Unit label="cm">
+						<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="WindowMaterial" type="string" modality="optional" maxOccurs="1">
+					<Documentation>see: Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ATRPlateMaterial" type="string" modality="optional" maxOccurs="1">
+					<Documentation>see: Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AngleOfIncidence" type="float" modality="optional" maxOccurs="1">
+					<Documentation>see: Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<Unit label="deg">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ConeOfIncidence" type="float" modality="optional" maxOccurs="1">
+					<Documentation>see: Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<Unit label="deg">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EffectiveNumberOfReflections" type="float" modality="optional" maxOccurs="1">
+					<Documentation>see: Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Polarization" type="string" modality="optional" maxOccurs="1">
+					<Documentation>see: Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SpecialParameters" type="string" modality="optional" maxOccurs="1">
+					<Documentation>see: Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="PeakTable" modality="optional">
+			<Documentation>IR peak table</Documentation>
+			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
+				<Documentation>Peak position value on x axis See Appl. Spectrosc. 42, 1988, 151-162.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Peak number used to identify a particular
+peak. 
+See: ASTM E 1947-98.</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakHeight" type="float" modality="optional" maxOccurs="1">
+				<Documentation>The distance between the peak maximum and the peak base, measured in a direction parallel to the axis representing the detector response.
+O.B. 102</Documentation>
+				<Unit label="Absorbance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="%T">
+					<SIUnit factor="1e-2" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="KM">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="R">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakWidth" type="float" modality="optional" maxOccurs="1">
+				<Documentation>The calculated width of the peak, given
+in a unit of retention-unit.
+See: ASTM E 1947-98.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakArea" type="float" modality="optional" maxOccurs="1">
+				<Documentation>The area enclosed between the peak and the baseline.
+O.B. 101</Documentation>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignment" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Peak assignments for components, functional groups, or vibrational modes; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="PathLength" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pathlength in cm. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<Unit label="cm">
+						<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="Interferogram" modality="optional">
+			<Documentation>IR Interferogram</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
+				<Documentation>This is a set of values of dimension
+@length, containing the abscissa value for each raw
+data ordinate value. This set of values has a unit of time. See: ASTM E 1947-98. and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="1">
+				<Documentation>This is a set of values of dimension
+@length, containing the ordinate values. This set of values
+has a unit of detector-unit. This is a required field for datasets
+containing raw data.
+See: ASTM E 1947-98. Can be in Absorbance,  Transmittance, or %T  units, Kubelka-Munk, or Reflectance. See also Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
+				<Unit label="Arb. Units"/>
+				<Unit label="V">
+					<SIUnit exponent="1" factor="1" offset="0">kg</SIUnit>
+					<SIUnit exponent="2" factor="1" offset="0">m</SIUnit>
+					<SIUnit exponent="-3" factor="1" offset="0">s</SIUnit>
+					<SIUnit exponent="-1" factor="1" offset="0">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="AliasingRatio" type="float" modality="optional" maxOccurs="1">
+					<Documentation>A fraction whose denominator is the number of possible aliases for a given sample and whose numerator is the number of the alias represented by the data. For sampling at alternate laser fringes,
+the number of aliases is 2, and the alias for the region starting at zero frequency is 1, giving an ##ALIAS=of 1/2. see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PathLength" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pathlength
+in cm. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+					<Unit label="cm">
+						<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ZeroPathDifference" type="float" modality="optional" maxOccurs="1">
+					<Documentation>The number of data points
+before zero path difference (ZPD). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form".</Documentation>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<ParameterCategoryBlueprint name="Instrument" modality="optional">
+			<Documentation>Parameters describing the instrument</Documentation>
+			<ParameterBlueprint name="Vendor" type="string" modality="required">
+				<Documentation>Name of the instrument  vendor.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Model" type="string" modality="required">
+				<Documentation>Name of the instrument model. </Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Resolution" type="float" modality="required">
+				<Documentation>Nominal resolution in x axis units, as a single number for spectra at constant resolution throughout.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit exponent="-1" factor="0.01" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit exponent="1" factor="0.000001" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit exponent="1" factor="0.000000001" offset="0">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+		</ParameterCategoryBlueprint>
+	</Definition>
+</Technique>

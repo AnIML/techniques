@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
+	<Definition name="IMS" extension="false">
+		<Documentation>Technique Definition for Ion Mobility Spectroscopy</Documentation>
+		<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>The actual measurement sample</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="CarrierGas" purpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>A description of the carrier gas is given here.
+See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" maxOccurs="1" modality="required">
+				<ParameterBlueprint name="Moisture" type="float" maxOccurs="1" modality="required">
+					<Documentation>The water concentration in the carrier gas is relevant to the different ionization processes. It is strongly
+recommended that this value be reported. This is labeled volume fraction with the units parts per million
+(ppm). See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<Unit label="ppm">
+						<SIUnit factor="1E-6">1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="Flow" maxOccurs="1" modality="required">
+				<Documentation>This LDR is divided in two flow values. The first value is linked to the ionization chamber, the second
+is optional, if applied. All values have the unit litre/minute. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+				<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+					<Documentation>Gas flow in drift chamber</Documentation>
+					<Unit label="l/min">
+						<SIUnit exponent="3" factor="0.001">m</SIUnit>
+						<SIUnit exponent="-1" factor="0.01666">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
+					<Documentation>Gas flow in ionization  chamber</Documentation>
+					<Unit label="l/min">
+						<SIUnit exponent="3" factor="0.001">m</SIUnit>
+						<SIUnit exponent="-1" factor="0.01666">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="DriftGas" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>A description of the drift gas is required when used in addition to the carrier gas. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+			<ParameterCategoryBlueprint name="Flow">
+				<Documentation>This LDR defines the drift gas flow into the drift chamber when a separate gas is used here to the carrier
+gas. All values have the unit litre/minute. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+				<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+					<Documentation>Gas flow in drift chamber</Documentation>
+					<Unit label="l/min">
+						<SIUnit exponent="3" factor="0.001">m</SIUnit>
+						<SIUnit exponent="-1" factor="0.01666">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<SampleRole name="Solvent" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Solvent used</Documentation>
+			<UsedModule elementName="Sample" name="SampleParameters" uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid"/>
+		</SampleRole>
+		<PageBlueprint name="Spectrum" modality="optional">
+			<Documentation>IMS full spectrum</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="required" maxOccurs="1">
+				<Documentation>This is a set of values of dimension
+@length, containing the abscissa value for each raw
+data ordinate value. This set of values has a unit of time. See: ASTM E 1947-98.</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="ms">
+					<SIUnit factor="1e-3">s</SIUnit>
+				</Unit>
+				<Unit label="us">
+					<SIUnit factor="0.000001">s</SIUnit>
+				</Unit>
+				<Unit label="ns">
+					<SIUnit factor="0.000000001">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Current" type="float" modality="required" maxOccurs="1">
+				<Documentation>This is a set of values of dimension point-number, containing the abscissa value for each raw data ordinate value. This set of values has a unit of electrical current. See: ASTM E 1947-98 and Pure Appl. Chem. 73, 11, 2001, 1765-1782.</Documentation>
+				<Unit label="mA">
+					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+				<Unit label="nA">
+					<SIUnit factor="0.000000001">A</SIUnit>
+				</Unit>
+				<Unit label="pA">
+					<SIUnit factor="0.000000000001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of transients averaged. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Pressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure inside the IMS system in kilopascal. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<Unit label="kPa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit factor="1000">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>The following keywords define how the system ionizes the gas:
+UV ultraviolet source
+BR beta radiation source
+AL alpha radiation source
+PD partial discharge
+CD corona discharge
+ESI electrospray ionization
+LI laser ionization
+LD laser desorption
+SI surface ionization
+SY synchrotron radiation
+See Pure Appl. Chem. 73, 2001, 1765-1782.
+</Documentation>
+					<AllowedValue>
+						<string>UV</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>BR</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>AL</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>PD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ESI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SY</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationSource" type="string" modality="optional" maxOccurs="1">
+					<Documentation>A description of the relevant ionization source details.
+See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationEnergy" type="float" modality="optional" maxOccurs="1">
+					<Documentation>The ionization energy in eV. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<Unit label="eV">
+						<SIUnit factor="1.602176462E-19">kg</SIUnit>
+						<SIUnit factor="1" exponent="2">m</SIUnit>
+						<SIUnit factor="1" exponent="-3">s</SIUnit>
+						<SIUnit factor="1" exponent="1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonPolarity" type="string" modality="required" maxOccurs="1">
+					<Documentation>The polarity of the measured ions. Allowed values are POSITIVE or NEGATIVE. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<AllowedValue>
+						<string>positive</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>negative</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="RepetitionRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>The time between subsequent shutter openings in milliseconds. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ShutterPotential" type="float" modality="optional" maxOccurs="1">
+					<Documentation>The potential difference between the wires of the shutter in volts. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ShutterOpeningTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Shutter opening time in microseconds.
+Without knowing the time the shutter was open, it is not possible to calculate the individual
+mobilities. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<Unit label="us">
+						<SIUnit factor="0.000001">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="Temperature">
+					<Documentation>Here, the first value is characterizing the temperature in the drift chamber, the second value is characterizing
+the temperature in the ionization chamber in °C. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>drift chamber</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="optional">
+						<Documentation>ionization chamber</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="ElectricField">
+					<Documentation>The electric field description is divided in two parts: The field in the ionization chamber and the one in
+the drift chamber (in volt/centimeter). See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>drift chamber</Documentation>
+						<Unit label="V/cm">
+							<SIUnit>kg</SIUnit>
+							<SIUnit exponent="-3">s</SIUnit>
+							<SIUnit factor="100">m</SIUnit>
+							<SIUnit exponent="-1">A</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>ionization chamber</Documentation>
+						<Unit label="V/cm">
+							<SIUnit>kg</SIUnit>
+							<SIUnit exponent="-3">s</SIUnit>
+							<SIUnit factor="100">m</SIUnit>
+							<SIUnit exponent="-1">A</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="IonizationChamberShape">
+					<Documentation>Different geometrical parameters of the ionization or drift chamber are distinguished by the following
+keywords:
+RECT This means a rectangular chamber. It is followed by the size of the three dimensions
+length, width, and height in mm.
+CYL Stands for a cylindrical form of the chamber. It is followed by its length and radius in
+mm. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<ParameterBlueprint name="RectLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectWidth" type="float" maxOccurs="1" modality="optional">
+						<Documentation>width for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectHeight" type="float" maxOccurs="1" modality="optional">
+						<Documentation>height for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylRadius" type="float" maxOccurs="1" modality="optional">
+						<Documentation>radius for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="DriftChamberShape">
+					<Documentation>Different geometrical parameters of the ionization or drift chamber are distinguished by the following
+keywords:
+RECT This means a rectangular chamber. It is followed by the size of the three dimensions
+length, width, and height in mm.
+CYL Stands for a cylindrical form of the chamber. It is followed by its length and radius in
+mm. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<ParameterBlueprint name="RectLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectWidth" type="float" maxOccurs="1" modality="optional">
+						<Documentation>width for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectHeight" type="float" maxOccurs="1" modality="optional">
+						<Documentation>height for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylRadius" type="float" maxOccurs="1" modality="optional">
+						<Documentation>radius for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="PeakTable" modality="optional">
+			<Documentation>IMS peak table</Documentation>
+			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
+				<Documentation>Peak position value on x axis See Appl. Spectrosc. 42, 1988, 151-162.</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="ms">
+					<SIUnit factor="0.001">s</SIUnit>
+				</Unit>
+				<Unit label="us">
+					<SIUnit factor="0.000001">s</SIUnit>
+				</Unit>
+				<Unit label="ns">
+					<SIUnit factor="0.000000001">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Peak number used to identify a particular
+peak. 
+See: ASTM E 1947-98.</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakHeight" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Computed height of the peak; in a scaled data unit. The unit for this is the same as that of the
+raw-data.
+See: ASTM E 1947-98.</Documentation>
+				<Unit label="mA">
+					<SIUnit factor="0.001">A</SIUnit>
+				</Unit>
+				<Unit label="uA">
+					<SIUnit factor="0.000001">A</SIUnit>
+				</Unit>
+				<Unit label="nA">
+					<SIUnit factor="0.000000001">A</SIUnit>
+				</Unit>
+				<Unit label="pA">
+					<SIUnit factor="0.000000000001">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakWidth" type="float" modality="optional" maxOccurs="1">
+				<Documentation>The calculated width of the peak, given
+in a unit of time.
+See: ASTM E 1947-98.</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="ms">
+					<SIUnit factor="0.001">s</SIUnit>
+				</Unit>
+				<Unit label="us">
+					<SIUnit factor="0.000001">s</SIUnit>
+				</Unit>
+				<Unit label="ns">
+					<SIUnit factor="0.000000001">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakArea" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Computed area of the peak.
+See: ASTM E 1947-98.</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignment" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Chemical structure assigned to this peak (use Substance ID) (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.)</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="ReducedMobility" type="float" modality="optional" maxOccurs="1">
+				<Documentation>This LDR contains a list of reduced mobilities and their assignments for each of the components, where
+K0 is the reduced mobility where the K0 values are the known reduced mobilities in cm2 V–1 s–1 given according to the formula:
+where K is the measured mobility at pressure P and temperature T. P0 is 101325 Pa, and T0 is 273 K.
+See Pure Appl. Chem. 73, 2001, 1765-1782.
+</Documentation>
+				<Unit label="cm2/V/s">
+					<SIUnit exponent="4" factor="0.0001">m</SIUnit>
+					<SIUnit exponent="-4">s</SIUnit>
+					<SIUnit>kg</SIUnit>
+					<SIUnit exponent="-1">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="SignalAveraging" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Number of transients averaged. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Pressure" type="float" modality="required" maxOccurs="1">
+					<Documentation>Pressure inside the IMS system in kilopascal. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<Unit label="kPa">
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit factor="1000">kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>The following keywords define how the system ionizes the gas:
+UV ultraviolet source
+BR beta radiation source
+AL alpha radiation source
+PD partial discharge
+CD corona discharge
+ESI electrospray ionization
+LI laser ionization
+LD laser desorption
+SI surface ionization
+SY synchrotron radiation
+See Pure Appl. Chem. 73, 2001, 1765-1782.
+</Documentation>
+					<AllowedValue>
+						<string>UV</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>BR</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>AL</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>PD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ESI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SY</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationSource" type="string" modality="optional" maxOccurs="1">
+					<Documentation>A description of the relevant ionization source details.
+See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationEnergy" type="float" modality="optional" maxOccurs="1">
+					<Documentation>The ionization energy in eV. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<Unit label="eV">
+						<SIUnit factor="1.602176462E-19">kg</SIUnit>
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonPolarity" type="string" modality="required" maxOccurs="1">
+					<Documentation>The polarity of the measured ions. Allowed values are POSITIVE or NEGATIVE. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<AllowedValue>
+						<string>positive</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>negative</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="RepetitionRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>The time between subsequent shutter openings in milliseconds. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ShutterPotential" type="float" modality="optional" maxOccurs="1">
+					<Documentation>The potential difference between the wires of the shutter in volts. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ShutterOpeningTime" type="float" modality="required" maxOccurs="1">
+					<Documentation>Shutter opening time in microseconds.
+Without knowing the time the shutter was open, it is not possible to calculate the individual
+mobilities. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<Unit label="us">
+						<SIUnit factor="0.000001">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterCategoryBlueprint name="Temperature">
+					<Documentation>Here, the first value is characterizing the temperature in the drift chamber, the second value is characterizing
+the temperature in the ionization chamber in °C. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>drift chamber</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="optional">
+						<Documentation>ionization chamber</Documentation>
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="ElectricField">
+					<Documentation>The electric field description is divided in two parts: The field in the ionization chamber and the one in
+the drift chamber (in volt/centimeter). See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<ParameterBlueprint name="DChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>drift chamber</Documentation>
+						<Unit label="V/cm">
+							<SIUnit>kg</SIUnit>
+							<SIUnit exponent="-3">s</SIUnit>
+							<SIUnit factor="100">m</SIUnit>
+							<SIUnit exponent="-1">A</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="IChamber" type="float" maxOccurs="1" modality="required">
+						<Documentation>ionization chamber</Documentation>
+						<Unit label="V/cm">
+							<SIUnit>kg</SIUnit>
+							<SIUnit exponent="-3">s</SIUnit>
+							<SIUnit factor="100">m</SIUnit>
+							<SIUnit exponent="-1">A</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="IonizationChamberShape">
+					<Documentation>Different geometrical parameters of the ionization or drift chamber are distinguished by the following
+keywords:
+RECT This means a rectangular chamber. It is followed by the size of the three dimensions
+length, width, and height in mm.
+CYL Stands for a cylindrical form of the chamber. It is followed by its length and radius in
+mm. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<ParameterBlueprint name="RectLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectWidth" type="float" maxOccurs="1" modality="optional">
+						<Documentation>width for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectHeight" type="float" maxOccurs="1" modality="optional">
+						<Documentation>height for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylRadius" type="float" maxOccurs="1" modality="optional">
+						<Documentation>radius for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+				<ParameterCategoryBlueprint name="DriftChamberShape">
+					<Documentation>Different geometrical parameters of the ionization or drift chamber are distinguished by the following
+keywords:
+RECT This means a rectangular chamber. It is followed by the size of the three dimensions
+length, width, and height in mm.
+CYL Stands for a cylindrical form of the chamber. It is followed by its length and radius in
+mm. See Pure Appl. Chem. 73, 2001, 1765-1782.</Documentation>
+					<ParameterBlueprint name="RectLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectWidth" type="float" maxOccurs="1" modality="optional">
+						<Documentation>width for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="RectHeight" type="float" maxOccurs="1" modality="optional">
+						<Documentation>height for rectangular chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylLength" type="float" maxOccurs="1" modality="optional">
+						<Documentation>length for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="CylRadius" type="float" maxOccurs="1" modality="optional">
+						<Documentation>radius for cylindrical  chamber</Documentation>
+						<Unit label="mm">
+							<SIUnit factor="0.001">m</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<ParameterCategoryBlueprint name="Instrument" modality="optional">
+			<Documentation>Parameters describing the instrument</Documentation>
+			<ParameterBlueprint name="Vendor" type="string" modality="required">
+				<Documentation>Name of the instrument  vendor.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Model" type="string" modality="required">
+				<Documentation>Name of the instrument model. </Documentation>
+			</ParameterBlueprint>
+		</ParameterCategoryBlueprint>
+	</Definition>
+</Technique>

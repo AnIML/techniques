@@ -1,0 +1,1121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Technique xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="..\schema\animl-technique.xsd" version="1.1">
+	<Definition name="MS" extension="false">
+		<Documentation>Technique Definition for Mass Spectrometry</Documentation>
+		<SampleRole name="MeasurementSample" purpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>Actual measurement sample</Documentation>
+			<ParameterCategoryBlueprint name="SampleDescription" modality="required" maxOccurs="1">
+				<Documentation>Parameters describing the measurement sample.</Documentation>
+				<ParameterBlueprint name="SamplingProcedureName" type="string" maxOccurs="1" modality="optional">
+					<Documentation>Name/Description of sampling procedure used; see Appl. Spectrosc. 42, 1, 1988.</Documentation>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SubstanceDescription" modality="required" maxOccurs="unbounded">
+				<Documentation>Parameters describing a substance in the measurement sample.</Documentation>
+				<ParameterBlueprint name="MonoIsotopicMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Mass of the most common isotope peak; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NominalMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Nominal mass of molecule; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MolWeight" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Relative molecular mass of substance; Ratio of the mass of a molecule to the unified atomic mass unit. Sometimes
+called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AccurateMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>this field specifies the exact mass of the entry, based on the carbon = 12 scale, and using the accurate mass of the most abundant isotope of each element. See ASTM E 2077-00.</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
+		</SampleRole>
+		<SampleRole name="ReagentGas" purpose="consumed" modality="optional" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>Reagent gas used for CI; see ASTM E 2077-00.</Documentation>
+			<ParameterCategoryBlueprint name="SubstanceDescription" maxOccurs="unbounded" modality="required">
+				<ParameterBlueprint name="MonoIsotopicMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Mass of the most common isotope peak; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NominalMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Nominal mass of molecule; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MolWeight" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Relative molecular mass of substance; Ratio of the mass of a molecule to the unified atomic mass unit. Sometimes
+called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AccurateMass" type="float" modality="optional">
+					<Documentation>this field specifies the exact mass of the entry, based on the carbon = 12 scale, and using the accurate mass of the most abundant isotope of each element. See ASTM E 2077-00.</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
+		</SampleRole>
+		<SampleRole name="CurtainGas" purpose="consumed" modality="optional" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>Curtain gas used for ESI</Documentation>
+			<ParameterCategoryBlueprint name="SubstanceDescription" maxOccurs="unbounded" modality="required">
+				<ParameterBlueprint name="MonoIsotopicMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Mass of the most common isotope peak; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NominalMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Nominal mass of molecule; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MolWeight" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Relative molecular mass of substance; Ratio of the mass of a molecule to the unified atomic mass unit. Sometimes
+called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AccurateMass" type="float" modality="optional">
+					<Documentation>this field specifies the exact mass of the entry, based on the carbon = 12 scale, and using the accurate mass of the most abundant isotope of each element. See ASTM E 2077-00.</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
+		</SampleRole>
+		<SampleRole name="Solvent" purpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true" upwardsInherited="false">
+			<Documentation>Solvent(s) used</Documentation>
+			<ParameterCategoryBlueprint name="SubstanceDescription" maxOccurs="unbounded" modality="required">
+				<ParameterBlueprint name="MonoIsotopicMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Mass of the most common isotope peak; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NominalMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Nominal mass of molecule; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MolWeight" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Relative molecular mass of substance; Ratio of the mass of a molecule to the unified atomic mass unit. Sometimes
+called the molecular weight or relative molar mass. IUPAC G.B. 41; 1996, 68, 990</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AccurateMass" type="float" modality="optional">
+					<Documentation>this field specifies the exact mass of the entry, based on the carbon = 12 scale, and using the accurate mass of the most abundant isotope of each element. See ASTM E 2077-00.</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
+		</SampleRole>
+		<SampleRole name="FABMatrix" purpose="consumed" modality="optional" maxOccurs="1" inheritable="true" upwardsInherited="false">
+			<Documentation>Matrix for FAB, if any. See ASTM E 2077-00.</Documentation>
+			<ParameterCategoryBlueprint name="SubstanceDescription" maxOccurs="unbounded" modality="required">
+				<ParameterBlueprint name="MonoIsotopicMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Mass of the most common isotope peak; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="NominalMass" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Nominal mass of molecule; to be differentiated from the standard value in chemistry of the relative molecular mass averaged over all isotopes (MolWeight).  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="amu">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MolWeight" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Molecular Weight of substance</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AccurateMass" type="float" modality="optional">
+					<Documentation>this field specifies the exact mass of the entry, based on the carbon = 12 scale, and using the accurate mass of the most abundant isotope of each element. See ASTM E 2077-00.</Documentation>
+					<Unit label="g/mol">
+						<SIUnit factor="1e-3">kg</SIUnit>
+						<SIUnit>mol</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<UsedModule uri="http://www.animl.org/Techniques/Modules/SampleParameters_Base_Instance_Document_atid" name="SampleParameters" elementName="Sample"/>
+		</SampleRole>
+		<PageBlueprint name="Spectrum" modality="optional">
+			<Documentation>Mass spectrum</Documentation>
+			<VectorBlueprint name="Time" type="float" modality="optional" maxOccurs="1">
+				<Documentation>This is a set of values of dimension point-number, containing the abscissa value for each raw data ordinate value. This set of values has a unit of time. See: ASTM E 1947-98.</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Mass" type="float" modality="required" maxOccurs="unbounded">
+				<Documentation>m/z vector; this is an array, of dimension length, containing the mass values. See ASTM E 2077-00.</Documentation>
+				<Unit label="m/z">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="ChannelNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Channel number axis. See: Applied Spectroscopy 48, 12, 1994, 1445-1552.</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" type="float" modality="required" maxOccurs="unbounded">
+				<Documentation>This is a set of values of dimension point-number, containing the ordinate values. This set of values has a unit of detector-unit. This is a required field for datasets  containing raw data.
+See: ASTM E 1947-98.</Documentation>
+				<Unit label="Counts">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Relative Abundance">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="V">
+					<SIUnit exponent="2">m</SIUnit>
+					<SIUnit exponent="1">kg</SIUnit>
+					<SIUnit exponent="-3">s</SIUnit>
+					<SIUnit exponent="-1">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="ScanNumber" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Scan Number; see Appl. Spectrosc. 48, 12, 1994.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanFunction" type="string" modality="required" maxOccurs="1">
+					<Documentation>a string specifying an entry from the set of allowed values. See ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>Mass Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Selected Ion Detection</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanDirection" type="string" modality="optional" maxOccurs="1">
+					<Documentation>specifies the direction in which the mass range was scanned during acquisition. It is not necessarily the same direction in which masses are recorded in the file. See ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>up</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>down</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanLaw" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Mass scan law. See ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>exponential</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>linear</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>quadratic</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanTime" type="float" modality="optional" maxOccurs="1">
+					<Documentation>specifies the time in seconds required to complete one scan of the mass range. See ASTM E 2077-00.</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Scan rate in “SECONDS/DECADE” or “MASSES/SECOND”. See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="/s">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InletType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Sample introduction (or tandem) interface used. See "##.INTERFACE" in: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem, and ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>Direct</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Batch</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Chromatography</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Particle Beam</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>MOB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Membrane Separator</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Open Split</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Jet Separator</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Septum</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Reservoir</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Moving Belt</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Moving Wire</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Flow Injection Analysis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Electrospray Inlet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Thermospray Inlet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Infusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CFFAB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Inductively Coupled Plasma</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Capillary Direct</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>APCI</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InletTemperature" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Temperature of inlet (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem., and ASTM E 2077-00.</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SourceTemperature" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Temperature of source (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.)</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EmissionCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Filament emission current in microamps. Relevant principally for EI and CI ionization. See ASTM E 2077-00.</Documentation>
+					<Unit label="uA">
+						<SIUnit factor="1E-6">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="FilamentCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Filament input current in amps. Relevant principally for EI and CI ionization. See ASTM E 2077-00.</Documentation>
+					<Unit label="A">
+						<SIUnit>A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>Ionization mode. See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.; Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<AllowedValue>
+						<string>EI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ESI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FAB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>TSP</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>APICI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>PD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>TI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>API</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ISI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CID</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CAD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>HN</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonPolarity" type="string" modality="required" maxOccurs="1">
+					<Documentation>positive or negative; See: ASTM E 2077-00 and J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.; Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<AllowedValue>
+						<string>positive</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>negative</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationEnergy" type="float" modality="optional" maxOccurs="1">
+					<Documentation>for EI only; ionization energy in eV (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem. or ASTM E 2077-00)</Documentation>
+					<Unit label="eV">
+						<SIUnit exponent="2" factor="1.602176462E-19">m</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="LaserWavelength" type="float" modality="optional" maxOccurs="1">
+					<Documentation>for LD only, contains the laser wavelength in nm. See ASTM E 2077-00.</Documentation>
+					<Unit label="nm">
+						<SIUnit factor="0.000000001">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="FABType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>for FAB only; specifies the atom or neutral used in the bombardment gun. See ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcceleratingVoltage" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Accelerating voltage (where appropriate; See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem. or ASTM E 2077-00)</Documentation>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TandemScanningMethod" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Where a tandem instrument is in use, the scanning method must be recorded. See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.</Documentation>
+					<AllowedValue>
+						<string>Product Ion Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Precursor Ion Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Constant Neutral Loss</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Single Reaction Monitoring</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Multiple Reaction Monitoring</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Single/Multiple RM</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ResolutionMethod" type="string" modality="optional" maxOccurs="1">
+					<Documentation>specifies the method for determining spectrometer resolution. See ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ResolutionType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>specifies the type of instrument resolution: constant over the mass range or proportional to mass. See ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>constant</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>proportional</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TIC" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Total Ion Current as measured (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.)</Documentation>
+					<Unit label="Counts">
+						<SIUnit>1</SIUnit>
+					</Unit>
+					<Unit label="Arb. Units">
+						<SIUnit>1</SIUnit>
+					</Unit>
+					<Unit label="Relative Abundance">
+						<SIUnit>1</SIUnit>
+					</Unit>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReconstructedIonCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Reconstructed ion current; see Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="Counts"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="BasePeakPosition" type="float" modality="optional" maxOccurs="1">
+					<Documentation>x axis position of base peak; see Appl. Spectrosc. 48, 12, 1994.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="BasePeakIntensity" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Unscaled y-valuie of base peak; see Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="Counts">
+						<SIUnit>1</SIUnit>
+					</Unit>
+					<Unit label="Arb. Units">
+						<SIUnit>1</SIUnit>
+					</Unit>
+					<Unit label="Relative Abundance">
+						<SIUnit>1</SIUnit>
+					</Unit>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ExperimentType" type="string" modality="required" maxOccurs="1">
+					<Documentation>name of the type of data stored in this ExperimentStep. See ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>Centroided Mass Spectrum</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Continuum Mass Spectrum</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Library Mass Spectrum</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ADCoAdditionFactor" type="int" modality="optional" maxOccurs="1">
+					<Documentation>This field specifies the number of A/D samples which are co-added or averaged to produce a single datum point. See ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ADSamplingRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>this field specifies the rate (in kilohertz) at which A/D (analog-to-digital) conversions are made.</Documentation>
+					<Unit label="kHz">
+						<SIUnit exponent="-1" factor="1000">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InterScanTime" type="float" modality="optional" maxOccurs="1">
+					<Documentation>specifies the time delay, in seconds,
+between the end of one scan and the start of the next for multiple-scan acquisitions. See ASTM E 2077-00.</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="SpectrumQuality" modality="optional" maxOccurs="1">
+				<Documentation>Spectrum quality description</Documentation>
+				<ParameterBlueprint name="Coblentz" type="int">
+					<Documentation>Specifies the Coblentz Class of the spectrum (1,2,3, or 4) (see “The Coblentz Society Specifications for Evaluation of Research Quality Analytical Infrared Spectra (Class II),” Anal. Chem. 47,2339 (1975).).</Documentation>
+					<AllowedValue>
+						<int>1</int>
+					</AllowedValue>
+					<AllowedValue>
+						<int>2</int>
+					</AllowedValue>
+					<AllowedValue>
+						<int>3</int>
+					</AllowedValue>
+					<AllowedValue>
+						<int>4</int>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IUPAC" type="string">
+					<Documentation>Specifies the IUPAC Class of digital representation (A, B, C). See W. B. Derendjaev, Appl. Spectrosc. 40, 707 (1986).</Documentation>
+					<AllowedValue>
+						<string>A</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>B</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>C</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<PageBlueprint name="PeakTable" modality="optional">
+			<Documentation>MS peak table</Documentation>
+			<VectorBlueprint name="PeakPosition" type="float" modality="required" maxOccurs="1">
+				<Documentation>Peak position value on x axis See Appl. Spectrosc. 42, 1988, 151-162.</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+				<Unit label="m/z">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="No.">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakNumber" type="int" modality="optional" maxOccurs="1">
+				<Documentation>Peak number used to identify a particular
+peak. 
+See: ASTM E 1947-98.</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakHeight" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Computed height of the peak; in a scaled data unit. The unit for this is the same as that of the
+raw-data.
+See: ASTM E 1947-98.</Documentation>
+				<Unit label="Counts">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="Relative Abundance">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="V">
+					<SIUnit exponent="2">m</SIUnit>
+					<SIUnit exponent="1">kg</SIUnit>
+					<SIUnit exponent="-3">s</SIUnit>
+					<SIUnit exponent="-1">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakWidth" type="float" modality="optional" maxOccurs="1">
+				<Documentation>The calculated width of the peak.
+See: ASTM E 1947-98.</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="min">
+					<SIUnit factor="60">s</SIUnit>
+				</Unit>
+				<Unit label="m/z">
+					<SIUnit>1</SIUnit>
+				</Unit>
+				<Unit label="No.">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakArea" type="float" modality="optional" maxOccurs="1">
+				<Documentation>Computed area of the peak.
+See: ASTM E 1947-98.</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="PeakAssignment" type="string" modality="optional" maxOccurs="1">
+				<Documentation>Chemical structure assigned to this peak (use Substance ID) (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.)</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="FlagValue" type="string" modality="optional" maxOccurs="1">
+				<Documentation>flag values are characteristic of individual
+mass or time datum points within a scan. A scan can
+have multiple peak flags, and any one mass or time datum may
+have a flag which is a composite of several applicable flags.
+The flag value datum points in the flag values array correspond
+one-to-one with the peaks identified in the flagged-peaks array.
+The following flags have been defined, and represent a composite
+of those used by vendors.
+Name Description
+NOT HIGH RESOLUTION
+The peak is nominal mass peak (in an otherwise high resolution scan)
+MISSED REFERENCE A reference peak was missed prior to this peak
+UNRESOLVED Peak is an unresolved multiplet
+DOUBLY CHARGED Peak is doubly-charged (that is, has fractional mass)
+REFERENCE Peak is a reference from the reference file
+EXCEPTION Peak is a reference from the exception file
+LOCK MASS Peak is a reference mass used to adjust the mass scale
+during/after acquisition
+SATURATED Peak intensity is saturated (overflows A/D conversion or
+storage range)
+SIGNIFICANT Peak is a Biller-Biemann significant peak
+MERGED Peak is a composite of two centroided peaks merged
+during processing
+FRAGMENTED Peak is very wide and generated more than one centroided
+peak
+AREA/HEIGHT Peak intensity is based on integrated area or height determined through centroiding
+MATH MODIFIED Accurate mass assignment or peak intensity is based on
+mathematical processing
+NEGATIVE INTENSITY Peak intensity is negative as a result of processing (subtraction or other correction)
+EXTENDED ACCURACY Mass accuracy is derived through mathematical processing
+CALCULATED Peak is artificial (was created through mathematical processing; for example, isotope calculation)
+See ASTM E 2077-00.</Documentation>
+			</VectorBlueprint>
+			<ParameterCategoryBlueprint name="MeasurementParameters" modality="required" maxOccurs="1">
+				<Documentation>Parameters defining the measurement</Documentation>
+				<ParameterBlueprint name="ScanNumber" type="int" modality="optional" maxOccurs="1">
+					<Documentation>Scan Number; see Appl. Spectrosc. 48, 12, 1994.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanFunction" type="string" modality="required" maxOccurs="1">
+					<Documentation>a string specifying an entry from the set of allowed values. See ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>Mass Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Selected Ion Detection</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanDirection" type="string" modality="optional" maxOccurs="1">
+					<Documentation>specifies the direction in which the mass range was scanned during acquisition. It is not necessarily the same direction in which masses are recorded in the file. See ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>up</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>down</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanLaw" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Mass scan law. See ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>exponential</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>linear</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>quadratic</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanTime" type="float" modality="optional" maxOccurs="1">
+					<Documentation>specifies the time in seconds required to complete one scan of the mass range. See ASTM E 2077-00.</Documentation>
+					<Unit label="s">
+						<SIUnit>s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ScanRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Scan rate in “SECONDS/DECADE” or “MASSES/SECOND”. See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="/s">
+						<SIUnit exponent="-1">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InletType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Type of inlet (or tandem interface) used. See "##.INTERFACE" in: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.</Documentation>
+					<AllowedValue>
+						<string>Direct</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Batch</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Chromatography</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Particle Beam</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>MOB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Membrane Separator</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Open Split</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Jet Separator</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Septum</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Reservoir</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Moving Belt</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Moving Wire</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Flow Injection Analysis</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Electrospray Inlet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Thermospray Inlet</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Infusion</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CFFAB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Inductively Coupled Plasma</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InletTemperature" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Temperature of inlet (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.)</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="SourceTemperature" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Temperature of source (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.)</Documentation>
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EmissionCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Filament emission current in microamps. Relevant principally for EI and CI ionization. See ASTM E 2077-00.</Documentation>
+					<Unit label="A">
+						<SIUnit>A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="FilamentCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Filament input current in amps. Relevant principally for EI and CI ionization. See ASTM E 2077-00.</Documentation>
+					<Unit label="A">
+						<SIUnit>A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationMode" type="string" modality="required" maxOccurs="1">
+					<Documentation>Ionization mode. See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.; Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<AllowedValue>
+						<string>EI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ESI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FAB</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>TSP</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>APICI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>LD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>FI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>PD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>SI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>TI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>API</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>ISI</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CID</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>CAD</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>HN</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonPolarity" type="string" modality="required" maxOccurs="1">
+					<Documentation>positive or negative; See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.; Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<AllowedValue>
+						<string>positive</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>negative</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IonizationEnergy" type="float" modality="optional" maxOccurs="1">
+					<Documentation>for EI only; ionization energy in eV (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.)</Documentation>
+					<Unit label="eV">
+						<SIUnit exponent="2" factor="1.602176462E-19">m</SIUnit>
+						<SIUnit>kg</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="LaserWavelength" type="float" modality="optional" maxOccurs="1">
+					<Documentation>for LD only</Documentation>
+					<Unit label="nm">
+						<SIUnit factor="0.000000001">m</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="FABType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>for FAB only</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="AcceleratingVoltage" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Accelerating voltage (where appropriate; See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.)</Documentation>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TandemScanningMethod" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Where a tandem instrument is in use, the scanning method must be recorded. See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.</Documentation>
+					<AllowedValue>
+						<string>Product Ion Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Precursor Ion Scan</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Constant Neutral Loss</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Single Reaction Monitoring</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Multiple Reaction Monitoring</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Single/Multiple RM</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ResolutionMethod" type="string" modality="optional" maxOccurs="1">
+					<Documentation>specifies the method for determining spectrometer resolution. See ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ResolutionType" type="string" modality="optional" maxOccurs="1">
+					<Documentation>specifies the type of instrument resolution: constant over the mass range or proportional to mass. See ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>constant</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>proportional</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TIC" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Total Ion Current as measured (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem.)</Documentation>
+					<Unit label="Counts">
+						<SIUnit>1</SIUnit>
+					</Unit>
+					<Unit label="Arb. Units">
+						<SIUnit>1</SIUnit>
+					</Unit>
+					<Unit label="Relative Abundance">
+						<SIUnit>1</SIUnit>
+					</Unit>
+					<Unit label="V">
+						<SIUnit exponent="2">m</SIUnit>
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-3">s</SIUnit>
+						<SIUnit exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ReconstructedIonCurrent" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Reconstructed ion current.  See Appl. Spectrosc. 48, 12, 1994.</Documentation>
+					<Unit label="Counts">
+						<SIUnit>1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="BasePeakPosition" type="float" modality="optional" maxOccurs="1">
+					<Documentation>x axis position of base peak; see Appl. Spectrosc. 48, 12, 1994.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="BasePeakIntensity" type="float" modality="optional" maxOccurs="1">
+					<Documentation>Unscaled y-valuie of base peak; see Appl. Spectrosc. 48, 12, 1994.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TimesCalibrated" type="int" modality="optional" maxOccurs="1">
+					<Documentation>A count of the number of times the data were calibrated before yielding the final results. See: ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="TimesProcessed" type="int" modality="optional" maxOccurs="1">
+					<Documentation>A count of the number of times the data were processed to yield the final results recorded in this file. See: ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PostExperimentProgramName" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Name(s) of any program(s) used to process raw data after acquisition. See: ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="PreExperimentProgramName" type="string" modality="optional" maxOccurs="1">
+					<Documentation>Name(s) of any program(s) run prior to the start of acquisition.  See: ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ADCoAdditionFactor" type="int" modality="optional" maxOccurs="1">
+					<Documentation>This field specifies the number of A/D samples which are co-added or averaged to produce a single datum point. See ASTM E 2077-00.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="ADSamplingRate" type="float" modality="optional" maxOccurs="1">
+					<Documentation>this field specifies the rate (in kilohertz) at which A/D (analog-to-digital) conversions are made. See ASTM E 2077-00.</Documentation>
+					<Unit label="kHz">
+						<SIUnit exponent="-1" factor="1000">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</PageBlueprint>
+		<ParameterCategoryBlueprint name="Instrument" modality="optional">
+			<Documentation>Parameters describing the instrument</Documentation>
+			<ParameterBlueprint name="Vendor" type="string" modality="required">
+				<Documentation>Name of the instrument  vendor.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Model" type="string" modality="required">
+				<Documentation>Name of the instrument model. </Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MassAnalyzer" type="string" modality="required">
+				<Documentation>Type of mass analyzer used. See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. Chem., and Appl. Spectrosc. 48, 12, 1994.</Documentation>
+				<AllowedValue>
+					<string>Quadrupole</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Ion Trap</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>TOF</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Sector</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Fourier Transform</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Tandem</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Triple Quadrupole</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Quadrupole-TOF</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Ion Storage</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Multiple Sector</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Magnetic Sector Field</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Double Focus EB</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Double Focus BE</string>
+				</AllowedValue>
+				<AllowedValue>
+					<string>Particle Beam</string>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Resolution" type="float" modality="optional">
+				<Documentation>this field specifies the mass resolution.
+Resolution can be determined in one of two ways: for
+instruments with constant proportional mass resolution (such
+as magnetic sector instruments), resolution is specified in parts
+per million (mass/D mass); for instruments with constant
+absolute mass resolution (such as quadrupoles), resolution is
+specified as mass/charge (m/z). See resolution type and
+resolution method for the
+parameters which specify what type of instrumental resolution
+this value specifies, and how it is determined from a typical
+peak. See ASTM E 2077-00.</Documentation>
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+				<Unit label="m/z">
+					<SIUnit>1</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="Detector">
+				<ParameterBlueprint name="Type" type="string" maxOccurs="1" modality="optional">
+					<Documentation>Detection method used; see ASTM E 2077-00.</Documentation>
+					<AllowedValue>
+						<string>Electron Multiplier</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Photomultiplier</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Focal Plane Array</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Faraday Cup</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Conversion Dynode Electron Multiplier</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Conversion Dynode Photomultiplier</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Multi-Collector</string>
+					</AllowedValue>
+					<AllowedValue>
+						<string>Channel Electron Multiplier</string>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="EntrancePotential" type="float" maxOccurs="1" modality="optional">
+					<Documentation>For detectors in which it is appropriate, this field specifies the (signed) potential across the detector in volts. Examples include electron multipliers and conversion dynodes. See ASTM E 2077-00.</Documentation>
+					<Unit label="V">
+						<SIUnit factor="1" exponent="1">kg</SIUnit>
+						<SIUnit factor="1" exponent="2">m</SIUnit>
+						<SIUnit factor="1" exponent="-3">s</SIUnit>
+						<SIUnit factor="1" exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Potential" type="float" maxOccurs="1" modality="optional">
+					<Documentation>for detectors in which it is appropriate, this field specifies the (signed) potential across the detector, in volts. Examples include electron multipliers and conversion dynodes. See ASTM E 2077-00.</Documentation>
+					<Unit label="V">
+						<SIUnit factor="1" exponent="1">kg</SIUnit>
+						<SIUnit factor="1" exponent="2">m</SIUnit>
+						<SIUnit factor="1" exponent="-3">s</SIUnit>
+						<SIUnit factor="1" exponent="-1">A</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+		</ParameterCategoryBlueprint>
+	</Definition>
+</Technique>

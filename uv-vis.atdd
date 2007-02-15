@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (Burkhard Schaefer Software & Networks) -->
 <!-- Changes
+02.15.2007
+	- Merged changes to Vector Blueprints on Spectrum Page from teleconference notes
+	- Merged changes to Parameters on Spectrum Page from teleconference notes
+	- Removed Kinetics and Temperature Pages	
 
 11.20.2006
 	- Modified syntax to comply with new Technique Definition Schema
@@ -14,7 +17,14 @@ TODO:
 	- The definition for the sample category "Melting Point" must be rewritten.
 	- The Units for the sample parameter "Concentration" in the parameter category "Substance Description" must be checked.
 	- The sample parameter "SMILES" must be redifined.
-
+	- Documentation is needed for the vector blueprint "x-Axis" on page "Spectrum"
+	- Documentation is needed for the vector blueprint "y-Axis" on page "Spectrum"
+	- Documentation is needed for the parameter category "Measurement Mode" in category "Instrument Property" on page "Spectrum"
+	- Do "Sample Holder" and "Sample Position" need to be moved?
+	- Documentation is needed for the parameter category "Filter Sequence" and its children in category "Instrument Property" on page "Spectrum"
+	- Documentation is needed for the parameter category "Spectral Correction" and its children in category "Instrument Property" on page "Spectrum"
+	- Documentation is needed for the parameter category "Spectral Smoothing" and its children in category "Instrument Property" on page "Spectrum"
+	- Documentation is needed for the parameter category "Light Source Sequence" in category "Instrument Property" on page "Spectrum"
 
   -->
 <Technique name="UV/VIS Base Technique" xmlns="urn:org:astm:animl:schema:technique:draft:1.2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:1.2 ..\schema\animl-technique.xsd" version="1.2">
@@ -565,13 +575,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 		<Documentation>TODO. No Parameters needed. A document reference about the wavelength calibration.</Documentation>
 	</SampleRole>
 	<PageBlueprint name="Spectrum" modality="optional">
-		<Documentation>an actual or notational arrangement of the
-component parts of any phenomenon, as electromagnetic
-waves or particles, ordered in accordance with the magnitude
-of a common physical property, as wavelength, frequency,
-or mass.</Documentation>
-		<VectorBlueprint name="Wavelength" vectorType="Float64" modality="required" plotUse="dimension" dependency="independent" maxOccurs="1">
-			<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02)</Documentation>
+		<Documentation>an actual or notational arrangement of the component parts of any phenomenon, as electromagnetic waves or particles, ordered in accordance with the magnitude of a common physical property, as wavelength, frequency, or mass.</Documentation>
+		<VectorBlueprint name="x-Axis" vectorType="Float64" modality="required" plotUse="dimension" dependency="independent" maxOccurs="1">
+			<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02) TODO</Documentation>
 			<Unit label="1/cm">
 				<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
 			</Unit>
@@ -584,9 +590,17 @@ or mass.</Documentation>
 			<Unit label="pm">
 				<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
 			</Unit>
+			<Unit label="eV">
+				<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+				<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+				<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+			</Unit>
 		</VectorBlueprint>
-		<VectorBlueprint name="Intensity" vectorType="Float64" modality="required" plotUse="attribute" dependency="dependent" maxOccurs="1">
-			<Documentation>Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment.</Documentation>
+		<VectorBlueprint name="y-Axis" vectorType="Float64" modality="required" plotUse="attribute" dependency="dependent" maxOccurs="1">
+			<Documentation>Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment. TODO</Documentation>
+			<Unit label="AU">
+				<SIUnit factor="1" exponent="1">1</SIUnit>
+			</Unit>
 			<Unit label="A">
 				<SIUnit factor="1" exponent="1">1</SIUnit>
 			</Unit>
@@ -601,6 +615,26 @@ or mass.</Documentation>
 			</Unit>
 			<Unit label="R">
 				<SIUnit factor="1" exponent="1">1</SIUnit>
+			</Unit>
+		</VectorBlueprint>
+		<VectorBlueprint name="Resolution" vectorType="Float64" modality="optional" plotUse="attribute" dependency="dependent" maxOccurs="1">
+			<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02). Use vector if resolution is variable.</Documentation>
+			<Unit label="1/cm">
+				<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+			</Unit>
+			<Unit label="eV">
+				<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+				<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+				<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+			</Unit>
+			<Unit label="nm">
+					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
+			</Unit>
+		</VectorBlueprint>
+		<VectorBlueprint vectorType="Float32" plotUse="attribute" dependency="dependent" name="Spectral Slit Width" modality="optional" maxOccurs="1">
+			<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use vector if variable.</Documentation>
+			<Unit label="nm">
+				<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 			</Unit>
 		</VectorBlueprint>
 		<ParameterCategoryBlueprint name="Measurement Description" modality="required">
@@ -638,6 +672,99 @@ or mass.</Documentation>
 					<SIUnit exponent="1" factor="0.001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
+			<ParameterBlueprint name="Point Separation" parameterType="Float32" modality="optional">
+				<Documentation>The spacing between two wavelength values, when a whole spectrum is measured.</Documentation>
+				<Unit label="nm">
+					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="x-Axis Range" modality="required" maxOccurs="1">
+				<Documentation>The range of x-axis coverage.</Documentation>
+				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
+					<Documentation>The shortest range.</Documentation>
+					<Unit label="1/cm">
+						<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="um">
+						<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="nm">
+						<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="pm">
+						<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="eV">
+						<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+						<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+						<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
+					<Documentation>The longest range.</Documentation>
+					<Unit label="1/cm">
+						<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="um">
+						<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="nm">
+						<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="pm">
+						<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="eV">
+						<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+						<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+						<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="y-Axis Range" modality="optional">
+				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
+					<Documentation>The smallest range.</Documentation>
+					<Unit label="AU">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="A">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="T">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="%T">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="%R">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="R">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
+					<Documentation>The largest range.</Documentation>
+					<Unit label="AU">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="A">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="T">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="%T">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="%R">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="R">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
 			<ParameterCategoryBlueprint name="Temperature Range" modality="optional">
 				<Documentation>Range of temperature values which should be applied within the experiment</Documentation>
 				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
@@ -669,13 +796,21 @@ or mass.</Documentation>
 		<ParameterCategoryBlueprint name="Instrument Property" modality="required">
 			<Documentation>Instrument settings that can be adjusted.</Documentation>
 			<ParameterBlueprint name="Resolution" parameterType="Float32" modality="required">
-				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02)</Documentation>
+				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02). Use parameter if constant.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="eV">
+					<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+					<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+					<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+				</Unit>
 				<Unit label="nm">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Mode" parameterType="String" modality="required">
-				<Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one wavelength is recorded. Discrete means that absorbance of exactly specified wavelengths is recorded. Spectrum means that whole spectrum is recorded.</Documentation>
+			<ParameterBlueprint name="Measurement Type" parameterType="String" modality="required">
+				<Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one wavelength is recorded. Discrete means that absorbance of exactly specified wavelengths is recorded. Spectrum means that a single range or multiple discrete ranges is/are recorded.</Documentation>
 				<AllowedValue>
 					<String>Single</String>
 				</AllowedValue>
@@ -687,20 +822,53 @@ or mass.</Documentation>
 				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Spectral Slit Width" parameterType="Float32" modality="optional">
-				<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
+				<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use parameter if constant.</Documentation>
 				<Unit label="nm">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
+			<ParameterBlueprint name="Slit Width" parameterType="Float32" modality="required">
+				<Documentation>The mechanical width of the monochromator slits.</Documentation>
+				<Unit label="mm">
+					<SIUnit exponent="1" factor="0.001">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
+				</Unit>
+			</ParameterBlueprint>
+			<ParameterBlueprint parameterType="String" name="Measurement Mode" maxOccurs="1" modality="optional">
+				<Documentation> TODO </Documentation>
+				<AllowedValue>
+					<String>Reflectance, diffuse</String>
+				</AllowedValue>
+				<AllowedValue>				
+					<String>Reflectance, grazing</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Reflectance, multiple internal</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Reflectance, specular</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Transmittance, apparent</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Transmittance, diffuse</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Transmittance, true</String>
+				</AllowedValue>
+			</ParameterBlueprint>
 			<ParameterBlueprint name="Integration Period" parameterType="Float32" modality="optional">
-				<Documentation>π - the time, in seconds, required for the pen or other indicator to move 98.6 % of its maximum travel in response to a step function. (ASTM E131-02) Explanatory: this means that i.e. 0.5 s of spectra are averaged to make one spectrum, and is a good compromise between reducing noise and measuring "instantaneous" concentration.</Documentation>
+				<Documentation>The time interval over which discrete detector readings are averaged to produce a data point.</Documentation>
 				<Unit label="ms">
 					<SIUnit exponent="1" factor="0.001">s</SIUnit>
 				</Unit>
 				<Unit label="s"/>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Spectrum Derivatization Method" parameterType="INT" modality="required">
-				<Documentation>Derivative spectra can be used to enhance differences among spectra, to resolve overlapping bands in qualitative analysis and, most importantly, to reduce the effects of interference from scattering, matrix, or other absorbing compounds in quantitative analysis. Values: 0-Normal, 1-1st derivative spectrum, 2-2nd derivative spectrum ... TO BE DISCUSSED.</Documentation>
+				<Documentation>Derivative spectra can be used to enhance differences among spectra, to resolve overlapping bands in qualitative analysis and, most importantly, to reduce the effects of interference from scattering, matrix, or other absorbing compounds in quantitative analysis. Values: 0-Normal, 1-1st derivative spectrum, 2-2nd derivative spectrum, 3-3rd derivative spectrum, 4-4th derivative spectrum.</Documentation>
 				<AllowedValue>
 					<INT>0</INT>
 				</AllowedValue>
@@ -717,54 +885,26 @@ or mass.</Documentation>
 					<INT>4</INT>
 				</AllowedValue>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Derivization Algorithm Description" parameterType="String" modality="optional">
-				<Documentation>Description of or a reference to an algorithm used to apply a specified derivization: TO BE DISCUSSED.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Background Correction Type" parameterType="String" modality="optional">
-				<Documentation>Method name for performing of the background correction e.g. single reference wavelength/subtract average over range/three-point drop line</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Straylight Correction" parameterType="Boolean" modality="optional">
-				<Documentation>Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. Is it the same as Stray Radiant Power - Ps—the total detected radiant power outside a specified wavelength (wave number) interval each side of the center of the spectral band passed by the
-monochromator under stated conditions for wavelength (wave number), slit dimensions, light source, and detector.(ASTM E131-02)</Documentation>
-				<AllowedValue>
-					<Boolean>true</Boolean>
-				</AllowedValue>
-				<AllowedValue>
-					<Boolean>false</Boolean>
-				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Signal to Noise Ratio" parameterType="Float32" modality="optional">
-				<Documentation>signal-to-noise ratio, S/N—the ratio of the signal, S, to the noise, N, as indicated by the instrumental read-out indicator. DISCUSSION—1—Noise as used here is the random variation of signal with time. DISCUSSION—2—The recommended measure of noise is the maximum peak-to-peak excursion of the indicator averaged over a series of five successive intervals, each of duration ten times the integration period. In some instruments signal-to-noise ratio varies with the signal.</Documentation>
-				<Unit label="S/N">
-					<SIUnit exponent="1" factor="1">1</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Filter" parameterType="String" modality="optional">
-				<Documentation>Any filtering (signal processing) that was done on the raw data collected i.e Savitsky-Golay filter</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Slit Width" parameterType="Float32" modality="required">
-				<Documentation>The width of the slit of the wavelength.</Documentation>
-				<Unit label="mm">
-					<SIUnit exponent="1" factor="0.001">m</SIUnit>
-				</Unit>
-				<Unit label="nm">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-				</Unit>
+			<ParameterBlueprint name="Derivatization Algorithm Description" parameterType="String" modality="optional">
+				<Documentation>Description of or a reference to the algorithm used to perform derivatization.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Detector Types" parameterType="String" modality="optional">
 				<Documentation>The types or names of the detector used for measurement.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Scan Speed" parameterType="Float32" modality="optional">
-				<Documentation>The speed of the scan.</Documentation>
+				<Documentation>The speed of the scan. 0 for PDA.</Documentation>
 				<Unit label="nm/s">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 					<SIUnit exponent="1" factor="1">s</SIUnit>
 				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Point Separation" parameterType="Float32" modality="optional">
-				<Documentation>The spacing between two wavelength values, when a whole spectrum is measured.</Documentation>
-				<Unit label="nm">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
+				<Unit label="1/cm s">
+					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+					<SIUnit factor="1" exponent="-1" offset="0">s</SIUnit>
+				</Unit>
+				<Unit label="eV/s">
+					<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+					<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+					<SIUnit factor="1" exponent="-3" offset="0">s</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
@@ -773,236 +913,88 @@ monochromator under stated conditions for wavelength (wave number), slit dimensi
 			<ParameterBlueprint name="Sample Position" parameterType="INT" modality="optional">
 				<Documentation>The position of the sample within the sample holder unit.</Documentation>
 			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="Spectral Bandwidth Range" modality="optional">
+			<ParameterBlueprint name="Spectral Bandwidth Range" modality="optional" parameterType="Float32">
 				<Documentation>The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The shortest wavelength of bandwidth range.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
-					<Documentation>The longest wavelength of bandwidth range.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Wavelength Range" modality="required" maxOccurs="1">
-				<Documentation>The range of wavelength coverage.</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The shortest range wavelength.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
-					<Documentation>The longest range wavelength.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Absorbance Range" modality="optional">
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The smallest range absorbance.</Documentation>
-					<Unit label="AU"/>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
-					<Documentation>The largest range absorbance.</Documentation>
-					<Unit label="AU"/>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Source Used" modality="required" maxOccurs="unbounded">
-				<Documentation>Description of light sources beeing used whithin the experiment described.</Documentation>
-				<ParameterBlueprint name="Source Type" parameterType="String" modality="required">
-					<Documentation>Description of the light source type.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Lower Bound Wavelenght" parameterType="Float32" modality="required">
-					<Documentation>The lower-bound wavelenth of the signal produced be the source beeing specified.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Upper Bound Wavelenght " parameterType="Float32" modality="required">
-					<Documentation>The upper-bound wavelenth of the signal produced be the source beeing specified.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-	</PageBlueprint>
-	<PageBlueprint name="Kinetics" modality="optional">
-		<Documentation>Time-based experiments. Spectra are acquired over a period of time;
-wavelength data are extracted from the acquired spectra and a plot of wavelength result against time is constructed.</Documentation>
-		<VectorBlueprint name="Time" vectorType="Float32" modality="required" plotUse="dimension" dependency="independent" maxOccurs="1">
-			<Documentation>Time domain</Documentation>
-			<Unit label="ms">
-				<SIUnit factor="0.001">s</SIUnit>
-			</Unit>
-			<Unit label="s">
-				<SIUnit>s</SIUnit>
-			</Unit>
-			<Unit label="min">
-				<SIUnit factor="60">s</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="Wavelength" vectorType="Float64" modality="required" plotUse="dimension" dependency="independent" maxOccurs="1">
-			<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02)</Documentation>
-			<Unit label="1/cm">
-				<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="um">
-				<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="nm">
-				<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="pm">
-				<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="Intensity" vectorType="Float64" modality="required" plotUse="attribute" dependency="dependent" maxOccurs="1">
-			<Documentation>Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment.</Documentation>
-			<Unit label="A">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="T">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="%T">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="%R">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="R">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<ParameterCategoryBlueprint name="Measurement Description" modality="required">
-			<Documentation>Information recording a measurement.</Documentation>
-			<ParameterBlueprint name="Identifier" parameterType="String" modality="required">
-				<Documentation>Measurement identification.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Title" parameterType="String" modality="optional">
-				<Documentation>The title of the experiment.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Project" parameterType="String" modality="optional">
-				<Documentation>A name of the project to which the measurement belongs.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
-				<Documentation>A document reference about the method of the measurement.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Number" parameterType="INT" modality="optional">
-				<Documentation>The number of scans.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Duration" parameterType="Float32" modality="optional">
-				<Documentation>The scan duration.</Documentation>
-				<Unit label="s"/>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Experiment Duration" parameterType="Float32" modality="required">
-				<Documentation>Duration of the experiment.</Documentation>
-				<Unit label="s"/>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Path Length" parameterType="Float32" modality="required">
-				<Documentation>The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]
-</Documentation>
-				<Unit label="cm">
-					<SIUnit exponent="1" factor="0.01">m</SIUnit>
-				</Unit>
-				<Unit label="mm">
-					<SIUnit exponent="1" factor="0.001">m</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="Temperature Range" modality="optional">
-				<Documentation>Range of temperature values which should be applied within the experiment</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The lowest temperature  of the solution at which the experiment can be performed</Documentation>
-					<Unit label="K">
-						<SIUnit>K</SIUnit>
-					</Unit>
-					<Unit label="°C">
-						<SIUnit offset="-273.15">K</SIUnit>
-					</Unit>
-					<Unit label="°F">
-						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="optional">
-					<Documentation>The highest temperature of the solution at which the experiment can be performed</Documentation>
-					<Unit label="K">
-						<SIUnit>K</SIUnit>
-					</Unit>
-					<Unit label="°C">
-						<SIUnit offset="-273.15">K</SIUnit>
-					</Unit>
-					<Unit label="°F">
-						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-		<ParameterCategoryBlueprint name="Instrument Property" modality="required">
-			<Documentation>Instrument settings that can be adjusted.</Documentation>
-			<ParameterBlueprint name="Resolution" parameterType="Float32" modality="required">
-				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02)</Documentation>
 				<Unit label="nm">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Mode" parameterType="String" modality="required">
-				<Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one wavelength is recorded. Discrete means that absorbance of exactly specified wavelengths is recorded. Spectrum means that whole spectrum is recorded.</Documentation>
-				<AllowedValue>
-					<String>single</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>discrete</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>spectrum</String>
-				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Spectral Slit Width" parameterType="Float32" modality="optional">
-				<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
-				<Unit label="nm">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Integration Period" parameterType="Float32" modality="optional">
-				<Documentation>π - the time, in seconds, required for the pen or other indicator to move 98.6 % of its maximum travel in response to a step function. (ASTM E131-02) Explanatory: this means that i.e. 0.5 s of spectra are averaged to make one spectrum, and is a good compromise between reducing noise and measuring "instantaneous" concentration.</Documentation>
-				<Unit label="ms">
-					<SIUnit exponent="1" factor="0.001">s</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Spectrum Derivatization Method" parameterType="INT" modality="required">
-				<Documentation>Derivative spectra can be used to enhance differences among spectra, to resolve overlapping bands in qualitative analysis and, most importantly, to reduce the effects of interference from scattering, matrix, or other absorbing compounds in quantitative analysis. Values: 0-Normal, 1-1st derivative spectrum, 2-2nd derivative spectrum ... TO BE DISCUSSED.</Documentation>
-				<AllowedValue>
-					<INT>0</INT>
-				</AllowedValue>
-				<AllowedValue>
-					<INT>1</INT>
-				</AllowedValue>
-				<AllowedValue>
-					<INT>2</INT>
-				</AllowedValue>
-				<AllowedValue>
-					<INT>3</INT>
-				</AllowedValue>
-				<AllowedValue>
-					<INT>4</INT>
-				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Derivization Algorithm Description" parameterType="String" modality="optional">
-				<Documentation>Description of or a reference to an algorithm used to apply a specified derivization: TO BE DISCUSSED.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Background Correction Type" parameterType="String" modality="optional">
-				<Documentation>Method name for performing of the background correction e.g. single reference wavelength/subtract average over range/three-point drop line</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Straylight Correction" parameterType="Boolean" modality="optional">
-				<Documentation>Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. Is it the same as Stray Radiant Power - Ps—the total detected radiant power outside a specified wavelength (wave number) interval each side of the center of the spectral band passed by the
-monochromator under stated conditions for wavelength (wave number), slit dimensions, light source, and detector.(ASTM E131-02)</Documentation>
+			<ParameterCategoryBlueprint name="Filter Sequence" maxOccurs="1" modality="optional">
+				<ParameterCategoryBlueprint name="Filter Setting" maxOccurs="unbounded" modality="required">
+					<ParameterBlueprint parameterType="String" name="Filter Name" maxOccurs="1" modality="required"></ParameterBlueprint>
+					<ParameterBlueprint name="Lower Bound" parameterType="Float32" modality="required">
+						<Documentation>The lower-bound x-axis value from which the specified light source was used.</Documentation>
+						<Unit label="1/cm">
+							<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="um">
+							<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="nm">
+							<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="pm">
+							<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="eV">
+							<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+							<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+							<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Upper Bound" parameterType="Float32" modality="required">
+						<Documentation>The upper-bound  x-axis value from which the specified light source was used..</Documentation>
+						<Unit label="1/cm">
+							<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="um">
+							<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="nm">
+							<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="pm">
+							<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="eV">
+							<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+							<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+							<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="Spectral Correction" maxOccurs="1" modality="optional">
+				<Documentation>TODO</Documentation>
+				<ParameterBlueprint parameterType="Boolean" name="Dark Correction" maxOccurs="1" modality="optional">
+					<Documentation>TODO</Documentation>
+					<AllowedValue>
+						<Boolean>true</Boolean>
+					</AllowedValue>
+					<AllowedValue>
+						<Boolean>false</Boolean>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint parameterType="Boolean" name="100% Correction" maxOccurs="1" modality="optional">
+					<Documentation>TODO</Documentation>
+					<AllowedValue>
+						<Boolean>true</Boolean>
+					</AllowedValue>
+					<AllowedValue>
+						<Boolean>false</Boolean>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint parameterType="Boolean" name="Reference Correction" maxOccurs="1" modality="optional">
+					<Documentation>TODO</Documentation>
+					<AllowedValue>
+						<Boolean>true</Boolean>
+					</AllowedValue>
+					<AllowedValue>
+						<Boolean>false</Boolean>
+					</AllowedValue>
+					</ParameterBlueprint>
+				<ParameterBlueprint name="Straylight Correction" parameterType="Boolean" modality="optional">
+				<Documentation>Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. Is it the same as Stray Radiant Power - Ps—the total detected radiant power outside a specified wavelength (wave number) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wave number), slit dimensions, light source, and detector.(ASTM E131-02)</Documentation>
 				<AllowedValue>
 					<Boolean>true</Boolean>
 				</AllowedValue>
@@ -1010,469 +1002,156 @@ monochromator under stated conditions for wavelength (wave number), slit dimensi
 					<Boolean>false</Boolean>
 				</AllowedValue>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Signal to Noise Ratio" parameterType="Float32" modality="optional">
-				<Documentation>signal-to-noise ratio, S/N—the ratio of the signal, S, to the noise, N, as indicated by the instrumental read-out indicator. DISCUSSION—1—Noise as used here is the random variation of signal with time. DISCUSSION—2—The recommended measure of noise is the maximum peak-to-peak excursion of the indicator averaged over a series of five successive intervals, each of duration ten times the integration period. In some instruments signal-to-noise ratio varies with the signal.</Documentation>
-				<Unit label="S/N">
-					<SIUnit exponent="1" factor="1">1</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Filter" parameterType="String" modality="optional">
-				<Documentation>Any filtering (signal processing) that was done on the raw data collected i.e Savitsky-Golay filter</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Slit Width" parameterType="Float32" modality="required">
-				<Documentation>The width of the slit of the wavelength.</Documentation>
-				<Unit label="mm">
-					<SIUnit exponent="1" factor="0.001">m</SIUnit>
-				</Unit>
-				<Unit label="nm">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Detector Types" parameterType="String" modality="optional">
-				<Documentation>The types or names of the detector used for measurement.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Speed" parameterType="Float32" modality="optional">
-				<Documentation>The speed of the scan.</Documentation>
-				<Unit label="nm/s">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					<SIUnit exponent="1" factor="1">s</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Point Separation" parameterType="Float32" modality="optional">
-				<Documentation>The spacing between two wavelength values, when a whole spectrum is measured.</Documentation>
-				<Unit label="nm">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
-				<Documentation>The type or name of the sample holder unit.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Position" parameterType="INT" modality="optional">
-				<Documentation>The position of the sample within the sample holder unit.</Documentation>
-			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="Spectral Bandwidth Range" modality="optional">
-				<Documentation>The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="Spectral Smoothing" maxOccurs="1" modality="optional">
+				<Documentation>TODO</Documentation>
+				<ParameterBlueprint parameterType="Boolean" name="Smoothing Enabled" maxOccurs="1" modality="optional">
+					<Documentation>Whether smoothing was applied on the raw data collected.</Documentation>
+					<AllowedValue>
+						<Boolean>true</Boolean>
+					</AllowedValue>
+					<AllowedValue>
+						<Boolean>false</Boolean>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint parameterType="String" name="Smoothing Method" maxOccurs="unbounded" modality="optional">
+					<Documentation>e.g. Savitsky-Golay filter or moving average</Documentation>
+				</ParameterBlueprint>
+			</ParameterCategoryBlueprint>
+			<ParameterCategoryBlueprint name="x-Axis Range" modality="required" maxOccurs="1">
+				<Documentation>The range of x-axis coverage.</Documentation>
 				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The shortest wavelength of bandwidth range.</Documentation>
+					<Documentation>The shortest range.</Documentation>
+					<Unit label="1/cm">
+						<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="um">
+						<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
 					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
+						<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="pm">
+						<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="eV">
+						<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+						<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+						<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
-					<Documentation>The longest wavelength of bandwidth range.</Documentation>
+					<Documentation>The longest range.</Documentation>
+					<Unit label="1/cm">
+						<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="um">
+						<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
 					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
+						<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="pm">
+						<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+					</Unit>
+					<Unit label="eV">
+						<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+						<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+						<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Wavelength Range" modality="required" maxOccurs="1">
-				<Documentation>The range of wavelength coverage.</Documentation>
+			<ParameterCategoryBlueprint name="y-Axis Range" modality="optional">
 				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The shortest range wavelength.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
+					<Documentation>The smallest range.</Documentation>
+					<Unit label="AU">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="A">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="T">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="%T">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="%R">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="R">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
-					<Documentation>The longest range wavelength.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
+					<Documentation>The largest range.</Documentation>
+					<Unit label="AU">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="A">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="T">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="%T">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="%R">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+					</Unit>
+					<Unit label="R">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
 			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Absorbance Range" modality="optional">
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The smallest range absorbance.</Documentation>
-					<Unit label="AU"/>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
-					<Documentation>The largest range absorbance.</Documentation>
-					<Unit label="AU"/>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Source Used" modality="required" maxOccurs="99">
-				<Documentation>Description of light sources beeing used whithin the experiment described.</Documentation>
-				<ParameterBlueprint name="Source Type" parameterType="String" modality="required">
-					<Documentation>Description of the light source type.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Lower Bound Wavelenght " parameterType="Float32" modality="required">
-					<Documentation>The lower-bound wavelenth of the signal produced be the source beeing specified.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Upper Bound Wavelenght " parameterType="Float32" modality="required">
-					<Documentation>The upper-bound wavelenth of the signal produced be the source beeing specified.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-	</PageBlueprint>
-	<PageBlueprint name="Temperature Based" modality="optional">
-		<Documentation>Temperature-based experiments. Spectra are acquired over a period of time at temperatures specified before. Wavelength data are extracted from the acquired spectra and a plot of wavelength result against temperature is constructed.</Documentation>
-		<VectorBlueprint name="Temperature" vectorType="Float32" modality="required" plotUse="dimension" dependency="independent">
-			<Documentation>Temperature domain</Documentation>
-			<Unit label="K">
-				<SIUnit>K</SIUnit>
-			</Unit>
-			<Unit label="°C">
-				<SIUnit offset="-273.15">K</SIUnit>
-			</Unit>
-			<Unit label="°F">
-				<SIUnit offset="434.07" factor="1.8">K</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="Wavelength" vectorType="Float64" modality="required" plotUse="dimension" dependency="independent">
-			<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02)</Documentation>
-			<Unit label="1/cm">
-				<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="um">
-				<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="nm">
-				<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="pm">
-				<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="Intensity" vectorType="Float32" modality="required" plotUse="attribute" dependency="dependent">
-			<Documentation>Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment.</Documentation>
-			<Unit label="A">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="T">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="%T">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="%R">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="R">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="Time" vectorType="Float32" modality="optional" plotUse="dimension" dependency="dependent">
-			<Documentation>Time domain if required</Documentation>
-			<Unit label="ms">
-				<SIUnit factor="0.001">s</SIUnit>
-			</Unit>
-			<Unit label="s">
-				<SIUnit>s</SIUnit>
-			</Unit>
-			<Unit label="min">
-				<SIUnit factor="60">s</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<ParameterCategoryBlueprint name="Measurement Description" modality="required">
-			<Documentation>Information recording a measurement.</Documentation>
-			<ParameterBlueprint name="Identifier" parameterType="String" modality="required">
-				<Documentation>Measurement identification.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Title" parameterType="String" modality="optional">
-				<Documentation>The title of the experiment.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Project" parameterType="String" modality="optional">
-				<Documentation>A name of the project to which the measurement belongs.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
-				<Documentation>A document reference about the method of the measurement.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Number" parameterType="INT" modality="optional">
-				<Documentation>The number of scans.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Duration" parameterType="Float32" modality="optional">
-				<Documentation>The scan duration.</Documentation>
-				<Unit label="s"/>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Experiment Duration" parameterType="Float32" modality="required">
-				<Documentation>Duration of the experiment.</Documentation>
-				<Unit label="s"/>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Path Length" parameterType="Float32" modality="required">
-				<Documentation>The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]
-</Documentation>
-				<Unit label="cm">
-					<SIUnit exponent="1" factor="0.01">m</SIUnit>
-				</Unit>
-				<Unit label="mm">
-					<SIUnit exponent="1" factor="0.001">m</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="Temperature Range" modality="required">
-				<Documentation>Range of temperature values which should be applied within the experiment</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The lowest temperature  of the solution at which the experiment can be performed</Documentation>
-					<Unit label="K">
-						<SIUnit>K</SIUnit>
-					</Unit>
-					<Unit label="°C">
-						<SIUnit offset="-273.15">K</SIUnit>
-					</Unit>
-					<Unit label="°F">
-						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="optional">
-					<Documentation>The highest temperature of the solution at which the experiment can be performed</Documentation>
-					<Unit label="K">
-						<SIUnit>K</SIUnit>
-					</Unit>
-					<Unit label="°C">
-						<SIUnit offset="-273.15">K</SIUnit>
-					</Unit>
-					<Unit label="°F">
-						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Incremental Temperature Measurement Settings" modality="optional">
-				<Documentation>Range of temperature values which should be applied within the experiment</Documentation>
-				<ParameterBlueprint name="Temperature Increment" parameterType="Float32" modality="required">
-					<Documentation>An interval which is used to define the required temperatures within the specified temperature range where spectra must be recorded. See parameters "Initial temperature" and "End temperature".</Documentation>
-					<Unit label="K">
-						<SIUnit>K</SIUnit>
-					</Unit>
-					<Unit label="°C">
-						<SIUnit offset="-273.15">K</SIUnit>
-					</Unit>
-					<Unit label="°F">
-						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Cycle Duration" parameterType="Float32" modality="required">
-					<Documentation>Duration of a measurement at the temperature specified.</Documentation>
-					<Unit label="ms">
-						<SIUnit factor="0.001">s</SIUnit>
-					</Unit>
-					<Unit label="s">
-						<SIUnit>s</SIUnit>
-					</Unit>
-					<Unit label="min">
-						<SIUnit factor="60">s</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Dwell Time" parameterType="Float32" modality="optional">
-					<Documentation>This is the time between setting up the temperature and recording a spectrum at the temperature specified.</Documentation>
-					<Unit label="ms">
-						<SIUnit factor="0.001">s</SIUnit>
-					</Unit>
-					<Unit label="s">
-						<SIUnit>s</SIUnit>
-					</Unit>
-					<Unit label="min">
-						<SIUnit factor="60">s</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Discrete Temperature Measurement Settings" modality="optional">
-				<Documentation>The spectrums are recorded at different arbitrary temperatures. Therefor the different temperature points must be specified.</Documentation>
-				<ParameterBlueprint name="Temperature" parameterType="Float32" modality="required">
-					<Documentation>Specifies the temperature at which a spectrum must be recorded. </Documentation>
-					<Unit label="K">
-						<SIUnit>K</SIUnit>
-					</Unit>
-					<Unit label="°C">
-						<SIUnit offset="-273.15">K</SIUnit>
-					</Unit>
-					<Unit label="°F">
-						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Cycle Duration" parameterType="Float32" modality="required">
-					<Documentation>Duration of a measurement at the temperature specified.</Documentation>
-					<Unit label="ms">
-						<SIUnit factor="0.001">s</SIUnit>
-					</Unit>
-					<Unit label="s">
-						<SIUnit>s</SIUnit>
-					</Unit>
-					<Unit label="min">
-						<SIUnit factor="60">s</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Dwell Time" parameterType="Float32" modality="optional">
-					<Documentation>This is the time between setting up the temperature and recording a spectrum at the temperature specified.</Documentation>
-					<Unit label="ms">
-						<SIUnit factor="0.001">s</SIUnit>
-					</Unit>
-					<Unit label="s">
-						<SIUnit>s</SIUnit>
-					</Unit>
-					<Unit label="min">
-						<SIUnit factor="60">s</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-		<ParameterCategoryBlueprint name="Instrument Property" modality="required">
-			<Documentation>Instrument settings that can be adjusted.</Documentation>
-			<ParameterBlueprint name="Resolution" parameterType="Float32" modality="required">
-				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02)</Documentation>
-				<Unit label="nm">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Mode" parameterType="String" modality="required">
-				<Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one wavelength is recorded. Discrete means that absorbance of exactly specified wavelengths is recorded. Spectrum means that whole spectrum is recorded.</Documentation>
-				<AllowedValue>
-					<String>single</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>discrete</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>spectrum</String>
-				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Spectral Slit Width" parameterType="Float32" modality="optional">
-				<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
-				<Unit label="nm">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Integration Period" parameterType="Float32" modality="optional">
-				<Documentation>π - the time, in seconds, required for the pen or other indicator to move 98.6 % of its maximum travel in response to a step function. (ASTM E131-02) Explanatory: this means that i.e. 0.5 s of spectra are averaged to make one spectrum, and is a good compromise between reducing noise and measuring "instantaneous" concentration.</Documentation>
-				<Unit label="ms">
-					<SIUnit exponent="1" factor="0.001">s</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Spectrum Derivatization Method" parameterType="INT" modality="required">
-				<Documentation>Derivative spectra can be used to enhance differences among spectra, to resolve overlapping bands in qualitative analysis and, most importantly, to reduce the effects of interference from scattering, matrix, or other absorbing compounds in quantitative analysis. Values: 0-Normal, 1-1st derivative spectrum, 2-2nd derivative spectrum ... TO BE DISCUSSED.</Documentation>
-				<AllowedValue>
-					<INT>0</INT>
-				</AllowedValue>
-				<AllowedValue>
-					<INT>1</INT>
-				</AllowedValue>
-				<AllowedValue>
-					<INT>2</INT>
-				</AllowedValue>
-				<AllowedValue>
-					<INT>3</INT>
-				</AllowedValue>
-				<AllowedValue>
-					<INT>4</INT>
-				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Derivization Algorithm Description" parameterType="String" modality="optional">
-				<Documentation>Description of or a reference to an algorithm used to apply a specified derivization: TO BE DISCUSSED.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Background Correction Type" parameterType="String" modality="optional">
-				<Documentation>Method name for performing of the background correction e.g. single reference wavelength/subtract average over range/three-point drop line</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Stray Light Correction" parameterType="Boolean" modality="optional">
-				<Documentation>Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. Is it the same as Stray Radiant Power - Ps—the total detected radiant power outside a specified wavelength (wave number) interval each side of the center of the spectral band passed by the
-monochromator under stated conditions for wavelength (wave number), slit dimensions, light source, and detector.(ASTM E131-02)</Documentation>
-				<AllowedValue>
-					<Boolean>true</Boolean>
-				</AllowedValue>
-				<AllowedValue>
-					<Boolean>false</Boolean>
-				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Signal to Noise Ratio" parameterType="Float32" modality="optional">
-				<Documentation>signal-to-noise ratio, S/N—the ratio of the signal, S, to the noise, N, as indicated by the instrumental read-out indicator. DISCUSSION—1—Noise as used here is the random variation of signal with time. DISCUSSION—2—The recommended measure of noise is the maximum peak-to-peak excursion of the indicator averaged over a series of five successive intervals, each of duration ten times the integration period. In some instruments signal-to-noise ratio varies with the signal.</Documentation>
-				<Unit label="S/N">
-					<SIUnit exponent="1" factor="1">1</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Filter" parameterType="String" modality="optional">
-				<Documentation>Any filtering (signal processing) that was done on the raw data collected i.e Savitsky-Golay filter</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Slit Width" parameterType="Float32" modality="required">
-				<Documentation>The width of the slit of the wavelength.</Documentation>
-				<Unit label="mm">
-					<SIUnit exponent="1" factor="0.001">m</SIUnit>
-				</Unit>
-				<Unit label="nm">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="DetectorTypes" parameterType="String" modality="optional">
-				<Documentation>The types or names of the detector used for measurement.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Speed" parameterType="Float32" modality="optional">
-				<Documentation>The speed of the scan.</Documentation>
-				<Unit label="nm/s">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					<SIUnit exponent="1" factor="1">s</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Point Separation" parameterType="Float32" modality="optional">
-				<Documentation>The spacing between two wavelength values, when a whole spectrum is measured.</Documentation>
-				<Unit label="nm">
-					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-				</Unit>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
-				<Documentation>The type or name of the sample holder unit.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Position" parameterType="INT" modality="optional">
-				<Documentation>The position of the sample within the sample holder unit.</Documentation>
-			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="Spectral Bandwidth Range" modality="optional">
-				<Documentation>The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The shortest wavelength of bandwidth range.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
-					<Documentation>The longest wavelength of bandwidth range.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Wavelength Range" modality="required" maxOccurs="1">
-				<Documentation>The range of wavelength coverage.</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The shortest range wavelength.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
-					<Documentation>The longest range wavelength.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Absorbance Range" modality="optional">
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
-					<Documentation>The smallest range absorbance.</Documentation>
-					<Unit label="AU"/>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
-					<Documentation>The largest range absorbance.</Documentation>
-					<Unit label="AU"/>
-				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Source Used" modality="required" maxOccurs="99">
-				<Documentation>Description of light sources beeing used whithin the experiment described.</Documentation>
-				<ParameterBlueprint name="Source Type" parameterType="String" modality="required">
-					<Documentation>Description of the light source type.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Lower Bound Wavelenght " parameterType="Float32" modality="required">
-					<Documentation>The lower-bound wavelenth of the signal produced be the source beeing specified.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Upper Bound Wavelenght " parameterType="Float32" modality="required">
-					<Documentation>The upper-bound wavelenth of the signal produced be the source beeing specified.</Documentation>
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-					</Unit>
-				</ParameterBlueprint>
+			<ParameterCategoryBlueprint name="Light Source Sequence" maxOccurs="1" modality="optional">
+				<ParameterCategoryBlueprint name="Source Used" modality="required" maxOccurs="unbounded">
+					<Documentation>Description of light sources beeing used whithin the experiment described.</Documentation>
+					<ParameterBlueprint name="Source Type" parameterType="String" modality="required">
+						<Documentation>Description of the light source type.</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Lower Bound" parameterType="Float32" modality="required">
+						<Documentation>The lower-bound x-axis value from which the specified light source was used.</Documentation>
+						<Unit label="1/cm">
+							<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="um">
+							<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="nm">
+							<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="pm">
+							<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="eV">
+							<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+							<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+							<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Upper Bound" parameterType="Float32" modality="required">
+						<Documentation>The upper-bound  x-axis value from which the specified light source was used..</Documentation>
+						<Unit label="1/cm">
+							<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="um">
+							<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="nm">
+							<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="pm">
+							<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+						</Unit>
+						<Unit label="eV">
+							<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+							<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+							<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+						</Unit>
+					</ParameterBlueprint>
+				</ParameterCategoryBlueprint>
 			</ParameterCategoryBlueprint>
 		</ParameterCategoryBlueprint>
 	</PageBlueprint>

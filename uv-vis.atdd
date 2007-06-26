@@ -638,7 +638,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			</Unit>
 		</VectorBlueprint>
 		<ParameterCategoryBlueprint name="Measurement Description" modality="required">
-			<Documentation>Information recording a measurement.</Documentation>
+			<Documentation>Information regarding a measurement.</Documentation>
 			<ParameterBlueprint name="Identifier" parameterType="String" modality="required">
 				<Documentation>Measurement identification.</Documentation>
 			</ParameterBlueprint>
@@ -651,11 +651,11 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
 				<Documentation>A document reference about the method of the measurement.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Number" parameterType="INT" modality="optional">
-				<Documentation>The number of scans.</Documentation>
+			<ParameterBlueprint name="Number of Scans" parameterType="INT" modality="optional">
+				<Documentation>The number of scans. TODO</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Scan Duration" parameterType="Float32" modality="optional">
-				<Documentation>The scan duration.</Documentation>
+				<Documentation>The scan duration. TODO</Documentation>
 				<Unit label="s"/>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Experiment Duration" parameterType="Float32" modality="required">

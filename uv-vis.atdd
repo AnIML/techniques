@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Changes
-02.15.2007
-	- Merged changes to Vector Blueprints on Spectrum Page from teleconference notes
-	- Merged changes to Parameters on Spectrum Page from teleconference notes
-	- Removed Kinetics and Temperature Pages	
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (Burkhard Schaefer Software & Networks) -->
+<!-- 
 
-11.20.2006
-	- Modified syntax to comply with new Technique Definition Schema
-	- Merged changes to Sample Roles from teleconference notes
+see CVS comments for change log
 
 TODO:
 	- The Description for the sample parameter "Lot or Batch Name/Number" must be modified.
@@ -16,7 +11,7 @@ TODO:
 	- The definition for the sample category "Boiling Point" must be rewritten.
 	- The definition for the sample category "Melting Point" must be rewritten.
 	- The Units for the sample parameter "Concentration" in the parameter category "Substance Description" must be checked.
-	- The sample parameter "SMILES" must be redifined.
+	- The sample parameter "SMILES" must be redefined.
 	- Documentation is needed for the vector blueprint "x-Axis" on page "Spectrum"
 	- Documentation is needed for the vector blueprint "y-Axis" on page "Spectrum"
 	- Documentation is needed for the parameter category "Measurement Mode" in category "Instrument Property" on page "Spectrum"
@@ -27,7 +22,7 @@ TODO:
 	- Documentation is needed for the parameter category "Light Source Sequence" in category "Instrument Property" on page "Spectrum"
 
   -->
-<Technique name="UV/VIS Base Technique" xmlns="urn:org:astm:animl:schema:technique:draft:1.2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:1.2 ..\schema\animl-technique.xsd" version="1.2">
+<Technique name="UV/VIS" xmlns="urn:org:astm:animl:schema:technique:draft:1.2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:1.2 ..\schema\animl-technique.xsd" version="1.2">
 	<!--	<Definition name="UV"> -->
 	<Documentation>Technique definition for UV/Visible spectrophotometry</Documentation>
 	<SampleRole name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
@@ -576,67 +571,69 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 	</SampleRole>
 	<PageBlueprint name="Spectrum" modality="optional">
 		<Documentation>an actual or notational arrangement of the component parts of any phenomenon, as electromagnetic waves or particles, ordered in accordance with the magnitude of a common physical property, as wavelength, frequency, or mass.</Documentation>
-		<VectorBlueprint name="x-Axis" vectorType="Float64" modality="required" plotUse="dimension" dependency="independent" maxOccurs="1">
-			<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02) TODO</Documentation>
-			<Unit label="1/cm">
-				<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="um">
-				<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="nm">
-				<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="pm">
-				<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="eV">
-				<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
-				<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
-				<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="y-Axis" vectorType="Float64" modality="required" plotUse="attribute" dependency="dependent" maxOccurs="1">
-			<Documentation>Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment. TODO</Documentation>
-			<Unit label="AU">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="A">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="T">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="%T">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="%R">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-			<Unit label="R">
-				<SIUnit factor="1" exponent="1">1</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="Resolution" vectorType="Float64" modality="optional" plotUse="attribute" dependency="dependent" maxOccurs="1">
-			<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02). Use vector if resolution is variable.</Documentation>
-			<Unit label="1/cm">
-				<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="eV">
-				<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
-				<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
-				<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
-			</Unit>
-			<Unit label="nm">
+		<VectorSetBlueprint name="Spectrum">
+			<VectorBlueprint name="x-Axis" vectorType="Float64" modality="required" plotUse="dimension" dependency="independent" maxOccurs="1">
+				<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02) TODO</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="pm">
+					<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="eV">
+					<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+					<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+					<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="y-Axis" vectorType="Float64" modality="required" plotUse="attribute" dependency="dependent" maxOccurs="1">
+				<Documentation>Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment. TODO</Documentation>
+				<Unit label="AU">
+					<SIUnit factor="1" exponent="1">1</SIUnit>
+				</Unit>
+				<Unit label="A">
+					<SIUnit factor="1" exponent="1">1</SIUnit>
+				</Unit>
+				<Unit label="T">
+					<SIUnit factor="1" exponent="1">1</SIUnit>
+				</Unit>
+				<Unit label="%T">
+					<SIUnit factor="1" exponent="1">1</SIUnit>
+				</Unit>
+				<Unit label="%R">
+					<SIUnit factor="1" exponent="1">1</SIUnit>
+				</Unit>
+				<Unit label="R">
+					<SIUnit factor="1" exponent="1">1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Resolution" vectorType="Float64" modality="optional" plotUse="attribute" dependency="dependent" maxOccurs="1">
+				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02). Use vector if resolution is variable.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="eV">
+					<SIUnit factor="0.000000000000000000160218" exponent="1" offset="0">kg</SIUnit>
+					<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
+					<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
+				</Unit>
+				<Unit label="nm">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint vectorType="Float32" plotUse="attribute" dependency="dependent" name="Spectral Slit Width" modality="optional" maxOccurs="1">
-			<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use vector if variable.</Documentation>
-			<Unit label="nm">
-				<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-			</Unit>
-		</VectorBlueprint>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint vectorType="Float32" plotUse="attribute" dependency="dependent" name="Spectral Slit Width" modality="optional" maxOccurs="1">
+				<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use vector if variable.</Documentation>
+				<Unit label="nm">
+					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+		</VectorSetBlueprint>
 		<ParameterCategoryBlueprint name="Measurement Description" modality="required">
 			<Documentation>Information regarding a measurement.</Documentation>
 			<ParameterBlueprint name="Identifier" parameterType="String" modality="required">
@@ -651,7 +648,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
 				<Documentation>A document reference about the method of the measurement.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Number of Scans" parameterType="INT" modality="optional">
+			<ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
 				<Documentation>The number of scans. TODO</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Scan Duration" parameterType="Float32" modality="optional">
@@ -841,7 +838,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<AllowedValue>
 					<String>Reflectance, diffuse</String>
 				</AllowedValue>
-				<AllowedValue>				
+				<AllowedValue>
 					<String>Reflectance, grazing</String>
 				</AllowedValue>
 				<AllowedValue>
@@ -867,7 +864,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				</Unit>
 				<Unit label="s"/>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Spectrum Derivatization Method" parameterType="INT" modality="required">
+			<ParameterBlueprint name="Spectrum Derivatization Method" parameterType="Int" modality="required">
 				<Documentation>Derivative spectra can be used to enhance differences among spectra, to resolve overlapping bands in qualitative analysis and, most importantly, to reduce the effects of interference from scattering, matrix, or other absorbing compounds in quantitative analysis. Values: 0-Normal, 1-1st derivative spectrum, 2-2nd derivative spectrum, 3-3rd derivative spectrum, 4-4th derivative spectrum.</Documentation>
 				<AllowedValue>
 					<Int>0</Int>
@@ -910,7 +907,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
 				<Documentation>The type or name of the sample holder unit.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Position" parameterType="INT" modality="optional">
+			<ParameterBlueprint name="Sample Position" parameterType="Int" modality="optional">
 				<Documentation>The position of the sample within the sample holder unit.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Spectral Bandwidth Range" modality="optional" parameterType="Float32">
@@ -921,7 +918,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			</ParameterBlueprint>
 			<ParameterCategoryBlueprint name="Filter Sequence" maxOccurs="1" modality="optional">
 				<ParameterCategoryBlueprint name="Filter Setting" maxOccurs="unbounded" modality="required">
-					<ParameterBlueprint parameterType="String" name="Filter Name" maxOccurs="1" modality="required"></ParameterBlueprint>
+					<ParameterBlueprint parameterType="String" name="Filter Name" maxOccurs="1" modality="required"/>
 					<ParameterBlueprint name="Lower Bound" parameterType="Float32" modality="required">
 						<Documentation>The lower-bound x-axis value from which the specified light source was used.</Documentation>
 						<Unit label="1/cm">
@@ -992,16 +989,10 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<AllowedValue>
 						<Boolean>false</Boolean>
 					</AllowedValue>
-					</ParameterBlueprint>
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Straylight Correction" parameterType="Boolean" modality="optional">
-				<Documentation>Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. Is it the same as Stray Radiant Power - Ps—the total detected radiant power outside a specified wavelength (wave number) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wave number), slit dimensions, light source, and detector.(ASTM E131-02)</Documentation>
-				<AllowedValue>
-					<Boolean>true</Boolean>
-				</AllowedValue>
-				<AllowedValue>
-					<Boolean>false</Boolean>
-				</AllowedValue>
-			</ParameterBlueprint>
+					<Documentation>Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. Is it the same as Stray Radiant Power - Ps—the total detected radiant power outside a specified wavelength (wave number) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wave number), slit dimensions, light source, and detector.(ASTM E131-02)</Documentation>
+				</ParameterBlueprint>
 			</ParameterCategoryBlueprint>
 			<ParameterCategoryBlueprint name="Spectral Smoothing" maxOccurs="1" modality="optional">
 				<Documentation>TODO</Documentation>
@@ -1158,27 +1149,29 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 	<PageBlueprint name="Interferogram" modality="optional">
 		<Documentation>I(σ) - record of the modulated component of the interference signal
 measured as a function of retardation by the detector. DISCUSSION—1—An alternate symbol is I (x). DISCUSSION—2—The recommended symbol for the spectrum computed from I (d) is B (n). An alternate symbol is B (s).</Documentation>
-		<VectorBlueprint name="Time" vectorType="Float32" modality="required" plotUse="dimension" dependency="independent">
-			<Documentation>This is a set of values of dimension
+		<VectorSetBlueprint name="Interferogram">
+			<VectorBlueprint name="Time" vectorType="Float32" modality="required" plotUse="dimension" dependency="independent">
+				<Documentation>This is a set of values of dimension
 @length, containing the abscissa value for each raw
 data ordinate value. This set of values has a unit of time: defined @ASTM E 1947-98 and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
-			<Unit label="s">
-				<SIUnit>s</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="Intensity" vectorType="Float32" modality="required" plotUse="attribute" dependency="dependent">
-			<Documentation>This is a set of values of dimension
+				<Unit label="s">
+					<SIUnit>s</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Intensity" vectorType="Float32" modality="required" plotUse="attribute" dependency="dependent">
+				<Documentation>This is a set of values of dimension
 @length, containing the ordinate values. This set of values
 has a unit of detector-unit. This is a required field for datasets
 containing raw data; can be in Absorbance,  Transmittance, or %T  units, Kubelka-Munk, or Reflectance; defined @ASTM E 1947-98 and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
-			<Unit label="Arb. Units"/>
-			<Unit label="V">
-				<SIUnit exponent="1" factor="1" offset="0">kg</SIUnit>
-				<SIUnit exponent="2" factor="1" offset="0">m</SIUnit>
-				<SIUnit exponent="-3" factor="1" offset="0">s</SIUnit>
-				<SIUnit exponent="-1" factor="1" offset="0">A</SIUnit>
-			</Unit>
-		</VectorBlueprint>
+				<Unit label="Arb. Units"/>
+				<Unit label="V">
+					<SIUnit exponent="1" factor="1" offset="0">kg</SIUnit>
+					<SIUnit exponent="2" factor="1" offset="0">m</SIUnit>
+					<SIUnit exponent="-3" factor="1" offset="0">s</SIUnit>
+					<SIUnit exponent="-1" factor="1" offset="0">A</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+		</VectorSetBlueprint>
 		<ParameterCategoryBlueprint name="Measurement Parameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
 			<ParameterBlueprint name="Aliasing Ratio" parameterType="Float32" modality="optional">
@@ -1200,134 +1193,136 @@ containing raw data; can be in Absorbance,  Transmittance, or %T  units, Kubelka
 	</PageBlueprint>
 	<PageBlueprint name="Peak Table" modality="optional">
 		<Documentation>UV peak table</Documentation>
-		<VectorBlueprint name="Peak Max Position" vectorType="Float64" modality="required" plotUse="attribute" dependency="independent">
-			<Documentation>Position on x axis  where the peak maximum appears.</Documentation>
-			<Unit label="1/cm">
-				<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="um">
-				<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="nm">
-				<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="pm">
-				<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="eV"/>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak ID" vectorType="INT" modality="optional" plotUse="attribute" dependency="dependent">
-			<Documentation>Peak number used to identify a
+		<VectorSetBlueprint name="Peak Table">
+			<VectorBlueprint name="Max Position" vectorType="Float64" modality="required" plotUse="attribute" dependency="independent">
+				<Documentation>Position on x axis  where the peak maximum appears.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="pm">
+					<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="eV"/>
+			</VectorBlueprint>
+			<VectorBlueprint name="ID" vectorType="Int" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Peak number used to identify a
 particular peak.
-See: ASTM E 1947-98.</Documentation>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Start Position" vectorType="Float64" modality="required" plotUse="attribute" dependency="dependent">
-			<Documentation>Peak start position value on x axis</Documentation>
-			<Unit label="1/cm">
-				<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="um">
-				<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="nm">
-				<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="pm">
-				<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="eV"/>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak End Position" vectorType="Float64" modality="required" plotUse="attribute" dependency="dependent">
-			<Documentation>Peak end position value on x axis</Documentation>
-			<Unit label="1/cm">
-				<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="um">
-				<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="nm">
-				<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="pm">
-				<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="eV"/>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Width" vectorType="Float32" modality="required" plotUse="attribute" dependency="dependent">
-			<Documentation>Peak width at half maximum</Documentation>
-			<Unit label="1/cm">
-				<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="um">
-				<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="nm">
-				<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
-			</Unit>
-			<Unit label="eV"/>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Height" vectorType="Float32" modality="required" plotUse="attribute" dependency="dependent">
-			<Documentation>Computed height of the peak; in a scaled data unit. The unit
+(ASTM E 1947-98)</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Start Position" vectorType="Float64" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Peak start position on x axis.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="pm">
+					<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="eV"/>
+			</VectorBlueprint>
+			<VectorBlueprint name="End Position" vectorType="Float64" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Peak end position on x axis.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="pm">
+					<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="eV"/>
+			</VectorBlueprint>
+			<VectorBlueprint name="Width" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Peak width at half maximum.</Documentation>
+				<Unit label="1/cm">
+					<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="um">
+					<SIUnit factor="0.000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="nm">
+					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
+				</Unit>
+				<Unit label="eV"/>
+			</VectorBlueprint>
+			<VectorBlueprint name="Height" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Computed height of the peak; in a scaled data unit. The unit
 for this is the same as that of the raw-data. (ASTM E 1947-98)</Documentation>
-			<Unit label="Absorbance">
-				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
-			</Unit>
-			<Unit label="Transmittance">
-				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
-			</Unit>
-			<Unit label="Reflectance">
-				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
-			</Unit>
-			<Unit label="Arb. Units">
-				<SIUnit>1</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Percent Height" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
-			<Documentation>Computed height percent of the peak; the summation of all quantified peaks in an analysis should be equal to 100.0. (ASTM E 1947-98)</Documentation>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Area" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
-			<Documentation>Computed area of the peak. (ASTM E 1947-98)</Documentation>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Percent Area" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
-			<Documentation>Compound area percent of the peak: the summation of all quantified peaks in an analysis should be equal 100.0. (ASTM E 1947-98)</Documentation>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Assignment" vectorType="String" modality="optional" plotUse="attribute" dependency="dependent">
-			<Documentation>Chemical structure assigned to this peak (use Substance ID) (See: J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. 20 Chem.)</Documentation>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Asymmetry" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
-			<Documentation>The peak asymmetry measured as As=B/A, where A and B are the widths for the front and back parts of a peak, commonly measured at 10 % peak height for USP at 5 %.  (ASTM E 1947-98)</Documentation>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Baseline Start Value" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
-			<Documentation>Starting value of the computed baseline for this peak; in a scaled data unit, the unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Documentation>
-			<Unit label="Absorbance">
-				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
-			</Unit>
-			<Unit label="Transmittance">
-				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
-			</Unit>
-			<Unit label="Reflectance">
-				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
-			</Unit>
-			<Unit label="Arb. Units">
-				<SIUnit>1</SIUnit>
-			</Unit>
-		</VectorBlueprint>
-		<VectorBlueprint name="Peak Baseline Stop Value" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
-			<Documentation>Ending value of the compound baseline for this peak; in a scaled data unit, the
+				<Unit label="Absorbance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Transmittance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Reflectance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Percent Height" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Computed height percent of the peak; the summation of all quantified peaks in a spectrum should be equal to 100.0. (ASTM E 1947-98)</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Area" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Computed area of the peak. (ASTM E 1947-98)</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Percent Area" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Compound area percent of the peak: the summation of all quantified peaks in a spectrum should be equal to 100.0. (ASTM E 1947-98)</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Assignment" vectorType="String" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Chemical structure assigned to this peak (use Substance ID) (J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. 20 Chem.)</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Asymmetry" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>The peak asymmetry As measured as As=B/A, where A and B are the widths for the front and back parts of a peak, commonly measured at 10 % peak height for USP at 5 %.  (ASTM E 1947-98)</Documentation>
+			</VectorBlueprint>
+			<VectorBlueprint name="Baseline Start Value" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Starting value of the computed baseline for this peak; in a scaled data unit, the unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Documentation>
+				<Unit label="Absorbance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Transmittance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Reflectance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+			<VectorBlueprint name="Baseline Stop Value" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+				<Documentation>Ending value of the compound baseline for this peak; in a scaled data unit, the
 unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Documentation>
-			<Unit label="Absorbance">
-				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
-			</Unit>
-			<Unit label="Transmittance">
-				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
-			</Unit>
-			<Unit label="Reflectance">
-				<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
-			</Unit>
-			<Unit label="Arb. Units">
-				<SIUnit>1</SIUnit>
-			</Unit>
-		</VectorBlueprint>
+				<Unit label="Absorbance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Transmittance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Reflectance">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+				<Unit label="Arb. Units">
+					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
+				</Unit>
+			</VectorBlueprint>
+		</VectorSetBlueprint>
 		<ParameterCategoryBlueprint name="Peak Table Parameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the peak table references</Documentation>
 			<ParameterBlueprint name="Path Length" parameterType="Float32" maxOccurs="1" modality="required">
@@ -1335,6 +1330,13 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 				<Unit label="cm">
 					<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
 				</Unit>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Peak Picking Method" parameterType="String">
+				<Documentation>Method used for peak finding</Documentation>
+				<AllowedValue><String>Maximum Data Point</String></AllowedValue>
+				<AllowedValue><String>Inflection Point of Peak Derivative</String></AllowedValue>
+				<AllowedValue><String>Integrated Area</String></AllowedValue>
+				<AllowedValue><String>Other</String></AllowedValue>
 			</ParameterBlueprint>
 		</ParameterCategoryBlueprint>
 	</PageBlueprint>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (Burkhard Schaefer Software & Networks) -->
+<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (BSSN Software) -->
 <!-- 
 
 see CVS comments for change log
@@ -992,6 +992,12 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Straylight Correction" parameterType="Boolean" modality="optional">
 					<Documentation>Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. Is it the same as Stray Radiant Power - Ps—the total detected radiant power outside a specified wavelength (wave number) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wave number), slit dimensions, light source, and detector.(ASTM E131-02)</Documentation>
+					<AllowedValue>
+						<Boolean>true</Boolean>
+					</AllowedValue>
+					<AllowedValue>
+						<Boolean>false</Boolean>
+					</AllowedValue>
 				</ParameterBlueprint>
 			</ParameterCategoryBlueprint>
 			<ParameterCategoryBlueprint name="Spectral Smoothing" maxOccurs="1" modality="optional">

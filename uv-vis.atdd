@@ -23,7 +23,6 @@ TODO:
 
   -->
 <Technique name="UV/VIS" xmlns="urn:org:astm:animl:schema:technique:draft:1.2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:1.2 ..\schema\animl-technique.xsd" version="1.2">
-	<!--	<Definition name="UV"> -->
 	<Documentation>Technique definition for UV/Visible spectrophotometry</Documentation>
 	<SampleRole name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
 		<Documentation>A subsample selected from the properly prepared laboratory sample which has a suitable sample weight or volume for one or more determinations by chemical analysis (ASTM E135, E01). This sample role represents the sample that is analyzed in the given ExperimentStep.</Documentation>

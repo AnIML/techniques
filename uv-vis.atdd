@@ -22,11 +22,11 @@ TODO:
 	- Documentation is needed for the parameter category "Light Source Sequence" in category "Instrument Property" on page "Spectrum"
 
   -->
-<Technique name="UV/VIS" xmlns="urn:org:astm:animl:schema:technique:draft:1.2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:1.2 ..\schema\animl-technique.xsd" version="1.2">
+<Technique name="UV/VIS" xmlns="urn:org:astm:animl:schema:technique:draft:1.2" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:1.2 ..\schema\animl-technique.xsd" version="0.3">
 	<Documentation>Technique definition for UV/Visible spectrophotometry</Documentation>
-	<SampleRole name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1" inheritable="true" upwardsInherited="false">
+	<SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1" inheritable="true">
 		<Documentation>A subsample selected from the properly prepared laboratory sample which has a suitable sample weight or volume for one or more determinations by chemical analysis (ASTM E135, E01). This sample role represents the sample that is analyzed in the given ExperimentStep.</Documentation>
-		<ParameterCategoryBlueprint name="Description" modality="required" maxOccurs="1">
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
 			<Documentation>Parameters describing the measurement/test sample</Documentation>
 			<ParameterBlueprint name="Name" parameterType="String" modality="required" maxOccurs="1">
 				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
@@ -34,19 +34,19 @@ TODO:
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Common, trade, or other names.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Mass" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Mass of the sample used to prepare the test material.</Documentation>
 				<Unit label="mg">
 					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Volume" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample used to prepare the test material.</Documentation>
 				<Unit label="ml">
 					<SIUnit exponent="3" factor="0.000001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of sample in solvent, if applicable. TODO units</Documentation>
 				<Unit label="g/L">
 					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
@@ -110,7 +110,7 @@ TODO:
 			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: &quot;supercritical fluid extraction.&quot; See ASTM E 2077-00.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Pressure" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation/>
 				<Unit label="Pa">
 					<SIUnit exponent="-1">m</SIUnit>
@@ -118,7 +118,7 @@ TODO:
 					<SIUnit exponent="-2">s</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Temperature" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample temperature if significantly different from room temperature. See Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				<Unit label="K">
 					<SIUnit>K</SIUnit>
@@ -130,7 +130,7 @@ TODO:
 					<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Density" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Density of the test sample. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
 				<Unit label="g/cm3">
 					<SIUnit exponent="1" factor="0.001">kg</SIUnit>
@@ -141,9 +141,9 @@ TODO:
 				<Documentation>Lot or batch name/number</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1"/>
-			<ParameterCategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
+			<CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
 				<Documentation>Temperature at which the vapor pressure of an engine coolant reaches atmospheric pressure under equilibrium boiling conditions (ASTM D 4725, D15).</Documentation>
-				<ParameterBlueprint name="Minimum Temperature" parameterType="Float32" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of boiling temperature range. Use only this value if sample has an actual boiling "point".</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -155,7 +155,7 @@ TODO:
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Maximum Temperature" parameterType="Float32" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of boiling temperature range. </Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -167,7 +167,7 @@ TODO:
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Pressure" parameterType="Float32" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Pressure at which the boiling point has been determined. If not given, ambient pressure is assumed.</Documentation>
 					<Unit label="Pa">
 						<SIUnit exponent="-1">m</SIUnit>
@@ -175,10 +175,10 @@ TODO:
 						<SIUnit exponent="-2">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Melting Point" maxOccurs="1" modality="optional">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Melting Point" maxOccurs="1" modality="optional">
 				<Documentation>In a phase diagram, the temperature at which the liquids and solidus coincide at an invariant point. (ASTM E 1142, E37)</Documentation>
-				<ParameterBlueprint name="Minimum Temperature" parameterType="Float32" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of melting temperature range. Use only this value if sample has an actual melting "point".</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -190,7 +190,7 @@ TODO:
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Maximum Temperature" parameterType="Float32" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of melting temperature range.</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -202,17 +202,17 @@ TODO:
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
 				<Documentation>The phase velocity of radiant power in a
 vacuum divided by the phase velocity of the same radiant
 power in a specified medium. When one medium is a
 vacuum, n is the ratio of the sine of the angle of incidence to
 the sine of the angle of refraction. (ASTM E131-02)</Documentation>
-				<ParameterBlueprint name="Refractive Index" parameterType="Float32" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Refractive Index" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Refractive index of the sample.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Temperature" parameterType="Float32" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -224,15 +224,15 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Wavelength" parameterType="Float32" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Wavelength" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Wavelength at which the refractive index has been determined. If not given, the Sodium-D line is assumed.</Documentation>
 					<Unit label="nm">
 						<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-		<ParameterCategoryBlueprint name="Substance Description" modality="optional" maxOccurs="unbounded">
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="optional" maxOccurs="unbounded">
 			<Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances.</Documentation>
 			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>User-assigned substance name.</Documentation>
@@ -240,7 +240,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Common, trade, or other names.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of known components and impurities; see Appl. Spectrosc. 42, 1, 1988. TODO units</Documentation>
 				<Unit label="g/L">
 					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
@@ -260,13 +260,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
 	H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Molecular Mass" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Molecular Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Unit label="g/mol">
 					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 					<SIUnit exponent="-1" factor="1" offset="0">mol</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
 				<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>TODO Chemical structure as SMILES string.</Documentation>
@@ -280,8 +280,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
 					<Documentation>TODO Chemical structure as CML.</Documentation>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
 				<Documentation>Set of different identifiers describing a substance.</Documentation>
 				<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
@@ -299,12 +299,12 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
 					<Documentation>TODO -- again? Chemical structure as CML.</Documentation>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-	</SampleRole>
-	<SampleRole name="Solvent" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Solvent" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
 		<Documentation>A liquid that can dissolve another substance. See ASTM E 609-05. Used to dissolve the Test Sample.</Documentation>
-		<ParameterCategoryBlueprint name="Sample Description" modality="required" maxOccurs="1">
+		<CategoryBlueprint name="Sample Description" modality="required" maxOccurs="1">
 			<Documentation>Parameters describing the measurement sample</Documentation>
 			<ParameterBlueprint name="Name" parameterType="String" modality="required" maxOccurs="1">
 				<Documentation>user-assigned name of the sample. See ASTM E 1947-98.</Documentation>
@@ -312,13 +312,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
 				<Documentation>Common, trade, or other names.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Mass" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Mass of the sample used to prepare the test material.</Documentation>
 				<Unit label="mg">
 					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Volume" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample used to prepare the test material.</Documentation>
 				<Unit label="ml">
 					<SIUnit exponent="3" factor="0.001">m</SIUnit>
@@ -343,7 +343,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>a textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: “supercritical fluid extraction.” See ASTM E 2077-00.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Pressure" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>a textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: “supercritical fluid extraction.” See ASTM E 2077-00.</Documentation>
 				<Unit label="Pa">
 					<SIUnit exponent="-1">m</SIUnit>
@@ -351,7 +351,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SIUnit exponent="-2">s</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Temperature" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample temperature if significantly different from room temperature. see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				<Unit label="K">
 					<SIUnit>K</SIUnit>
@@ -363,7 +363,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Density" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Density in g/cc. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
 				<Unit label="g/cm3">
 					<SIUnit exponent="1" factor="0.001">kg</SIUnit>
@@ -374,9 +374,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<Documentation>Lot or Batch Name/Number</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1"/>
-			<ParameterCategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
+			<CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
 				<Documentation>Boiling Point - The temperature at which the vapor pressure of an engine coolant reaches atmospheric pressure under equilibrium boiling conditions. (ASTM D 4725, D15)</Documentation>
-				<ParameterBlueprint name="Minimum" parameterType="Float32" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Minimum" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -388,7 +388,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Maximum" parameterType="Float32" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Maximum" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of boiling temperature range. </Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -400,7 +400,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Pressure" parameterType="Float32" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Pressure at which the boiling point has been determined. If the pressure is not given then edian pressure is assumed. If the pressure is not given then edian pressure is assumed.</Documentation>
 					<Unit label="Pa">
 						<SIUnit exponent="-1">m</SIUnit>
@@ -408,10 +408,10 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit exponent="-2">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Melting Point" maxOccurs="1" modality="optional">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Melting Point" maxOccurs="1" modality="optional">
 				<Documentation>Melting Point – in a phase diagram, the temperature at which the liquids and solidus coincide at an invariant point. (ASTM E 1142, E37)</Documentation>
-				<ParameterBlueprint name="Minimum" parameterType="Float32" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Minimum" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -423,7 +423,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Maximum" parameterType="Float32" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Maximum" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of melting temperature range.</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -435,17 +435,17 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
 				<Documentation>The phase velocity of radiant power in a
 vacuum divided by the phase velocity of the same radiant
 power in a specified medium. When one medium is a
 vacuum, n is the ratio of the sine of the angle of incidence to
 the sine of the angle of refraction. (ASTM E131-02)</Documentation>
-				<ParameterBlueprint name="Value" parameterType="Float32" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Value" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Refractive index</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Temperature" parameterType="Float32" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -457,15 +457,15 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Wavelength" parameterType="Float32" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Wavelength" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Wavelength at which the refractive index has been determined.</Documentation>
 					<Unit label="nm">
 						<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-		<ParameterCategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
 			<Documentation>Parameters describing a substance in the measurement/test sample</Documentation>
 			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>user-assigned name. See SampleName.</Documentation>
@@ -473,7 +473,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Common, trade, or other names.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentrations of known components and impurities; see Appl. Spectrosc. 42, 1, 1988.</Documentation>
 				<Unit label="g/l">
 					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
@@ -491,13 +491,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
 	H2 ^17O (water, mass 17 oxygen); see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Molecular Mass" parameterType="Float32" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Molecular Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Unit label="g/mol">
 					<SIUnit exponent="1" factor="0.001" offset="0">kg</SIUnit>
 					<SIUnit exponent="-1" factor="1" offset="0">mol</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
 				<ParameterBlueprint name="Smiles" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Chemical structure as SMILES string.</Documentation>
@@ -512,8 +512,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
 					<Documentation>Chemical structure as CML.</Documentation>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
 				<Documentation>Set of different identifiers describing a substance.</Documentation>
 				<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
@@ -531,9 +531,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
 					<Documentation>Chemical structure as CML.</Documentation>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-		<ParameterCategoryBlueprint name="Background Description" modality="required" maxOccurs="1">
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Background Description" modality="required" maxOccurs="1">
 			<Documentation>Information describing the components contained in the reference beam in a double beam instrument or the reference or background measurement in a single beam instrument.</Documentation>
 			<ParameterBlueprint name="Background Correction" parameterType="String" modality="required" maxOccurs="1">
 				<Documentation>A unique character string to specify the use of a blank or not (e.g. a reference to air) in the reference beam.</Documentation>
@@ -547,31 +547,31 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<String>None</String>
 				</AllowedValue>
 			</ParameterBlueprint>
-		</ParameterCategoryBlueprint>
-	</SampleRole>
-	<SampleRole name="Blank" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Blank" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
 		<Documentation>Matrix carried through all or part of the analytical process, where the analyte is not present, or where the analyte response is suppressed. A blank must be appropriate to the analytical process it is being used with. Typically used to monitor contaminants or to establish a baseline for quantitation. Note: Uses the same parameters as the Test Sample role.</Documentation>
 		<!--same parameters as Test Sample-->
-	</SampleRole>
-	<SampleRole name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
 		<Documentation>A matrix whose analytes of interest are of known or accepted concentration or property. (ASTM D 1129-06A)</Documentation>
-	</SampleRole>
-	<SampleRole name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
 		<Documentation>TODO.  No Test Sample Parameters. See Use Cases II.PDF. Only used as a link to the sample ID used for calibration. So no full parameter set is needed. A document reference about the qualification test. </Documentation>
-	</SampleRole>
-	<SampleRole name="Proficiency Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Proficiency Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
 		<Documentation>Reference to the most recent successful proficiency test sample the analyst/system has been confronted with. This is only a reference, so no parameters are required.</Documentation>
-	</SampleRole>
-	<SampleRole name="Transmittance Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Transmittance Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
 		<Documentation>TODO. No Parameters needed. A document reference about the transmittance linearity test.</Documentation>
-	</SampleRole>
-	<SampleRole name="Wavelength Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Wavelength Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false" upwardsInherited="false">
 		<Documentation>TODO. No Parameters needed. A document reference about the wavelength calibration.</Documentation>
-	</SampleRole>
-	<PageBlueprint name="Spectrum" modality="optional">
+	</SampleRoleBlueprint>
+	<ResultBlueprint name="Spectrum" modality="optional">
 		<Documentation>an actual or notational arrangement of the component parts of any phenomenon, as electromagnetic waves or particles, ordered in accordance with the magnitude of a common physical property, as wavelength, frequency, or mass.</Documentation>
-		<VectorSetBlueprint name="Spectrum">
-			<VectorBlueprint name="x-Axis" vectorType="Float64" modality="required" plotUse="dimension" dependency="independent" maxOccurs="1">
+		<SeriesSetBlueprint name="Spectrum">
+			<SeriesBlueprint name="x-Axis" seriesType="Float" modality="required" plotScale="linear" dependency="independent" maxOccurs="1">
 				<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02) TODO</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -590,8 +590,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SIUnit factor="1" exponent="2" offset="0">m</SIUnit>
 					<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 				</Unit>
-			</VectorBlueprint>
-			<VectorBlueprint name="y-Axis" vectorType="Float64" modality="required" plotUse="attribute" dependency="dependent" maxOccurs="1">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="y-Axis" seriesType="Float" modality="required" plotScale="none" dependency="dependent" maxOccurs="1">
 				<Documentation>Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment. TODO</Documentation>
 				<Unit label="AU">
 					<SIUnit factor="1" exponent="1">1</SIUnit>
@@ -611,8 +611,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<Unit label="R">
 					<SIUnit factor="1" exponent="1">1</SIUnit>
 				</Unit>
-			</VectorBlueprint>
-			<VectorBlueprint name="Resolution" vectorType="Float64" modality="optional" plotUse="attribute" dependency="dependent" maxOccurs="1">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Resolution" seriesType="Float" modality="optional" plotScale="none" dependency="dependent" maxOccurs="1">
 				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02). Use vector if resolution is variable.</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -625,15 +625,15 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<Unit label="nm">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 				</Unit>
-			</VectorBlueprint>
-			<VectorBlueprint vectorType="Float32" plotUse="attribute" dependency="dependent" name="Spectral Slit Width" modality="optional" maxOccurs="1">
+			</SeriesBlueprint>
+			<SeriesBlueprint seriesType="Float" plotScale="none" dependency="dependent" name="Spectral Slit Width" modality="optional" maxOccurs="1">
 				<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use vector if variable.</Documentation>
 				<Unit label="nm">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 				</Unit>
-			</VectorBlueprint>
-		</VectorSetBlueprint>
-		<ParameterCategoryBlueprint name="Measurement Description" modality="required">
+			</SeriesBlueprint>
+		</SeriesSetBlueprint>
+		<CategoryBlueprint name="Measurement Description" modality="required">
 			<Documentation>Information regarding a measurement.</Documentation>
 			<ParameterBlueprint name="Identifier" parameterType="String" modality="required">
 				<Documentation>Measurement identification.</Documentation>
@@ -650,15 +650,15 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
 				<Documentation>The number of scans. TODO</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Duration" parameterType="Float32" modality="optional">
+			<ParameterBlueprint name="Scan Duration" parameterType="Float" modality="optional">
 				<Documentation>The scan duration. TODO</Documentation>
 				<Unit label="s"/>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Experiment Duration" parameterType="Float32" modality="required">
+			<ParameterBlueprint name="Experiment Duration" parameterType="Float" modality="required">
 				<Documentation>Duration of the experiment.</Documentation>
 				<Unit label="s"/>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Path Length" parameterType="Float32" modality="required">
+			<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="required">
 				<Documentation>The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]
 </Documentation>
 				<Unit label="cm">
@@ -668,15 +668,15 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SIUnit exponent="1" factor="0.001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Point Separation" parameterType="Float32" modality="optional">
+			<ParameterBlueprint name="Point Separation" parameterType="Float" modality="optional">
 				<Documentation>The spacing between two wavelength values, when a whole spectrum is measured.</Documentation>
 				<Unit label="nm">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="x-Axis Range" modality="required" maxOccurs="1">
+			<CategoryBlueprint name="x-Axis Range" modality="required" maxOccurs="1">
 				<Documentation>The range of x-axis coverage.</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
+				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 					<Documentation>The shortest range.</Documentation>
 					<Unit label="1/cm">
 						<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -696,7 +696,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
+				<ParameterBlueprint name="Max" parameterType="Float" modality="required">
 					<Documentation>The longest range.</Documentation>
 					<Unit label="1/cm">
 						<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -716,9 +716,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="y-Axis Range" modality="optional">
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="y-Axis Range" modality="optional">
+				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 					<Documentation>The smallest range.</Documentation>
 					<Unit label="AU">
 						<SIUnit factor="1" exponent="1">1</SIUnit>
@@ -739,7 +739,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit factor="1" exponent="1">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
+				<ParameterBlueprint name="Max" parameterType="Float" modality="required">
 					<Documentation>The largest range.</Documentation>
 					<Unit label="AU">
 						<SIUnit factor="1" exponent="1">1</SIUnit>
@@ -760,10 +760,10 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit factor="1" exponent="1">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Temperature Range" modality="optional">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Temperature Range" modality="optional">
 				<Documentation>Range of temperature values which should be applied within the experiment</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
+				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 					<Documentation>The lowest temperature  of the solution at which the experiment can be performed</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -775,7 +775,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="optional">
+				<ParameterBlueprint name="Max" parameterType="Float" modality="optional">
 					<Documentation>The highest temperature of the solution at which the experiment can be performed</Documentation>
 					<Unit label="K">
 						<SIUnit>K</SIUnit>
@@ -787,11 +787,11 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit offset="434.07" factor="1.8">K</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-		<ParameterCategoryBlueprint name="Instrument Property" modality="required">
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Instrument Property" modality="required">
 			<Documentation>Instrument settings that can be adjusted.</Documentation>
-			<ParameterBlueprint name="Resolution" parameterType="Float32" modality="required">
+			<ParameterBlueprint name="Resolution" parameterType="Float" modality="required">
 				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02). Use parameter if constant.</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -817,13 +817,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<String>Spectrum</String>
 				</AllowedValue>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Spectral Slit Width" parameterType="Float32" modality="optional">
+			<ParameterBlueprint name="Spectral Slit Width" parameterType="Float" modality="optional">
 				<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use parameter if constant.</Documentation>
 				<Unit label="nm">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Slit Width" parameterType="Float32" modality="required">
+			<ParameterBlueprint name="Slit Width" parameterType="Float" modality="required">
 				<Documentation>The mechanical width of the monochromator slits.</Documentation>
 				<Unit label="mm">
 					<SIUnit exponent="1" factor="0.001">m</SIUnit>
@@ -856,7 +856,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<String>Transmittance, true</String>
 				</AllowedValue>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Integration Period" parameterType="Float32" modality="optional">
+			<ParameterBlueprint name="Integration Period" parameterType="Float" modality="optional">
 				<Documentation>The time interval over which discrete detector readings are averaged to produce a data point.</Documentation>
 				<Unit label="ms">
 					<SIUnit exponent="1" factor="0.001">s</SIUnit>
@@ -887,7 +887,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Detector Types" parameterType="String" modality="optional">
 				<Documentation>The types or names of the detector used for measurement.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Scan Speed" parameterType="Float32" modality="optional">
+			<ParameterBlueprint name="Scan Speed" parameterType="Float" modality="optional">
 				<Documentation>The speed of the scan. 0 for PDA.</Documentation>
 				<Unit label="nm/s">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
@@ -909,16 +909,16 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Sample Position" parameterType="Int" modality="optional">
 				<Documentation>The position of the sample within the sample holder unit.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Spectral Bandwidth Range" modality="optional" parameterType="Float32">
+			<ParameterBlueprint name="Spectral Bandwidth Range" modality="optional" parameterType="Float">
 				<Documentation>The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
 				<Unit label="nm">
 					<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterCategoryBlueprint name="Filter Sequence" maxOccurs="1" modality="optional">
-				<ParameterCategoryBlueprint name="Filter Setting" maxOccurs="unbounded" modality="required">
+			<CategoryBlueprint name="Filter Sequence" maxOccurs="1" modality="optional">
+				<CategoryBlueprint name="Filter Setting" maxOccurs="unbounded" modality="required">
 					<ParameterBlueprint parameterType="String" name="Filter Name" maxOccurs="1" modality="required"/>
-					<ParameterBlueprint name="Lower Bound" parameterType="Float32" modality="required">
+					<ParameterBlueprint name="Lower Bound" parameterType="Float" modality="required">
 						<Documentation>The lower-bound x-axis value from which the specified light source was used.</Documentation>
 						<Unit label="1/cm">
 							<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -938,7 +938,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
-					<ParameterBlueprint name="Upper Bound" parameterType="Float32" modality="required">
+					<ParameterBlueprint name="Upper Bound" parameterType="Float" modality="required">
 						<Documentation>The upper-bound  x-axis value from which the specified light source was used..</Documentation>
 						<Unit label="1/cm">
 							<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -958,9 +958,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
-				</ParameterCategoryBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Spectral Correction" maxOccurs="1" modality="optional">
+				</CategoryBlueprint>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Spectral Correction" maxOccurs="1" modality="optional">
 				<Documentation>TODO</Documentation>
 				<ParameterBlueprint parameterType="Boolean" name="Dark Correction" maxOccurs="1" modality="optional">
 					<Documentation>TODO</Documentation>
@@ -998,8 +998,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<Boolean>false</Boolean>
 					</AllowedValue>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Spectral Smoothing" maxOccurs="1" modality="optional">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Spectral Smoothing" maxOccurs="1" modality="optional">
 				<Documentation>TODO</Documentation>
 				<ParameterBlueprint parameterType="Boolean" name="Smoothing Enabled" maxOccurs="1" modality="optional">
 					<Documentation>Whether smoothing was applied on the raw data collected.</Documentation>
@@ -1013,10 +1013,10 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint parameterType="String" name="Smoothing Method" maxOccurs="unbounded" modality="optional">
 					<Documentation>e.g. Savitsky-Golay filter or moving average</Documentation>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="x-Axis Range" modality="required" maxOccurs="1">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="x-Axis Range" modality="required" maxOccurs="1">
 				<Documentation>The range of x-axis coverage.</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
+				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 					<Documentation>The shortest range.</Documentation>
 					<Unit label="1/cm">
 						<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -1036,7 +1036,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
+				<ParameterBlueprint name="Max" parameterType="Float" modality="required">
 					<Documentation>The longest range.</Documentation>
 					<Unit label="1/cm">
 						<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -1056,9 +1056,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="y-Axis Range" modality="optional">
-				<ParameterBlueprint name="Min" parameterType="Float32" modality="required">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="y-Axis Range" modality="optional">
+				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 					<Documentation>The smallest range.</Documentation>
 					<Unit label="AU">
 						<SIUnit factor="1" exponent="1">1</SIUnit>
@@ -1079,7 +1079,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit factor="1" exponent="1">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float32" modality="required">
+				<ParameterBlueprint name="Max" parameterType="Float" modality="required">
 					<Documentation>The largest range.</Documentation>
 					<Unit label="AU">
 						<SIUnit factor="1" exponent="1">1</SIUnit>
@@ -1100,14 +1100,14 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<SIUnit factor="1" exponent="1">1</SIUnit>
 					</Unit>
 				</ParameterBlueprint>
-			</ParameterCategoryBlueprint>
-			<ParameterCategoryBlueprint name="Light Source Sequence" maxOccurs="1" modality="optional">
-				<ParameterCategoryBlueprint name="Source Used" modality="required" maxOccurs="unbounded">
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Light Source Sequence" maxOccurs="1" modality="optional">
+				<CategoryBlueprint name="Source Used" modality="required" maxOccurs="unbounded">
 					<Documentation>Description of light sources beeing used whithin the experiment described.</Documentation>
 					<ParameterBlueprint name="Source Type" parameterType="String" modality="required">
 						<Documentation>Description of the light source type.</Documentation>
 					</ParameterBlueprint>
-					<ParameterBlueprint name="Lower Bound" parameterType="Float32" modality="required">
+					<ParameterBlueprint name="Lower Bound" parameterType="Float" modality="required">
 						<Documentation>The lower-bound x-axis value from which the specified light source was used.</Documentation>
 						<Unit label="1/cm">
 							<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -1127,7 +1127,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
-					<ParameterBlueprint name="Upper Bound" parameterType="Float32" modality="required">
+					<ParameterBlueprint name="Upper Bound" parameterType="Float" modality="required">
 						<Documentation>The upper-bound  x-axis value from which the specified light source was used..</Documentation>
 						<Unit label="1/cm">
 							<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -1147,23 +1147,23 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<SIUnit factor="1" exponent="-2" offset="0">s</SIUnit>
 						</Unit>
 					</ParameterBlueprint>
-				</ParameterCategoryBlueprint>
-			</ParameterCategoryBlueprint>
-		</ParameterCategoryBlueprint>
-	</PageBlueprint>
-	<PageBlueprint name="Interferogram" modality="optional">
+				</CategoryBlueprint>
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+	</ResultBlueprint>
+	<ResultBlueprint name="Interferogram" modality="optional">
 		<Documentation>I(σ) - record of the modulated component of the interference signal
 measured as a function of retardation by the detector. DISCUSSION—1—An alternate symbol is I (x). DISCUSSION—2—The recommended symbol for the spectrum computed from I (d) is B (n). An alternate symbol is B (s).</Documentation>
-		<VectorSetBlueprint name="Interferogram">
-			<VectorBlueprint name="Time" vectorType="Float32" modality="required" plotUse="dimension" dependency="independent">
+		<SeriesSetBlueprint name="Interferogram">
+			<SeriesBlueprint name="Time" seriesType="Float" modality="required" plotScale="linear" dependency="independent">
 				<Documentation>This is a set of values of dimension
 @length, containing the abscissa value for each raw
 data ordinate value. This set of values has a unit of time: defined @ASTM E 1947-98 and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
 				<Unit label="s">
 					<SIUnit>s</SIUnit>
 				</Unit>
-			</VectorBlueprint>
-			<VectorBlueprint name="Intensity" vectorType="Float32" modality="required" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Intensity" seriesType="Float" modality="required" plotScale="none" dependency="dependent">
 				<Documentation>This is a set of values of dimension
 @length, containing the ordinate values. This set of values
 has a unit of detector-unit. This is a required field for datasets
@@ -1175,14 +1175,14 @@ containing raw data; can be in Absorbance,  Transmittance, or %T  units, Kubelka
 					<SIUnit exponent="-3" factor="1" offset="0">s</SIUnit>
 					<SIUnit exponent="-1" factor="1" offset="0">A</SIUnit>
 				</Unit>
-			</VectorBlueprint>
-		</VectorSetBlueprint>
-		<ParameterCategoryBlueprint name="Measurement Parameters" modality="required" maxOccurs="1">
+			</SeriesBlueprint>
+		</SeriesSetBlueprint>
+		<CategoryBlueprint name="Measurement Parameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
-			<ParameterBlueprint name="Aliasing Ratio" parameterType="Float32" modality="optional">
+			<ParameterBlueprint name="Aliasing Ratio" parameterType="Float" modality="optional">
 				<Documentation>Aliasing—the appearance of features at wavenumbers other than their true value caused by using a sampling frequency less than twice the highest modulation frequency in the interferogram; also known as “folding.” (ASTM E131-02) A fraction whose denominator is the number of possible aliases for a given sample and whose numerator is the number of the alias represented by the data. For sampling at alternate laser fringes, the number of aliases is 2, and the alias for the region starting at zero frequency is 1, giving an ##ALIAS=of 1/2; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Path Length" parameterType="Float32" modality="required">
+			<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="required">
 				<Documentation>b - in a spectrophotometer, the distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent.(ASTM E131-02)</Documentation>
 				<Unit label="cm">
 					<SIUnit exponent="1" factor="0.01">m</SIUnit>
@@ -1191,15 +1191,15 @@ containing raw data; can be in Absorbance,  Transmittance, or %T  units, Kubelka
 					<SIUnit exponent="1" factor="0.001">m</SIUnit>
 				</Unit>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Zero Path Difference" parameterType="Float32" modality="optional">
+			<ParameterBlueprint name="Zero Path Difference" parameterType="Float" modality="optional">
 				<Documentation>The number of data points before zero path difference (ZPD). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form".</Documentation>
 			</ParameterBlueprint>
-		</ParameterCategoryBlueprint>
-	</PageBlueprint>
-	<PageBlueprint name="Peak Table" modality="optional">
+		</CategoryBlueprint>
+	</ResultBlueprint>
+	<ResultBlueprint name="Peak Table" modality="optional">
 		<Documentation>UV peak table</Documentation>
-		<VectorSetBlueprint name="Peak Table">
-			<VectorBlueprint name="Max Position" vectorType="Float64" modality="required" plotUse="attribute" dependency="independent">
+		<SeriesSetBlueprint name="Peak Table">
+			<SeriesBlueprint name="Max Position" seriesType="Float" modality="required" plotScale="none" dependency="independent">
 				<Documentation>Position on x axis  where the peak maximum appears.</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -1214,13 +1214,13 @@ containing raw data; can be in Absorbance,  Transmittance, or %T  units, Kubelka
 					<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
 				</Unit>
 				<Unit label="eV"/>
-			</VectorBlueprint>
-			<VectorBlueprint name="ID" vectorType="Int" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="ID" seriesType="Int" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Peak number used to identify a
 particular peak.
 (ASTM E 1947-98)</Documentation>
-			</VectorBlueprint>
-			<VectorBlueprint name="Start Position" vectorType="Float64" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Start Position" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Peak start position on x axis.</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -1235,8 +1235,8 @@ particular peak.
 					<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
 				</Unit>
 				<Unit label="eV"/>
-			</VectorBlueprint>
-			<VectorBlueprint name="End Position" vectorType="Float64" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="End Position" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Peak end position on x axis.</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="-1" offset="0">m</SIUnit>
@@ -1251,8 +1251,8 @@ particular peak.
 					<SIUnit factor="0.000000000001" exponent="1" offset="0">m</SIUnit>
 				</Unit>
 				<Unit label="eV"/>
-			</VectorBlueprint>
-			<VectorBlueprint name="Width" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Width" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Peak width at half maximum.</Documentation>
 				<Unit label="1/cm">
 					<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
@@ -1264,8 +1264,8 @@ particular peak.
 					<SIUnit factor="0.000000001" exponent="1" offset="0">m</SIUnit>
 				</Unit>
 				<Unit label="eV"/>
-			</VectorBlueprint>
-			<VectorBlueprint name="Height" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Height" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Computed height of the peak; in a scaled data unit. The unit
 for this is the same as that of the raw-data. (ASTM E 1947-98)</Documentation>
 				<Unit label="Absorbance">
@@ -1280,23 +1280,23 @@ for this is the same as that of the raw-data. (ASTM E 1947-98)</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
 				</Unit>
-			</VectorBlueprint>
-			<VectorBlueprint name="Percent Height" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Percent Height" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Computed height percent of the peak; the summation of all quantified peaks in a spectrum should be equal to 100.0. (ASTM E 1947-98)</Documentation>
-			</VectorBlueprint>
-			<VectorBlueprint name="Area" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Area" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Computed area of the peak. (ASTM E 1947-98)</Documentation>
-			</VectorBlueprint>
-			<VectorBlueprint name="Percent Area" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Percent Area" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Compound area percent of the peak: the summation of all quantified peaks in a spectrum should be equal to 100.0. (ASTM E 1947-98)</Documentation>
-			</VectorBlueprint>
-			<VectorBlueprint name="Assignment" vectorType="String" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Assignment" seriesType="String" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Chemical structure assigned to this peak (use Substance ID) (J. Hau, P. Lampen, R.J. Lancashire, R.S. McDonald, P.S. McIntyre, D.N. Rutledge, W. Schrader, A.N. Davies, JCAMP-DX V.6.00 for LC/MS (IUPAC Technical Note 2004) Draft Manuscript for Pure Appl. 20 Chem.)</Documentation>
-			</VectorBlueprint>
-			<VectorBlueprint name="Asymmetry" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Asymmetry" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>The peak asymmetry As measured as As=B/A, where A and B are the widths for the front and back parts of a peak, commonly measured at 10 % peak height for USP at 5 %.  (ASTM E 1947-98)</Documentation>
-			</VectorBlueprint>
-			<VectorBlueprint name="Baseline Start Value" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Baseline Start Value" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Starting value of the computed baseline for this peak; in a scaled data unit, the unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Documentation>
 				<Unit label="Absorbance">
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
@@ -1310,8 +1310,8 @@ for this is the same as that of the raw-data. (ASTM E 1947-98)</Documentation>
 				<Unit label="Arb. Units">
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
 				</Unit>
-			</VectorBlueprint>
-			<VectorBlueprint name="Baseline Stop Value" vectorType="Float32" modality="optional" plotUse="attribute" dependency="dependent">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Baseline Stop Value" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Ending value of the compound baseline for this peak; in a scaled data unit, the
 unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Documentation>
 				<Unit label="Absorbance">
@@ -1326,11 +1326,11 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 				<Unit label="Arb. Units">
 					<SIUnit factor="1" exponent="1" offset="0">1</SIUnit>
 				</Unit>
-			</VectorBlueprint>
-		</VectorSetBlueprint>
-		<ParameterCategoryBlueprint name="Peak Table Parameters" modality="required" maxOccurs="1">
+			</SeriesBlueprint>
+		</SeriesSetBlueprint>
+		<CategoryBlueprint name="Peak Table Parameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the peak table references</Documentation>
-			<ParameterBlueprint name="Path Length" parameterType="Float32" maxOccurs="1" modality="required">
+			<ParameterBlueprint name="Path Length" parameterType="Float" maxOccurs="1" modality="required">
 				<Documentation>Path length during measurement.</Documentation>
 				<Unit label="cm">
 					<SIUnit factor="0.01" exponent="1" offset="0">m</SIUnit>
@@ -1343,9 +1343,9 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 				<AllowedValue><String>Integrated Area</String></AllowedValue>
 				<AllowedValue><String>Other</String></AllowedValue>
 			</ParameterBlueprint>
-		</ParameterCategoryBlueprint>
-	</PageBlueprint>
-	<ParameterCategoryBlueprint name="Instrument Description" modality="required">
+		</CategoryBlueprint>
+	</ResultBlueprint>
+	<CategoryBlueprint name="Instrument Description" modality="required">
 		<Documentation>Information describing the instrument and its environment.</Documentation>
 		<ParameterBlueprint name="Identifier" parameterType="String" modality="required">
 			<Documentation>A unique character string or number to identify the instrument.</Documentation>
@@ -1377,14 +1377,14 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 		<ParameterBlueprint name="Firmware Version" parameterType="String" modality="optional">
 			<Documentation>The version number of the firmware the instrument runs.</Documentation>
 		</ParameterBlueprint>
-		<ParameterBlueprint name="Linear Dispersion" parameterType="Float32" modality="optional">
+		<ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
 			<Documentation>The wavelength dispersion at the exit slit of the instrument. (ASTM E131-02)</Documentation>
 			<Unit label="nm/mm">
 				<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
 				<SIUnit exponent="1" factor="0.001">m</SIUnit>
 			</Unit>
 		</ParameterBlueprint>
-		<ParameterBlueprint name="Resolution" parameterType="Float32" modality="required">
+		<ParameterBlueprint name="Resolution" parameterType="Float" modality="required">
 			<Documentation>Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02)</Documentation>
 			<Unit label="nm">
 				<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
@@ -1396,8 +1396,8 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 		<ParameterBlueprint name="Comments" parameterType="String" modality="optional">
 			<Documentation>Comments about the instrument.</Documentation>
 		</ParameterBlueprint>
-	</ParameterCategoryBlueprint>
-	<ParameterCategoryBlueprint name="Instrument Owner" modality="optional" maxOccurs="unbounded">
+	</CategoryBlueprint>
+	<CategoryBlueprint name="Instrument Owner" modality="optional" maxOccurs="unbounded">
 		<Documentation>A person or an agency who owns the instrument.</Documentation>
 		<ParameterBlueprint name="Name" parameterType="String" modality="required">
 			<Documentation>Name of the instrument owner.</Documentation>
@@ -1405,8 +1405,8 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 		<ParameterBlueprint name="Contact" parameterType="String" modality="required">
 			<Documentation>Contact information.</Documentation>
 		</ParameterBlueprint>
-	</ParameterCategoryBlueprint>
-	<ParameterCategoryBlueprint name="Instrument Location" modality="optional">
+	</CategoryBlueprint>
+	<CategoryBlueprint name="Instrument Location" modality="optional">
 		<Documentation>The physical location of the instrument.</Documentation>
 		<ParameterBlueprint name="Name" parameterType="String" modality="required">
 			<Documentation>Name of the location.</Documentation>
@@ -1414,5 +1414,5 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 		<ParameterBlueprint name="Contact" parameterType="String" modality="required">
 			<Documentation>Contact information.</Documentation>
 		</ParameterBlueprint>
-	</ParameterCategoryBlueprint>
+	</CategoryBlueprint>
 </Technique>

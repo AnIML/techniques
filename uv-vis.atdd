@@ -656,6 +656,37 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 	<SampleRoleBlueprint name="Wavelength Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>TODO. No Parameters needed. A document reference about the wavelength calibration.</Documentation>
 	</SampleRoleBlueprint>
+	<MethodBlueprint>
+		<CategoryBlueprint name="Instrument Description" modality="required">
+			<Documentation>Information describing the instrument and its environment.</Documentation>
+			<ParameterBlueprint name="Instrument Type" parameterType="String" modality="required">
+				<Documentation>Is the instrument single beam, double beam, diode array. TODO: A list of allowed values might be necessary.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
+				<Documentation>The wavelength dispersion at the exit slit of the instrument. (ASTM E131-02)</Documentation>
+				<Quantity name="Ratio">
+					<Unit label="nm/mm">
+						<SIUnit exponent="1" factor="1e-9">m</SIUnit>
+						<SIUnit exponent="1" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="required">
+				<Documentation>Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02)</Documentation>
+				<Quantity name="Length">
+					<Unit label="nm">
+						<SIUnit exponent="1" factor="1e-9">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Description" parameterType="String" modality="optional">
+				<Documentation>A textual description of the instrument.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Comments" parameterType="String" modality="optional">
+				<Documentation>Comments about the instrument.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>	
+	</MethodBlueprint>
 	<ResultBlueprint name="Spectrum" modality="optional">
 		<Documentation>An actual or notational arrangement of the component parts of any phenomenon, as electromagnetic waves or particles, ordered in accordance with the magnitude of a common physical property, as wavelength, frequency, or mass.</Documentation>
 		<SeriesSetBlueprint name="Spectrum">
@@ -1565,29 +1596,5 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</ResultBlueprint-->
-	<!--CategoryBlueprint name="Instrument Description" modality="required">
-		<Documentation>Information describing the instrument and its environment.</Documentation>
-		<ParameterBlueprint name="Instrument Type" parameterType="String" modality="required">
-			<Documentation>Is the instrument single beam, double beam, diode array. TODO: A list of allowed values might be necessary.</Documentation>
-		</ParameterBlueprint>
-		<ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
-			<Documentation>The wavelength dispersion at the exit slit of the instrument. (ASTM E131-02)</Documentation>
-			<Unit label="nm/mm">
-				<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-				<SIUnit exponent="1" factor="1e-3">m</SIUnit>
-			</Unit>
-		</ParameterBlueprint>
-		<ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="required">
-			<Documentation>Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02)</Documentation>
-			<Unit label="nm">
-				<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-			</Unit>
-		</ParameterBlueprint>
-		<ParameterBlueprint name="Description" parameterType="String" modality="optional">
-			<Documentation>A textual description of the instrument.</Documentation>
-		</ParameterBlueprint>
-		<ParameterBlueprint name="Comments" parameterType="String" modality="optional">
-			<Documentation>Comments about the instrument.</Documentation>
-		</ParameterBlueprint>
-	</CategoryBlueprint-->
+
 </Technique>

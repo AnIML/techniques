@@ -1336,7 +1336,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Upper Bound" parameterType="Float" modality="required">
-						<Documentation>The upper-bound  x-axis value from which the specified light source was used..</Documentation>
+						<Documentation>The upper-bound x-axis value from which the specified light source was used..</Documentation>
 						<Quantity name="Reciprocal Length">
 							<Unit label="1/cm">
 								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>

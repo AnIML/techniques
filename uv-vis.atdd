@@ -744,7 +744,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<SeriesBlueprint name="Filter Description" seriesType="String" dependency="dependent" modality="required" plotScale="none">
 				</SeriesBlueprint>
 			</SeriesSetBlueprint>
-
 			<!--  <ParameterBlueprint name="Resolution" parameterType="Float" modality="required">
 				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02). Use parameter if constant.</Documentation>
 				<Unit label="1/cm">
@@ -828,7 +827,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</Unit>
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Degree of Derivatization " parameterType="Int" modality="required">
+			<ParameterBlueprint name="Degree of Derivatization" parameterType="Int" modality="required">
 				<Documentation>Derivative spectra can be used to enhance differences among spectra, to resolve overlapping bands in qualitative analysis and, most importantly, to reduce the effects of interference from scattering, matrix, or other absorbing compounds in quantitative analysis. Use this parameter only to state how the data were acquired. Values: 0-Not differentiated (default), 1-1st derivative spectrum, 2-2nd derivative spectrum, 3-3rd derivative spectrum, 4-4th derivative spectrum.</Documentation>
 				<AllowedRange>
 					<Min included="true">
@@ -1073,7 +1072,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
 			</CategoryBlueprint>
-		</CategoryBlueprint>		
+		</CategoryBlueprint>
 	</MethodBlueprint>
 	<ResultBlueprint name="Spectrum" modality="optional">
 		<Documentation>An actual or notational arrangement of the component parts of any phenomenon, as electromagnetic waves or particles, ordered in accordance with the magnitude of a common physical property, as wavelength, frequency, or mass.</Documentation>

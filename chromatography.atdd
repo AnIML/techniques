@@ -1,0 +1,2456 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- STATUS:  reviewed the Sample Introduced and started on Mobile Phaase -->
+<!-- NOTES AND QUESTIONS 
+- Can we have generic parameters in AnIML?  What about a free text AllowedValue?
+- Mass - what about moles rather than kg.  Or do we mean weight not mass?  Mass supllied or mass measured?
+- Does chromatography need allowable values on phase?
+-  Storage Information and Storage Location definitions redundant in UV-Vis (especially Sample and Substance)
+- Why support K or F in temp.  Scientists all use C
+- >&quot ? in Description?
+-  Molecular Mass or Average Molecular Mass - Wikipedia recommends molar mass and I agree as this is computed
+- Need a Sample Parameters module?
+-  Table column titles: now space delimited?  One word translated into variables more easily.  Space is user friendly.
+- Start - End, or Begin - End and Start - Stop
+- Fraction table - need to be able to reference a Peak Table !!!!!!!! But how?  Possibly just by time
+- Volume as ml not mL for now
+- Timestamp not Time Stamp?
+- MethodBlueprint should be unbounded in schema?  No, just multiple categories
+- Avoiding shorthand <Parameter/>
+- Help with maxOccurs 1 or unbounded in categories, parameters, SeriesSet etc.
+- Tabular Series dependency="independent" or leave blank?
+- Does fraction collecting need to move over to Detector technique?  UV and Mass-based fractionation parameters are different and rather closely aligned with Detector.  
+- are these real time or post-processing :-)
+
+MFB Feb 13, 2009
+- SAMPLES -  completed (notes from Dale's design)
+- Need UniformSampling boolean under injection?
+-  Autosampler position (tray carrier, tray, vial)
+-  Supplier ? or is that Source?
+- Check that it is OK that we omitted BolingPoint, MeltingPoint, Refractive Index 
+-  So we need Substance Number?
+-  Do we need Substance concentration if we have Sample concentration?  Probably
+-  What is InChI?
+-  Do we need Disposal, Handling precautions, storage, lot, etc for Substance if we have them in Sample?  Might need Lot
+-  Added Lot and Origin for Substance under Sample
+- Readback data in CategorySet not in SeriesSet as it is not a sample measurement
+- I think Inlet in Dale's design needs review is this GC and LC or just one?
+- µ or um?
+- check Activated Position (now unbounded)
+INJECTION 
+SAMPLE REFRENCE SET - part of Samples
+CONTROL METHOD
+- 
+-->
+<Technique name="Chromatography" version="0.3" extension="false" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:org:astm:animl:schema:technique:draft:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:1.2
+http://schemas.animl.org/current/animl-technique.xsd">
+	<Documentation>Technique Definition for Chromatography (A physical method of separation in which the components to be separated are distributed between two phases, one of which is stationary (stationary phase) while the other (the mobile phase) moves in a definite direction. 1993, 65, 823; O.B. 92; 1990, 62, 2179; see IUPAC Gold Book).  Chromatography, as here constituted, comprises sample introduction, separation, and fractionation.  Chromatography is a sample alteration technique that separates complex introduced samples  into their component parts; thus it alters, but does not measure or detect, the sample.
+	</Documentation>
+	<!-- -->
+	<!-- * Sample Introduced -->
+	<!-- ================== -->
+	<SampleRoleBlueprint name="Sample Introduced" samplePurpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true">
+		<Documentation>A sample or subsample introduced to the chromatography system.</Documentation>
+		<!-- -->
+		<!-- * Description * -->
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+			<Documentation>Parameters describing the sample.</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Owner" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample owner to whom results and fractions should be returned.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the storage conditions for the sample. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Location where sample is stored.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Receipt Timestamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date-timestamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix; (i.e. supercritical fluid extraction); See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparer" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Person preparing the sample for analysis.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Amount Supplied" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Amount of material supplied (not all of which may have been been introduced).</Documentation>
+				<Quantity name="Moles">
+					<Unit label="mol">
+						<SIUnit exponent="1">mol</SIUnit>
+					</Unit>
+					<Unit label="µmol">
+						<SIUnit exponent="1">kg</SIUnit>
+					</Unit>
+					<Unit label="nmol">
+						<SIUnit exponent="1">kg</SIUnit>
+					</Unit>
+					<Unit label="pmol">
+						<SIUnit exponent="1">kg</SIUnit>
+					</Unit>
+				</Quantity>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume Supplied" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the supplied sample..</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µl">
+						<SIUnit exponent="3" factor="1e-9">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+					<Unit label="M">
+						<SIUnit>mol</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mM">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µM">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="nM">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="pM">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Phase of matter of the sample; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Ppressure of sample when introduced.</Documentation>
+				<Quantity name="Pressure">
+					<Unit label="Pa">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<!-- MFB TODO difficult! -->
+					<Unit label="psi">
+						<SIUnit exponent="1" factor="2.20462">kg</SIUnit>
+						<SIUnit exponent="-1" factor="0.24908891">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<Unit label="bar">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<Unit label="kg/cm2">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample temperature ias introduced, if significantly different from room temperature.  See Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample density as introduced. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
+				<Quantity name="Density">
+					<Unit label="g/cm3">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-2">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional" maxOccurs="1">
+				<Documentation>&quot;True&quot; if uniform sampling used.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Autosampler Tray Position" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Tray position for sample container location.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Autosampler Sample Position" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample location on tray, whether a vial or a well.  May be in terms of sequential, alphanumeric, or coordinate position.  Coordinate positions are normally expressed in comma-delimited x,y notation.</Documentation>
+			</ParameterBlueprint>
+			<!-- TODO.  Check that it is OK that we omitted BolingPoint, MeltingPoint, Refractive Index -->
+		</CategoryBlueprint>
+		<!-- -->
+		<!-- * Substance Description * -->
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			<Documentation>A substance in the sample. A sample may contain multiple substances</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned substance name.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance Type" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for,  a calibration reference, or an impurity.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance ID" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Alphanumeric identifier as an aid to information systems.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Amount Supplied" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Mass of substance supplied (not all of which may have been been introduced).</Documentation>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+				</Quantity>
+				<Quantity name="Moles">
+					<Unit label="mol">
+						<SIUnit exponent="1">mol</SIUnit>
+					</Unit>
+					<Unit label="µmol">
+						<SIUnit exponent="1">kg</SIUnit>
+					</Unit>
+					<Unit label="nmol">
+						<SIUnit exponent="1">kg</SIUnit>
+					</Unit>
+					<Unit label="pmol">
+						<SIUnit exponent="1">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume Supplied" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the substance used to prepare the test material.</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub- and super-scripts are indicated by the prefixes / and ^, respectively. Sub-or super-scripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples: C2H4O2 or C2 H4 O2 (acetic acid); C6 H9 Cr O6 * H2 O (chromic acetate monohydrate); H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
+				<Quantity name="Molar Mass">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1">mol</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+				<Documentation>Textual representation of the chemical structure.</Documentation>
+				<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Chemical structure as SMILES string. See Pure Appl. Chem. 1997, 69, 1137..</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Chemical structure expressed as MOL File. See Pure Appl. Chem. 1997, 69, 1137.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+					<Documentation>Chemical structure expressed in the Chemical Markup Language (CML). See Chemical markup Language and XML Part I. Basic principles, P. Murray-Rust and H. S. Rzepa, J. Chem. Inf. Comp. Sci., 1999, 39, 928.</Documentation>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+				<Documentation>Set of different identifiers describing a substance.</Documentation>
+				<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Name according to Chemical Abstracts naming conventions. See Appendix IV of the 1985 CAS Index Guide.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28, 12.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<!-- -->
+	<!-- * Mobile Phase -->
+	<!-- MFB a 12 port solvent switching valve should be able to select between 6 solvents - but usually only three used at a time -->
+	<!-- MFB Shimadzu LC controllers can control up to 3 pumps at a time (3 way gradients) -->
+	<!-- ================== -->
+	<SampleRoleBlueprint name="Mobile Phase A" samplePurpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true">
+		<Documentation>Mobile phases used</Documentation>
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+			<Documentation>Parameters describing the sample.</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>A description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the storage conditions for the sample. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Location where sample is stored.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Receipt Timestamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/timestamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix; (i.e. supercritical fluid extraction); See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparerr" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Person preparing the sample for analysis.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Percent Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Percent volume of the sample.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the sample.</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Mass used from ASTM E 1947-98.</Documentation>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+					<Unit label="pg">
+						<SIUnit exponent="1" factor="1e-15">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample temperature ias introduced, f significantly different from room temperature."</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			<Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned substance name.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance Type" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is
+	represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
+	C2H4O2 or C2 H4 O2 (acetic acid)
+	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
+	H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
+				<Quantity name="Molar Mass">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="0.001">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1">mol</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<Documentation>Description of the chemical structure</Documentation>
+			<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as SMILES string.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).  Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as MOL File</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as CML.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			<Documentation>Set of different identifiers describing a substance.</Documentation>
+			<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
+	alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO InChI Definition</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Mobile Phase B" samplePurpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true">
+		<Documentation>Mobile phases used</Documentation>
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+			<Documentation>Parameters describing the sample.</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>A description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the storage conditions for the sample. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Location where sample is stored.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Receipt Timestamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/timestamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix; (i.e. supercritical fluid extraction); See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparerr" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Person preparing the sample for analysis.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Percent Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Percent volume of the sample.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the sample.</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Mass used from ASTM E 1947-98.</Documentation>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+					<Unit label="pg">
+						<SIUnit exponent="1" factor="1e-15">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample temperature ias introduced, f significantly different from room temperature."</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			<Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned substance name.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance Type" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is
+	represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
+	C2H4O2 or C2 H4 O2 (acetic acid)
+	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
+	H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
+				<Quantity name="Molar Mass">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="0.001">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1">mol</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<Documentation>Description of the chemical structure</Documentation>
+			<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as SMILES string.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).  Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as MOL File</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as CML.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			<Documentation>Set of different identifiers describing a substance.</Documentation>
+			<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
+	alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO InChI Definition</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Mobile Phase C" samplePurpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true">
+		<Documentation>Mobile phases used</Documentation>
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+			<Documentation>Parameters describing the sample.</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>A description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the storage conditions for the sample. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Location where sample is stored.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Receipt Timestamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/timestamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix; (i.e. supercritical fluid extraction); See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparerr" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Person preparing the sample for analysis.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Percent Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Percent volume of the sample.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the sample.</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Mass used from ASTM E 1947-98.</Documentation>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+					<Unit label="pg">
+						<SIUnit exponent="1" factor="1e-15">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample temperature ias introduced, f significantly different from room temperature."</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			<Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned substance name.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance Type" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is
+	represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
+	C2H4O2 or C2 H4 O2 (acetic acid)
+	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
+	H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
+				<Quantity name="Molar Mass">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="0.001">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1">mol</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<Documentation>Description of the chemical structure</Documentation>
+			<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as SMILES string.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).  Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as MOL File</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as CML.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			<Documentation>Set of different identifiers describing a substance.</Documentation>
+			<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
+	alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO InChI Definition</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Mobile Phase D" samplePurpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true">
+		<Documentation>Mobile phases used</Documentation>
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+			<Documentation>Parameters describing the sample.</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>A description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the storage conditions for the sample. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Location where sample is stored.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Receipt Timestamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/timestamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix; (i.e. supercritical fluid extraction); See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparerr" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Person preparing the sample for analysis.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Percent Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Percent volume of the sample.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the sample.</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Mass used from ASTM E 1947-98.</Documentation>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+					<Unit label="pg">
+						<SIUnit exponent="1" factor="1e-15">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample temperature ias introduced, f significantly different from room temperature."</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			<Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned substance name.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance Type" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is
+	represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
+	C2H4O2 or C2 H4 O2 (acetic acid)
+	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
+	H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
+				<Quantity name="Molar Mass">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="0.001">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1">mol</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<Documentation>Description of the chemical structure</Documentation>
+			<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as SMILES string.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).  Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as MOL File</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as CML.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			<Documentation>Set of different identifiers describing a substance.</Documentation>
+			<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
+	alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO InChI Definition</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Additive" samplePurpose="consumed" modality="optional" maxOccurs="unbounded" inheritable="true">
+		<Documentation>Additives used</Documentation>
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+			<Documentation>Parameters describing the sample.</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>A description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the storage conditions for the sample. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Location where sample is stored.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Receipt Timestamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/timestamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix; (i.e. supercritical fluid extraction); See ASTM E 2077-00</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparer" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Person preparing the sample for analysis.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Percent Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Percent volume of the sample.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the sample.</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Mass used from ASTM E 1947-98.</Documentation>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+					<Unit label="pg">
+						<SIUnit exponent="1" factor="1e-15">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Phase of matter of the sample; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample pressure as introduced.</Documentation>
+				<Quantity name="Pressure">
+					<Unit label="Pa">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<!-- MFB TODO difficult! -->
+					<Unit label="psi">
+						<SIUnit exponent="1" factor="2.20462">kg</SIUnit>
+						<SIUnit exponent="-1" factor="0.24908891">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<Unit label="bar">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<Unit label="kg/cm2">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample temperature ias introduced, f significantly different from room temperature."</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			<Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned substance name.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance Type" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is
+	represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
+	C2H4O2 or C2 H4 O2 (acetic acid)
+	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
+	H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
+				<Quantity name="Molar Mass">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1">mol</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<Documentation>Description of the chemical structure</Documentation>
+			<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as SMILES string.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).  Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as MOL File</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as CML.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			<Documentation>Set of different identifiers describing a substance.</Documentation>
+			<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
+	alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO InChI Definition</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Sample Collected" samplePurpose="produced" modality="optional" maxOccurs="unbounded" inheritable="true">
+		<Documentation>Description of fractionated samples collected.</Documentation>
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+			<Documentation>Parameters describing the sample.</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<!-- ParameterBlueprint name="SampleID" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Alphanumeric identifier as an aid to information systems</Documentation>
+			</ParameterBlueprint-->
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>A description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the storage conditions for the sample. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Location where sample is stored.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Receipt Timestamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/timestamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix; (i.e. supercritical fluid extraction); See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparer" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Person preparing the sample for analysis.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Percent Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Percent volume of the sample.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the sample.</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Mass used from ASTM E 1947-98.</Documentation>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+					<Unit label="pg">
+						<SIUnit exponent="1" factor="1e-15">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Phase of matter of the sample; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample pressure as introduced.</Documentation>
+				<Quantity name="Pressure">
+					<Unit label="Pa">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<!-- MFB TODO difficult! -->
+					<Unit label="psi">
+						<SIUnit exponent="1" factor="2.20462">kg</SIUnit>
+						<SIUnit exponent="-1" factor="0.24908891">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<Unit label="bar">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<Unit label="kg/cm2">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample temperature ias introduced, f significantly different from room temperature."</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			<Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned substance name.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance Type" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is
+	represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
+	C2H4O2 or C2 H4 O2 (acetic acid)
+	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
+	H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
+				<Quantity name="Molar Mass">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1">mol</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<Documentation>Description of the chemical structure</Documentation>
+			<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as SMILES string.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).  Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as MOL File</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as CML.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			<Documentation>Set of different identifiers describing a substance.</Documentation>
+			<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
+	alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO InChI Definition</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Wash Solvent Weak" samplePurpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true">
+		<Documentation>Second injector solvent wash</Documentation>
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+			<Documentation>Parameters describing the sample.</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>A description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the storage conditions for the sample. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Location where sample is stored.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Receipt Timestamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/timestamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix; (i.e. supercritical fluid extraction); See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparerr" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Person preparing the sample for analysis.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Percent Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Percent volume of the sample.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the sample.</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Mass used from ASTM E 1947-98.</Documentation>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+					<Unit label="pg">
+						<SIUnit exponent="1" factor="1e-15">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample temperature ias introduced, f significantly different from room temperature."</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			<Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned substance name.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance Type" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is
+	represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
+	C2H4O2 or C2 H4 O2 (acetic acid)
+	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
+	H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
+				<Quantity name="Molar Mass">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="0.001">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1">mol</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<Documentation>Description of the chemical structure</Documentation>
+			<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as SMILES string.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).  Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as MOL File</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as CML.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			<Documentation>Set of different identifiers describing a substance.</Documentation>
+			<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
+	alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO InChI Definition</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<SampleRoleBlueprint name="Wash Solvent Strong" samplePurpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true">
+		<Documentation>First injector solvent wash</Documentation>
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+			<Documentation>Parameters describing the sample.</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned name of the sample. See ASTM E 1947-98.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>A description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of the storage conditions for the sample. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Location where sample is stored.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Receipt Timestamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/timestamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix; (i.e. supercritical fluid extraction); See ASTM E 2077-00.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Preparerr" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<Documentation>Person preparing the sample for analysis.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Percent Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Percent volume of the sample.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Volume of the sample.</Documentation>
+				<Quantity name="Volume">
+					<Unit label="ml">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Mass used from ASTM E 1947-98.</Documentation>
+				<Quantity name="Mass">
+					<Unit label="g">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+					</Unit>
+					<Unit label="mg">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+					</Unit>
+					<Unit label="µg">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+					</Unit>
+					<Unit label="ng">
+						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
+					</Unit>
+					<Unit label="pg">
+						<SIUnit exponent="1" factor="1e-15">kg</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Concentration of sample.</Documentation>
+				<Quantity name="Concentration">
+					<Unit label="g/ml">
+						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="mg/ml">
+						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="µg/ml">
+						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
+						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
+					</Unit>
+					<Unit label="ml/l">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="-3" factor="1e-3">m</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>Sample temperature ias introduced, f significantly different from room temperature."</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
+			<Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>User-assigned substance name.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Common, trade, or other names.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Substance Type" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Lot or batch name/number</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Origin" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Sample source.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is
+	represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
+	C2H4O2 or C2 H4 O2 (acetic acid)
+	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
+	H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
+				<Quantity name="Molar Mass">
+					<Unit label="g/mol">
+						<SIUnit exponent="1" factor="0.001">kg</SIUnit>
+						<SIUnit exponent="-1" factor="1">mol</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+			<Documentation>Description of the chemical structure</Documentation>
+			<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as SMILES string.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).  Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as MOL File</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+				<Documentation>TODO Chemical structure as CML.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+			<Documentation>Set of different identifiers describing a substance.</Documentation>
+			<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
+	alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>TODO InChI Definition</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+	</SampleRoleBlueprint>
+	<!-- Here or in Method? -->
+	<!--SampleRoleBlueprint name="Separation Medium" samplePurpose="consumed" modality="required" maxOccurs="unbounded" inheritable="true">
+	</SampleRoleBlueprint-->
+	<!-- -->
+	<!-- * Methods * -->
+	<!-- ================== -->
+	<MethodBlueprint>
+		<!-- PROBLEM - AUTOSAMPLERS ARE SOMETIMES CONTROLLED SEPARATELY  (CTC Leap) -->
+		<CategoryBlueprint name="Instrument System Description" modality="optional" maxOccurs="1">
+			<Documentation>Instrument module information</Documentation>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Type" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Description" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Part Number" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Serial Number" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Identifier" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Manufacturer" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Operating System Name" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Operating System Version" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Control Software Name" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Control Software Version" parameterType="String" modality="optional"/>
+			<ParameterBlueprint name="Firmware Version" parameterType="String" modality="optional"/>
+		</CategoryBlueprint>
+		<!-- Sciex Analyst CTC PAL Autosampler Method, Waters Acquity Autosampler -->
+		<CategoryBlueprint name="Sample Introduction" modality="optional" maxOccurs="unbounded">
+			<Documentation>Sample introducton includes manual or autosampler injection.</Documentation>
+			<CategoryBlueprint name="Injector Description">
+				<ParameterBlueprint name="Delay Time Interval" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Equilibration Time Interval" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="ADC Delay Interval" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<!-- Needs hotel info -->
+				<ParameterBlueprint name="Injector Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Injector Model" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Injector Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Injector Driver Version" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Injector Firmware Version" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Syringe Volume" parameterType="Float" modality="optional" maxOccurs="1">
+					<Quantity name="Volume">
+						<Unit label="ml">
+							<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+						</Unit>
+						<Unit label="µl">
+							<SIUnit exponent="3" factor="1e-9">m</SIUnit>
+						</Unit>
+						<Unit label="nl">
+							<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Syringe Model" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Loop Volume 1" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation/>
+					<Quantity name="Volume">
+						<Unit label="ml">
+							<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+						</Unit>
+						<Unit label="µl">
+							<SIUnit exponent="3" factor="1e-9">m</SIUnit>
+						</Unit>
+						<Unit label="nl">
+							<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Loop Volume 2" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation/>
+					<Quantity name="Volume">
+						<Unit label="ml">
+							<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+						</Unit>
+						<Unit label="µl">
+							<SIUnit exponent="3" factor="1e-9">m</SIUnit>
+						</Unit>
+						<Unit label="nl">
+							<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Sample Introduction Method Description">
+				<ParameterBlueprint name="Method Name" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Tray Container Position" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Position of shelf container that holds the tray or rack.  Not applicable to all systems.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Tray Container Type" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Description of the shelf container.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Sample Container Position" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Position of sample container on the tray or rack.  Many systems should implement this.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Sample Container Type" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>ANSI Name or other description. </Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Sequential Position" parameterType="Int" modality="optional" maxOccurs="1">
+					<Documentation>(e.g. 16).</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Addressed Position" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>(e.g. B4).</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Row-Column Position" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>(e.g. 2:4; unrestricted delimiter).</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Injection Volume" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Pre Air Gap Volume" parameterType="Float" modality="optional" maxOccurs="1">
+					<Quantity name="Volume">
+						<Unit label="ml">
+							<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+						</Unit>
+						<Unit label="µl">
+							<SIUnit exponent="3" factor="1e-9">m</SIUnit>
+						</Unit>
+						<Unit label="nl">
+							<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Post Air Gap Volume" parameterType="Float" modality="optional" maxOccurs="1">
+					<Quantity name="Volume">
+						<Unit label="ml">
+							<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+						</Unit>
+						<Unit label="µl">
+							<SIUnit exponent="3" factor="1e-9">m</SIUnit>
+						</Unit>
+						<Unit label="nl">
+							<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Pre Clean Strong Wash Volume" parameterType="Float" modality="optional" maxOccurs="1">
+					<Quantity name="Volume">
+						<Unit label="ml">
+							<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+						</Unit>
+						<Unit label="µl">
+							<SIUnit exponent="3" factor="1e-9">m</SIUnit>
+						</Unit>
+						<Unit label="nl">
+							<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Pre Clean Weak Wash Volume" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Pre Clean Sample Volume" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Syringe Fill Speed" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Syringe Filling Strokes" parameterType="Int" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Inject Location" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Injection Speed" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Pre Inject Delay" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Post Inject Delay" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Post Clean Solvent 1" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Post Clean Solvent 2" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Valve Clean Solvent 1" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Valve Clean Solvent 2" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Replicate Count" parameterType="Int" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Analysis Time" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Column Temperature" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Column Alarm Band" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Sample Temperature" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Loop Offline Trigger" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Column Selector Position" parameterType="Int" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Loop Overfill Factor" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Column Selector Equilibration Time" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Needle Placement (from bottom)" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Needle Overfill Flush" parameterType="Float" modality="optional" maxOccurs="1"/>
+				<!-- various valve events-->
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<!-- GC  INLET -->
+		<!-- MFB first pass completed from Dale's entries -->
+		<CategoryBlueprint name="Inlet" modality="optional" maxOccurs="unbounded">
+			<SeriesSetBlueprint name="Temperature Control Table">
+				<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
+					<Quantity name="Time">
+						<Unit label="min">
+							<SIUnit exponent="1" factor="0.1666666">s</SIUnit>
+						</Unit>
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Temperature" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+					<Quantity name="Temperature">
+						<Unit label="K">
+							<SIUnit>K</SIUnit>
+						</Unit>
+						<Unit label="°C">
+							<SIUnit offset="-273.15">K</SIUnit>
+						</Unit>
+						<Unit label="°F">
+							<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+						</Unit>
+					</Quantity>
+				</SeriesBlueprint>
+				<!-- TODO is RageChange really needed??-->
+				<SeriesBlueprint name="Rate Change" seriesType="Int" plotScale="linear" dependency="dependent" modality="optional">
+					<Quantity name="Pressure">
+						<Unit label="Pa">
+							<SIUnit exponent="1">kg</SIUnit>
+							<SIUnit exponent="-1">m</SIUnit>
+							<SIUnit exponent="-2">s</SIUnit>
+						</Unit>
+						<!-- MFB TODO difficult! -->
+						<Unit label="psi">
+							<SIUnit exponent="1" factor="2.20462">kg</SIUnit>
+							<SIUnit exponent="-1" factor="0.24908891">m</SIUnit>
+							<SIUnit exponent="-2">s</SIUnit>
+						</Unit>
+						<Unit label="bar">
+							<SIUnit exponent="1">kg</SIUnit>
+							<SIUnit exponent="-1">m</SIUnit>
+							<SIUnit exponent="-2">s</SIUnit>
+						</Unit>
+						<Unit label="kg/cm2">
+							<SIUnit exponent="1">kg</SIUnit>
+							<SIUnit exponent="-1">m</SIUnit>
+							<SIUnit exponent="-2">s</SIUnit>
+						</Unit>
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Hold Time" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+					<Quantity name="Time">
+						<Unit label="min">
+							<SIUnit exponent="1" factor="0.1666666">s</SIUnit>
+						</Unit>
+					</Quantity>
+				</SeriesBlueprint>
+			</SeriesSetBlueprint>
+			<SeriesSetBlueprint name="Flow Control Table">
+				<!-- IS THIS LC OR GC OR SFC??
+			SeriesBlueprint name="Time" seriesType="Float" plotScale="none" dependency="independent" modality="required">
+					<Quantity name="Time">
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Module" seriesType="String" plotScale="none" dependency="dependent">
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Event" seriesType="String" plotScale="none" dependency="dependent">
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Parameter" seriesType="Float" plotScale="none" dependency="dependent">
+				</SeriesBlueprint-->
+				<SeriesBlueprint name="Rate Change" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+					<Quantity name="Temperature">
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Flow Pressure" seriesType="Int" plotScale="linear" dependency="dependent" modality="optional">
+					<Quantity name="Pressure">
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Hold Time" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+					<Quantity name="Time">
+					</Quantity>
+				</SeriesBlueprint>
+			</SeriesSetBlueprint>
+			<ParameterBlueprint name="Flow Mode" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>When either constant Pressure or Constant Flow is used then a single Flow or Pressure variable is used.  When either Ramp Flow or Ramp Pressure is selected, then the Flow Control Table should be used.</Documentation>
+				<AllowedValue>
+					<String>Ramp Flow</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Ramp Pressure</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Constant Flow</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Constant Pressure</String>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="GasType" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+			<CategoryBlueprint name="Flow Settings" modality="optional" maxOccurs="unbounded">
+				<ParameterBlueprint name="Total Flow" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+				<ParameterBlueprint name="Flow Mode" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+				<ParameterBlueprint name="Split Ratio" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+				<ParameterBlueprint name="Split Flow" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+				<ParameterBlueprint name="Purge Time" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+				<ParameterBlueprint name="Purge Flow" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+				<ParameterBlueprint name="Septum Purge Time" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+				<ParameterBlueprint name="Septum Purge Flow" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<!-- LC, SFC PUMPS -->
+		<CategoryBlueprint name="Pump" modality="optional" maxOccurs="unbounded">
+			<Documentation>Pumps come with or without switches. A simple pump would generally use a switch to introduce solvents. Pumps have event tables for introducing solvents.  A quad pump(4) can introduce upto 4 solvents at one time. All solvents combine to equal 100%. You could have one only one solvent being introduced and that solvent would equal 100%.</Documentation>
+			<CategoryBlueprint name="Pump Controller">
+				<ParameterBlueprint name="Controller Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Controller Model" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Controller Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Pump A Description">
+				<ParameterBlueprint name="Pump Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Pump Model" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Pump Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Pump B Description">
+				<ParameterBlueprint name="Pump Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Pump Model" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Pump Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Pump C Description">
+				<ParameterBlueprint name="Pump Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Pump Model" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Pump Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			</CategoryBlueprint>
+			<!-- CHECK FOR SFC WITH BACKPRESSURE REGULATORS -->
+			<CategoryBlueprint name="Pump Method">
+				<SeriesSetBlueprint name="Control Table">
+					<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
+						<Quantity name="Time">
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Event Name" seriesType="String" plotScale="none" dependency="dependent" modality="required">
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Flow Rate" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+						<Quantity name="Flow Rate">
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Max Pressure" seriesType="Int" plotScale="linear" dependency="dependent" modality="optional">
+						<Quantity name="Pressure">
+						</Quantity>
+					</SeriesBlueprint>
+					<!-- how do we know which solvent was used in which position - do we care?; how do we allow this multiple times and specify the solvent name?-->
+					<SeriesBlueprint name="% Mobile Phase A" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+						<Quantity name="Percent">
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="% Mobile Phase B" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+						<Quantity name="Percent">
+						</Quantity>
+					</SeriesBlueprint>
+					<!--MFB  A and B are expressed as fractions of 100%, while C is simply flow rate -->
+					<SeriesBlueprint name="Mobile Phase C Flow" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+						<Quantity name="Percent">
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Curve" seriesType="Int" plotScale="none" dependency="dependent" modality="optional">
+						<Quantity name="Percent">
+						</Quantity>
+					</SeriesBlueprint>
+				</SeriesSetBlueprint>
+				<CategoryBlueprint name="Pump Settings">
+					<!-- should Pumping Mode be required?-->
+					<ParameterBlueprint name="Pumping Mode" parameterType="String" maxOccurs="1" modality="required">
+						<Documentation/>
+						<AllowedValue>
+							<String>Binary Gradient</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Isocratic</String>
+						</AllowedValue>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Pressure Minimum" parameterType="Float" maxOccurs="1" modality="optional">
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Pressure Maximum" parameterType="Float" maxOccurs="1" modality="optional">
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Pre-run Equilibration Time" parameterType="Float" maxOccurs="1" modality="optional">
+					</ParameterBlueprint>
+				</CategoryBlueprint>
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Separation Medium" modality="optional" maxOccurs="unbounded">
+			<ParameterBlueprint name="Container" parameterType="String" modality="optional" maxOccurs="unbounded">
+				<AllowedValue>
+					<String>Packed Column</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Open Tubular Column</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Plate</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Paper</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Other</String>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Type" parameterType="String" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Description" parameterType="String" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Part Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Batch Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Container Diameter" parameterType="Float" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Container Length" parameterType="Float" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Film Thickness" parameterType="Float" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Particle Size" parameterType="Float" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint name="Pore Size" parameterType="Float" modality="optional" maxOccurs="1"/>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Oven" modality="optional" maxOccurs="unbounded">
+			<Documentation>These settings control the temperature of the oven.</Documentation>
+			<CategoryBlueprint name="Oven Description">
+				<ParameterBlueprint name="Oven Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Oven Model" parameterType="String" modality="optional" maxOccurs="1"/>
+				<ParameterBlueprint name="Oven Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Temperature Control" modality="optional" maxOccurs="unbounded">
+				<SeriesSetBlueprint name="Control Table">
+					<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
+						<Quantity name="Time">
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Temperature" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+						<Quantity name="Temperature">
+						</Quantity>
+					</SeriesBlueprint>
+					<!-- TODO is Rate Change really needed? -->
+					<SeriesBlueprint name="Rate Change" seriesType="Int" plotScale="linear" dependency="dependent" modality="optional">
+						<Quantity name="Pressure">
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Hold Time" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+						<Quantity name="Time">
+						</Quantity>
+					</SeriesBlueprint>
+				</SeriesSetBlueprint>
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Switch Valve" modality="optional" maxOccurs="unbounded">
+			<Documentation>Switching valves can be used to select solvents, columns, or as detector diverters.</Documentation>
+			<SeriesSetBlueprint name="Control Table">
+				<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent">
+					<Quantity name="Time">
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Switch Position" seriesType="String" plotScale="none" dependency="dependent">
+				</SeriesBlueprint>
+				<!-- note I changed allowed values from Open-Closed to Active-Inactive with a destination -->
+				<!-- what about contact closure vs pulse??-->
+				<SeriesBlueprint name="Switch State" seriesType="String" plotScale="none" dependency="dependent">
+					<AllowedValue>
+						<String>Active</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Inactive</String>
+					</AllowedValue>
+				</SeriesBlueprint>
+			</SeriesSetBlueprint>
+			<ParameterBlueprint parameterType="String" name="Valve Name" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint parameterType="String" name="Manufacturer" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint parameterType="String" name="Model" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint parameterType="String" name="Serial Number" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint parameterType="String" name="Activated Destination" modality="optional" maxOccurs="unbounded"/>
+			<ParameterBlueprint parameterType="String" name="Inactive Destination" modality="optional" maxOccurs="unbounded"/>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Fraction Collector" modality="optional" maxOccurs="unbounded">
+			<Documentation>A fraction collector is attached at the end of a detector or separation container, takes the separated output and places it into individual containers.  Fraction collection has 3 modes: Timed Collection,  Peak Threshold Collection, and Peak Parameter Collection.  It is often, but not always, linked to Peak Table Results</Documentation>
+			<!--ParameterBlueprint parameterType="String" name="Collection Mode" modality="optional" maxOccurs="1">
+				<Documentation/>
+				<AllowedValue>
+					<String>Timed Collection</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Peak Threshold Collection</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Peak Parameter Collection</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Other</String>
+				</AllowedValue>
+			</ParameterBlueprint-->
+			<CategoryBlueprint name="Time-based Collection Parameters">
+				<ParameterBlueprint name="Start Fractionation" parameterType="Float" modality="required" maxOccurs="1">
+					<Documentation>The Time the fraction collecting will begin</Documentation>
+					<Quantity name="Time"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="End Fractionation" parameterType="Float" modality="required" maxOccurs="1">
+					<Documentation>The Time the fraction collecting will End</Documentation>
+					<Quantity name="Time"/>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Max Duration" parameterType="Float" modality="required" maxOccurs="1">
+					<Documentation>The maximum duration for each collected fraction</Documentation>
+					<Quantity name="Time"/>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Fractionation Trigger Start">
+				<ParameterBlueprint name="Starting Threshold" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Peak-based thresholding; threshold to trigger fraction collection start. The fraction collection cannot exceed the Max Duration</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Starting Slope" parameterType="Float" modality="optional" maxOccurs="1"/>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Fractionation Trigger End">
+				<ParameterBlueprint name="Ending Threshold" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Peak-based thresholding; threshold to trigger fraction collection end. The fraction collection cannot exceed the Max Duration</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Ending Slope" parameterType="Float" modality="optional" maxOccurs="1"/>
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+	</MethodBlueprint>
+	<!-- -->
+	<!-- * Results * -->
+	<!-- ================== -->
+	<ResultBlueprint name="Fraction Collection" modality="optional">
+		<!-- TODO: talk to Vicki about this for Agilent, Waters, Gilson -->
+		<SeriesSetBlueprint name="Fraction Table">
+			<SeriesBlueprint name="Fraction Number" seriesType="Int" plotScale="none" dependency="independent" modality="optional">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Fraction Description" seriesType="Int" plotScale="none" dependency="independent" modality="optional">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Fraction Start Time" seriesType="Float" plotScale="none" dependency="independent" modality="optional">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Fraction End Time" seriesType="Float" plotScale="none" dependency="independent" modality="optional">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Rack Begin" seriesType="Int" plotScale="none" dependency="dependent" modality="optional">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Rack End" seriesType="Int" plotScale="none" dependency="dependent" modality="optional">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Tube Begin" seriesType="Int" plotScale="none" dependency="dependent" modality="optional">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Tube End" seriesType="Int" plotScale="none" dependency="dependent" modality="optional">
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Volume" seriesType="Float" plotScale="none" dependency="dependent" modality="optional">
+				<Quantity name="Volume">
+				</Quantity>
+			</SeriesBlueprint>
+		</SeriesSetBlueprint>
+	</ResultBlueprint>
+	<ResultBlueprint name="Separation Monitoring" modality="optional">
+		<Documentation>Readbacks report the state of the chromatograph during a run rather than record information about the test sample.	</Documentation>
+		<SeriesSetBlueprint name="Time">
+			<SeriesBlueprint name="Time" seriesType="Float" dependency="independent" modality="optional" plotScale="linear">
+				<Quantity name="min">
+					<Unit label="min">
+						<SIUnit exponent="1" factor="0.1666666">s</SIUnit>
+					</Unit>
+					<Unit label="sec">
+						<SIUnit exponent="1" factor="1">s</SIUnit>
+					</Unit>
+				</Quantity>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Pressure" seriesType="Float" dependency="dependent" maxOccurs="1" modality="required" plotScale="linear">
+				<Documentation>
+					</Documentation>
+				<Quantity name="Pressure">
+					<Unit label="Pa">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<!-- MFB TODO difficult! -->
+					<Unit label="psi">
+						<SIUnit exponent="1" factor="2.20462">kg</SIUnit>
+						<SIUnit exponent="-1" factor="0.24908891">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<Unit label="bar">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+					<Unit label="kg/cm2">
+						<SIUnit exponent="1">kg</SIUnit>
+						<SIUnit exponent="-1">m</SIUnit>
+						<SIUnit exponent="-2">s</SIUnit>
+					</Unit>
+				</Quantity>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Column Temperature" seriesType="Float" dependency="dependent" maxOccurs="1" modality="required" plotScale="linear">
+				<Documentation>
+					</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Inlet Temperature" seriesType="Float" dependency="dependent" maxOccurs="1" modality="required" plotScale="linear">
+				<Documentation>
+					</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Sample Temperature" seriesType="Float" dependency="dependent" maxOccurs="1" modality="required" plotScale="linear">
+				<Documentation>
+					</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Room Temperature" seriesType="Float" dependency="dependent" maxOccurs="1" modality="required" plotScale="linear">
+				<Documentation>
+					</Documentation>
+				<Quantity name="Temperature">
+					<Unit label="K">
+						<SIUnit>K</SIUnit>
+					</Unit>
+					<Unit label="°C">
+						<SIUnit offset="-273.15">K</SIUnit>
+					</Unit>
+					<Unit label="°F">
+						<SIUnit offset="-459.67" factor="1.8">K</SIUnit>
+					</Unit>
+				</Quantity>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Flow Rate" seriesType="Float" dependency="dependent" maxOccurs="1" modality="required" plotScale="linear">
+				<Documentation>
+					</Documentation>
+				<Quantity name="Flow Rate">
+					<Unit label="l/min">
+						<SIUnit exponent="3" factor="1e-3">m</SIUnit>
+						<SIUnit exponent="1" factor="0.1666666">s</SIUnit>
+					</Unit>
+					<Unit label="ml/min">
+						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
+						<SIUnit exponent="1" factor="0.1666666">s</SIUnit>
+					</Unit>
+					<Unit label="µl/min">
+						<SIUnit exponent="3" factor="1e-9">m</SIUnit>
+						<SIUnit exponent="1" factor="0.1666666">s</SIUnit>
+					</Unit>
+					<Unit label="nl/min">
+						<SIUnit exponent="3" factor="1e-12">m</SIUnit>
+						<SIUnit exponent="1" factor="0.1666666">s</SIUnit>
+					</Unit>
+				</Quantity>
+			</SeriesBlueprint>
+		</SeriesSetBlueprint>
+	</ResultBlueprint>
+</Technique>

@@ -177,7 +177,7 @@ http://schemas.animl.org/current/animl-technique.xsd">
 				<Documentation>Phase of matter of the sample; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>Ppressure of sample when introduced.</Documentation>
+				<Documentation>Pressure of sample when introduced.</Documentation>
 				<Quantity name="Pressure">
 					<Unit label="Pa">
 						<SIUnit exponent="1">kg</SIUnit>

@@ -829,14 +829,18 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Degree of Derivatization" parameterType="Int" modality="required">
 				<Documentation>Derivative spectra can be used to enhance differences among spectra, to resolve overlapping bands in qualitative analysis and, most importantly, to reduce the effects of interference from scattering, matrix, or other absorbing compounds in quantitative analysis. Use this parameter only to state how the data were acquired. Values: 0-Not differentiated (default), 1-1st derivative spectrum, 2-2nd derivative spectrum, 3-3rd derivative spectrum, 4-4th derivative spectrum.</Documentation>
-				<AllowedRange>
-					<Min included="true">
-						<Int>0</Int>
-					</Min>
-					<Max included="true">
-						<Int>4</Int>
-					</Max>
-				</AllowedRange>
+				<AllowedValue>
+					<Int>0</Int>
+				</AllowedValue>
+				<AllowedValue>
+					<Int>1</Int>
+				</AllowedValue>
+				<AllowedValue>
+					<Int>2</Int>
+				</AllowedValue>
+				<AllowedValue>
+					<Int>3</Int>
+				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Derivatization Algorithm Description" parameterType="String" modality="optional">
 				<Documentation>Description of or a reference to the algorithm used to perform derivatization.</Documentation>

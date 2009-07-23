@@ -1082,6 +1082,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 		<Documentation>An actual or notational arrangement of the component parts of any phenomenon, as electromagnetic waves or particles, ordered in accordance with the magnitude of a common physical property, as wavelength, frequency, or mass.</Documentation>
 		<SeriesSetBlueprint name="Spectrum">
 			<SeriesBlueprintChoice modality="required">
+				<Documentation>Series for the x-Axis of the Spectrum.</Documentation>
 				<SeriesBlueprint name="Wave Number" seriesType="Float" plotScale="linear" dependency="independent">
 					<Documentation>Number of waves per unit of length. (ASTM E131-02)</Documentation>
 					<Quantity name="Reciprocal Length">

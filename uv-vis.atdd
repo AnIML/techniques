@@ -326,9 +326,6 @@ TODO:
 		<Documentation>A liquid that can dissolve another substance. See ASTM E 609-05. Used to dissolve the Test Sample.</Documentation>
 		<CategoryBlueprint name="Sample Description" modality="required" maxOccurs="1">
 			<Documentation>Parameters describing the measurement sample</Documentation>
-			<ParameterBlueprint name="Name" parameterType="String" modality="required" maxOccurs="1">
-				<Documentation>user-assigned name of the sample. See ASTM E 1947-98.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
 				<Documentation>Common, trade, or other names.</Documentation>
 			</ParameterBlueprint>

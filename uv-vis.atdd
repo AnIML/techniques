@@ -14,7 +14,7 @@ TODO:
 	- Documentation is needed for the parameter category "Light Source Sequence" in category "Instrument Property" on page "Spectrum"
 
   -->
-<Technique name="UV/Vis" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" version="0.33" xmlns="urn:org:astm:animl:schema:technique:draft:0.33" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.33 http://schemas.animl.org/current/animl-technique.xsd">
+<Technique name="UV/Vis" version="0.33" xmlns="urn:org:astm:animl:schema:technique:draft:0.33" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.33 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for UV/Visible spectrophotometry</Documentation>
 	<SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1" inheritable="true">
 		<Documentation>A subsample selected from the properly prepared laboratory sample which has a suitable sample weight or volume for one or more determinations by chemical analysis (ASTM E135, E01). This sample role represents the sample that is analyzed in the given ExperimentStep.</Documentation>

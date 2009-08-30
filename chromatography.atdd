@@ -41,7 +41,7 @@ SAMPLE REFRENCE SET - part of Samples
 CONTROL METHOD
 - 
 -->
-<Technique name="Chromatography" version="0.33" extension="false" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns="urn:org:astm:animl:schema:technique:draft:0.33" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.33 http://schemas.animl.org/current/animl-technique.xsd">
+<Technique name="Chromatography" version="0.33" extension="false" xmlns="urn:org:astm:animl:schema:technique:draft:0.33" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.33 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique Definition for Chromatography (A physical method of separation in which the components to be separated are distributed between two phases, one of which is stationary (stationary phase) while the other (the mobile phase) moves in a definite direction. 1993, 65, 823; O.B. 92; 1990, 62, 2179; see IUPAC Gold Book).  Chromatography, as here constituted, comprises sample introduction, separation, and fractionation.  Chromatography is a sample alteration technique that separates complex introduced samples  into their component parts; thus it alters, but does not measure or detect, the sample.
 	</Documentation>
 	<!-- -->

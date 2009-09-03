@@ -685,6 +685,27 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Holder Position" parameterType="String" modality="optional">
 					<Documentation>The position of the sample within the sample holder unit. Note: This is not intended for auto sampler information.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Optical Path Environment" parameterType="String" modality="optional">
+					<Documentation>Describes the environment of the optical path.</Documentation>
+					<AllowedValue>
+						<String>Ambient air</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Dry air</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Vacuum</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Nitrogen</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Argon</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Other</String>
+					</AllowedValue>
 				</ParameterBlueprint>				
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings">
@@ -1056,9 +1077,159 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<Documentation>Specific parameters for interferometric measurements. TODO: FT parameters are missing.</Documentation>
 			<CategoryBlueprint name="Instrument Properties">
 				<Documentation>Fixed characteristics of the instrument, specific to interferometric measurements.</Documentation>
+				<ParameterBlueprint name="Interferometer Type" parameterType="String" modality="optional">
+					<Documentation>Type of the interferometer.</Documentation>
+					<AllowedValue>
+						<String>Michelson plane mirror</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Michelson cat's eye</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Michelson corner cube</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Fabry-Perot</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Other</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Monitor Laser Type" parameterType="String">
+					<Documentation>Type of the reference (monitor) laser.</Documentation>
+					<AllowedValue>
+						<String>HeNe single-mode</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>HeNe multi-mode</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>HeNe (unknown)</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Other</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Collimating Mirror Focal Length" parameterType="Float" modality="optional">
+					<Documentation>Focal length of the collimating mirror.</Documentation>
+					<Quantity name="Length">
+						<Unit label="cm">
+							<SIUnit exponent="1" factor="1e-2">m</SIUnit>
+						</Unit>
+						<Unit label="mm">
+							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Collimating Mirror Diameter" parameterType="Float" modality="optional">
+					<Documentation>Diameter of the collimating mirror.</Documentation>
+					<Quantity name="Length">
+						<Unit label="cm">
+							<SIUnit exponent="1" factor="1e-2">m</SIUnit>
+						</Unit>
+						<Unit label="mm">
+							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Analog-to-Digital Converter Resolution" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>TODO</Documentation>
+					<Quantity name="bits">
+						<Unit label="bit">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Photometric Non-linearity" parameterType="Float" modality="optional">
+					<Documentation>The inability of a photometric system to yield a linear relationship between the radiant power incident on its detector and some measurable quantity provided by the system, expressed as percentage. See "photometric linearity" in ASTM E131-02.</Documentation>
+					<Quantity name="Non-linearity">
+						<Unit label="%">
+							<SIUnit factor="1e-2">1</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<CategoryBlueprint name="Beam Splitter" modality="optional">
+					<Documentation>Optical element that separates light into the sample and reference beams.</Documentation>
+					<ParameterBlueprint name="Splitter Type" parameterType="String" modality="required">
+						<Documentation>Whether the instrument allows reconfiguration of the beam splitter. This is done to optimize performance over a given optical range.</Documentation>
+						<AllowedValue>
+							<String>fixed</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>removable</String>
+						</AllowedValue>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Substrate" parameterType="String" modality="optional">
+						<Documentation>Base material that affects the transmittance band of the beam splitter.</Documentation>
+					</ParameterBlueprint>					
+					<ParameterBlueprint name="Coating" parameterType="String" modality="optional">
+						<Documentation>Surface treatment that affects the reflectance/transmittance ratio of the beam splitter.</Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Incidence Angle" parameterType="Float" modality="optional">
+						<Documentation>Angle at which the light is incident on the beam splitter.</Documentation>
+						<Quantity name="Angle">
+							<Unit label="°">
+								<SIUnit>1</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+					<CategoryBlueprint name="Effective Range" maxOccurs="1" modality="optional">
+						<Documentation>Effective spectral operating range of the beam splitter.</Documentation>
+						<ParameterBlueprint name="Minimum" parameterType="Float" modality="optional" maxOccurs="1">
+							<Documentation>Lower boundary of effective range.</Documentation>
+							<Quantity name="Wavelength">
+								<Unit label="nm">
+									<SIUnit exponent="1" factor="1e-9">m</SIUnit>
+								</Unit>
+							</Quantity>
+							<Quantity name="Wavenumber">
+								<Unit label="1/cm">
+									<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
+								</Unit>
+							</Quantity>
+						</ParameterBlueprint>
+						<ParameterBlueprint name="Maximum" parameterType="Float" modality="optional" maxOccurs="1">
+							<Documentation>Upper boundary of effective range.</Documentation>
+							<Quantity name="Wavelength">
+								<Unit label="nm">
+									<SIUnit exponent="1" factor="1e-9">m</SIUnit>
+								</Unit>
+							</Quantity>
+							<Quantity name="Wavenumber">
+								<Unit label="1/cm">
+									<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
+								</Unit>
+							</Quantity>
+						</ParameterBlueprint>
+					</CategoryBlueprint>
+				</CategoryBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings">
 				<Documentation>Variable characteristics or configuration parameters of the instrument, specific to interferometric measurements.</Documentation>
+				<ParameterBlueprint name="Maximum Optical Path Difference" parameterType="Float" modality="optional">
+					<Documentation>Distance (Xmax) the mirror moves to change the optical path length.</Documentation>
+					<Quantity name="Length">
+						<Unit label="cm">
+							<SIUnit exponent="1" factor="1e-2">m</SIUnit>
+						</Unit>
+						<Unit label="mm">
+							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Spectral Resolution" parameterType="Float" modality="optional">
+					<Documentation>Smallest difference between wavenumbers (TODO 1/(2*Xmax)) or wavelengths (TODO 2*Xmax) at which one can distinguish different spectral properties. See Bertie, John: Glossary of Terms used in vibration spectroscopy, from: Handbook of vibrational spectroscopy</Documentation>
+					<Quantity name="Wavelength">
+						<Unit label="nm">
+							<SIUnit factor="1e-9">m</SIUnit>
+						</Unit>
+					</Quantity>
+					<Quantity name="Wavenumber">
+						<Unit label="1/cm">
+							<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Spectral Post-Processing">
@@ -1075,7 +1246,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<Documentation>Whether the acquired result spectrum has been corrected against the spectrum of the sample given in the reference sample role.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Straylight Corrected" parameterType="Boolean" modality="optional">
-					<Documentation>TODO: Post processing?? Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. It is the same as Stray Radiant Power (Ps): the total detected radiant power outside a specified wavelength (wave number) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wave number), slit dimensions, light source, and detector. (ASTM E131-02)</Documentation>
+					<Documentation>TODO: Post processing?? Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. It is the same as Stray Radiant Power (Ps): the total detected radiant power outside a specified wavelength (wavenumber) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wavenumber), slit dimensions, light source, and detector. (ASTM E131-02)</Documentation>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Spectral Smoothing" maxOccurs="1" modality="optional">
@@ -1095,7 +1266,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 		<SeriesSetBlueprint name="Spectrum" modality="required">
 			<SeriesBlueprintChoice modality="required">
 				<Documentation>Series for the x-Axis of the Spectrum.</Documentation>
-				<SeriesBlueprint name="Wave Number" seriesType="Float" plotScale="linear" dependency="independent">
+				<SeriesBlueprint name="Wavenumber" seriesType="Float" plotScale="linear" dependency="independent">
 					<Documentation>Number of waves per unit of length. (ASTM E131-02)</Documentation>
 					<Quantity name="Reciprocal Length">
 						<Unit label="1/cm">

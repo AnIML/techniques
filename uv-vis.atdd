@@ -1206,8 +1206,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings">
 				<Documentation>Variable characteristics or configuration parameters of the instrument, specific to interferometric measurements.</Documentation>
-				<ParameterBlueprint name="Maximum Optical Path Difference" parameterType="Float" modality="optional">
-					<Documentation>Distance (Xmax) the mirror moves to change the optical path length.</Documentation>
+				<ParameterBlueprint name="Maximum Effective Optical Path Difference" parameterType="Float" modality="optional">
+					<Documentation>Distance (Xmax) the mirror moves to change the optical path length. Does not include the overscan range.</Documentation>
 					<Quantity name="Length">
 						<Unit label="cm">
 							<SIUnit exponent="1" factor="1e-2">m</SIUnit>
@@ -1230,6 +1230,199 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</Unit>
 					</Quantity>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="Mirror Velocity" parameterType="Float" modality="optional">
+					<Documentation>Velocity of reference mirror in the interferometer.</Documentation>
+					<Quantity name="Velocity">
+						<Unit label="cm/s">
+							<SIUnit exponent="1" factor="1e-2">m</SIUnit>
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+						<Unit label="mm/s">
+							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Mirror Frequency" parameterType="Float" modality="optional">
+					<Documentation>Frequency of reference mirror movement in the interferometer.</Documentation>
+					<Quantity name="Frequency">
+						<Unit label="Hz">
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+						<Unit label="kHz">
+							<SIUnit exponent="-1" factor="1e+3">s</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Optical Retardation Velocity" parameterType="Float" modality="optional">
+					<Documentation>Effective scan speed of a continuous scan. Rate of change of the path difference of the interferometer. Equal to two times the mirror velocity.</Documentation>
+					<Quantity name="Velocity">
+						<Unit label="cm/s">
+							<SIUnit factor="1e-2">m</SIUnit>
+							<SIUnit exponent="-1">s</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Sampling Interval" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Interval between data point acquisitions of the interferogram. May be measured in terms of distance traveled by the scan mirror or by counting interference fringes of the reference laser.</Documentation>
+					<Quantity name="Length">
+						<Unit label="µm">
+							<SIUnit exponent="1" factor="1e-6">m</SIUnit>
+						</Unit>
+					</Quantity>
+					<Quantity name="Count">
+						<Unit label="Fringes">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Number of Data Points" parameterType="Int" modality="optional">
+					<Documentation>Number of data points collected per interferogram.</Documentation>
+					<Quantity name="Count">
+						<Unit label="count">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Zero-Filling Factor" parameterType="Int" modality="optional">
+					<Documentation>Number of zero points appended to the end of the interferogram, given in multiples of the interferogram length, e.g., "1x", "2x", "3x".</Documentation>
+					<Quantity name="Count">
+						<Unit label="x">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Scan Type" parameterType="String" modality="optional">
+					<Documentation>Method by which the optical path difference of the interferometer is changed.</Documentation>
+					<AllowedValue>
+						<String>step</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>continuous</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Integration Time Per Point" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Time interval over which data is integrated per data point during acquisition. Applies only to step scans.</Documentation>
+					<Quantity name="Time">
+						<Unit label="ms">
+							<SIUnit factor="1e-3">s</SIUnit>
+						</Unit>
+						<Unit label="s">
+							<SIUnit>s</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Number of Scans" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Number of scans coadded during data acquisition.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Scan Mode" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Direction of mirror movement in which data acquisition occurs.</Documentation>
+					<AllowedValue>
+						<String>forward only</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>reverse only</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>forward and reverse</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Jacquinot Stop" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Limiting optical aperture in the spectrometer. Also called "limiting aperture" or "J-Stop".</Documentation>
+					<Quantity name="Length">
+						<Unit label="mm">
+							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Interferogram Type" parameterType="String" modality="optional">
+					<Documentation>Whether data are collected from one side or both sides of the center burst.</Documentation>
+					<AllowedValue>
+						<String>single-sided</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>double-sided</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Apodization Function" parameterType="String">
+					<Documentation>Weighting function applied to the interferogram prior to fourrier transformation to control either spectral line shape or to reduce spectral artifacts.</Documentation>
+					<AllowedValue>
+						<String>boxcar</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>triangular</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>other</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				
+				
+				<CategoryBlueprint name="Digital Filter" modality="optional">
+					<Documentation>TODO</Documentation>
+					<ParameterBlueprint name="Type" parameterType="String">
+						<Documentation></Documentation>
+						<AllowedValue><String>Longpass</String></AllowedValue>
+						<AllowedValue><String>Shortpass</String></AllowedValue>
+						<AllowedValue><String>Bandpass</String></AllowedValue>
+					</ParameterBlueprint>
+					
+					<ParameterBlueprint name="Function" parameterType="String">
+						<Documentation>TODO</Documentation>
+						<AllowedValue><String>Bezel</String></AllowedValue>
+						<AllowedValue><String>Butterworth</String></AllowedValue>
+						<AllowedValue><String>Cauchy</String></AllowedValue>
+						<AllowedValue><String>Elliptical</String></AllowedValue>
+						<AllowedValue><String>other</String></AllowedValue>
+					</ParameterBlueprint>
+					
+					<ParameterBlueprint name="Order" parameterType="Int">
+						<Documentation>TODO</Documentation>
+					</ParameterBlueprint>
+					
+					<ParameterBlueprint name="Frequency" parameterType="Float">
+						<Documentation>Depending on the filter type, this is the cut-on, cut-off, or bandpass frequency of the filter.</Documentation>
+						<Quantity name="Frequency">
+							<Unit label="Hz">
+								<SIUnit exponent="-1">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+				</CategoryBlueprint>
+				
+				<CategoryBlueprint name="Analog Filter" modality="optional">
+					<Documentation>TODO done in hardware</Documentation>
+					<ParameterBlueprint name="Type" parameterType="String">
+						<Documentation></Documentation>
+						<AllowedValue><String>Longpass</String></AllowedValue>
+						<AllowedValue><String>Shortpass</String></AllowedValue>
+						<AllowedValue><String>Bandpass</String></AllowedValue>
+					</ParameterBlueprint>
+					
+					<ParameterBlueprint name="Function" parameterType="String">
+						<Documentation>TODO</Documentation>
+						<AllowedValue><String>Bezel</String></AllowedValue>
+						<AllowedValue><String>Butterworth</String></AllowedValue>
+						<AllowedValue><String>Cauchy</String></AllowedValue>
+						<AllowedValue><String>Elliptical</String></AllowedValue>
+						<AllowedValue><String>other</String></AllowedValue>
+					</ParameterBlueprint>
+					
+					<ParameterBlueprint name="Order" parameterType="Int">
+						<Documentation>TODO</Documentation>
+					</ParameterBlueprint>
+					
+					<ParameterBlueprint name="Frequency" parameterType="Float">
+						<Documentation>Depending on the filter type, this is the cut-on, cut-off, or bandpass frequency of the filter.</Documentation>
+						<Quantity name="Frequency">
+							<Unit label="Hz">
+								<SIUnit exponent="-1">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+				</CategoryBlueprint>				
+				
+				
 			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Spectral Post-Processing">

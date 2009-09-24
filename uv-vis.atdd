@@ -636,11 +636,11 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 	<SampleRoleBlueprint name="Proficiency Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>Reference to the most recent successful proficiency test sample the analyst/system has been confronted with. This is only a reference, so no parameters are required.</Documentation>
 	</SampleRoleBlueprint>
-	<SampleRoleBlueprint name="Transmittance Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
-		<Documentation>TODO. No Parameters needed. A document reference about the transmittance linearity test.</Documentation>
+	<SampleRoleBlueprint name="Transmittance Calibration Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
+		<Documentation>The material sample or lamp used to calibrate the transmittance/intensity axis.</Documentation>
 	</SampleRoleBlueprint>
-	<SampleRoleBlueprint name="Wavelength Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
-		<Documentation>TODO. No Parameters needed. A document reference about the wavelength calibration.</Documentation>
+	<SampleRoleBlueprint name="Wavelength Calibration Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
+		<Documentation>The material sample or lamp used to calibrate the wavelength axis.</Documentation>
 	</SampleRoleBlueprint>
 	<MethodBlueprint>
 		<CategoryBlueprint name="Common Method">
@@ -1358,30 +1358,105 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				</ParameterBlueprint>
 				
 				
-				<CategoryBlueprint name="Digital Filter" modality="optional">
-					<Documentation>TODO</Documentation>
-					<ParameterBlueprint name="Type" parameterType="String">
-						<Documentation></Documentation>
-						<AllowedValue><String>Longpass</String></AllowedValue>
-						<AllowedValue><String>Shortpass</String></AllowedValue>
+				<ParameterBlueprint name="Fourier Transformation Algorithm" parameterType="String" modality="required">
+					<Documentation>Mathematical method which performs the domain conversion.</Documentation>
+					<AllowedValue>
+						<String>Cooley-Tuckey (FFT)</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Variable Radix</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				
+				<ParameterBlueprint name="Spectrum Type" parameterType="String" modality="optional">
+					<Documentation>Format of the spectrum resulting from the domain transformation.</Documentation>
+					<AllowedValue>
+						<String>Magnitude (Power) Spectrum</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Phase-Corrected Amplitude (Intensity) Spectrum</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				
+				<ParameterBlueprint name="Phase Correction Mode" parameterType="String" modality="optional">
+					<Documentation>Method used to correct the phase of the spectrum resulting from the domain transformation.</Documentation>
+					<AllowedValue>
+						<String>Multiplication</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Convolution</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>other</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				
+				<ParameterBlueprint name="Phase Correction Variable" parameterType="Float" modality="optional" maxOccurs="unbounded">
+					<Documentation>Parameter associated with the order of the phase correction.</Documentation>
+				</ParameterBlueprint>
+				
+				<ParameterBlueprint name="Phase Resolution" parameterType="Float">
+					<Documentation>TODO - unclear about meaning and quantity</Documentation>
+					<Quantity name="TODO">
+						<Unit label="1/cm">
+							<SIUnit factor="1e-2">m</SIUnit>
+						</Unit>
+						<Unit label="1/µm">
+							<SIUnit factor="1e-6">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				
+				<ParameterBlueprint name="Baseline Correction Method" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Name or description of algorithm for baseline correction.</Documentation>
+				</ParameterBlueprint>
+				
+				
+				
+				<CategoryBlueprint name="Digital Filter" modality="optional" maxOccurs="1">
+					<Documentation>Settings for a digital filter applied to the FT signal set.</Documentation>
+					<ParameterBlueprint name="Type" parameterType="String" modality="required">
+						<Documentation>Whether a lowpass, highpass, bandpass or notch type filter algorithm was used. See IEEE 151-1965W.</Documentation>
+						<AllowedValue><String>Lowpass</String></AllowedValue>
+						<AllowedValue><String>Highpass</String></AllowedValue>
 						<AllowedValue><String>Bandpass</String></AllowedValue>
+						<AllowedValue><String>Notch</String></AllowedValue>
 					</ParameterBlueprint>
 					
-					<ParameterBlueprint name="Function" parameterType="String">
-						<Documentation>TODO</Documentation>
+					<ParameterBlueprint name="Function" parameterType="String" modality="optional">
+						<Documentation>Shape of the filter response as defined by the polynomials approximating it.</Documentation>
 						<AllowedValue><String>Bezel</String></AllowedValue>
 						<AllowedValue><String>Butterworth</String></AllowedValue>
 						<AllowedValue><String>Cauchy</String></AllowedValue>
+						<AllowedValue><String>Chebyshev</String></AllowedValue>
 						<AllowedValue><String>Elliptical</String></AllowedValue>
 						<AllowedValue><String>other</String></AllowedValue>
 					</ParameterBlueprint>
 					
-					<ParameterBlueprint name="Order" parameterType="Int">
-						<Documentation>TODO</Documentation>
+					<ParameterBlueprint name="Order" parameterType="Int" modality="optional">
+						<Documentation>Order of the polynomial approximating function the filter is based upon.</Documentation>
 					</ParameterBlueprint>
 					
-					<ParameterBlueprint name="Frequency" parameterType="Float">
-						<Documentation>Depending on the filter type, this is the cut-on, cut-off, or bandpass frequency of the filter.</Documentation>
+					<ParameterBlueprint name="Center frequency" parameterType="Float" modality="optional">
+						<Documentation>Only applicable to notch and bandpass filters: Mid-point frequency of the stop or pass band.</Documentation>
+						<Quantity name="Frequency">
+							<Unit label="Hz">
+								<SIUnit exponent="-1">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+					
+					<ParameterBlueprint name="Pass band frequency" parameterType="Float" modality="optional">
+						<Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass), or pass band (bandpass, notch) frequency of the filter.</Documentation>
+						<Quantity name="Frequency">
+							<Unit label="Hz">
+								<SIUnit exponent="-1">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+
+					<ParameterBlueprint name="Stop band frequency" parameterType="Float" modality="optional">
+						<Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass), or stop band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
 							<Unit label="Hz">
 								<SIUnit exponent="-1">s</SIUnit>
@@ -1390,30 +1465,50 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
 				
-				<CategoryBlueprint name="Analog Filter" modality="optional">
-					<Documentation>TODO done in hardware</Documentation>
-					<ParameterBlueprint name="Type" parameterType="String">
-						<Documentation></Documentation>
-						<AllowedValue><String>Longpass</String></AllowedValue>
-						<AllowedValue><String>Shortpass</String></AllowedValue>
+				<CategoryBlueprint name="Analog Filter" modality="optional" maxOccurs="unbounded">
+					<Documentation>Characteristics of a single analog filter applied to the FT signal.</Documentation>
+					<ParameterBlueprint name="Type" parameterType="String" modality="required">
+						<Documentation>Whether a lowpass, highpass, bandpass or notch type filter was used. See IEEE 151-1965W.</Documentation>
+						<AllowedValue><String>Lowpass</String></AllowedValue>
+						<AllowedValue><String>Highpass</String></AllowedValue>
 						<AllowedValue><String>Bandpass</String></AllowedValue>
+						<AllowedValue><String>Notch</String></AllowedValue>
 					</ParameterBlueprint>
 					
-					<ParameterBlueprint name="Function" parameterType="String">
-						<Documentation>TODO</Documentation>
+					<ParameterBlueprint name="Function" parameterType="String" modality="optional">
+						<Documentation>Shape of the filter response as defined by the polynomials approximating it.</Documentation>
 						<AllowedValue><String>Bezel</String></AllowedValue>
 						<AllowedValue><String>Butterworth</String></AllowedValue>
 						<AllowedValue><String>Cauchy</String></AllowedValue>
+						<AllowedValue><String>Chebyshev</String></AllowedValue>
 						<AllowedValue><String>Elliptical</String></AllowedValue>
 						<AllowedValue><String>other</String></AllowedValue>
 					</ParameterBlueprint>
 					
-					<ParameterBlueprint name="Order" parameterType="Int">
-						<Documentation>TODO</Documentation>
+					<ParameterBlueprint name="Order" parameterType="Int" modality="optional">
+						<Documentation>Order of the polynomial approximating function the filter is based upon.</Documentation>
 					</ParameterBlueprint>
 					
-					<ParameterBlueprint name="Frequency" parameterType="Float">
-						<Documentation>Depending on the filter type, this is the cut-on, cut-off, or bandpass frequency of the filter.</Documentation>
+					<ParameterBlueprint name="Center frequency" parameterType="Float" modality="optional">
+						<Documentation>Only applicable to notch and bandpass filters: Mid-point frequency of the stop or pass band.</Documentation>
+						<Quantity name="Frequency">
+							<Unit label="Hz">
+								<SIUnit exponent="-1">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+					
+					<ParameterBlueprint name="Pass band frequency" parameterType="Float" modality="optional">
+						<Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass), or pass band (bandpass, notch) frequency of the filter.</Documentation>
+						<Quantity name="Frequency">
+							<Unit label="Hz">
+								<SIUnit exponent="-1">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+
+					<ParameterBlueprint name="Stop band frequency" parameterType="Float" modality="optional">
+						<Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass), or stop band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
 							<Unit label="Hz">
 								<SIUnit exponent="-1">s</SIUnit>
@@ -1422,11 +1517,79 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</ParameterBlueprint>
 				</CategoryBlueprint>				
 				
+
+				<CategoryBlueprint name="Aliasing Filter" modality="optional" maxOccurs="unbounded">
+					<Documentation>TODO Characteristics of a single analog filter applied to the FT signal.</Documentation>
+					<ParameterBlueprint name="Type" parameterType="String" modality="required">
+						<Documentation>Whether a shortpass, longpass, bandpass or notch type filter was used. See IEEE 151-1965W.</Documentation>
+						<AllowedValue><String>Shortpass</String></AllowedValue>
+						<AllowedValue><String>Longpass</String></AllowedValue>
+						<AllowedValue><String>Bandpass</String></AllowedValue>
+						<AllowedValue><String>Notch</String></AllowedValue>
+					</ParameterBlueprint>
+										
+					<ParameterBlueprint name="Center" parameterType="Float" modality="optional">
+						<Documentation>Only applicable to notch and bandpass filters: Mid-point of the stop or pass band.</Documentation>
+						<Quantity name="Frequency">
+							<Unit label="Hz">
+								<SIUnit exponent="-1">s</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Wavelength">
+							<Unit label="nm">
+								<SIUnit factor="1e-9">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Wavenumbers">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2">m</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+					
+					<ParameterBlueprint name="Pass band" parameterType="Float" modality="optional">
+						<Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass), or pass band (bandpass, notch) of the filter.</Documentation>
+						<Quantity name="Frequency">
+							<Unit label="Hz">
+								<SIUnit exponent="-1">s</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Wavelength">
+							<Unit label="nm">
+								<SIUnit factor="1e-9">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Wavenumbers">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2">m</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+
+					<ParameterBlueprint name="Stop band" parameterType="Float" modality="optional">
+						<Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass), or stop band (bandpass, notch) of the filter.</Documentation>
+						<Quantity name="Frequency">
+							<Unit label="Hz">
+								<SIUnit exponent="-1">s</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Wavelength">
+							<Unit label="nm">
+								<SIUnit factor="1e-9">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Wavenumbers">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2">m</SIUnit>
+							</Unit>
+						</Quantity>
+					</ParameterBlueprint>
+				</CategoryBlueprint>	
 				
 			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Spectral Post-Processing">
-			<Documentation>Post-processing of spectral data acquired by either dispersive or interferometric means.</Documentation>
+			<Documentation>TODO: Move to separate post processing techniques. Post-processing of spectral data acquired by either dispersive or interferometric means.</Documentation>
 			<CategoryBlueprint name="Spectral Correction" maxOccurs="1" modality="optional">
 				<Documentation>Alteration of spectral data to remove instrumental artifacts.</Documentation>
 				<ParameterBlueprint name="Dark Corrected" parameterType="Boolean" maxOccurs="1" modality="optional">

@@ -1,20 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (BSSN Software) -->
-<!-- 
-
-see CVS comments for change log
-
-TODO:
-	- The Description for the sample parameter "Lot or Batch Name/Number" must be modified.
-	- The definition for the sample category "Boiling Point" must be rewritten.
-	- The definition for the sample category "Melting Point" must be rewritten.
-	- The Units for the sample parameter "Concentration" in the parameter category "Substance Description" must be checked.
-	- The sample parameter "SMILES" must be redefined.
-	- Documentation is needed for the parameter category "Measurement Mode" in category "Instrument Property" on page "Spectrum"
-	- Documentation is needed for the parameter category "Light Source Sequence" in category "Instrument Property" on page "Spectrum"
-
+<!--
+	Repository version: $Id$
+	
+	see CVS comments for change log
   -->
-<Technique name="UV/Vis" version="0.33" xmlns="urn:org:astm:animl:schema:technique:draft:0.33" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.33 http://schemas.animl.org/current/animl-technique.xsd">
+<!DOCTYPE Technique [
+	<!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
+	<!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
+
+	<!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
+	<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
+	<!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
+	
+	<!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
+	
+	<!ENTITY ml "<Unit label='ml'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
+	
+	<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+
+	<!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
+	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
+	<!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+]>
+<Technique name="UV/Vis" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for UV/Visible spectrophotometry</Documentation>
 	<SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1" inheritable="true">
 		<Documentation>A subsample selected from the properly prepared laboratory sample which has a suitable sample weight or volume for one or more determinations by chemical analysis (ASTM E135, E01). This sample role represents the sample that is analyzed in the given ExperimentStep.</Documentation>
@@ -26,17 +35,13 @@ TODO:
 			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Mass of the sample used to prepare the test material.</Documentation>
 				<Quantity name="Mass">
-					<Unit label="mg">
-						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
-					</Unit>
+					&mg;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample used to prepare the test material.</Documentation>
 				<Quantity name="Volume">
-					<Unit label="ml">
-						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
-					</Unit>
+					&ml;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
@@ -115,25 +120,13 @@ TODO:
 			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation/>
 				<Quantity name="Pressure">
-					<Unit label="Pa">
-						<SIUnit exponent="-1">m</SIUnit>
-						<SIUnit exponent="1">kg</SIUnit>
-						<SIUnit exponent="-2">s</SIUnit>
-					</Unit>
+					&Pa;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample temperature if significantly different from room temperature. See Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				<Quantity name="Temperature">
-					<Unit label="K">
-						<SIUnit>K</SIUnit>
-					</Unit>
-					<Unit label="°C">
-						<SIUnit offset="-273.15">K</SIUnit>
-					</Unit>
-					<Unit label="°F">
-						<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-					</Unit>
+					&degK; &degC; &degF;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
@@ -154,39 +147,19 @@ TODO:
 				<ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of boiling temperature range. Use only this value if sample has an actual boiling "point".</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degK; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of boiling temperature range. </Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degK; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Pressure at which the boiling point has been determined. If not given, ambient pressure is assumed.</Documentation>
 					<Quantity name="Pressure">
-						<Unit label="Pa">
-							<SIUnit exponent="-1">m</SIUnit>
-							<SIUnit exponent="1">kg</SIUnit>
-							<SIUnit exponent="-2">s</SIUnit>
-						</Unit>
+						&Pa;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -195,29 +168,13 @@ TODO:
 				<ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of melting temperature range. Use only this value if sample has an actual melting "point".</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degK; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of melting temperature range.</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degK; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -229,23 +186,13 @@ TODO:
 				<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degK; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Wavelength" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Wavelength at which the refractive index has been determined. If not given, the Sodium-D line is assumed.</Documentation>
 					<Quantity name="Length">
-						<Unit label="nm">
-							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-						</Unit>
+						&nm;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -332,17 +279,13 @@ TODO:
 			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Mass of the sample used to prepare the test material.</Documentation>
 				<Quantity name="Mass">
-					<Unit label="mg">
-						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
-					</Unit>
+					&mg;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample used to prepare the test material.</Documentation>
 				<Quantity name="Volume">
-					<Unit label="ml">
-						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
-					</Unit>
+					&ml;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
@@ -367,25 +310,13 @@ TODO:
 			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>TODO a textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: ??supercritical fluid extraction; see ASTM E 2077-00.</Documentation>
 				<Quantity name="Pressure">
-					<Unit label="Pa">
-						<SIUnit exponent="-1">m</SIUnit>
-						<SIUnit exponent="1">kg</SIUnit>
-						<SIUnit exponent="-2">s</SIUnit>
-					</Unit>
+					&Pa;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample temperature if significantly different from room temperature. see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
 				<Quantity name="Temperature">
-					<Unit label="K">
-						<SIUnit>K</SIUnit>
-					</Unit>
-					<Unit label="°C">
-						<SIUnit offset="-273.15">K</SIUnit>
-					</Unit>
-					<Unit label="°F">
-						<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-					</Unit>
+					&degC; &degF; &degK;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
@@ -406,39 +337,19 @@ TODO:
 				<ParameterBlueprint name="Minimum" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degC; &degF; &degK;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Maximum" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of boiling temperature range. </Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degC; &degF; &degK;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Pressure at which the boiling point has been determined. If the pressure is not given then edian pressure is assumed. If the pressure is not given then edian pressure is assumed.</Documentation>
 					<Quantity name="Pressure">
-						<Unit label="Pa">
-							<SIUnit exponent="-1">m</SIUnit>
-							<SIUnit exponent="1">kg</SIUnit>
-							<SIUnit exponent="-2">s</SIUnit>
-						</Unit>
+						&Pa;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -447,29 +358,13 @@ TODO:
 				<ParameterBlueprint name="Minimum" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degC; &degF; &degK;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Maximum" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of melting temperature range.</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degC; &degF; &degK;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -485,23 +380,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degC; &degF; &degK;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Wavelength" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Wavelength at which the refractive index has been determined.</Documentation>
 					<Quantity name="Length">
-						<Unit label="nm">
-							<SIUnit factor="1e-9" exponent="1">m</SIUnit>
-						</Unit>
+						&nm;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -677,8 +562,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<String>Transmittance, true</String>
 					</AllowedValue>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Detector Types" parameterType="String" modality="optional">
-					<Documentation>The types or names of the detector used for measurement.</Documentation>
+				<ParameterBlueprint name="Detector Types" parameterType="String" modality="optional" maxOccurs="unbounded">
+					<Documentation>TODO: replace with category that contains description, gain setting, range on which it's used. The types or names of the detector used for the measurement.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
 					<Documentation>The type or name of the assembly that holds the sample container in the optical beam, e.g., cuvette holder, sample changer. (The sample container itself is described within the Sample element in the AnIML Core Schema.)</Documentation>
@@ -706,7 +591,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<AllowedValue>
 						<String>Other</String>
 					</AllowedValue>
-				</ParameterBlueprint>				
+				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings">
 				<Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
@@ -717,25 +602,11 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<Unit label="1/cm">
 								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
 							</Unit>
-							<AllowedRange unit="1/cm">
-								<Min included="true">
-									<Float32>0</Float32>
-								</Min>
-								<Max included="true">
-									<Float32>999999999</Float32>
-								</Max>
-							</AllowedRange>
 						</Quantity>
 						<Quantity name="Length">
-							<Unit label="um">
-								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="nm">
-								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="pm">
-								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
-							</Unit>
+							&um;
+							&nm;
+							&pm;
 						</Quantity>
 						<Quantity name="Energy">
 							<Unit label="eV">
@@ -753,22 +624,10 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 						<Quantity name="Length">
-							<Unit label="um">
-								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="nm">
-								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="pm">
-								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
-							</Unit>
+							&um; &nm; &pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Filter Description" seriesType="String" dependency="dependent" modality="required" plotScale="none">
@@ -832,7 +691,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</Quantity>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
-				
 				<ParameterBlueprint name="Measurement Type" parameterType="String" modality="required">
 					<Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one wavelength is recorded. Discrete means that absorbance of multiple exactly specified wavelengths is recorded. Spectrum means that a single range or multiple discrete ranges is/are recorded.</Documentation>
 					<AllowedValue>
@@ -1110,6 +968,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<String>Other</String>
 					</AllowedValue>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="Monitor Laser Wavelength" parameterType="Float">
+					<Documentation>TODO. Quantity: wavenumber, wavelength</Documentation>
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Collimating Mirror Focal Length" parameterType="Float" modality="optional">
 					<Documentation>Focal length of the collimating mirror.</Documentation>
 					<Quantity name="Length">
@@ -1161,7 +1022,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Substrate" parameterType="String" modality="optional">
 						<Documentation>Base material that affects the transmittance band of the beam splitter.</Documentation>
-					</ParameterBlueprint>					
+					</ParameterBlueprint>
 					<ParameterBlueprint name="Coating" parameterType="String" modality="optional">
 						<Documentation>Surface treatment that affects the reflectance/transmittance ratio of the beam splitter.</Documentation>
 					</ParameterBlueprint>
@@ -1264,7 +1125,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Sampling Interval" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Interval between data point acquisitions of the interferogram. May be measured in terms of distance traveled by the scan mirror or by counting interference fringes of the reference laser.</Documentation>
+					<Documentation>Interval between data point acquisitions of the interferogram. May be measured in terms of distance traveled by the scan mirror or by counting interference fringes of the reference laser. Also given as "sampling rate" or "sampling frequency".</Documentation>
 					<Quantity name="Length">
 						<Unit label="µm">
 							<SIUnit exponent="1" factor="1e-6">m</SIUnit>
@@ -1284,9 +1145,17 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</Unit>
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Zero-Filling Factor" parameterType="Int" modality="optional">
-					<Documentation>Number of zero points appended to the end of the interferogram, given in multiples of the interferogram length, e.g., "1x", "2x", "3x".</Documentation>
+				<ParameterBlueprint name="Zero-Filling Point Count" parameterType="Int" modality="optional">
+					<Documentation>Absolute number of zero points appended to the end of the interferogram to make the total data point count an even power of two.</Documentation>
 					<Quantity name="Count">
+						<Unit label="points">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Zero-Filling Factor" parameterType="Int" modality="optional">
+					<Documentation>Number of zero points appended to the end of the interferogram, given as a factor applied to the interferogram length, after padded to the nearest power of two, e.g., "1x", "2x", "4x". This factor must be a power of two.</Documentation>
+					<Quantity name="Factor">
 						<Unit label="x">
 							<SIUnit>1</SIUnit>
 						</Unit>
@@ -1328,7 +1197,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Jacquinot Stop" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Limiting optical aperture in the spectrometer. Also called "limiting aperture" or "J-Stop".</Documentation>
+					<Documentation>Limiting optical aperture in the spectrometer. Also called "limiting aperture", "maximum aperture" or "J-Stop".</Documentation>
 					<Quantity name="Length">
 						<Unit label="mm">
 							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
@@ -1344,7 +1213,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<String>double-sided</String>
 					</AllowedValue>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Apodization Function" parameterType="String">
+				<ParameterBlueprint name="Apodization Function" parameterType="String" modality="optional">
 					<Documentation>Weighting function applied to the interferogram prior to fourrier transformation to control either spectral line shape or to reduce spectral artifacts.</Documentation>
 					<AllowedValue>
 						<String>boxcar</String>
@@ -1356,8 +1225,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<String>other</String>
 					</AllowedValue>
 				</ParameterBlueprint>
-				
-				
+				<ParameterBlueprint name="Apodization Function Variable" parameterType="Float" modality="optional" maxOccurs="unbounded">
+					<Documentation>Variable controlling the apodization function.</Documentation>
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Fourier Transformation Algorithm" parameterType="String" modality="required">
 					<Documentation>Mathematical method which performs the domain conversion.</Documentation>
 					<AllowedValue>
@@ -1366,8 +1236,10 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<AllowedValue>
 						<String>Variable Radix</String>
 					</AllowedValue>
+					<AllowedValue>
+						<String>other</String>
+					</AllowedValue>
 				</ParameterBlueprint>
-				
 				<ParameterBlueprint name="Spectrum Type" parameterType="String" modality="optional">
 					<Documentation>Format of the spectrum resulting from the domain transformation.</Documentation>
 					<AllowedValue>
@@ -1377,7 +1249,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<String>Phase-Corrected Amplitude (Intensity) Spectrum</String>
 					</AllowedValue>
 				</ParameterBlueprint>
-				
 				<ParameterBlueprint name="Phase Correction Mode" parameterType="String" modality="optional">
 					<Documentation>Method used to correct the phase of the spectrum resulting from the domain transformation.</Documentation>
 					<AllowedValue>
@@ -1390,11 +1261,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<String>other</String>
 					</AllowedValue>
 				</ParameterBlueprint>
-				
 				<ParameterBlueprint name="Phase Correction Variable" parameterType="Float" modality="optional" maxOccurs="unbounded">
 					<Documentation>Parameter associated with the order of the phase correction.</Documentation>
 				</ParameterBlueprint>
-				
 				<ParameterBlueprint name="Phase Resolution" parameterType="Float">
 					<Documentation>TODO - unclear about meaning and quantity</Documentation>
 					<Quantity name="TODO">
@@ -1406,37 +1275,50 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</Unit>
 					</Quantity>
 				</ParameterBlueprint>
-				
 				<ParameterBlueprint name="Baseline Correction Method" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Name or description of algorithm for baseline correction.</Documentation>
 				</ParameterBlueprint>
-				
-				
-				
 				<CategoryBlueprint name="Digital Filter" modality="optional" maxOccurs="1">
 					<Documentation>Settings for a digital filter applied to the FT signal set.</Documentation>
 					<ParameterBlueprint name="Type" parameterType="String" modality="required">
 						<Documentation>Whether a lowpass, highpass, bandpass or notch type filter algorithm was used. See IEEE 151-1965W.</Documentation>
-						<AllowedValue><String>Lowpass</String></AllowedValue>
-						<AllowedValue><String>Highpass</String></AllowedValue>
-						<AllowedValue><String>Bandpass</String></AllowedValue>
-						<AllowedValue><String>Notch</String></AllowedValue>
+						<AllowedValue>
+							<String>Lowpass</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Highpass</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Bandpass</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Notch</String>
+						</AllowedValue>
 					</ParameterBlueprint>
-					
 					<ParameterBlueprint name="Function" parameterType="String" modality="optional">
 						<Documentation>Shape of the filter response as defined by the polynomials approximating it.</Documentation>
-						<AllowedValue><String>Bezel</String></AllowedValue>
-						<AllowedValue><String>Butterworth</String></AllowedValue>
-						<AllowedValue><String>Cauchy</String></AllowedValue>
-						<AllowedValue><String>Chebyshev</String></AllowedValue>
-						<AllowedValue><String>Elliptical</String></AllowedValue>
-						<AllowedValue><String>other</String></AllowedValue>
+						<AllowedValue>
+							<String>Bezel</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Butterworth</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Cauchy</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Chebyshev</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Elliptical</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>other</String>
+						</AllowedValue>
 					</ParameterBlueprint>
-					
 					<ParameterBlueprint name="Order" parameterType="Int" modality="optional">
 						<Documentation>Order of the polynomial approximating function the filter is based upon.</Documentation>
 					</ParameterBlueprint>
-					
 					<ParameterBlueprint name="Center frequency" parameterType="Float" modality="optional">
 						<Documentation>Only applicable to notch and bandpass filters: Mid-point frequency of the stop or pass band.</Documentation>
 						<Quantity name="Frequency">
@@ -1445,7 +1327,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 					</ParameterBlueprint>
-					
 					<ParameterBlueprint name="Pass band frequency" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass), or pass band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
@@ -1454,7 +1335,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 					</ParameterBlueprint>
-
 					<ParameterBlueprint name="Stop band frequency" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass), or stop band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
@@ -1464,31 +1344,47 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</Quantity>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
-				
 				<CategoryBlueprint name="Analog Filter" modality="optional" maxOccurs="unbounded">
 					<Documentation>Characteristics of a single analog filter applied to the FT signal.</Documentation>
 					<ParameterBlueprint name="Type" parameterType="String" modality="required">
 						<Documentation>Whether a lowpass, highpass, bandpass or notch type filter was used. See IEEE 151-1965W.</Documentation>
-						<AllowedValue><String>Lowpass</String></AllowedValue>
-						<AllowedValue><String>Highpass</String></AllowedValue>
-						<AllowedValue><String>Bandpass</String></AllowedValue>
-						<AllowedValue><String>Notch</String></AllowedValue>
+						<AllowedValue>
+							<String>Lowpass</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Highpass</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Bandpass</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Notch</String>
+						</AllowedValue>
 					</ParameterBlueprint>
-					
 					<ParameterBlueprint name="Function" parameterType="String" modality="optional">
 						<Documentation>Shape of the filter response as defined by the polynomials approximating it.</Documentation>
-						<AllowedValue><String>Bezel</String></AllowedValue>
-						<AllowedValue><String>Butterworth</String></AllowedValue>
-						<AllowedValue><String>Cauchy</String></AllowedValue>
-						<AllowedValue><String>Chebyshev</String></AllowedValue>
-						<AllowedValue><String>Elliptical</String></AllowedValue>
-						<AllowedValue><String>other</String></AllowedValue>
+						<AllowedValue>
+							<String>Bezel</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Butterworth</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Cauchy</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Chebyshev</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Elliptical</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>other</String>
+						</AllowedValue>
 					</ParameterBlueprint>
-					
 					<ParameterBlueprint name="Order" parameterType="Int" modality="optional">
 						<Documentation>Order of the polynomial approximating function the filter is based upon.</Documentation>
 					</ParameterBlueprint>
-					
 					<ParameterBlueprint name="Center frequency" parameterType="Float" modality="optional">
 						<Documentation>Only applicable to notch and bandpass filters: Mid-point frequency of the stop or pass band.</Documentation>
 						<Quantity name="Frequency">
@@ -1497,7 +1393,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 					</ParameterBlueprint>
-					
 					<ParameterBlueprint name="Pass band frequency" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass), or pass band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
@@ -1506,7 +1401,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 					</ParameterBlueprint>
-
 					<ParameterBlueprint name="Stop band frequency" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass), or stop band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
@@ -1515,19 +1409,24 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 					</ParameterBlueprint>
-				</CategoryBlueprint>				
-				
-
+				</CategoryBlueprint>
 				<CategoryBlueprint name="Aliasing Filter" modality="optional" maxOccurs="unbounded">
 					<Documentation>TODO Characteristics of a single analog filter applied to the FT signal.</Documentation>
 					<ParameterBlueprint name="Type" parameterType="String" modality="required">
 						<Documentation>Whether a shortpass, longpass, bandpass or notch type filter was used. See IEEE 151-1965W.</Documentation>
-						<AllowedValue><String>Shortpass</String></AllowedValue>
-						<AllowedValue><String>Longpass</String></AllowedValue>
-						<AllowedValue><String>Bandpass</String></AllowedValue>
-						<AllowedValue><String>Notch</String></AllowedValue>
+						<AllowedValue>
+							<String>Shortpass</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Longpass</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Bandpass</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Notch</String>
+						</AllowedValue>
 					</ParameterBlueprint>
-										
 					<ParameterBlueprint name="Center" parameterType="Float" modality="optional">
 						<Documentation>Only applicable to notch and bandpass filters: Mid-point of the stop or pass band.</Documentation>
 						<Quantity name="Frequency">
@@ -1546,7 +1445,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 					</ParameterBlueprint>
-					
 					<ParameterBlueprint name="Pass band" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass), or pass band (bandpass, notch) of the filter.</Documentation>
 						<Quantity name="Frequency">
@@ -1565,7 +1463,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 					</ParameterBlueprint>
-
 					<ParameterBlueprint name="Stop band" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass), or stop band (bandpass, notch) of the filter.</Documentation>
 						<Quantity name="Frequency">
@@ -1584,8 +1481,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 					</ParameterBlueprint>
-				</CategoryBlueprint>	
-				
+				</CategoryBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Spectral Post-Processing">
@@ -1614,7 +1510,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<Documentation>e.g. Savitsky-Golay filter or moving average</Documentation>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
-		
 		</CategoryBlueprint>
 	</MethodBlueprint>
 	<ResultBlueprint name="Spectrum" modality="optional">

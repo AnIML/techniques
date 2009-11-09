@@ -271,7 +271,7 @@
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Solvent" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>A liquid that can dissolve another substance. See ASTM E 609-05. Used to dissolve the Test Sample.</Documentation>
-		<CategoryBlueprint name="Sample Description" modality="required" maxOccurs="1">
+		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
 			<Documentation>Parameters describing the measurement sample</Documentation>
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
 				<Documentation>Common, trade, or other names.</Documentation>
@@ -562,40 +562,161 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<String>Transmittance, true</String>
 					</AllowedValue>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Detector Types" parameterType="String" modality="optional" maxOccurs="unbounded">
-					<Documentation>TODO: replace with category that contains description, gain setting, range on which it's used. The types or names of the detector used for the measurement.</Documentation>
-				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
 					<Documentation>The type or name of the assembly that holds the sample container in the optical beam, e.g., cuvette holder, sample changer. (The sample container itself is described within the Sample element in the AnIML Core Schema.)</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Sample Holder Position" parameterType="String" modality="optional">
-					<Documentation>The position of the sample within the sample holder unit. Note: This is not intended for auto sampler information.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Optical Path Environment" parameterType="String" modality="optional">
-					<Documentation>Describes the environment of the optical path.</Documentation>
-					<AllowedValue>
-						<String>Ambient air</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>Dry air</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>Vacuum</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>Nitrogen</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>Argon</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>Other</String>
-					</AllowedValue>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings">
 				<Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-				<SeriesSetBlueprint name="Filter Sequence" modality="optional">
+				<SeriesSetBlueprint name="Light Sources" modality="optional">
+					<Documentation>Description of light sources being used whithin the experiment described.</Documentation>
+					<SeriesBlueprint name="Lower Bound" seriesType="Float" modality="required" dependency="dependent" plotScale="none">
+						<Documentation>The lower-bound x-axis value from which the given light source was used.</Documentation>
+						<Quantity name="Reciprocal Length">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Length">
+							<Unit label="um">
+								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
+							</Unit>
+							<Unit label="nm">
+								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
+							</Unit>
+							<Unit label="pm">
+								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Energy">
+							<Unit label="eV">
+								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
+								<SIUnit factor="1" exponent="2">m</SIUnit>
+								<SIUnit factor="1" exponent="-2">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Upper Bound" seriesType="Float" modality="required" dependency="dependent" plotScale="none">
+						<Documentation>The upper-bound x-axis value up to which the given light source was used.</Documentation>
+						<Quantity name="Reciprocal Length">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Length">
+							<Unit label="um">
+								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
+							</Unit>
+							<Unit label="nm">
+								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
+							</Unit>
+							<Unit label="pm">
+								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Energy">
+							<Unit label="eV">
+								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
+								<SIUnit factor="1" exponent="2">m</SIUnit>
+								<SIUnit factor="1" exponent="-2">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Source Type" seriesType="String" modality="required" dependency="dependent" plotScale="none">
+						<Documentation>Description of the light source type.</Documentation>
+						<AllowedValue>
+							<String>Tungsten Source</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Deuterium Source</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Xenon Source</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Mercury Source</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Glow Bar Source</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Other Source</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Plasma Emission</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Flame Emission</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Spark Emission</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Thermal Emission</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Laser Ablation Emission</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Other Emission</String>
+						</AllowedValue>
+					</SeriesBlueprint>
+				</SeriesSetBlueprint><SeriesSetBlueprint name="Source Polarization" modality="optional">
+					<Documentation>Sequence of polarizing elements used to modify the source polarization for the given wavelength ranges.</Documentation>
+					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>The lower-bound x-axis value from which the given polarizer was used.</Documentation>
+						<Quantity name="Reciprocal Length">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Length">
+							&um;
+							&nm;
+							&pm;
+						</Quantity>
+						<Quantity name="Energy">
+							<Unit label="eV">
+								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
+								<SIUnit factor="1" exponent="2">m</SIUnit>
+								<SIUnit factor="1" exponent="-2">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>The upper-bound x-axis value up to which the given polarizer was used..</Documentation>
+						<Quantity name="Reciprocal Length">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Length">
+							&um; &nm; &pm;
+						</Quantity>
+						<Quantity name="Energy">
+							&eV;
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Polarizer Type" seriesType="String" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>Type of optical element used for polarization, e.g., Glan-Taylor, Glan-Thomson, Wollaston, Nanoparticle</Documentation>
+						<AllowedValue>
+							<String>Glan-Taylor</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Glan-Thomson</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Wollaston</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Nanoparticle</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>other</String>
+						</AllowedValue>
+					</SeriesBlueprint>
+				</SeriesSetBlueprint><SeriesSetBlueprint name="Source Optical Filters" modality="optional">
+					<Documentation>Sequence of optical filters used to modify the source intensity for the given wavelength ranges.</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the specified filter was used.</Documentation>
 						<Quantity name="Reciprocal Length">
@@ -633,28 +754,18 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SeriesBlueprint name="Filter Description" seriesType="String" dependency="dependent" modality="required" plotScale="none">
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
-				<SeriesSetBlueprint name="Light Source Sequence" modality="optional">
-					<Documentation>Description of light sources beeing used whithin the experiment described. TODO: This should be a SeriesSet</Documentation>
-					<SeriesBlueprint name="Source Type" seriesType="String" modality="required" dependency="dependent" plotScale="none">
-						<Documentation>Description of the light source type.</Documentation>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Lower Bound" seriesType="Float" modality="required" dependency="dependent" plotScale="none">
-						<Documentation>The lower-bound x-axis value from which the specified light source was used.</Documentation>
+				<SeriesSetBlueprint name="Detectors">
+					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>The lower-bound x-axis value from which the specified detector was used.</Documentation>
 						<Quantity name="Reciprocal Length">
 							<Unit label="1/cm">
 								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
 							</Unit>
 						</Quantity>
 						<Quantity name="Length">
-							<Unit label="um">
-								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="nm">
-								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="pm">
-								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
-							</Unit>
+							&um;
+							&nm;
+							&pm;
 						</Quantity>
 						<Quantity name="Energy">
 							<Unit label="eV">
@@ -664,23 +775,76 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							</Unit>
 						</Quantity>
 					</SeriesBlueprint>
-					<SeriesBlueprint name="Upper Bound" seriesType="Float" modality="required" dependency="dependent" plotScale="none">
-						<Documentation>The upper-bound x-axis value from which the specified light source was used..</Documentation>
+					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>The upper-bound  x-axis value from which the specified detector was used..</Documentation>
 						<Quantity name="Reciprocal Length">
 							<Unit label="1/cm">
 								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
 							</Unit>
 						</Quantity>
 						<Quantity name="Length">
-							<Unit label="um">
-								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
+							&um; &nm; &pm;
+						</Quantity>
+						<Quantity name="Energy">
+							&eV;
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Detector Type" seriesType="String" dependency="dependent">
+						<Documentation>The type of the detector used for the measurement.</Documentation>
+						<AllowedValue>
+							<String>Photomultiplier</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Photodiode</String>							
+						</AllowedValue>
+						<AllowedValue>
+							<String>Diode Array</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>CCD Array</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>PbS</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Thermopile</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>other</String>
+						</AllowedValue>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Bias Voltage" seriesType="Float" dependency="dependent" modality="optional">
+						<Documentation>Voltage that determines the detector gain.</Documentation>
+						<Quantity name="Voltage">
+							<Unit label="V">
+								<SIUnit>kg</SIUnit>
+								<SIUnit exponent="2">m</SIUnit>
+								<SIUnit exponent="-1">A</SIUnit>
+								<SIUnit exponent="-3">s</SIUnit>
 							</Unit>
-							<Unit label="nm">
-								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Detector Gain" seriesType="Float" dependency="dependent">
+						<Documentation>Factor for converting radiant energy incident on the detector to an electrical signal at the detector output.</Documentation>
+					</SeriesBlueprint>
+					
+				</SeriesSetBlueprint>
+				
+				
+				
+				<SeriesSetBlueprint name="Detector Polarization" modality="optional">
+					<Documentation>Sequence of polarizing elements used to modify the detector polarization for the given wavelength ranges.</Documentation>
+					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>The lower-bound x-axis value from which the given polarizer was used.</Documentation>
+						<Quantity name="Reciprocal Length">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
 							</Unit>
-							<Unit label="pm">
-								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
-							</Unit>
+						</Quantity>
+						<Quantity name="Length">
+							&um;
+							&nm;
+							&pm;
 						</Quantity>
 						<Quantity name="Energy">
 							<Unit label="eV">
@@ -689,9 +853,80 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 								<SIUnit factor="1" exponent="-2">s</SIUnit>
 							</Unit>
 						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>The upper-bound x-axis value up to which the given polarizer was used..</Documentation>
+						<Quantity name="Reciprocal Length">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Length">
+							&um; &nm; &pm;
+						</Quantity>
+						<Quantity name="Energy">
+							&eV;
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Polarizer Type" seriesType="String" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>Type of optical element used for polarization.</Documentation>
+						<AllowedValue>
+							<String>Glan-Taylor</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Glan-Thomson</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Wollaston</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>Nanoparticle</String>
+						</AllowedValue>
+						<AllowedValue>
+							<String>other</String>
+						</AllowedValue>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
-				<ParameterBlueprint name="Measurement Type" parameterType="String" modality="required">
+				
+				<SeriesSetBlueprint name="Detector Optical Filters" modality="optional">
+					<Documentation>Sequence of optical filters used to modify the detector response for given wavelength ranges.</Documentation>
+					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>The lower-bound x-axis value from which the specified filter was used.</Documentation>
+						<Quantity name="Reciprocal Length">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Length">
+							&um;
+							&nm;
+							&pm;
+						</Quantity>
+						<Quantity name="Energy">
+							<Unit label="eV">
+								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
+								<SIUnit factor="1" exponent="2">m</SIUnit>
+								<SIUnit factor="1" exponent="-2">s</SIUnit>
+							</Unit>
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>The upper-bound  x-axis value from which the specified filter was used..</Documentation>
+						<Quantity name="Reciprocal Length">
+							<Unit label="1/cm">
+								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
+							</Unit>
+						</Quantity>
+						<Quantity name="Length">
+							&um; &nm; &pm;
+						</Quantity>
+						<Quantity name="Energy">
+							&eV;
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Filter Description" seriesType="String" dependency="dependent" modality="required" plotScale="none">
+					</SeriesBlueprint>
+				</SeriesSetBlueprint><ParameterBlueprint name="Measurement Type" parameterType="String" modality="required">
 					<Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one wavelength is recorded. Discrete means that absorbance of multiple exactly specified wavelengths is recorded. Spectrum means that a single range or multiple discrete ranges is/are recorded.</Documentation>
 					<AllowedValue>
 						<String>Single</String>
@@ -703,6 +938,30 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<String>Spectrum</String>
 					</AllowedValue>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="Sample Holder Position" parameterType="String" modality="optional">
+					<Documentation>The position of the sample within the sample holder unit. Note: This is not intended for auto sampler information.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Optical Path Environment" parameterType="String" modality="optional">
+					<Documentation>Describes the environment of the optical path.</Documentation>
+					<AllowedValue>
+						<String>Ambient air</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Dry air</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Vacuum</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Nitrogen</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Argon</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Other</String>
+					</AllowedValue>
+				</ParameterBlueprint>				
 				<CategoryBlueprint name="x-Axis Range" modality="optional" maxOccurs="1">
 					<Documentation>The range of x-axis coverage.</Documentation>
 					<ParameterBlueprint name="Min" parameterType="Float" modality="required">
@@ -820,8 +1079,38 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<Documentation>Specific parameters for dispersive measurements.</Documentation>
 			<CategoryBlueprint name="Instrument Properties">
 				<Documentation>Fixed characteristics of the instrument, specific to dispersive measurements.</Documentation>
-				<ParameterBlueprint name="Instrument Type" parameterType="String" modality="required">
-					<Documentation>Is the instrument single beam, double beam, diode array. TODO: A list of allowed values might be necessary.</Documentation>
+				<ParameterBlueprint name="Dispersion Element" parameterType="String" modality="optional">
+					<Documentation></Documentation>
+					<AllowedValue>
+						<String>Prism</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Grating</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Other</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Prism Material" parameterType="String">
+					<Documentation>Material from which the prism is made.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Grating Ruling" parameterType="Int">
+					<Documentation>TODO</Documentation>
+					<Quantity name="lines per distance">
+						<Unit label="lines/mm">
+							<SIUnit factor="10e-3" exponent="-1">m</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Grating Blaze Angle" parameterType="Float">
+					<Documentation>TODO</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Instrument Type" parameterType="String" modality="optional">
+					<Documentation>Whether the instrument is a single beam, double beam, or diode array instrument.</Documentation>
+					<AllowedValue><String>single beam</String></AllowedValue>
+					<AllowedValue><String>double beam</String></AllowedValue>
+					<AllowedValue><String>diode array</String></AllowedValue>
+					<AllowedValue><String>other</String></AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
 					<Documentation>The wavelength dispersion at the exit slit of the instrument. (ASTM E131-02)</Documentation>
@@ -832,7 +1121,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</Unit>
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="required">
+				<ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
 					<Documentation>Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02)</Documentation>
 					<Quantity name="Energy">
 						<Unit label="eV">
@@ -1136,6 +1425,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<SIUnit>1</SIUnit>
 						</Unit>
 					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Decimation Factor" parameterType="Int" modality="optional" maxOccurs="1">
+					<Documentation>Factor by which the number of data points is reduced in a discrete time interval.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Number of Data Points" parameterType="Int" modality="optional">
 					<Documentation>Number of data points collected per interferogram.</Documentation>

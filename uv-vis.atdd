@@ -9,19 +9,56 @@
 	<!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
 	<!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
 
+	<!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
+	<!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
 	
+	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
+	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
+	
+	<!ENTITY cm_per_s "<Unit label='cm/s'><SIUnit exponent='1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+		
 	<!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
 	
 	<!ENTITY ml "<Unit label='ml'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
+	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
 	
 	<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 
 	<!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
 	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
 	<!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+	
+	<!ENTITY mg_per_ml "<Unit label='mg/ml'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
+	<!ENTITY ml_per_ml "<Unit label='ml/ml'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
+	<!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
+	<!ENTITY ml_per_g "<Unit label='ml/g'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
+	
+	<!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
+	<!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
+	
+	<!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
+	<!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">	
+	
+	<!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+	<!ENTITY A "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+	<!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+	<!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+	<!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+	<!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+	<!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
+	
+	<!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
+	<!ENTITY kHz "<Unit label='kHz'><SIUnit exponent='-1' factor='1e+3'>s</SIUnit></Unit>">
+	
+	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	
+	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
+	
+	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
+	
 ]>
 <Technique name="UV/Vis" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for UV/Visible spectrophotometry</Documentation>
@@ -41,29 +78,14 @@
 			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample used to prepare the test material.</Documentation>
 				<Quantity name="Volume">
-					&ml;
+					&ml; &L;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of sample in solvent, if applicable. TODO units</Documentation>
 				<!-- TODO WHAT ABOUT USING MOLAR SOLUTIONS?-->
 				<Quantity name="Concentration">
-					<Unit label="mg/ml">
-						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="ml/ml">
-						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="µg/g">
-						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
-						<SIUnit exponent="-1" factor="1e-3">kg</SIUnit>
-					</Unit>
-					<Unit label="ml/g">
-						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
-						<SIUnit exponent="-1" factor="1e-3">kg</SIUnit>
-					</Unit>
+					&mg_per_ml; &ml_per_ml; &ug_per_g; &ml_per_g;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
@@ -132,10 +154,7 @@
 			<ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Density of the test sample. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
 				<Quantity name="Density">
-					<Unit label="g/cm3">
-						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
-						<SIUnit exponent="-3" factor="1e-2">m</SIUnit>
-					</Unit>
+					&g_per_cm3;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Lot or Batch Name/Number" parameterType="String" modality="optional" maxOccurs="1">
@@ -143,7 +162,7 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1"/>
 			<CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
-				<Documentation>Temperature at which the vapor pressure of a liquid reaches atmospheric pressure under equilibrium boiling conditions (IUPAC Compendium of Chemical Terminology, 2nd Edition, E02227, definition of evaporation).</Documentation>
+				<Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under equilibrium boiling conditions.</Documentation>
 				<ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of boiling temperature range. Use only this value if sample has an actual boiling "point".</Documentation>
 					<Quantity name="Temperature">
@@ -208,22 +227,7 @@
 			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of known components and impurities; see Appl. Spectrosc. 42, 1, 1988. TODO units</Documentation>
 				<Quantity name="Concentration">
-					<Unit label="mg/ml">
-						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="ml/ml">
-						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="µg/g">
-						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
-						<SIUnit exponent="-1" factor="1e-3">kg</SIUnit>
-					</Unit>
-					<Unit label="ml/g">
-						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
-						<SIUnit exponent="-1" factor="1e-3">kg</SIUnit>
-					</Unit>
+					&mg_per_ml; &ml_per_ml; &ug_per_g; &ml_per_g;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
@@ -231,10 +235,7 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Quantity name="Molar Mass">
-					<Unit label="g/mol">
-						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
-						<SIUnit exponent="-1" factor="1">mol</SIUnit>
-					</Unit>
+					&g_per_mol;
 				</Quantity>
 			</ParameterBlueprint>
 			<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
@@ -322,10 +323,7 @@
 			<ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Density in g/cc. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
 				<Quantity name="Density">
-					<Unit label="g/cm3">
-						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
-						<SIUnit exponent="-3" factor="1e-2">m</SIUnit>
-					</Unit>
+					&g_per_cm3;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Lot or Batch Name/Number" parameterType="SVG" modality="optional" maxOccurs="1">
@@ -333,7 +331,7 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1"/>
 			<CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
-				<Documentation>Boiling Point - The temperature at which the vapor pressure of an engine coolant reaches atmospheric pressure under equilibrium boiling conditions. (ASTM D 4725, D15)</Documentation>
+				<Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under equilibrium boiling conditions.</Documentation>
 				<ParameterBlueprint name="Minimum" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
 					<Quantity name="Temperature">
@@ -402,22 +400,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentrations of known components and impurities; see Appl. Spectrosc. 42, 1, 1988.</Documentation>
 				<Quantity name="Concentration">
-					<Unit label="mg/ml">
-						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="ml/ml">
-						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="µg/g">
-						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
-						<SIUnit exponent="-1" factor="1e-3">kg</SIUnit>
-					</Unit>
-					<Unit label="ml/g">
-						<SIUnit exponent="3" factor="1e-6">m</SIUnit>
-						<SIUnit exponent="-1" factor="1e-3">kg</SIUnit>
-					</Unit>
+					&mg_per_ml; &ml_per_ml; &ug_per_g; &ml_per_g;
 					<!-- TODO MFB added Molar concentration-->
 					<Unit label="M">
 						<SIUnit>mol</SIUnit>
@@ -450,10 +433,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Quantity name="Molar Mass">
-					<Unit label="g/mol">
-						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
-						<SIUnit exponent="-1" factor="1">mol</SIUnit>
-					</Unit>
+					&g_per_mol;
 				</Quantity>
 			</ParameterBlueprint>
 			<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
@@ -573,53 +553,25 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" modality="required" dependency="dependent" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the given light source was used.</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
-							<Unit label="um">
-								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="nm">
-								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="pm">
-								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
-							</Unit>
+							&um; &nm; &pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Upper Bound" seriesType="Float" modality="required" dependency="dependent" plotScale="none">
 						<Documentation>The upper-bound x-axis value up to which the given light source was used.</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
-							<Unit label="um">
-								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="nm">
-								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="pm">
-								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
-							</Unit>
+							&um; &nm; &pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Source Type" seriesType="String" modality="required" dependency="dependent" plotScale="none">
@@ -666,9 +618,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the given polarizer was used.</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um;
@@ -676,19 +626,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							&pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The upper-bound x-axis value up to which the given polarizer was used..</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um; &nm; &pm;
@@ -720,9 +664,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the specified filter was used.</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um;
@@ -730,19 +672,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							&pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The upper-bound  x-axis value from which the specified filter was used..</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um; &nm; &pm;
@@ -755,12 +691,11 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
 				<SeriesSetBlueprint name="Detectors">
+					<Documentation>TODO</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the specified detector was used.</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um;
@@ -768,19 +703,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							&pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The upper-bound  x-axis value from which the specified detector was used..</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um; &nm; &pm;
@@ -789,7 +718,10 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							&eV;
 						</Quantity>
 					</SeriesBlueprint>
-					<SeriesBlueprint name="Detector Type" seriesType="String" dependency="dependent">
+					<SeriesBlueprint name="Detector Name" seriesType="String" dependency="dependent" modality="required" plotScale="none">
+						<Documentation>Name of the detector.</Documentation>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Detector Type" seriesType="String" dependency="dependent" modality="optional" plotScale="none">
 						<Documentation>The type of the detector used for the measurement.</Documentation>
 						<AllowedValue>
 							<String>Photomultiplier</String>
@@ -813,18 +745,16 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<String>other</String>
 						</AllowedValue>
 					</SeriesBlueprint>
-					<SeriesBlueprint name="Bias Voltage" seriesType="Float" dependency="dependent" modality="optional">
+					<SeriesBlueprint name="Detector Description" seriesType="String" dependency="dependent" modality="optional" plotScale="none">
+						<Documentation>Description of the detector.</Documentation>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Bias Voltage" seriesType="Float" dependency="dependent" modality="optional" plotScale="none">
 						<Documentation>Voltage that determines the detector gain.</Documentation>
 						<Quantity name="Voltage">
-							<Unit label="V">
-								<SIUnit>kg</SIUnit>
-								<SIUnit exponent="2">m</SIUnit>
-								<SIUnit exponent="-1">A</SIUnit>
-								<SIUnit exponent="-3">s</SIUnit>
-							</Unit>
+							&V;
 						</Quantity>
 					</SeriesBlueprint>
-					<SeriesBlueprint name="Detector Gain" seriesType="Float" dependency="dependent">
+					<SeriesBlueprint name="Detector Gain" seriesType="Float" dependency="dependent" modality="optional" plotScale="none">
 						<Documentation>Factor for converting radiant energy incident on the detector to an electrical signal at the detector output.</Documentation>
 					</SeriesBlueprint>
 					
@@ -837,9 +767,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the given polarizer was used.</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um;
@@ -847,19 +775,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							&pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The upper-bound x-axis value up to which the given polarizer was used..</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um; &nm; &pm;
@@ -893,9 +815,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the specified filter was used.</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um;
@@ -903,19 +823,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							&pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The upper-bound  x-axis value from which the specified filter was used..</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
 							&um; &nm; &pm;
@@ -961,59 +875,37 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<AllowedValue>
 						<String>Other</String>
 					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
+					<Documentation>Ambient pressure in the optical path of the instrument.</Documentation>
+					<Quantity name="Pressure">
+						&Pa;
+					</Quantity>
 				</ParameterBlueprint>				
 				<CategoryBlueprint name="x-Axis Range" modality="optional" maxOccurs="1">
 					<Documentation>The range of x-axis coverage.</Documentation>
 					<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 						<Documentation>The shortest range.</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
-							<Unit label="um">
-								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="nm">
-								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="pm">
-								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
-							</Unit>
+							&um; &nm; &pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Max" parameterType="Float" modality="required">
 						<Documentation>The longest range.</Documentation>
 						<Quantity name="Reciprocal Length">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2" exponent="-1">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 						<Quantity name="Length">
-							<Unit label="um">
-								<SIUnit factor="1e-6" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="nm">
-								<SIUnit factor="1e-9" exponent="1">m</SIUnit>
-							</Unit>
-							<Unit label="pm">
-								<SIUnit factor="1e-12" exponent="1">m</SIUnit>
-							</Unit>
+							&um; &nm; &pm;
 						</Quantity>
 						<Quantity name="Energy">
-							<Unit label="eV">
-								<SIUnit factor="1.60218e-19" exponent="1">kg</SIUnit>
-								<SIUnit factor="1" exponent="2">m</SIUnit>
-								<SIUnit factor="1" exponent="-2">s</SIUnit>
-							</Unit>
+							&eV;
 						</Quantity>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
@@ -1021,55 +913,25 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 						<Documentation>The smallest range.</Documentation>
 						<Quantity name="Absorbance">
-							<Unit label="AU">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
-							<Unit label="A">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
+							&AU; &A;
 						</Quantity>
 						<Quantity name="Transmittance">
-							<Unit label="T">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
-							<Unit label="%T">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
+							&T; &percentT;
 						</Quantity>
 						<Quantity name="Reflectance">
-							<Unit label="%R">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
-							<Unit label="R">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
+							&percentR; &R;
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Max" parameterType="Float" modality="required">
 						<Documentation>The largest range.</Documentation>
 						<Quantity name="Absorbance">
-							<Unit label="AU">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
-							<Unit label="A">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
+							&AU; &A;
 						</Quantity>
 						<Quantity name="Transmittance">
-							<Unit label="T">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
-							<Unit label="%T">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
+							&T; &percentT;
 						</Quantity>
 						<Quantity name="Reflectance">
-							<Unit label="%R">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
-							<Unit label="R">
-								<SIUnit exponent="1" factor="1">1</SIUnit>
-							</Unit>
+							&percentR; &R;
 						</Quantity>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
@@ -1124,21 +986,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
 					<Documentation>Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02)</Documentation>
 					<Quantity name="Energy">
-						<Unit label="eV">
-							<SIUnit exponent="1" factor="1.60218e-19">kg</SIUnit>
-							<SIUnit exponent="2" factor="1">m</SIUnit>
-							<SIUnit exponent="-2" factor="1">s</SIUnit>
-						</Unit>
+						&eV;
 					</Quantity>
 					<Quantity name="Reciprocal Length">
-						<Unit label="1/cm">
-							<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
-						</Unit>
+						&reciprocal_cm;
 					</Quantity>
 					<Quantity name="Length">
-						<Unit label="nm">
-							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-						</Unit>
+						&nm;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -1147,31 +1001,19 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Spectral Slit Width" parameterType="Float" modality="optional">
 					<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use parameter if constant.</Documentation>
 					<Quantity name="Length">
-						<Unit label="nm">
-							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-						</Unit>
+						&nm;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Slit Width" parameterType="Float" modality="required">
 					<Documentation>The mechanical width of the monochromator slits.</Documentation>
 					<Quantity name="Length">
-						<Unit label="mm">
-							<SIUnit exponent="1" factor="0.001">m</SIUnit>
-						</Unit>
-						<Unit label="nm">
-							<SIUnit exponent="1" factor="0.000000001">m</SIUnit>
-						</Unit>
+						&mm; &nm;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Integration Period" parameterType="Float" modality="optional">
 					<Documentation>The time interval over which discrete detector readings are averaged to produce a data point. Use this parameter only to state how the data were acquired.</Documentation>
 					<Quantity name="Time">
-						<Unit label="ms">
-							<SIUnit exponent="1" factor="1e-3">s</SIUnit>
-						</Unit>
-						<Unit label="s">
-							<SIUnit>s</SIUnit>
-						</Unit>
+						&ms; &s;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Degree of Derivatization" parameterType="Int" modality="required">
@@ -1199,10 +1041,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
 							<SIUnit exponent="1" factor="1">s</SIUnit>
 						</Unit>
-						<Unit label="1/cm s">
-							<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
-							<SIUnit exponent="-1" factor="1">s</SIUnit>
-						</Unit>
+						&reciprocal_cm_per_s;
 						<Unit label="eV/s">
 							<SIUnit exponent="1" factor="1.60218e-19">kg</SIUnit>
 							<SIUnit exponent="2" factor="1">m</SIUnit>
@@ -1213,9 +1052,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Spectral Bandwidth Range" modality="optional" parameterType="Float">
 					<Documentation>The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
 					<Quantity name="Length">
-						<Unit label="nm">
-							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-						</Unit>
+						&nm;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -1258,28 +1095,24 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Monitor Laser Wavelength" parameterType="Float">
-					<Documentation>TODO. Quantity: wavenumber, wavelength</Documentation>
+					<Documentation>Wavelength or wavenumber of the monitor or reference laser.</Documentation>
+					<Quantity name="Wavelength">
+						&nm;
+					</Quantity>
+					<Quantity name="Wavenumber">
+						&reciprocal_cm;
+					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Collimating Mirror Focal Length" parameterType="Float" modality="optional">
-					<Documentation>Focal length of the collimating mirror.</Documentation>
+					<Documentation>Focal length of the collimating mirror, also known as "input focal length".</Documentation>
 					<Quantity name="Length">
-						<Unit label="cm">
-							<SIUnit exponent="1" factor="1e-2">m</SIUnit>
-						</Unit>
-						<Unit label="mm">
-							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
-						</Unit>
+						&cm; &mm;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Collimating Mirror Diameter" parameterType="Float" modality="optional">
 					<Documentation>Diameter of the collimating mirror.</Documentation>
 					<Quantity name="Length">
-						<Unit label="cm">
-							<SIUnit exponent="1" factor="1e-2">m</SIUnit>
-						</Unit>
-						<Unit label="mm">
-							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
-						</Unit>
+						&cm; &mm;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Analog-to-Digital Converter Resolution" parameterType="Float" modality="optional" maxOccurs="1">
@@ -1293,9 +1126,13 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Photometric Non-linearity" parameterType="Float" modality="optional">
 					<Documentation>The inability of a photometric system to yield a linear relationship between the radiant power incident on its detector and some measurable quantity provided by the system, expressed as percentage. See "photometric linearity" in ASTM E131-02.</Documentation>
 					<Quantity name="Non-linearity">
-						<Unit label="%">
-							<SIUnit factor="1e-2">1</SIUnit>
-						</Unit>
+						&percent;
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Maximum Aperture" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Maximum optical aperture supported by the spectrometer.</Documentation>
+					<Quantity name="Length">
+						&mm;
 					</Quantity>
 				</ParameterBlueprint>
 				<CategoryBlueprint name="Beam Splitter" modality="optional">
@@ -1318,9 +1155,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<ParameterBlueprint name="Incidence Angle" parameterType="Float" modality="optional">
 						<Documentation>Angle at which the light is incident on the beam splitter.</Documentation>
 						<Quantity name="Angle">
-							<Unit label="°">
-								<SIUnit>1</SIUnit>
-							</Unit>
+							&degree;
 						</Quantity>
 					</ParameterBlueprint>
 					<CategoryBlueprint name="Effective Range" maxOccurs="1" modality="optional">
@@ -1328,27 +1163,19 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						<ParameterBlueprint name="Minimum" parameterType="Float" modality="optional" maxOccurs="1">
 							<Documentation>Lower boundary of effective range.</Documentation>
 							<Quantity name="Wavelength">
-								<Unit label="nm">
-									<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-								</Unit>
+								&nm;
 							</Quantity>
 							<Quantity name="Wavenumber">
-								<Unit label="1/cm">
-									<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
-								</Unit>
+								&reciprocal_cm;
 							</Quantity>
 						</ParameterBlueprint>
 						<ParameterBlueprint name="Maximum" parameterType="Float" modality="optional" maxOccurs="1">
 							<Documentation>Upper boundary of effective range.</Documentation>
 							<Quantity name="Wavelength">
-								<Unit label="nm">
-									<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-								</Unit>
+								&nm;
 							</Quantity>
 							<Quantity name="Wavenumber">
-								<Unit label="1/cm">
-									<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
-								</Unit>
+								&reciprocal_cm;
 							</Quantity>
 						</ParameterBlueprint>
 					</CategoryBlueprint>
@@ -1356,37 +1183,41 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings">
 				<Documentation>Variable characteristics or configuration parameters of the instrument, specific to interferometric measurements.</Documentation>
+				<ParameterBlueprint name="Spectrum data source" parameterType="String" modality="optional">
+					<Documentation>Type of data source from which spectrum is derived.</Documentation>
+					<AllowedValue><String>Measured dispersive spectrum</String></AllowedValue>
+					<AllowedValue><String>FT power spectrum</String></AllowedValue>
+					<AllowedValue><String>FT real spectrum</String></AllowedValue>
+					<AllowedValue><String>FT imaginary spectrum</String></AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Interferogram Aquisition Mode" parameterType="String">
+					<Documentation>Type of interferogram data.</Documentation>
+					<AllowedValue><String>complex sequential</String></AllowedValue>
+					<AllowedValue><String>complex simultaneous</String></AllowedValue>
+					<AllowedValue><String>real-only</String></AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Air Correction" parameterType="Boolean" modality="optional">
+					<Documentation>Whether data are adjusted for the refractive index of air.</Documentation>
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Maximum Effective Optical Path Difference" parameterType="Float" modality="optional">
 					<Documentation>Distance (Xmax) the mirror moves to change the optical path length. Does not include the overscan range.</Documentation>
 					<Quantity name="Length">
-						<Unit label="cm">
-							<SIUnit exponent="1" factor="1e-2">m</SIUnit>
-						</Unit>
-						<Unit label="mm">
-							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
-						</Unit>
+						&cm; &mm;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Spectral Resolution" parameterType="Float" modality="optional">
 					<Documentation>Smallest difference between wavenumbers (TODO 1/(2*Xmax)) or wavelengths (TODO 2*Xmax) at which one can distinguish different spectral properties. See Bertie, John: Glossary of Terms used in vibration spectroscopy, from: Handbook of vibrational spectroscopy</Documentation>
 					<Quantity name="Wavelength">
-						<Unit label="nm">
-							<SIUnit factor="1e-9">m</SIUnit>
-						</Unit>
+						&nm;
 					</Quantity>
 					<Quantity name="Wavenumber">
-						<Unit label="1/cm">
-							<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
-						</Unit>
+						&reciprocal_cm;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Mirror Velocity" parameterType="Float" modality="optional">
 					<Documentation>Velocity of reference mirror in the interferometer.</Documentation>
 					<Quantity name="Velocity">
-						<Unit label="cm/s">
-							<SIUnit exponent="1" factor="1e-2">m</SIUnit>
-							<SIUnit exponent="-1">s</SIUnit>
-						</Unit>
+						&cm_per_s;
 						<Unit label="mm/s">
 							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
 							<SIUnit exponent="-1">s</SIUnit>
@@ -1396,29 +1227,19 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Mirror Frequency" parameterType="Float" modality="optional">
 					<Documentation>Frequency of reference mirror movement in the interferometer.</Documentation>
 					<Quantity name="Frequency">
-						<Unit label="Hz">
-							<SIUnit exponent="-1">s</SIUnit>
-						</Unit>
-						<Unit label="kHz">
-							<SIUnit exponent="-1" factor="1e+3">s</SIUnit>
-						</Unit>
+						&Hz; &kHz;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Optical Retardation Velocity" parameterType="Float" modality="optional">
 					<Documentation>Effective scan speed of a continuous scan. Rate of change of the path difference of the interferometer. Equal to two times the mirror velocity.</Documentation>
 					<Quantity name="Velocity">
-						<Unit label="cm/s">
-							<SIUnit factor="1e-2">m</SIUnit>
-							<SIUnit exponent="-1">s</SIUnit>
-						</Unit>
+						&cm_per_s;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Sampling Interval" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Interval between data point acquisitions of the interferogram. May be measured in terms of distance traveled by the scan mirror or by counting interference fringes of the reference laser. Also given as "sampling rate" or "sampling frequency".</Documentation>
 					<Quantity name="Length">
-						<Unit label="µm">
-							<SIUnit exponent="1" factor="1e-6">m</SIUnit>
-						</Unit>
+						&um;
 					</Quantity>
 					<Quantity name="Count">
 						<Unit label="Fringes">
@@ -1432,9 +1253,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Number of Data Points" parameterType="Int" modality="optional">
 					<Documentation>Number of data points collected per interferogram.</Documentation>
 					<Quantity name="Count">
-						<Unit label="count">
-							<SIUnit>1</SIUnit>
-						</Unit>
+						&count;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Zero-Filling Point Count" parameterType="Int" modality="optional">
@@ -1465,12 +1284,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Integration Time Per Point" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Time interval over which data is integrated per data point during acquisition. Applies only to step scans.</Documentation>
 					<Quantity name="Time">
-						<Unit label="ms">
-							<SIUnit factor="1e-3">s</SIUnit>
-						</Unit>
-						<Unit label="s">
-							<SIUnit>s</SIUnit>
-						</Unit>
+						&ms; &s;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Number of Scans" parameterType="Float" modality="optional" maxOccurs="1">
@@ -1489,11 +1303,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Jacquinot Stop" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Limiting optical aperture in the spectrometer. Also called "limiting aperture", "maximum aperture" or "J-Stop".</Documentation>
+					<Documentation>Limiting optical aperture actually used in the spectrometer. Also called "limiting aperture" or "J-Stop".</Documentation>
 					<Quantity name="Length">
-						<Unit label="mm">
-							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
-						</Unit>
+						&mm;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Interferogram Type" parameterType="String" modality="optional">
@@ -1559,9 +1371,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Phase Resolution" parameterType="Float">
 					<Documentation>TODO - unclear about meaning and quantity</Documentation>
 					<Quantity name="TODO">
-						<Unit label="1/cm">
-							<SIUnit factor="1e-2">m</SIUnit>
-						</Unit>
+						&reciprocal_cm;
 						<Unit label="1/µm">
 							<SIUnit factor="1e-6">m</SIUnit>
 						</Unit>
@@ -1614,25 +1424,19 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<ParameterBlueprint name="Center frequency" parameterType="Float" modality="optional">
 						<Documentation>Only applicable to notch and bandpass filters: Mid-point frequency of the stop or pass band.</Documentation>
 						<Quantity name="Frequency">
-							<Unit label="Hz">
-								<SIUnit exponent="-1">s</SIUnit>
-							</Unit>
+							&Hz;
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Pass band frequency" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass), or pass band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
-							<Unit label="Hz">
-								<SIUnit exponent="-1">s</SIUnit>
-							</Unit>
+							&Hz;
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Stop band frequency" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass), or stop band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
-							<Unit label="Hz">
-								<SIUnit exponent="-1">s</SIUnit>
-							</Unit>
+							&Hz;
 						</Quantity>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
@@ -1680,25 +1484,19 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<ParameterBlueprint name="Center frequency" parameterType="Float" modality="optional">
 						<Documentation>Only applicable to notch and bandpass filters: Mid-point frequency of the stop or pass band.</Documentation>
 						<Quantity name="Frequency">
-							<Unit label="Hz">
-								<SIUnit exponent="-1">s</SIUnit>
-							</Unit>
+							&Hz;
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Pass band frequency" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass), or pass band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
-							<Unit label="Hz">
-								<SIUnit exponent="-1">s</SIUnit>
-							</Unit>
+							&Hz;
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Stop band frequency" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass), or stop band (bandpass, notch) frequency of the filter.</Documentation>
 						<Quantity name="Frequency">
-							<Unit label="Hz">
-								<SIUnit exponent="-1">s</SIUnit>
-							</Unit>
+							&Hz;
 						</Quantity>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
@@ -1722,55 +1520,37 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<ParameterBlueprint name="Center" parameterType="Float" modality="optional">
 						<Documentation>Only applicable to notch and bandpass filters: Mid-point of the stop or pass band.</Documentation>
 						<Quantity name="Frequency">
-							<Unit label="Hz">
-								<SIUnit exponent="-1">s</SIUnit>
-							</Unit>
+							&Hz;
 						</Quantity>
 						<Quantity name="Wavelength">
-							<Unit label="nm">
-								<SIUnit factor="1e-9">m</SIUnit>
-							</Unit>
+							&nm;
 						</Quantity>
 						<Quantity name="Wavenumbers">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Pass band" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass), or pass band (bandpass, notch) of the filter.</Documentation>
 						<Quantity name="Frequency">
-							<Unit label="Hz">
-								<SIUnit exponent="-1">s</SIUnit>
-							</Unit>
+							&Hz;
 						</Quantity>
 						<Quantity name="Wavelength">
-							<Unit label="nm">
-								<SIUnit factor="1e-9">m</SIUnit>
-							</Unit>
+							&nm;
 						</Quantity>
 						<Quantity name="Wavenumbers">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Stop band" parameterType="Float" modality="optional">
 						<Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass), or stop band (bandpass, notch) of the filter.</Documentation>
 						<Quantity name="Frequency">
-							<Unit label="Hz">
-								<SIUnit exponent="-1">s</SIUnit>
-							</Unit>
+							&Hz;
 						</Quantity>
 						<Quantity name="Wavelength">
-							<Unit label="nm">
-								<SIUnit factor="1e-9">m</SIUnit>
-							</Unit>
+							&nm;
 						</Quantity>
 						<Quantity name="Wavenumbers">
-							<Unit label="1/cm">
-								<SIUnit factor="1e-2">m</SIUnit>
-							</Unit>
+							&reciprocal_cm;
 						</Quantity>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
@@ -1812,105 +1592,57 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<SeriesBlueprint name="Wavenumber" seriesType="Float" plotScale="linear" dependency="independent">
 					<Documentation>Number of waves per unit of length. (ASTM E131-02)</Documentation>
 					<Quantity name="Reciprocal Length">
-						<Unit label="1/cm">
-							<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
-						</Unit>
+						&reciprocal_cm;
 					</Quantity>
 				</SeriesBlueprint>
 				<SeriesBlueprint name="Radiant energy" seriesType="Float" plotScale="linear" dependency="independent">
 					<Documentation>Energy transmitted as electromagnetic waves. (ASTM E131-02)</Documentation>
 					<Quantity name="Energy">
-						<Unit label="eV">
-							<SIUnit exponent="1" factor="1.60218e-19">kg</SIUnit>
-							<SIUnit exponent="2" factor="1">m</SIUnit>
-							<SIUnit exponent="-2" factor="1">s</SIUnit>
-						</Unit>
+						&eV;
 					</Quantity>
 				</SeriesBlueprint>
 				<SeriesBlueprint name="Wavelength" seriesType="Float" plotScale="linear" dependency="independent">
 					<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02)</Documentation>
 					<Quantity name="Length">
-						<Unit label="µm">
-							<SIUnit exponent="1" factor="1e-6">m</SIUnit>
-						</Unit>
-						<Unit label="nm">
-							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-						</Unit>
-						<Unit label="pm">
-							<SIUnit exponent="1" factor="1e-12">m</SIUnit>
-						</Unit>
+						&um; &nm; &pm;
 					</Quantity>
 				</SeriesBlueprint>
 			</SeriesBlueprintChoice>
 			<SeriesBlueprint name="Intensity" seriesType="Float" modality="required" plotScale="linear" dependency="dependent">
 				<Documentation>Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment. Transmittance is the ratio of radiant power transmitted by the sample to the radiant power incident on the sample (ASTM E131-02). Reflectance is the ratio of the radiant power reflected by the sample to the radiant power incident on the sample (ASTM E131-02).</Documentation>
 				<Quantity name="Absorbance">
-					<Unit label="A">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
-					<Unit label="AU">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
+					&AU; &A;
 				</Quantity>
 				<Quantity name="Transmittance">
-					<Unit label="T">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
-					<Unit label="%T">
-						<SIUnit exponent="1" factor=".01">1</SIUnit>
-					</Unit>
+					&T; &percentT;
 				</Quantity>
 				<Quantity name="Reflectance">
-					<Unit label="R">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
-					<Unit label="%R">
-						<SIUnit exponent="1" factor=".01">1</SIUnit>
-					</Unit>
+					&percentR; &R;
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint name="Resolution" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
 				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02). Use vector if resolution is variable.</Documentation>
 				<Quantity name="Reciprocal Length">
-					<Unit label="1/cm">
-						<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
-					</Unit>
+					&reciprocal_cm;
 				</Quantity>
 				<Quantity name="Energy">
-					<Unit label="eV">
-						<SIUnit exponent="1" factor="1.60218e-19">kg</SIUnit>
-						<SIUnit exponent="2" factor="1">m</SIUnit>
-						<SIUnit exponent="-2" factor="1">s</SIUnit>
-					</Unit>
+					&eV;
 				</Quantity>
 				<Quantity name="Length">
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-					</Unit>
+					&nm;
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint seriesType="Float" plotScale="none" dependency="dependent" name="Spectral Slit Width" modality="optional" maxOccurs="1">
 				<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use series, if variable.</Documentation>
 				<Quantity name="Length">
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-					</Unit>
+					&nm;
 				</Quantity>
 			</SeriesBlueprint>
 		</SeriesSetBlueprint>
 		<CategoryBlueprint name="Measurement Description" modality="required">
 			<Documentation>Information regarding a measurement.</Documentation>
-			<ParameterBlueprint name="Identifier" parameterType="String" modality="required">
-				<Documentation>Measurement identification.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Title" parameterType="String" modality="optional">
-				<Documentation>The title of the experiment.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Project" parameterType="String" modality="optional">
-				<Documentation>A name of the project to which the measurement belongs.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
-				<Documentation>A document reference about the method of the measurement.</Documentation>
+				<Documentation>TODO A document reference about the method of the measurement.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
 				<Documentation>The number of scans. TODO</Documentation>
@@ -1918,32 +1650,25 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<ParameterBlueprint name="Scan Duration" parameterType="Float" modality="optional">
 				<Documentation>The scan duration. TODO</Documentation>
 				<Quantity name="Time">
-					<Unit label="s"/>
+					 &s;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Experiment Duration" parameterType="Float" modality="required">
 				<Documentation>Duration of the experiment.</Documentation>
 				<Quantity name="Time">
-					<Unit label="s"/>
+					 &s;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="required">
 				<Documentation>The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
 				<Quantity name="Length">
-					<Unit label="cm">
-						<SIUnit exponent="1" factor="1e-2">m</SIUnit>
-					</Unit>
-					<Unit label="mm">
-						<SIUnit exponent="1" factor="1e-3">m</SIUnit>
-					</Unit>
+					&cm; &mm;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Point Separation" parameterType="Float" modality="optional">
 				<Documentation>The spacing between two wavelength values, when a whole spectrum is measured.</Documentation>
 				<Quantity name="Length">
-					<Unit label="nm">
-						<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-					</Unit>
+					&nm;
 				</Quantity>
 			</ParameterBlueprint>
 			<CategoryBlueprint name="x-Axis Range" modality="optional" maxOccurs="1">
@@ -1951,53 +1676,25 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 					<Documentation>The shortest range.</Documentation>
 					<Quantity name="Reciprocal Length">
-						<Unit label="1/cm">
-							<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
-						</Unit>
+						&reciprocal_cm;
 					</Quantity>
 					<Quantity name="Length">
-						<Unit label="µm">
-							<SIUnit exponent="1" factor="1e-6">m</SIUnit>
-						</Unit>
-						<Unit label="nm">
-							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-						</Unit>
-						<Unit label="pm">
-							<SIUnit exponent="1" factor="1e-12">m</SIUnit>
-						</Unit>
+						&um; &nm; &pm;
 					</Quantity>
 					<Quantity name="Energy">
-						<Unit label="eV">
-							<SIUnit exponent="1" factor="1.60218e-19">kg</SIUnit>
-							<SIUnit exponent="2" factor="1">m</SIUnit>
-							<SIUnit exponent="-2" factor="1">s</SIUnit>
-						</Unit>
+						&eV;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Max" parameterType="Float" modality="required">
 					<Documentation>The longest range.</Documentation>
 					<Quantity name="Reciprocal Length">
-						<Unit label="1/cm">
-							<SIUnit exponent="-1" factor="1e-2">m</SIUnit>
-						</Unit>
+						&reciprocal_cm;
 					</Quantity>
 					<Quantity name="Length">
-						<Unit label="µm">
-							<SIUnit exponent="1" factor="1e-6">m</SIUnit>
-						</Unit>
-						<Unit label="nm">
-							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-						</Unit>
-						<Unit label="pm">
-							<SIUnit exponent="1" factor="1e-12">m</SIUnit>
-						</Unit>
+						&um; &nm; &pm;
 					</Quantity>
 					<Quantity name="Energy">
-						<Unit label="eV">
-							<SIUnit exponent="1" factor="1.60218e-19">kg</SIUnit>
-							<SIUnit exponent="2" factor="1">m</SIUnit>
-							<SIUnit exponent="-2" factor="1">s</SIUnit>
-						</Unit>
+						&eV;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -2005,55 +1702,25 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 					<Documentation>The smallest range.</Documentation>
 					<Quantity name="Absorbance">
-						<Unit label="AU">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
-						<Unit label="A">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
+						&AU; &A;
 					</Quantity>
 					<Quantity name="Transmittance">
-						<Unit label="T">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
-						<Unit label="%T">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
+						&T; &percentT;
 					</Quantity>
 					<Quantity name="Reflectance">
-						<Unit label="R">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
-						<Unit label="%R">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
+						&R; &percentR;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Max" parameterType="Float" modality="required">
 					<Documentation>The largest range.</Documentation>
 					<Quantity name="Absorbance">
-						<Unit label="AU">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
-						<Unit label="A">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
+						&AU; &A;
 					</Quantity>
 					<Quantity name="Transmittance">
-						<Unit label="T">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
-						<Unit label="%T">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
+						&T; &percentT;
 					</Quantity>
 					<Quantity name="Reflectance">
-						<Unit label="R">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
-						<Unit label="%R">
-							<SIUnit exponent="1" factor="1">1</SIUnit>
-						</Unit>
+						&R; &percentR;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -2062,32 +1729,25 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
 					<Documentation>The lowest temperature  of the solution at which the experiment can be performed</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degK; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Max" parameterType="Float" modality="optional">
 					<Documentation>The highest temperature of the solution at which the experiment can be performed</Documentation>
 					<Quantity name="Temperature">
-						<Unit label="K">
-							<SIUnit>K</SIUnit>
-						</Unit>
-						<Unit label="°C">
-							<SIUnit offset="-273.15">K</SIUnit>
-						</Unit>
-						<Unit label="°F">
-							<SIUnit factor="1.8" offset="434.07">K</SIUnit>
-						</Unit>
+						&degK; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Spectrum Description">
+			<ParameterBlueprint name="Spectrum data source" parameterType="String" modality="optional">
+				<Documentation>Type of data source from which this spectrum has been derived.</Documentation>
+				<AllowedValue><String>Measured dispersive spectrum</String></AllowedValue>
+				<AllowedValue><String>FT power spectrum</String></AllowedValue>
+				<AllowedValue><String>FT real spectrum</String></AllowedValue>
+				<AllowedValue><String>FT imaginary spectrum</String></AllowedValue>
+			</ParameterBlueprint>		
 		</CategoryBlueprint>
 	</ResultBlueprint>
 	<ResultBlueprint name="Interferogram" modality="optional">
@@ -2096,39 +1756,35 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<SeriesBlueprint name="Time" seriesType="Float" modality="required" plotScale="linear" dependency="independent">
 				<Documentation>This is a set of values of dimension length, containing the abscissa value for each raw data ordinate value. This set of values has a unit of time: defined in ASTM E 1947-98 and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
 				<Quantity name="Time">
-					<Unit label="s">
-						<SIUnit>s</SIUnit>
-					</Unit>
+					 &s;
 				</Quantity>
 			</SeriesBlueprint>
-			<SeriesBlueprint name="Intensity" seriesType="Float" modality="required" plotScale="linear" dependency="dependent">
-				<Documentation>A set of values of dimension length, containing the ordinate values. This set of values has a unit of detector-unit. This is a required field for datasets
+			<SeriesBlueprint name="Intensity (real)" seriesType="Float" modality="required" plotScale="linear" dependency="dependent">
+				<Documentation>Set of real intensity values of dimension length, containing the ordinate values. This set of values has a unit of detector-unit. This is a required field for datasets
 containing raw data; can be in absorbance,  transmittance or percent transmittance, Kubelka-Munk, or reflectance; defined @ASTM E 1947-98 and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
 				<Quantity name="Absorbance">
-					<Unit label="AU">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
-					<Unit label="A">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
+					&AU; &A;
 				</Quantity>
 				<Quantity name="Transmittance">
-					<Unit label="T">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
-					<Unit label="%T">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
+					&T; &percentT;
 				</Quantity>
 				<Quantity name="Reflectance">
-					<Unit label="%R">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
-					<Unit label="R">
-						<SIUnit exponent="1" factor="1">1</SIUnit>
-					</Unit>
+					&percentR; &R;
 				</Quantity>
 			</SeriesBlueprint>
+			<SeriesBlueprint name="Intensity (complex)" seriesType="Float" modality="optional" plotScale="linear" dependency="dependent">
+				<Documentation>Set of complex intensity values of dimension length, containing the ordinate values. This set of values has a unit of detector-unit. This is a required field for datasets
+containing raw data; can be in absorbance,  transmittance or percent transmittance, Kubelka-Munk, or reflectance; defined @ASTM E 1947-98 and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
+				<Quantity name="Absorbance">
+					&AU; &A;
+				</Quantity>
+				<Quantity name="Transmittance">
+					&T; &percentT;
+				</Quantity>
+				<Quantity name="Reflectance">
+					&percentR; &R;
+				</Quantity>
+			</SeriesBlueprint>			
 		</SeriesSetBlueprint>
 		<CategoryBlueprint name="Measurement Parameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
@@ -2138,17 +1794,41 @@ containing raw data; can be in absorbance,  transmittance or percent transmittan
 			<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="required">
 				<Documentation>b - in a spectrophotometer, the distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent.(ASTM E131-02)</Documentation>
 				<Quantity name="Length">
-					<Unit label="cm">
-						<SIUnit exponent="1" factor="1e-2">m</SIUnit>
-					</Unit>
-					<Unit label="mm">
-						<SIUnit exponent="1" factor="1e-3">m</SIUnit>
-					</Unit>
+					&cm; &mm;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Zero Path Difference" parameterType="Float" modality="optional">
 				<Documentation>The number of data points before zero path difference (ZPD). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form".</Documentation>
 			</ParameterBlueprint>
+			<ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
+				<Documentation>Measured ambient pressure in the optical path of the instrument.</Documentation>
+				<Quantity name="Pressure">
+					&Pa;
+				</Quantity>
+			</ParameterBlueprint>	
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Interferogram Description">
+			<ParameterBlueprint name="Aquisition Mode" parameterType="String">
+				<Documentation>Type of measured data.</Documentation>
+				<AllowedValue><String>complex sequential</String></AllowedValue>
+				<AllowedValue><String>complex simultaneous</String></AllowedValue>
+				<AllowedValue><String>real-only</String></AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Modulation Efficiency" parameterType="Float">
+				<Documentation>Efficiency of the modulation in the interferometer.</Documentation>
+				<Quantity name="%">
+					&percent;
+				</Quantity>
+			</ParameterBlueprint>			
+			<ParameterBlueprint name="Point number of central fringe" parameterType="Int" modality="optional">
+				<Documentation>Point number (before input skipping) where the central fringe can be found.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Points skipped on input" parameterType="Int" modality="optional">
+				<Documentation>Number of points skipped to move the central fringe to the middle of the interferogram.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Data points used" parameterType="Int" modality="optional">
+				<Documentation>Number of measured data points actually included in the transformation into the frequency domain. Must be zero-filled to the nearest power of two.</Documentation>
+			</ParameterBlueprint>			
 		</CategoryBlueprint>
 	</ResultBlueprint>
 	<!--ResultBlueprint name="Peak Table" modality="optional">

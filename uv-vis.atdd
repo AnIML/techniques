@@ -8,40 +8,30 @@
 <!DOCTYPE Technique [
 	<!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
 	<!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
-
 	<!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
-	
 	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
 	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
-	
 	<!ENTITY cm_per_s "<Unit label='cm/s'><SIUnit exponent='1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-		
 	<!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
-	
 	<!ENTITY ml "<Unit label='ml'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
-	
 	<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-
 	<!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
 	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
 	<!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
-	
 	<!ENTITY mg_per_ml "<Unit label='mg/ml'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY ml_per_ml "<Unit label='ml/ml'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
 	<!ENTITY ml_per_g "<Unit label='ml/g'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
-	
 	<!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
 	<!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
-	
+	<!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
 	<!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
-	<!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">	
-	
+	<!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
 	<!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY A "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
@@ -49,16 +39,11 @@
 	<!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
-	
 	<!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
 	<!ENTITY kHz "<Unit label='kHz'><SIUnit exponent='-1' factor='1e+3'>s</SIUnit></Unit>">
-	
 	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	
 	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
-	
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
-	
 ]>
 <Technique name="UV/Vis" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for UV/Visible spectrophotometry</Documentation>
@@ -82,14 +67,13 @@
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>Concentration of sample in solvent, if applicable. TODO units</Documentation>
-				<!-- TODO WHAT ABOUT USING MOLAR SOLUTIONS?-->
+				<Documentation>Concentration of sample in solvent, if applicable.</Documentation>
 				<Quantity name="Concentration">
-					&mg_per_ml; &ml_per_ml; &ug_per_g; &ml_per_g;
+					&mg_per_ml; &ml_per_ml; &ug_per_g; &ml_per_g; &mol_per_liter;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>Phase of matter of the sample; see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				<Documentation literatureReferenceID="JCAMP-DX IR">Phase of matter of the sample.</Documentation>
 				<AllowedValue>
 					<String>solid</String>
 				</AllowedValue>
@@ -125,7 +109,7 @@
 				<Documentation>Sample disposal procedure (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>Any safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
+				<Documentation literatureReferenceID="ASTM E2077-00">Any safety issues which are of concern when the sample is manually handled.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Description of the storage conditions for the sample, which includes the storage location. See ASTM E 2077-00.</Documentation>
@@ -146,7 +130,7 @@
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>Sample temperature if significantly different from room temperature. See Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				<Documentation literatureReferenceID="JCAMP-DX IR">Sample temperature if significantly different from room temperature.</Documentation>
 				<Quantity name="Temperature">
 					&degK; &degC; &degF;
 				</Quantity>
@@ -198,7 +182,7 @@
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
-				<Documentation>The phase velocity of radiant power in a vacuum divided by the phase velocity of the same radiant power in a specified medium. When one medium is a vacuum, n is the ratio of the sine of the angle of incidence to the sine of the angle of refraction. (ASTM E131-02)</Documentation>
+				<Documentation literatureReferenceID="ASTM E131-02">The phase velocity of radiant power in a vacuum divided by the phase velocity of the same radiant power in a specified medium. When one medium is a vacuum, n is the ratio of the sine of the angle of incidence to the sine of the angle of refraction.</Documentation>
 				<ParameterBlueprint name="Refractive Index" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Refractive index of the sample.</Documentation>
 				</ParameterBlueprint>
@@ -225,13 +209,13 @@
 				<Documentation>Common, trade, or other names.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>Concentration of known components and impurities; see Appl. Spectrosc. 42, 1, 1988. TODO units</Documentation>
+				<Documentation>Concentration of known components and impurities; see Appl. Spectrosc. 42, 1, 1988.</Documentation>
 				<Quantity name="Concentration">
-					&mg_per_ml; &ml_per_ml; &ug_per_g; &ml_per_g;
+					&mg_per_ml; &ml_per_ml; &ug_per_g; &ml_per_g; &mol_per_liter;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples: C2H4O2 or C2 H4 O2 (acetic acid), C6 H9 Cr O6 * H2 O (chromic acetate monohydrate), H2 ^17O (water, mass 17 oxygen); see Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
+				<Documentation literatureReferenceID="JCAMP-DX IR">Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples: C2H4O2 or C2 H4 O2 (acetic acid), C6 H9 Cr O6 * H2 O (chromic acetate monohydrate), H2 ^17O (water, mass 17 oxygen).</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Quantity name="Molar Mass">
@@ -272,221 +256,6 @@
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Solvent" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>A liquid that can dissolve another substance. See ASTM E 609-05. Used to dissolve the Test Sample.</Documentation>
-		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
-			<Documentation>Parameters describing the measurement sample</Documentation>
-			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="unbounded">
-				<Documentation>Common, trade, or other names.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>Mass of the sample used to prepare the test material.</Documentation>
-				<Quantity name="Mass">
-					&mg;
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>Volume of the sample used to prepare the test material.</Documentation>
-				<Quantity name="Volume">
-					&ml;
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>Solid, liquid, gas, solution; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>a description of the disposal procedure for the sample (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>any safety issues which are of concern when the sample is manually handled. See ASTM E 2077-00.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>a description of the storage conditions for the sample, which includes the storage location. This is for OSHA compliance. See ASTM E 2077-00.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1"/>
-			<ParameterBlueprint name="Receipt Time-stamp" parameterType="DateTime" modality="optional" maxOccurs="1">
-				<Documentation>the date and time the sample was received in the laboratory or submitted for analysis. The ISO 8601 format is used for this field. This date and time is usually earlier than the data set date/time stamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>a textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: ??supercritical fluid extraction; see ASTM E 2077-00.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>TODO a textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: ??supercritical fluid extraction; see ASTM E 2077-00.</Documentation>
-				<Quantity name="Pressure">
-					&Pa;
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>Sample temperature if significantly different from room temperature. see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
-				<Quantity name="Temperature">
-					&degC; &degF; &degK;
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>Density in g/cc. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
-				<Quantity name="Density">
-					&g_per_cm3;
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Lot or Batch Name/Number" parameterType="SVG" modality="optional" maxOccurs="1">
-				<Documentation>Lot or Batch Name/Number</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1"/>
-			<CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
-				<Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under equilibrium boiling conditions.</Documentation>
-				<ParameterBlueprint name="Minimum" parameterType="Float" modality="required" maxOccurs="1">
-					<Documentation>Lower bound of boiling temperature range. Use only this value if sample has an actual boiling "point"</Documentation>
-					<Quantity name="Temperature">
-						&degC; &degF; &degK;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Maximum" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Upper bound of boiling temperature range. </Documentation>
-					<Quantity name="Temperature">
-						&degC; &degF; &degK;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Pressure at which the boiling point has been determined. If the pressure is not given then edian pressure is assumed. If the pressure is not given then edian pressure is assumed.</Documentation>
-					<Quantity name="Pressure">
-						&Pa;
-					</Quantity>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="Melting Point" maxOccurs="1" modality="optional">
-				<Documentation>In a phase diagram, the temperature at which the liquids and solidus coincide at an invariant point. (ASTM E 1142, E37)</Documentation>
-				<ParameterBlueprint name="Minimum" parameterType="Float" modality="required" maxOccurs="1">
-					<Documentation>Lower bound of melting temperature range. Use only this value if sample has an actual melting "point"</Documentation>
-					<Quantity name="Temperature">
-						&degC; &degF; &degK;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Maximum" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Upper bound of melting temperature range.</Documentation>
-					<Quantity name="Temperature">
-						&degC; &degF; &degK;
-					</Quantity>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
-				<Documentation>The phase velocity of radiant power in a
-vacuum divided by the phase velocity of the same radiant
-power in a specified medium. When one medium is a
-vacuum, n is the ratio of the sine of the angle of incidence to
-the sine of the angle of refraction. (ASTM E131-02)</Documentation>
-				<ParameterBlueprint name="Value" parameterType="Float" modality="required" maxOccurs="1">
-					<Documentation>Refractive index</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Temperature" parameterType="Float" modality="required" maxOccurs="1">
-					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
-					<Quantity name="Temperature">
-						&degC; &degF; &degK;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Wavelength" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Wavelength at which the refractive index has been determined.</Documentation>
-					<Quantity name="Length">
-						&nm;
-					</Quantity>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
-		</CategoryBlueprint>
-		<CategoryBlueprint name="Substance Description" modality="required" maxOccurs="unbounded">
-			<Documentation>Parameters describing a substance in the measurement/test sample</Documentation>
-			<ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>user-assigned name. See SampleName.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>Common, trade, or other names.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
-				<Documentation>Concentrations of known components and impurities; see Appl. Spectrosc. 42, 1, 1988.</Documentation>
-				<Quantity name="Concentration">
-					&mg_per_ml; &ml_per_ml; &ug_per_g; &ml_per_g;
-					<!-- TODO MFB added Molar concentration-->
-					<Unit label="M">
-						<SIUnit>mol</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="mM">
-						<SIUnit exponent="1" factor="1e-3">kg</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="µM">
-						<SIUnit exponent="1" factor="1e-6">kg</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="nM">
-						<SIUnit exponent="1" factor="1e-9">kg</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-					<Unit label="pM">
-						<SIUnit exponent="1" factor="1e-12">kg</SIUnit>
-						<SIUnit exponent="-3" factor="1e-6">m</SIUnit>
-					</Unit>
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>##MOLFORM= (STRING). Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetic order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes: / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot- disconnected formulas (hydrates, etc.), each fragment is
-	represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples:
-	C2H4O2 or C2 H4 O2 (acetic acid)
-	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
-	H2 ^17O (water, mass 17 oxygen); see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
-				<Quantity name="Molar Mass">
-					&g_per_mol;
-				</Quantity>
-			</ParameterBlueprint>
-			<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
-				<Documentation>Description of the chemical structure</Documentation>
-				<ParameterBlueprint name="Smiles" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Chemical structure as SMILES string.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation
-	(McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).  Wiswesser notation should be enclosed in angle brackets if it extends for more than one line, and care should be taken to terminate lines between expressions separated by blank.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Chemical structure as MOL File</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
-					<Documentation>Chemical structure as CML.</Documentation>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
-				<Documentation>Set of different identifiers describing a substance.</Documentation>
-				<ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Name according to Chemical Abstracts naming conventions as described in Appendix IV of the 1985 CAS Index Guide. Examples can be found in Chemical Abstracts indices or the Merck Index. Greek letters are spelled out, and standard ASCII capitals are used for small capitals. Sub-/superscripts are indicated by prefixes / and ^, respectively. Example:
-	alpha-D-glucopyranose, 1-(dihydrogen phosphate). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices, Merck Index, or CAS ONLINE. See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="InChI(tm)" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>InChI(tm) Definition</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>The Beilstein Lawson Number is a structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases, including the STN online database. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, in Pointers to Beilstein Out, ACS Symposium 341, Graphics for.Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87. STN International is an online information network operated cooperatively by ACS, West German, and Japanese organizations. Chem. and Eng. News, Julv 13, 1987, pp. 30-31.).</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
-					<Documentation>Chemical structure as CML.</Documentation>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
-		</CategoryBlueprint>
-		<CategoryBlueprint name="Background Description" modality="required" maxOccurs="1">
-			<Documentation>Information describing the components contained in the reference beam in a double beam instrument or the reference or background measurement in a single beam instrument.</Documentation>
-			<ParameterBlueprint name="Background Correction" parameterType="String" modality="required" maxOccurs="1">
-				<Documentation>A unique character string to specify the use of a blank or not (e.g. a reference to air) in the reference beam.</Documentation>
-				<AllowedValue>
-					<String>Air</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>Blank</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>None</String>
-				</AllowedValue>
-			</ParameterBlueprint>
-		</CategoryBlueprint>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Blank" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>Matrix carried through all or part of the analytical process, where the analyte is not present, or where the analyte response is suppressed. A blank must be appropriate to the analytical process it is being used with. Typically used to monitor contaminants or to establish a baseline for quantitation. Note: Uses the same parameters as the Test Sample role.</Documentation>
@@ -496,18 +265,27 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 		<Documentation>A matrix whose analytes of interest are of known or accepted concentration or property. (ASTM D 1129-06A)</Documentation>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
-		<Documentation>TODO.  No Test Sample Parameters. See Use Cases II.PDF. Only used as a link to the sample ID used for calibration. So no full parameter set is needed. A document reference about the qualification test. </Documentation>
+		<Documentation>Reference to the sample used for calibration. A document reference about the qualification test often used in a QA/QC setting. This is only a reference, so no parameters are required.</Documentation>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Proficiency Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>Reference to the most recent successful proficiency test sample the analyst/system has been confronted with. This is only a reference, so no parameters are required.</Documentation>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Transmittance Calibration Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
-		<Documentation>The material sample or lamp used to calibrate the transmittance/intensity axis.</Documentation>
+		<Documentation>The material sample or lamp used to calibrate the transmittance/intensity axis. This is only a reference, so no parameters are required.</Documentation>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Wavelength Calibration Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
-		<Documentation>The material sample or lamp used to calibrate the wavelength axis.</Documentation>
+		<Documentation>The material sample or lamp used to calibrate the wavelength axis. This is only a reference, so no parameters are required.</Documentation>
 	</SampleRoleBlueprint>
 	<MethodBlueprint>
+		<CategoryBlueprint name="Method Description" modality="optional">
+			<Documentation>Basic contextual information about the measurement method.</Documentation>
+			<ParameterBlueprint name="Method Name" parameterType="String" modality="optional">
+				<Documentation>Name of the method used for the measurement.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
+				<Documentation>External reference to measurement method.</Documentation>
+			</ParameterBlueprint>			
+		</CategoryBlueprint>
 		<CategoryBlueprint name="Common Method">
 			<Documentation>Information describing the instrument and its environment. This information is common to both dispersive and interferometric measurements.</Documentation>
 			<CategoryBlueprint name="Instrument Properties">
@@ -544,6 +322,14 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
 					<Documentation>The type or name of the assembly that holds the sample container in the optical beam, e.g., cuvette holder, sample changer. (The sample container itself is described within the Sample element in the AnIML Core Schema.)</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Analog-to-Digital Converter Resolution" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Digital resolution of the analog-to-digital converter.</Documentation>
+					<Quantity name="bits">
+						<Unit label="bit">
+							<SIUnit>1</SIUnit>
+						</Unit>
+					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings">
@@ -613,7 +399,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<String>Other Emission</String>
 						</AllowedValue>
 					</SeriesBlueprint>
-				</SeriesSetBlueprint><SeriesSetBlueprint name="Source Polarization" modality="optional">
+				</SeriesSetBlueprint>
+				<SeriesSetBlueprint name="Source Polarization" modality="optional">
 					<Documentation>Sequence of polarizing elements used to modify the source polarization for the given wavelength ranges.</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the given polarizer was used.</Documentation>
@@ -659,7 +446,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<String>other</String>
 						</AllowedValue>
 					</SeriesBlueprint>
-				</SeriesSetBlueprint><SeriesSetBlueprint name="Source Optical Filters" modality="optional">
+				</SeriesSetBlueprint>
+				<SeriesSetBlueprint name="Source Optical Filters" modality="optional">
 					<Documentation>Sequence of optical filters used to modify the source intensity for the given wavelength ranges.</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the specified filter was used.</Documentation>
@@ -691,7 +479,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
 				<SeriesSetBlueprint name="Detectors">
-					<Documentation>TODO</Documentation>
+					<Documentation>List of detectors used within specific wavelength ranges.</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the specified detector was used.</Documentation>
 						<Quantity name="Reciprocal Length">
@@ -727,7 +515,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<String>Photomultiplier</String>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Photodiode</String>							
+							<String>Photodiode</String>
 						</AllowedValue>
 						<AllowedValue>
 							<String>Diode Array</String>
@@ -757,11 +545,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<SeriesBlueprint name="Detector Gain" seriesType="Float" dependency="dependent" modality="optional" plotScale="none">
 						<Documentation>Factor for converting radiant energy incident on the detector to an electrical signal at the detector output.</Documentation>
 					</SeriesBlueprint>
-					
 				</SeriesSetBlueprint>
-				
-				
-				
 				<SeriesSetBlueprint name="Detector Polarization" modality="optional">
 					<Documentation>Sequence of polarizing elements used to modify the detector polarization for the given wavelength ranges.</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
@@ -809,7 +593,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</AllowedValue>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
-				
 				<SeriesSetBlueprint name="Detector Optical Filters" modality="optional">
 					<Documentation>Sequence of optical filters used to modify the detector response for given wavelength ranges.</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
@@ -840,7 +623,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Filter Description" seriesType="String" dependency="dependent" modality="required" plotScale="none">
 					</SeriesBlueprint>
-				</SeriesSetBlueprint><ParameterBlueprint name="Measurement Type" parameterType="String" modality="required">
+				</SeriesSetBlueprint>
+				<ParameterBlueprint name="Measurement Type" parameterType="String" modality="required">
 					<Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one wavelength is recorded. Discrete means that absorbance of multiple exactly specified wavelengths is recorded. Spectrum means that a single range or multiple discrete ranges is/are recorded.</Documentation>
 					<AllowedValue>
 						<String>Single</String>
@@ -854,6 +638,12 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Holder Position" parameterType="String" modality="optional">
 					<Documentation>The position of the sample within the sample holder unit. Note: This is not intended for auto sampler information.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="required">
+					<Documentation literatureReferenceID="ASTM E131-02">The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent.</Documentation>
+					<Quantity name="Length">
+						&cm; &mm;
+					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Optical Path Environment" parameterType="String" modality="optional">
 					<Documentation>Describes the environment of the optical path.</Documentation>
@@ -881,7 +671,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<Quantity name="Pressure">
 						&Pa;
 					</Quantity>
-				</ParameterBlueprint>				
+				</ParameterBlueprint>
 				<CategoryBlueprint name="x-Axis Range" modality="optional" maxOccurs="1">
 					<Documentation>The range of x-axis coverage.</Documentation>
 					<ParameterBlueprint name="Min" parameterType="Float" modality="required">
@@ -942,7 +732,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			<CategoryBlueprint name="Instrument Properties">
 				<Documentation>Fixed characteristics of the instrument, specific to dispersive measurements.</Documentation>
 				<ParameterBlueprint name="Dispersion Element" parameterType="String" modality="optional">
-					<Documentation></Documentation>
+					<Documentation/>
 					<AllowedValue>
 						<String>Prism</String>
 					</AllowedValue>
@@ -957,7 +747,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					<Documentation>Material from which the prism is made.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Grating Ruling" parameterType="Int">
-					<Documentation>TODO</Documentation>
+					<Documentation>Number of lines per unit distance in the grating.</Documentation>
 					<Quantity name="lines per distance">
 						<Unit label="lines/mm">
 							<SIUnit factor="10e-3" exponent="-1">m</SIUnit>
@@ -965,17 +755,25 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Grating Blaze Angle" parameterType="Float">
-					<Documentation>TODO</Documentation>
+					<Documentation>Angle at which grating lines have been cut.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Instrument Type" parameterType="String" modality="optional">
 					<Documentation>Whether the instrument is a single beam, double beam, or diode array instrument.</Documentation>
-					<AllowedValue><String>single beam</String></AllowedValue>
-					<AllowedValue><String>double beam</String></AllowedValue>
-					<AllowedValue><String>diode array</String></AllowedValue>
-					<AllowedValue><String>other</String></AllowedValue>
+					<AllowedValue>
+						<String>single beam</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>double beam</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>array-based</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>other</String>
+					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
-					<Documentation>The wavelength dispersion at the exit slit of the instrument. (ASTM E131-02)</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-02">The wavelength dispersion at the exit slit of the instrument.</Documentation>
 					<Quantity name="Ratio">
 						<Unit label="nm/mm">
 							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
@@ -984,28 +782,40 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
-					<Documentation>Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02)</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-02">Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
 					<Quantity name="Energy">
 						&eV;
 					</Quantity>
 					<Quantity name="Reciprocal Length">
 						&reciprocal_cm;
 					</Quantity>
-					<Quantity name="Length">
+					<Quantity name="Wavelength">
 						&nm;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings">
 				<Documentation>Variable characteristics or configuration parameters of the instrument, specific to dispersive measurements.</Documentation>
+				<ParameterBlueprint name="Slit Function" parameterType="String">
+					<Documentation>Adjustment of the slit width to maintain constant resolution or constant energy over the course of the scan.</Documentation>
+					<AllowedValue>
+						<String>Constant resolution</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Constant energy</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>other</String>
+					</AllowedValue>
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Spectral Slit Width" parameterType="Float" modality="optional">
-					<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use parameter if constant.</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-02">Mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan. Use parameter if constant.</Documentation>
 					<Quantity name="Length">
 						&nm;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Slit Width" parameterType="Float" modality="required">
-					<Documentation>The mechanical width of the monochromator slits.</Documentation>
+				<ParameterBlueprint name="Slit Width" parameterType="Float" modality="optional">
+					<Documentation>Mechanical width of the monochromator slits.</Documentation>
 					<Quantity name="Length">
 						&mm; &nm;
 					</Quantity>
@@ -1050,7 +860,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Spectral Bandwidth Range" modality="optional" parameterType="Float">
-					<Documentation>The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-02">The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
 					<Quantity name="Length">
 						&nm;
 					</Quantity>
@@ -1058,7 +868,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Interferometric Method">
-			<Documentation>Specific parameters for interferometric measurements. TODO: FT parameters are missing.</Documentation>
+			<Documentation>Specific parameters for interferometric measurements.</Documentation>
 			<CategoryBlueprint name="Instrument Properties">
 				<Documentation>Fixed characteristics of the instrument, specific to interferometric measurements.</Documentation>
 				<ParameterBlueprint name="Interferometer Type" parameterType="String" modality="optional">
@@ -1115,14 +925,6 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						&cm; &mm;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Analog-to-Digital Converter Resolution" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>TODO</Documentation>
-					<Quantity name="bits">
-						<Unit label="bit">
-							<SIUnit>1</SIUnit>
-						</Unit>
-					</Quantity>
-				</ParameterBlueprint>
 				<ParameterBlueprint name="Photometric Non-linearity" parameterType="Float" modality="optional">
 					<Documentation>The inability of a photometric system to yield a linear relationship between the radiant power incident on its detector and some measurable quantity provided by the system, expressed as percentage. See "photometric linearity" in ASTM E131-02.</Documentation>
 					<Quantity name="Non-linearity">
@@ -1160,7 +962,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</ParameterBlueprint>
 					<CategoryBlueprint name="Effective Range" maxOccurs="1" modality="optional">
 						<Documentation>Effective spectral operating range of the beam splitter.</Documentation>
-						<ParameterBlueprint name="Minimum" parameterType="Float" modality="optional" maxOccurs="1">
+						<ParameterBlueprint name="Lower Bound" parameterType="Float" modality="optional" maxOccurs="1">
 							<Documentation>Lower boundary of effective range.</Documentation>
 							<Quantity name="Wavelength">
 								&nm;
@@ -1169,7 +971,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 								&reciprocal_cm;
 							</Quantity>
 						</ParameterBlueprint>
-						<ParameterBlueprint name="Maximum" parameterType="Float" modality="optional" maxOccurs="1">
+						<ParameterBlueprint name="Upper Bound" parameterType="Float" modality="optional" maxOccurs="1">
 							<Documentation>Upper boundary of effective range.</Documentation>
 							<Quantity name="Wavelength">
 								&nm;
@@ -1185,16 +987,30 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<Documentation>Variable characteristics or configuration parameters of the instrument, specific to interferometric measurements.</Documentation>
 				<ParameterBlueprint name="Spectrum data source" parameterType="String" modality="optional">
 					<Documentation>Type of data source from which spectrum is derived.</Documentation>
-					<AllowedValue><String>Measured dispersive spectrum</String></AllowedValue>
-					<AllowedValue><String>FT power spectrum</String></AllowedValue>
-					<AllowedValue><String>FT real spectrum</String></AllowedValue>
-					<AllowedValue><String>FT imaginary spectrum</String></AllowedValue>
+					<AllowedValue>
+						<String>Measured dispersive spectrum</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>FT power spectrum</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>FT real spectrum</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>FT imaginary spectrum</String>
+					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Interferogram Aquisition Mode" parameterType="String">
 					<Documentation>Type of interferogram data.</Documentation>
-					<AllowedValue><String>complex sequential</String></AllowedValue>
-					<AllowedValue><String>complex simultaneous</String></AllowedValue>
-					<AllowedValue><String>real-only</String></AllowedValue>
+					<AllowedValue>
+						<String>complex sequential</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>complex simultaneous</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>real-only</String>
+					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Air Correction" parameterType="Boolean" modality="optional">
 					<Documentation>Whether data are adjusted for the refractive index of air.</Documentation>
@@ -1206,7 +1022,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Spectral Resolution" parameterType="Float" modality="optional">
-					<Documentation>Smallest difference between wavenumbers (TODO 1/(2*Xmax)) or wavelengths (TODO 2*Xmax) at which one can distinguish different spectral properties. See Bertie, John: Glossary of Terms used in vibration spectroscopy, from: Handbook of vibrational spectroscopy</Documentation>
+					<Documentation literatureReferenceID="Bertie Vib Spec">Smallest difference between wavenumbers or wavelengths at which one can distinguish different spectral properties.</Documentation>
 					<Quantity name="Wavelength">
 						&nm;
 					</Quantity>
@@ -1290,7 +1106,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Number of Scans" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Number of scans coadded during data acquisition.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Scan Mode" parameterType="String" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Scan Direction" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Direction of mirror movement in which data acquisition occurs.</Documentation>
 					<AllowedValue>
 						<String>forward only</String>
@@ -1368,8 +1184,9 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<ParameterBlueprint name="Phase Correction Variable" parameterType="Float" modality="optional" maxOccurs="unbounded">
 					<Documentation>Parameter associated with the order of the phase correction.</Documentation>
 				</ParameterBlueprint>
+				<!-- probably not needed - where did this come from?
 				<ParameterBlueprint name="Phase Resolution" parameterType="Float">
-					<Documentation>TODO - unclear about meaning and quantity</Documentation>
+					<Documentation>Smallest amount of phase change possible. TODO - unclear about meaning and quantity</Documentation>
 					<Quantity name="TODO">
 						&reciprocal_cm;
 						<Unit label="1/µm">
@@ -1377,6 +1194,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</Unit>
 					</Quantity>
 				</ParameterBlueprint>
+				-->
 				<ParameterBlueprint name="Baseline Correction Method" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Name or description of algorithm for baseline correction.</Documentation>
 				</ParameterBlueprint>
@@ -1412,7 +1230,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<String>Chebyshev</String>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Elliptical</String>
+							<String>elliptical</String>
 						</AllowedValue>
 						<AllowedValue>
 							<String>other</String>
@@ -1472,7 +1290,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 							<String>Chebyshev</String>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Elliptical</String>
+							<String>elliptical</String>
 						</AllowedValue>
 						<AllowedValue>
 							<String>other</String>
@@ -1500,8 +1318,8 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 						</Quantity>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
-				<CategoryBlueprint name="Aliasing Filter" modality="optional" maxOccurs="unbounded">
-					<Documentation>TODO Characteristics of a single analog filter applied to the FT signal.</Documentation>
+				<CategoryBlueprint name="Anti-Aliasing Filter" modality="optional" maxOccurs="unbounded">
+					<Documentation>Characteristics of anti-aliasing filter applied to the FT signal.</Documentation>
 					<ParameterBlueprint name="Type" parameterType="String" modality="required">
 						<Documentation>Whether a shortpass, longpass, bandpass or notch type filter was used. See IEEE 151-1965W.</Documentation>
 						<AllowedValue>
@@ -1557,20 +1375,20 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Spectral Post-Processing">
-			<Documentation>TODO: Move to separate post processing techniques. Post-processing of spectral data acquired by either dispersive or interferometric means.</Documentation>
+			<Documentation>Post-processing of spectral data.</Documentation>
 			<CategoryBlueprint name="Spectral Correction" maxOccurs="1" modality="optional">
 				<Documentation>Alteration of spectral data to remove instrumental artifacts.</Documentation>
-				<ParameterBlueprint name="Dark Corrected" parameterType="Boolean" maxOccurs="1" modality="optional">
+				<ParameterBlueprint name="Dark-Corrected" parameterType="Boolean" maxOccurs="1" modality="optional">
 					<Documentation>Whether the beam-blocked spectrum has been subtracted from the acquired result spectrum.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="100% Corrected" parameterType="Boolean" maxOccurs="1" modality="optional">
+				<ParameterBlueprint name="100%-Corrected" parameterType="Boolean" maxOccurs="1" modality="optional">
 					<Documentation>Whether the acquired result spectrum has been scaled against the beam-open spectrum.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Reference Corrected" parameterType="Boolean" maxOccurs="1" modality="optional">
+				<ParameterBlueprint name="Reference-Corrected" parameterType="Boolean" maxOccurs="1" modality="optional">
 					<Documentation>Whether the acquired result spectrum has been corrected against the spectrum of the sample given in the reference sample role.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Straylight Corrected" parameterType="Boolean" modality="optional">
-					<Documentation>TODO: Post processing?? Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. It is the same as Stray Radiant Power (Ps): the total detected radiant power outside a specified wavelength (wavenumber) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wavenumber), slit dimensions, light source, and detector. (ASTM E131-02)</Documentation>
+				<ParameterBlueprint name="Straylight-Corrected" parameterType="Boolean" modality="optional">
+					<Documentation>Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. It is the same as Stray Radiant Power (Ps): the total detected radiant power outside a specified wavelength (wavenumber) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wavenumber), slit dimensions, light source, and detector. (ASTM E131-02)</Documentation>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Spectral Smoothing" maxOccurs="1" modality="optional">
@@ -1603,7 +1421,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				</SeriesBlueprint>
 				<SeriesBlueprint name="Wavelength" seriesType="Float" plotScale="linear" dependency="independent">
 					<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02)</Documentation>
-					<Quantity name="Length">
+					<Quantity name="Wavelength">
 						&um; &nm; &pm;
 					</Quantity>
 				</SeriesBlueprint>
@@ -1617,7 +1435,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 					&T; &percentT;
 				</Quantity>
 				<Quantity name="Reflectance">
-					&percentR; &R;
+					&R; &percentR; 
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint name="Resolution" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
@@ -1628,7 +1446,7 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 				<Quantity name="Energy">
 					&eV;
 				</Quantity>
-				<Quantity name="Length">
+				<Quantity name="Wavelength">
 					&nm;
 				</Quantity>
 			</SeriesBlueprint>
@@ -1640,114 +1458,55 @@ the sine of the angle of refraction. (ASTM E131-02)</Documentation>
 			</SeriesBlueprint>
 		</SeriesSetBlueprint>
 		<CategoryBlueprint name="Measurement Description" modality="required">
-			<Documentation>Information regarding a measurement.</Documentation>
-			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
-				<Documentation>TODO A document reference about the method of the measurement.</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
-				<Documentation>The number of scans. TODO</Documentation>
+			<Documentation>Information regarding the actual measurement performed.</Documentation>
+			<ParameterBlueprint name="Experiment Duration" parameterType="Float" modality="required">
+				<Documentation>Duration of the entire experiment covered by this ExperimentStep.</Documentation>
+				<Quantity name="Time">
+					 &s;
+				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Scan Duration" parameterType="Float" modality="optional">
-				<Documentation>The scan duration. TODO</Documentation>
+				<Documentation>Duration of a single scan.</Documentation>
 				<Quantity name="Time">
 					 &s;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Experiment Duration" parameterType="Float" modality="required">
-				<Documentation>Duration of the experiment.</Documentation>
-				<Quantity name="Time">
-					 &s;
+			<ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
+				<Documentation>The number of scans performed when acquiring this spectrum.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Ambient Conditions">
+			<Documentation>Ambient temperature and pressure in the optical chamber during the experiment.</Documentation>
+			<ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
+				<Documentation>Measured ambient pressure in the optical path of the instrument.</Documentation>
+				<Quantity name="Pressure">
+					&Pa;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="required">
-				<Documentation>The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]</Documentation>
-				<Quantity name="Length">
-					&cm; &mm;
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="required">
+				<Documentation>Temperature at which the experiment was performed.</Documentation>
+				<Quantity name="Temperature">
+					&degK; &degC; &degF;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Point Separation" parameterType="Float" modality="optional">
-				<Documentation>The spacing between two wavelength values, when a whole spectrum is measured.</Documentation>
-				<Quantity name="Length">
-					&nm;
-				</Quantity>
-			</ParameterBlueprint>
-			<CategoryBlueprint name="x-Axis Range" modality="optional" maxOccurs="1">
-				<Documentation>The range of x-axis coverage.</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
-					<Documentation>The shortest range.</Documentation>
-					<Quantity name="Reciprocal Length">
-						&reciprocal_cm;
-					</Quantity>
-					<Quantity name="Length">
-						&um; &nm; &pm;
-					</Quantity>
-					<Quantity name="Energy">
-						&eV;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float" modality="required">
-					<Documentation>The longest range.</Documentation>
-					<Quantity name="Reciprocal Length">
-						&reciprocal_cm;
-					</Quantity>
-					<Quantity name="Length">
-						&um; &nm; &pm;
-					</Quantity>
-					<Quantity name="Energy">
-						&eV;
-					</Quantity>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="y-Axis Range" modality="optional">
-				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
-					<Documentation>The smallest range.</Documentation>
-					<Quantity name="Absorbance">
-						&AU; &A;
-					</Quantity>
-					<Quantity name="Transmittance">
-						&T; &percentT;
-					</Quantity>
-					<Quantity name="Reflectance">
-						&R; &percentR;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float" modality="required">
-					<Documentation>The largest range.</Documentation>
-					<Quantity name="Absorbance">
-						&AU; &A;
-					</Quantity>
-					<Quantity name="Transmittance">
-						&T; &percentT;
-					</Quantity>
-					<Quantity name="Reflectance">
-						&R; &percentR;
-					</Quantity>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="Temperature Range" modality="optional">
-				<Documentation>Range of temperature values which should be applied within the experiment</Documentation>
-				<ParameterBlueprint name="Min" parameterType="Float" modality="required">
-					<Documentation>The lowest temperature  of the solution at which the experiment can be performed</Documentation>
-					<Quantity name="Temperature">
-						&degK; &degC; &degF;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Max" parameterType="Float" modality="optional">
-					<Documentation>The highest temperature of the solution at which the experiment can be performed</Documentation>
-					<Quantity name="Temperature">
-						&degK; &degC; &degF;
-					</Quantity>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Spectrum Description">
-			<ParameterBlueprint name="Spectrum data source" parameterType="String" modality="optional">
+			<Documentation>Description of the spectrum.</Documentation>
+			<ParameterBlueprint name="Spectrum Data Source" parameterType="String" modality="optional">
 				<Documentation>Type of data source from which this spectrum has been derived.</Documentation>
-				<AllowedValue><String>Measured dispersive spectrum</String></AllowedValue>
-				<AllowedValue><String>FT power spectrum</String></AllowedValue>
-				<AllowedValue><String>FT real spectrum</String></AllowedValue>
-				<AllowedValue><String>FT imaginary spectrum</String></AllowedValue>
-			</ParameterBlueprint>		
+				<AllowedValue>
+					<String>Measured dispersive spectrum</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>FT power spectrum</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>FT real spectrum</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>FT imaginary spectrum</String>
+				</AllowedValue>
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</ResultBlueprint>
 	<ResultBlueprint name="Interferogram" modality="optional">
@@ -1769,7 +1528,7 @@ containing raw data; can be in absorbance,  transmittance or percent transmittan
 					&T; &percentT;
 				</Quantity>
 				<Quantity name="Reflectance">
-					&percentR; &R;
+					&R; &percentR; 
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint name="Intensity (complex)" seriesType="Float" modality="optional" plotScale="linear" dependency="dependent">
@@ -1782,53 +1541,78 @@ containing raw data; can be in absorbance,  transmittance or percent transmittan
 					&T; &percentT;
 				</Quantity>
 				<Quantity name="Reflectance">
-					&percentR; &R;
+					&R; &percentR;
 				</Quantity>
-			</SeriesBlueprint>			
+			</SeriesBlueprint>
 		</SeriesSetBlueprint>
 		<CategoryBlueprint name="Measurement Parameters" modality="required" maxOccurs="1">
 			<Documentation>Parameters defining the measurement</Documentation>
-			<ParameterBlueprint name="Aliasing Ratio" parameterType="Float" modality="optional">
-				<Documentation>Aliasing: the appearance of features at wavenumbers other than their true value caused by using a sampling frequency less than twice the highest modulation frequency in the interferogram; also known as "folding."  (ASTM E131-02) A fraction whose denominator is the number of possible aliases for a given sample and whose numerator is the number of the alias represented by the data. For sampling at alternate laser fringes, the number of aliases is 2, and the alias for the region starting at zero frequency is 1, giving an ##ALIAS=of 1/2; see Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"</Documentation>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="required">
-				<Documentation>b - in a spectrophotometer, the distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent.(ASTM E131-02)</Documentation>
-				<Quantity name="Length">
-					&cm; &mm;
+			<ParameterBlueprint name="Experiment Duration" parameterType="Float" modality="required">
+				<Documentation>Duration of the entire experiment covered by this ExperimentStep.</Documentation>
+				<Quantity name="Time">
+					 &s;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Zero Path Difference" parameterType="Float" modality="optional">
-				<Documentation>The number of data points before zero path difference (ZPD). See Appl Spectrosc, Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form".</Documentation>
+			<ParameterBlueprint name="Scan Duration" parameterType="Float" modality="optional">
+				<Documentation>Duration of a single scan.</Documentation>
+				<Quantity name="Time">
+					 &s;
+				</Quantity>
 			</ParameterBlueprint>
+			<ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
+				<Documentation>The number of scans performed when acquiring this interferogram.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Aliasing Ratio" parameterType="Float" modality="optional">
+				<Documentation literatureReferenceID="JCAMP-DX IR">Aliasing: the appearance of features at wavenumbers other than their true value caused by using a sampling frequency less than twice the highest modulation frequency in the interferogram; also known as "folding."  (ASTM E131-02) A fraction whose denominator is the number of possible aliases for a given sample and whose numerator is the number of the alias represented by the data. For sampling at alternate laser fringes, the number of aliases is 2, and the alias for the region starting at zero frequency is 1, giving an ##ALIAS=of 1/2</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Zero Path Difference" parameterType="Float" modality="optional">
+				<Documentation literatureReferenceID="JCAMP-DX IR">The number of data points before zero path difference (ZPD).</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Ambient Conditions">
+			<Documentation>Ambient temperature and pressure in the optical chamber during the experiment.</Documentation>
 			<ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
 				<Documentation>Measured ambient pressure in the optical path of the instrument.</Documentation>
 				<Quantity name="Pressure">
 					&Pa;
 				</Quantity>
-			</ParameterBlueprint>	
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="required">
+				<Documentation>Temperature at which the experiment was performed.</Documentation>
+				<Quantity name="Temperature">
+					&degK; &degC; &degF;
+				</Quantity>
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Interferogram Description">
+			<Documentation>Description of the interferogram.</Documentation>
 			<ParameterBlueprint name="Aquisition Mode" parameterType="String">
 				<Documentation>Type of measured data.</Documentation>
-				<AllowedValue><String>complex sequential</String></AllowedValue>
-				<AllowedValue><String>complex simultaneous</String></AllowedValue>
-				<AllowedValue><String>real-only</String></AllowedValue>
+				<AllowedValue>
+					<String>complex sequential</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>complex simultaneous</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>real-only</String>
+				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Modulation Efficiency" parameterType="Float">
 				<Documentation>Efficiency of the modulation in the interferometer.</Documentation>
 				<Quantity name="%">
 					&percent;
 				</Quantity>
-			</ParameterBlueprint>			
-			<ParameterBlueprint name="Point number of central fringe" parameterType="Int" modality="optional">
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Point Number of Central Fringe" parameterType="Int" modality="optional">
 				<Documentation>Point number (before input skipping) where the central fringe can be found.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Points skipped on input" parameterType="Int" modality="optional">
+			<ParameterBlueprint name="Points Skipped on Input" parameterType="Int" modality="optional">
 				<Documentation>Number of points skipped to move the central fringe to the middle of the interferogram.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Data points used" parameterType="Int" modality="optional">
+			<ParameterBlueprint name="Data Points Used" parameterType="Int" modality="optional">
 				<Documentation>Number of measured data points actually included in the transformation into the frequency domain. Must be zero-filled to the nearest power of two.</Documentation>
-			</ParameterBlueprint>			
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</ResultBlueprint>
 	<!--ResultBlueprint name="Peak Table" modality="optional">
@@ -2001,4 +1785,18 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</ResultBlueprint-->
+	<Bibliography>
+		<LiteratureReference literatureReferenceID="ASTM E131-02">
+			ASTM E131-02: Terminology Relating to Molecular Spectroscopy, ASTM International Book of Standards
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="ASTM E2077-00">
+			ASTM E2077-00 (2005): Standard Specification for Analytical Data Interchange Protocol for Mass Spectrometric Data
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="JCAMP-DX IR">
+			Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"		
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="Bertie Vib Spec">
+			Bertie, John: Glossary of Terms used in vibration spectroscopy, from: Handbook of vibrational spectroscopy		
+		</LiteratureReference>
+	</Bibliography>
 </Technique>

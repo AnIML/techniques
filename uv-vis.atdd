@@ -182,7 +182,7 @@
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
-				<Documentation literatureReferenceID="ASTM E131-02">The phase velocity of radiant power in a vacuum divided by the phase velocity of the same radiant power in a specified medium. When one medium is a vacuum, n is the ratio of the sine of the angle of incidence to the sine of the angle of refraction.</Documentation>
+				<Documentation literatureReferenceID="ASTM E131-05">The phase velocity of radiant power in a vacuum divided by the phase velocity of the same radiant power in a specified medium. When one medium is a vacuum, n is the ratio of the sine of the angle of incidence to the sine of the angle of refraction.</Documentation>
 				<ParameterBlueprint name="Refractive Index" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Refractive index of the sample.</Documentation>
 				</ParameterBlueprint>
@@ -284,7 +284,7 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
 				<Documentation>External reference to measurement method.</Documentation>
-			</ParameterBlueprint>			
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Common Method">
 			<Documentation>Information describing the instrument and its environment. This information is common to both dispersive and interferometric measurements.</Documentation>
@@ -640,7 +640,7 @@
 					<Documentation>The position of the sample within the sample holder unit. Note: This is not intended for auto sampler information.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="required">
-					<Documentation literatureReferenceID="ASTM E131-02">The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent.</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent.</Documentation>
 					<Quantity name="Length">
 						&cm; &mm;
 					</Quantity>
@@ -773,7 +773,7 @@
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
-					<Documentation literatureReferenceID="ASTM E131-02">The wavelength dispersion at the exit slit of the instrument.</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">The wavelength dispersion at the exit slit of the instrument.</Documentation>
 					<Quantity name="Ratio">
 						<Unit label="nm/mm">
 							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
@@ -782,7 +782,7 @@
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
-					<Documentation literatureReferenceID="ASTM E131-02">Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
 					<Quantity name="Energy">
 						&eV;
 					</Quantity>
@@ -809,7 +809,7 @@
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Spectral Slit Width" parameterType="Float" modality="optional">
-					<Documentation literatureReferenceID="ASTM E131-02">Mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan. Use parameter if constant.</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">Mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan. Use parameter if constant.</Documentation>
 					<Quantity name="Length">
 						&nm;
 					</Quantity>
@@ -860,7 +860,7 @@
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Spectral Bandwidth Range" modality="optional" parameterType="Float">
-					<Documentation literatureReferenceID="ASTM E131-02">The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
 					<Quantity name="Length">
 						&nm;
 					</Quantity>
@@ -1513,14 +1513,14 @@
 		<Documentation>I(σ) - record of the modulated component of the interference signal measured as a function of retardation by the detector. DISCUSSION-1-An alternate symbol is I (x). DISCUSSION-2-The recommended symbol for the spectrum computed from I (d) is B (n). An alternate symbol is B (s).</Documentation>
 		<SeriesSetBlueprint name="Interferogram" modality="required">
 			<SeriesBlueprint name="Time" seriesType="Float" modality="required" plotScale="linear" dependency="independent">
-				<Documentation>This is a set of values of dimension length, containing the abscissa value for each raw data ordinate value. This set of values has a unit of time: defined in ASTM E 1947-98 and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
+				<Documentation literatureReferenceID="JCAMP-DX IR">This is a set of values of dimension time, containing the abscissa value for each raw data ordinate value. This set of values has a unit of time.</Documentation>
 				<Quantity name="Time">
 					 &s;
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint name="Intensity (real)" seriesType="Float" modality="required" plotScale="linear" dependency="dependent">
-				<Documentation>Set of real intensity values of dimension length, containing the ordinate values. This set of values has a unit of detector-unit. This is a required field for datasets
-containing raw data; can be in absorbance,  transmittance or percent transmittance, Kubelka-Munk, or reflectance; defined @ASTM E 1947-98 and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
+				<Documentation literatureReferenceID="JCAMP-DX IR">Set of real intensity values of dimension length, containing the ordinate values. This set of values has a unit of detector-unit. This is a required field for datasets
+containing raw data; can be in absorbance,  transmittance or percent transmittance, Kubelka-Munk, or reflectance.</Documentation>
 				<Quantity name="Absorbance">
 					&AU; &A;
 				</Quantity>
@@ -1532,8 +1532,8 @@ containing raw data; can be in absorbance,  transmittance or percent transmittan
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint name="Intensity (complex)" seriesType="Float" modality="optional" plotScale="linear" dependency="dependent">
-				<Documentation>Set of complex intensity values of dimension length, containing the ordinate values. This set of values has a unit of detector-unit. This is a required field for datasets
-containing raw data; can be in absorbance,  transmittance or percent transmittance, Kubelka-Munk, or reflectance; defined @ASTM E 1947-98 and Appl. Spectrosc. 42, 1, 1988, 151-162.</Documentation>
+				<Documentation literatureReferenceID="JCAMP-DX IR">Set of complex intensity values of dimension length, containing the ordinate values. This set of values has a unit of detector-unit. This is a required field for datasets
+containing raw data; can be in absorbance,  transmittance or percent transmittance, Kubelka-Munk, or reflectance.</Documentation>
 				<Quantity name="Absorbance">
 					&AU; &A;
 				</Quantity>
@@ -1786,17 +1786,28 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 		</CategoryBlueprint>
 	</ResultBlueprint-->
 	<Bibliography>
-		<LiteratureReference literatureReferenceID="ASTM E131-02">
-			ASTM E131-02: Terminology Relating to Molecular Spectroscopy, ASTM International Book of Standards
+		<LiteratureReference literatureReferenceID="ASTM E131-05">
+			ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="ASTM E275-08">
+			ASTM Standard E275-08: Standard Practice for Describing and Measuring Performance of Ultraviolet, Visible, and Near-Infrared Spectrophotometers, DOI: 10.1520/E0275-08
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="ASTM E1947-98">
+			ASTM Standard E1947-98 (2009): Standard Specification for Analytical Data Interchange Protocol for Chromatographic Data, DOI: 10.1520/E1947-98R09
 		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="ASTM E2077-00">
-			ASTM E2077-00 (2005): Standard Specification for Analytical Data Interchange Protocol for Mass Spectrometric Data
+			ASTM Standard E2077-00 (2005): Standard Specification for Analytical Data Interchange Protocol for Mass Spectrometric Data, DOI: 10.1520/E2077-00R05
 		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="JCAMP-DX IR">
-			Appl. Spectrosc., Vol 42(1), pp. 151-162, 1988 "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form"		
+			McDonald, R. S., Wilks, P. A., "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer Readable Form," Appl. Spectrosc., Vol 42, No 1, 1988, pp. 151-162.
 		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="Bertie Vib Spec">
-			Bertie, John: Glossary of Terms used in vibration spectroscopy, from: Handbook of vibrational spectroscopy		
+			Bertie, J. E., "Glossary of Terms used in Vibrational Spectroscopy, Handbook of Vibrational Spectroscopy,"
+			Chalmers, J. M., Griffiths, P. R. (eds.), John Wiley &amp; Sons Ltd., Chichester, 2002
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="Bertie FT">
+			Bertie, J. E., "Specification of Components, Methods and parameters in Fourier Transform Spectroscopy by Michelson and Related Interferometers,"
+			Pure &amp; Appl. Chem., Vol 70, No. 10, 1998, pp. 2039-2045.
 		</LiteratureReference>
 	</Bibliography>
 </Technique>

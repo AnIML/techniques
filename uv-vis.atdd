@@ -48,7 +48,7 @@
 <Technique name="UV/Vis" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for UV/Visible spectrophotometry</Documentation>
 	<SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1" inheritable="true">
-		<Documentation>A subsample selected from the properly prepared laboratory sample which has a suitable sample weight or volume for one or more determinations by chemical analysis (ASTM E135, E01). This sample role represents the sample that is analyzed in the given ExperimentStep.</Documentation>
+		<Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory sample which has a suitable sample weight or volume for one or more determinations by chemical analysis. This sample role represents the sample that is analyzed in the given ExperimentStep.</Documentation>
 		<CategoryBlueprint name="Description" modality="required" maxOccurs="1">
 			<Documentation>Parameters describing the test sample</Documentation>
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
@@ -106,22 +106,22 @@
 				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>Sample disposal procedure (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations). See ASTM E 2077-00.</Documentation>
+				<Documentation literatureReferenceID="ASTM E2077-00">Sample disposal procedure (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations).</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="ASTM E2077-00">Any safety issues which are of concern when the sample is manually handled.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>Description of the storage conditions for the sample, which includes the storage location. See ASTM E 2077-00.</Documentation>
+				<Documentation literatureReferenceID="ASTM E2077-00">Description of the storage conditions for the sample, which includes the storage location.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Location where sample is stored.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Receipt Time Stamp" parameterType="DateTime" modality="optional" maxOccurs="1">
-				<Documentation>Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/time stamp, and may be important when analysis of a sample must occur within a specified period after receipt. See ASTM E 2077-00.</Documentation>
+				<Documentation literatureReferenceID="ASTM E2077-00">Date and time the sample was received in the laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep date/time stamp, and may be important when analysis of a sample must occur within a specified period after receipt.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>Textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: &quot;supercritical fluid extraction.&quot; See ASTM E 2077-00.</Documentation>
+				<Documentation literatureReferenceID="ASTM E2077-00">Textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: &quot;supercritical fluid extraction.&quot;.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation/>
@@ -167,7 +167,7 @@
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Melting Point" maxOccurs="1" modality="optional">
-				<Documentation>In a phase diagram, the temperature at which the liquidus and solidus coincide at an invariant point. (ASTM E1142-07)</Documentation>
+				<Documentation literatureReferenceID="ASTM E1142-07">In a phase diagram, the temperature at which the liquidus and solidus coincide at an invariant point.</Documentation>
 				<ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of melting temperature range. Use only this value if sample has an actual melting "point".</Documentation>
 					<Quantity name="Temperature">
@@ -228,13 +228,13 @@
 					<Documentation>Chemical structure as SMILES string. See Pure Appl. Chem. 1997, 69, 1137.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings. Wiswesser notation is described in detail by Smith (see Elbert G. Smith, The Wiswesser Line-Formula Chemical Notation (McGraw-Hill, New York, 1968), 2nd ed.; and (Chemical Information Management, Inc., Cherry Hill, New Jersey, 1975), 3rd ed.).</Documentation>
+					<Documentation literatureReferenceID="Wiswesser">The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Chemical structure expressed as MOL File. See Pure Appl. Chem. 1997, 69, 1137.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
-					<Documentation>Chemical structure expressed in the Chemical Markup Language (CML). See Chemical markup Language and XML Part I. Basic principles, P. Murray-Rust and H. S. Rzepa, J. Chem. Inf. Comp. Sci., 1999, 39, 928.</Documentation>
+					<Documentation literatureReferenceID="CML">Chemical structure expressed in the Chemical Markup Language (CML).</Documentation>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
@@ -255,14 +255,14 @@
 		</CategoryBlueprint>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Solvent" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
-		<Documentation>A liquid that can dissolve another substance. See ASTM E 609-05. Used to dissolve the Test Sample.</Documentation>
+		<Documentation literatureReferenceID="ASTM E609-05">A liquid that can dissolve another substance. Used to dissolve the Test Sample.</Documentation>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Blank" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>Matrix carried through all or part of the analytical process, where the analyte is not present, or where the analyte response is suppressed. A blank must be appropriate to the analytical process it is being used with. Typically used to monitor contaminants or to establish a baseline for quantitation. Note: Uses the same parameters as the Test Sample role.</Documentation>
 		<!--same parameters as Test Sample-->
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
-		<Documentation>A matrix whose analytes of interest are of known or accepted concentration or property. (ASTM D 1129-06A)</Documentation>
+		<Documentation literatureReferenceID="ASTM D1129-06A">A matrix whose analytes of interest are of known or accepted concentration or property.</Documentation>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>Reference to the sample used for calibration. A document reference about the qualification test often used in a QA/QC setting. This is only a reference, so no parameters are required.</Documentation>
@@ -478,7 +478,7 @@
 					<SeriesBlueprint name="Filter Description" seriesType="String" dependency="dependent" modality="required" plotScale="none">
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
-				<SeriesSetBlueprint name="Detectors">
+				<SeriesSetBlueprint name="Detectors" modality="optional">
 					<Documentation>List of detectors used within specific wavelength ranges.</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the specified detector was used.</Documentation>
@@ -926,7 +926,7 @@
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Photometric Non-linearity" parameterType="Float" modality="optional">
-					<Documentation>The inability of a photometric system to yield a linear relationship between the radiant power incident on its detector and some measurable quantity provided by the system, expressed as percentage. See "photometric linearity" in ASTM E131-02.</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">The inability of a photometric system to yield a linear relationship between the radiant power incident on its detector and some measurable quantity provided by the system, expressed as percentage. See "photometric linearity".</Documentation>
 					<Quantity name="Non-linearity">
 						&percent;
 					</Quantity>
@@ -1388,7 +1388,7 @@
 					<Documentation>Whether the acquired result spectrum has been corrected against the spectrum of the sample given in the reference sample role.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Straylight-Corrected" parameterType="Boolean" modality="optional">
-					<Documentation>Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. It is the same as Stray Radiant Power (Ps): the total detected radiant power outside a specified wavelength (wavenumber) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wavenumber), slit dimensions, light source, and detector. (ASTM E131-02)</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. It is the same as Stray Radiant Power (Ps): the total detected radiant power outside a specified wavelength (wavenumber) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wavenumber), slit dimensions, light source, and detector.</Documentation>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Spectral Smoothing" maxOccurs="1" modality="optional">
@@ -1408,26 +1408,26 @@
 			<SeriesBlueprintChoice modality="required">
 				<Documentation>Series for the x-Axis of the Spectrum.</Documentation>
 				<SeriesBlueprint name="Wavenumber" seriesType="Float" plotScale="linear" dependency="independent">
-					<Documentation>Number of waves per unit of length. (ASTM E131-02)</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">Number of waves per unit of length.</Documentation>
 					<Quantity name="Reciprocal Length">
 						&reciprocal_cm;
 					</Quantity>
 				</SeriesBlueprint>
 				<SeriesBlueprint name="Radiant energy" seriesType="Float" plotScale="linear" dependency="independent">
-					<Documentation>Energy transmitted as electromagnetic waves. (ASTM E131-02)</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">Energy transmitted as electromagnetic waves.</Documentation>
 					<Quantity name="Energy">
 						&eV;
 					</Quantity>
 				</SeriesBlueprint>
 				<SeriesBlueprint name="Wavelength" seriesType="Float" plotScale="linear" dependency="independent">
-					<Documentation>λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves. (ASTM E131-02)</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves.</Documentation>
 					<Quantity name="Wavelength">
 						&um; &nm; &pm;
 					</Quantity>
 				</SeriesBlueprint>
 			</SeriesBlueprintChoice>
 			<SeriesBlueprint name="Intensity" seriesType="Float" modality="required" plotScale="linear" dependency="dependent">
-				<Documentation>Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment. Transmittance is the ratio of radiant power transmitted by the sample to the radiant power incident on the sample (ASTM E131-02). Reflectance is the ratio of the radiant power reflected by the sample to the radiant power incident on the sample (ASTM E131-02).</Documentation>
+				<Documentation literatureReferenceID="ASTM E131-05">Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment. Transmittance is the ratio of radiant power transmitted by the sample to the radiant power incident on the sample. Reflectance is the ratio of the radiant power reflected by the sample to the radiant power incident on the sample.</Documentation>
 				<Quantity name="Absorbance">
 					&AU; &A;
 				</Quantity>
@@ -1439,7 +1439,7 @@
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint name="Resolution" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
-				<Documentation>Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. (ASTM E131-02). Use vector if resolution is variable.</Documentation>
+				<Documentation literatureReferenceID="ASTM E131-05">Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. Use this series if resolution is variable.</Documentation>
 				<Quantity name="Reciprocal Length">
 					&reciprocal_cm;
 				</Quantity>
@@ -1451,7 +1451,7 @@
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint seriesType="Float" plotScale="none" dependency="dependent" name="Spectral Slit Width" modality="optional" maxOccurs="1">
-				<Documentation>The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan; defined @Ref[ASTM E131-02 Annual book of ASTM Standards 2003]. Use series, if variable.</Documentation>
+				<Documentation literatureReferenceID="ASTM E131-05">The mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan. Use this series if spectral slit width is variable.</Documentation>
 				<Quantity name="Length">
 					&nm;
 				</Quantity>
@@ -1786,11 +1786,23 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 		</CategoryBlueprint>
 	</ResultBlueprint-->
 	<Bibliography>
+		<LiteratureReference literatureReferenceID="ASTM D1129-06A">
+			ASTM Standard D1129-06A: TODO
+		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="ASTM E131-05">
 			ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05
 		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="ASTM E135-09">
+			ASTM Standard E135-09: Standard Terminology Relating to Analytical Chemistry for Metals, Ores, and Related Materials, DOI: 10.1520/E0135-09
+		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="ASTM E275-08">
 			ASTM Standard E275-08: Standard Practice for Describing and Measuring Performance of Ultraviolet, Visible, and Near-Infrared Spectrophotometers, DOI: 10.1520/E0275-08
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="ASTM E609-05">
+			ASTM Standard E609-05: Standard Terminology Relating to Pesticides, DOI: 10.1520/E0609-05
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="ASTM E1142-07">
+			ASTM Standard E1142-07: Standard Terminology Relating to Thermophysical Properties, DOI: 10.1520/E1142-07
 		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="ASTM E1947-98">
 			ASTM Standard E1947-98 (2009): Standard Specification for Analytical Data Interchange Protocol for Chromatographic Data, DOI: 10.1520/E1947-98R09
@@ -1808,6 +1820,12 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 		<LiteratureReference literatureReferenceID="Bertie FT">
 			Bertie, J. E., "Specification of Components, Methods and parameters in Fourier Transform Spectroscopy by Michelson and Related Interferometers,"
 			Pure &amp; Appl. Chem., Vol 70, No. 10, 1998, pp. 2039-2045.
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="CML">
+			Murray-Rust, P., Rzepa, H. S., "Chemical markup Language and XML Part I. Basic principles," J. Chem. Inf. Comp. Sci., 1999, 39, 928.
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="Wiswesser">
+			Smith, E. G., "The Wiswesser Line-Formula Chemical Notation," 2nd ed., McGraw-Hill, New York, 1968
 		</LiteratureReference>
 	</Bibliography>
 </Technique>

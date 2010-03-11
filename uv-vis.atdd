@@ -6,6 +6,9 @@
 	see CVS comments for change log
   -->
 <!DOCTYPE Technique [
+	<!ENTITY lamda "&#955;">
+	<!ENTITY Delta "&#916;">
+
 	<!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
 	<!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
 	<!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
@@ -106,7 +109,7 @@
 				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation literatureReferenceID="ASTM E2077-00">Sample disposal procedure (also in accord with the United States Department of Labor Occupational Safety and Health Administration (OSHA) regulations).</Documentation>
+				<Documentation literatureReferenceID="ASTM E2077-00">Sample disposal procedure, also in accordance with the U.S. Department of Labor Occupational Safety and Health Administration (OSHA) regulations.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="ASTM E2077-00">Any safety issues which are of concern when the sample is manually handled.</Documentation>
@@ -225,7 +228,7 @@
 			<CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
 				<Documentation>Description of the chemical structure</Documentation>
 				<ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Chemical structure as SMILES string. See Pure Appl. Chem. 1997, 69, 1137.</Documentation>
+					<Documentation literatureReferenceID="SMILES">Chemical structure as a string using the Simplified Molecular Input Line Entry System (SMILES) syntax.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation literatureReferenceID="Wiswesser">The Wiswesser line notation is a precise and concise means of expressing structural formulas as character strings. The basic idea is to use letter symbols to denote functional groups and numbers to express the lengths of chains and the sizes of rings.</Documentation>
@@ -782,7 +785,7 @@
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
-					<Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector. Resolution - Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector. Resolution - &Delta;&lamda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lamda;, or wavenumber interval, &Delta;v, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
 					<Quantity name="Energy">
 						&eV;
 					</Quantity>
@@ -1413,14 +1416,14 @@
 						&reciprocal_cm;
 					</Quantity>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Radiant energy" seriesType="Float" plotScale="linear" dependency="independent">
+				<SeriesBlueprint name="Radiant Energy" seriesType="Float" plotScale="linear" dependency="independent">
 					<Documentation literatureReferenceID="ASTM E131-05">Energy transmitted as electromagnetic waves.</Documentation>
 					<Quantity name="Energy">
 						&eV;
 					</Quantity>
 				</SeriesBlueprint>
 				<SeriesBlueprint name="Wavelength" seriesType="Float" plotScale="linear" dependency="independent">
-					<Documentation literatureReferenceID="ASTM E131-05">λ - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves.</Documentation>
+					<Documentation literatureReferenceID="ASTM E131-05">&lamda; - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves.</Documentation>
 					<Quantity name="Wavelength">
 						&um; &nm; &pm;
 					</Quantity>
@@ -1439,7 +1442,7 @@
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint name="Resolution" seriesType="Float" modality="optional" plotScale="none" dependency="dependent">
-				<Documentation literatureReferenceID="ASTM E131-05">Δλ, Δ v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, Δλ, or wavenumber interval, Δv, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. Use this series if resolution is variable.</Documentation>
+				<Documentation literatureReferenceID="ASTM E131-05">&Delta;&lamda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lamda;, or wavenumber interval, &Delta;v, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. Use this series if resolution is variable.</Documentation>
 				<Quantity name="Reciprocal Length">
 					&reciprocal_cm;
 				</Quantity>
@@ -1826,6 +1829,9 @@ unit for this is the same as that of the ordinate variable. (ASTM E 1947-98)</Do
 		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="Wiswesser">
 			Smith, E. G., "The Wiswesser Line-Formula Chemical Notation," 2nd ed., McGraw-Hill, New York, 1968
+		</LiteratureReference>
+		<LiteratureReference literatureReferenceID="SMILES">
+			van de Waterbeemd, H., Carter, R.E., Grassy, G., Kubinyi, H., Martin, Y.C., Tute, M.S., Willett, P., "Glossary of terms used in computational drug design (IUPAC Recommendations 1997)," Pure Appl. Chem. 1997, 69, 1137-1152, DOI: 10.1351/pac199769051137
 		</LiteratureReference>
 	</Bibliography>
 </Technique>

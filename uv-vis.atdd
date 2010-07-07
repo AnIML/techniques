@@ -115,7 +115,7 @@
 				<Documentation literatureReferenceID="ASTM E2077-00">Any safety issues which are of concern when the sample is manually handled.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation literatureReferenceID="ASTM E2077-00">Description of the storage conditions for the sample, which includes the storage location.</Documentation>
+				<Documentation literatureReferenceID="ASTM E2077-00">Storage conditions for the sample.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Location where sample is stored.</Documentation>
@@ -279,6 +279,18 @@
 	<SampleRoleBlueprint name="Wavelength Calibration Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>The material sample or lamp used to calibrate the wavelength axis. This is only a reference, so no parameters are required.</Documentation>
 	</SampleRoleBlueprint>
+	<ExperimentDataRoleBlueprint name="Dark Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
+		<Documentation>Reference to the spectrum used for dark correction.</Documentation>		
+	</ExperimentDataRoleBlueprint>
+	<ExperimentDataRoleBlueprint name="100% Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
+		<Documentation>Reference to the spectrum used for 100% correction.</Documentation>
+	</ExperimentDataRoleBlueprint>
+	<ExperimentDataRoleBlueprint name="Reference Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
+		<Documentation>Reference to the spectrum used for reference correction.</Documentation>
+	</ExperimentDataRoleBlueprint>
+	<ExperimentDataRoleBlueprint name="Stray light Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
+		<Documentation>Reference to the spectrum used for stray light correction.</Documentation>
+	</ExperimentDataRoleBlueprint>
 	<MethodBlueprint>
 		<CategoryBlueprint name="Method Description" modality="optional">
 			<Documentation>Basic contextual information about the measurement method.</Documentation>
@@ -289,9 +301,9 @@
 				<Documentation>External reference to measurement method.</Documentation>
 			</ParameterBlueprint>
 		</CategoryBlueprint>
-		<CategoryBlueprint name="Common Method">
+		<CategoryBlueprint name="Common Method" modality="required">
 			<Documentation>Information describing the instrument and its environment. This information is common to both dispersive and interferometric measurements.</Documentation>
-			<CategoryBlueprint name="Instrument Properties">
+			<CategoryBlueprint name="Instrument Properties" modality="optional">
 				<Documentation>Fixed characteristics of the instrument.</Documentation>
 				<ParameterBlueprint name="Description" parameterType="String" modality="optional">
 					<Documentation>A textual description of the instrument.</Documentation>
@@ -335,7 +347,7 @@
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
-			<CategoryBlueprint name="Instrument Settings">
+			<CategoryBlueprint name="Instrument Settings" modality="required">
 				<Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
 				<SeriesSetBlueprint name="Light Sources" modality="optional">
 					<Documentation>Description of light sources being used whithin the experiment described.</Documentation>
@@ -642,7 +654,7 @@
 				<ParameterBlueprint name="Sample Holder Position" parameterType="String" modality="optional">
 					<Documentation>The position of the sample within the sample holder unit. Note: This is not intended for auto sampler information.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="required">
+				<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="optional">
 					<Documentation literatureReferenceID="ASTM E131-05">The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent.</Documentation>
 					<Quantity name="Length">
 						&cm; &mm;
@@ -675,10 +687,10 @@
 						&Pa;
 					</Quantity>
 				</ParameterBlueprint>
-				<CategoryBlueprint name="x-Axis Range" modality="optional" maxOccurs="1">
-					<Documentation>The range of x-axis coverage.</Documentation>
+				<CategoryBlueprint name="Spectral Range" modality="optional">
+					<Documentation>The spectral range to acquire, given as wavelength, wave numbers or energy.</Documentation>
 					<ParameterBlueprint name="Min" parameterType="Float" modality="required">
-						<Documentation>The shortest range.</Documentation>
+						<Documentation>The lower bound of the range to acquire.</Documentation>
 						<Quantity name="Reciprocal Length">
 							&reciprocal_cm;
 						</Quantity>
@@ -690,7 +702,7 @@
 						</Quantity>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Max" parameterType="Float" modality="required">
-						<Documentation>The longest range.</Documentation>
+						<Documentation>The upper bound of the range to acquire.</Documentation>
 						<Quantity name="Reciprocal Length">
 							&reciprocal_cm;
 						</Quantity>
@@ -699,38 +711,12 @@
 						</Quantity>
 						<Quantity name="Energy">
 							&eV;
-						</Quantity>
-					</ParameterBlueprint>
-				</CategoryBlueprint>
-				<CategoryBlueprint name="y-Axis Range" modality="optional">
-					<ParameterBlueprint name="Min" parameterType="Float" modality="required">
-						<Documentation>The smallest range.</Documentation>
-						<Quantity name="Absorbance">
-							&AU; &A;
-						</Quantity>
-						<Quantity name="Transmittance">
-							&T; &percentT;
-						</Quantity>
-						<Quantity name="Reflectance">
-							&percentR; &R;
-						</Quantity>
-					</ParameterBlueprint>
-					<ParameterBlueprint name="Max" parameterType="Float" modality="required">
-						<Documentation>The largest range.</Documentation>
-						<Quantity name="Absorbance">
-							&AU; &A;
-						</Quantity>
-						<Quantity name="Transmittance">
-							&T; &percentT;
-						</Quantity>
-						<Quantity name="Reflectance">
-							&percentR; &R;
 						</Quantity>
 					</ParameterBlueprint>
 				</CategoryBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
-		<CategoryBlueprint name="Dispersive Method">
+		<CategoryBlueprint name="Dispersive Method" modality="optional">
 			<Documentation>Specific parameters for dispersive measurements.</Documentation>
 			<CategoryBlueprint name="Instrument Properties">
 				<Documentation>Fixed characteristics of the instrument, specific to dispersive measurements.</Documentation>
@@ -799,7 +785,7 @@
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings">
 				<Documentation>Variable characteristics or configuration parameters of the instrument, specific to dispersive measurements.</Documentation>
-				<ParameterBlueprint name="Slit Function" parameterType="String">
+				<ParameterBlueprint name="Slit Function" parameterType="String" modality="required">
 					<Documentation>Adjustment of the slit width to maintain constant resolution or constant energy over the course of the scan.</Documentation>
 					<AllowedValue>
 						<String>Constant resolution</String>
@@ -818,7 +804,7 @@
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Slit Width" parameterType="Float" modality="optional">
-					<Documentation>Mechanical width of the monochromator slits.</Documentation>
+					<Documentation>Mechanical width of the monochromator slits. Use parameter if constant.</Documentation>
 					<Quantity name="Length">
 						&mm; &nm;
 					</Quantity>
@@ -862,7 +848,7 @@
 						</Unit>
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Spectral Bandwidth Range" modality="optional" parameterType="Float">
+				<ParameterBlueprint name="Spectral Bandwidth" modality="optional" parameterType="Float">
 					<Documentation literatureReferenceID="ASTM E131-05">The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
 					<Quantity name="Length">
 						&nm;
@@ -870,7 +856,7 @@
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
-		<CategoryBlueprint name="Interferometric Method">
+		<CategoryBlueprint name="Interferometric Method" modality="optional">
 			<Documentation>Specific parameters for interferometric measurements.</Documentation>
 			<CategoryBlueprint name="Instrument Properties">
 				<Documentation>Fixed characteristics of the instrument, specific to interferometric measurements.</Documentation>
@@ -1377,7 +1363,7 @@
 				</CategoryBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
-		<CategoryBlueprint name="Spectral Post-Processing">
+		<CategoryBlueprint name="Spectral Post-Processing" modality="optional">
 			<Documentation>Post-processing of spectral data.</Documentation>
 			<CategoryBlueprint name="Spectral Correction" maxOccurs="1" modality="optional">
 				<Documentation>Alteration of spectral data to remove instrumental artifacts.</Documentation>
@@ -1385,12 +1371,12 @@
 					<Documentation>Whether the beam-blocked spectrum has been subtracted from the acquired result spectrum.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="100%-Corrected" parameterType="Boolean" maxOccurs="1" modality="optional">
-					<Documentation>Whether the acquired result spectrum has been scaled against the beam-open spectrum.</Documentation>
+					<Documentation>Whether the acquired result spectrum has been scaled against the beam-open spectrum (100% transmittance / 0 absorbance).</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Reference-Corrected" parameterType="Boolean" maxOccurs="1" modality="optional">
 					<Documentation>Whether the acquired result spectrum has been corrected against the spectrum of the sample given in the reference sample role.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Straylight-Corrected" parameterType="Boolean" modality="optional">
+				<ParameterBlueprint name="Stray light-Corrected" parameterType="Boolean" modality="optional">
 					<Documentation literatureReferenceID="ASTM E131-05">Stray light is defined as detected light of any wavelength that lies outside the bandwidth of the selected wavelength. It is the same as Stray Radiant Power (Ps): the total detected radiant power outside a specified wavelength (wavenumber) interval each side of the center of the spectral band passed by the monochromator under stated conditions for wavelength (wavenumber), slit dimensions, light source, and detector.</Documentation>
 				</ParameterBlueprint>
 			</CategoryBlueprint>

@@ -53,9 +53,11 @@ CONTROL METHOD
 	<!ENTITY degC "<Unit label='&#176;C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
 	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
 	<!ENTITY degF "<Unit label='&#176;F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
-	
-	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
 	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
+	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
+	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
+	<!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
+	<!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
 ]>
 <Technique name="Chromatography" version="0.34" extension="false" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique Definition for Chromatography (A physical method of separation in which the components to be separated are distributed between two phases, one of which is stationary (stationary phase) while the other (the mobile phase) moves in a definite direction. 1993, 65, 823; O.B. 92; 1990, 62, 2179; see IUPAC Gold Book).  Chromatography, as here constituted, comprises sample introduction, separation, and fractionation.  Chromatography is a sample alteration technique that separates complex introduced samples  into their component parts; thus it alters, but does not measure or detect, the sample.
@@ -1085,10 +1087,33 @@ CONTROL METHOD
 				<Documentation>TODO -- this could be the type of chromatography done, e.g. LC, GC, HPLC, UPLC?</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Description" parameterType="String" modality="optional"/>
+			<CategoryBlueprint name="Module" modality="optional" maxOccurs="unbounded">
+				<ParameterBlueprint name="Identifier" parameterType="String" modality="required" maxOccurs="1">
+					<Documentation>Unique name for the instrument module, e.g., "detector1", "pumpA", "A"</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Manufacturer" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Manufacturer of the module.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Model" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Model name or number of the module.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Serial Number" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Serial number of the module.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Firmware Version" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Firmware version of the module.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Driver Version" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Driver version of the module.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Purpose" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Role or function of the module, e.g., "System Controller", "I/O Box"</Documentation>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<!-- Sciex Analyst CTC PAL Autosampler Method, Waters Acquity Autosampler -->
 		<CategoryBlueprint name="Sample Introduction" modality="optional" maxOccurs="unbounded">
-			<Documentation>Sample introducton includes manual or autosampler injection.</Documentation>
+			<Documentation>Introducton of sample into the instrument system. Includes manual or autosampler injection.</Documentation>
 			<CategoryBlueprint name="Injector Description">
 				<!-- Needs hotel info -->
 				<ParameterBlueprint name="Injector Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
@@ -1263,7 +1288,7 @@ CONTROL METHOD
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Column Selector Equilibration Time" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>EXTENSION -- Michael?</Documentation>
-				</ParameterBlueprint>				
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Needle Placement (from bottom)" parameterType="Float" modality="optional" maxOccurs="1"/>
 				<ParameterBlueprint name="Needle Overfill Flush" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>EXTENSION -- Michael?</Documentation>
@@ -1271,10 +1296,9 @@ CONTROL METHOD
 				<!-- various valve events-->
 			</CategoryBlueprint>
 		</CategoryBlueprint>
-		<!-- GC  INLET -->
-		<!-- MFB first pass completed from Dale's entries -->
-		<CategoryBlueprint name="Inlet" modality="optional" maxOccurs="unbounded">
-			<SeriesSetBlueprint name="Temperature Control Table">
+		<CategoryBlueprint name="Inlet" modality="optional" maxOccurs="1">
+			<Documentation>Introduction of sample into the column.</Documentation>
+			<SeriesSetBlueprint name="Temperature Control Table" modality="optional">
 				<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
 					<Quantity name="Time">
 						&min; &s;
@@ -1297,18 +1321,8 @@ CONTROL METHOD
 					</Quantity>
 				</SeriesBlueprint>
 			</SeriesSetBlueprint>
-			<SeriesSetBlueprint name="Flow Control Table">
-				<!-- IS THIS LC OR GC OR SFC??
-			SeriesBlueprint name="Time" seriesType="Float" plotScale="none" dependency="independent" modality="required">
-					<Quantity name="Time">
-					</Quantity>
-				</SeriesBlueprint>
-				<SeriesBlueprint name="Module" seriesType="String" plotScale="none" dependency="dependent">
-				</SeriesBlueprint>
-				<SeriesBlueprint name="Event" seriesType="String" plotScale="none" dependency="dependent">
-				</SeriesBlueprint>
-				<SeriesBlueprint name="Parameter" seriesType="Float" plotScale="none" dependency="dependent">
-				</SeriesBlueprint-->
+			<SeriesSetBlueprint name="Flow Control Table" modality="optional">
+				<Documentation>TODO -- IS THIS LC OR GC OR SFC??</Documentation>
 				<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
 					<Quantity name="Time">
 						&min; &s;
@@ -1319,7 +1333,7 @@ CONTROL METHOD
 					</Quantity>
 					<Quantity name="Pressure">
 					</Quantity>
-				</SeriesBlueprint>				
+				</SeriesBlueprint>
 				<SeriesBlueprint name="Rate Change" seriesType="Float" plotScale="none" dependency="dependent" modality="optional">
 					<Quantity name="Flow Change per Time">
 					</Quantity>
@@ -1332,54 +1346,93 @@ CONTROL METHOD
 					</Quantity>
 				</SeriesBlueprint>
 			</SeriesSetBlueprint>
-			<ParameterBlueprint name="Flow Mode" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>When either constant Pressure or Constant Flow is used then a single Flow or Pressure variable is used.  When either Ramp Flow or Ramp Pressure is selected, then the Flow Control Table should be used.</Documentation>
-				<AllowedValue>
-					<String>Ramp Flow</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>Ramp Pressure</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>Constant Flow</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>Constant Pressure</String>
-				</AllowedValue>
-			</ParameterBlueprint>
-			<CategoryBlueprint name="Flow Settings" modality="optional" maxOccurs="unbounded">
-				<ParameterBlueprint name="Total Flow" parameterType="String" modality="optional" maxOccurs="unbounded"/>
-				<ParameterBlueprint name="Flow Mode" parameterType="String" modality="optional" maxOccurs="unbounded"/>
-				<ParameterBlueprint name="Split Ratio" parameterType="String" modality="optional" maxOccurs="unbounded"/>
-				<ParameterBlueprint name="Split Flow" parameterType="String" modality="optional" maxOccurs="unbounded"/>
-				<ParameterBlueprint name="Purge Time" parameterType="String" modality="optional" maxOccurs="unbounded"/>
-				<ParameterBlueprint name="Purge Flow" parameterType="String" modality="optional" maxOccurs="unbounded"/>
-				<ParameterBlueprint name="Septum Purge Time" parameterType="String" modality="optional" maxOccurs="unbounded"/>
-				<ParameterBlueprint name="Septum Purge Flow" parameterType="String" modality="optional" maxOccurs="unbounded"/>
+			<CategoryBlueprint name="Flow Settings" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Flow Mode" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>When either constant Pressure or Constant Flow is used then a single Flow or Pressure variable is used.  When either Ramp Flow or Ramp Pressure is selected, then the Flow Control Table should be used.</Documentation>
+					<AllowedValue>
+						<String>Ramp Flow</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Ramp Pressure</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Constant Flow</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>Constant Pressure</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Total Flow" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Total flow in the inlet, before the split</Documentation>
+					<Quantity name="flow rate">
+						&mL_per_min; &uL_per_min;
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Split Ratio" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Output ratio of split, defined as "Split Flow : column flow", e.g., "10:1", where column flow := Total Flow - Split Flow</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Split Flow" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Flow rate out of split (directed away from the column, typically to waste)</Documentation>
+					<Quantity name="flow rate">
+						&mL_per_min; &uL_per_min;
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Purge Time" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Time after injection when purge valve is openend to purge the split vent.</Documentation>
+					<Quantity name="time">
+						&min; &s; &ms;
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Purge Flow" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Flow rate for purging the split vent.</Documentation>
+					<Quantity name="flow rate">
+						&mL_per_min; &uL_per_min;
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Septum Purge Time" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Delay after injection before septum purge valve opens. Valve is closed at time of injection.</Documentation>
+					<Quantity name="time">
+						&min; &s; &ms;
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Septum Purge Flow" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Flow rate through the septum purge valve.</Documentation>
+					<Quantity name="flow rate">
+						&mL_per_min; &uL_per_min;
+					</Quantity>
+				</ParameterBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<!-- LC, SFC PUMPS -->
 		<CategoryBlueprint name="Pump" modality="optional" maxOccurs="unbounded">
 			<Documentation>Pumps come with or without switches. A simple pump would generally use a switch to introduce solvents. Pumps have event tables for introducing solvents.  A quad pump(4) can introduce upto 4 solvents at one time. All solvents combine to equal 100%. You could have one only one solvent being introduced and that solvent would equal 100%.</Documentation>
-			<CategoryBlueprint name="Pump Controller">
-				<ParameterBlueprint name="Controller Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Controller Model" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Controller Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			<CategoryBlueprint name="Pump Controller" modality="optional">
+				<ParameterBlueprint name="Identifier" parameterType="String" modality="required" maxOccurs="1">
+					<Documentation>Unique name for the pump controller, e.g., "Controller A"</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Manufacturer" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Manufacturer of the pump controller.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Model" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Model name of the pump controller.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Serial Number" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Serial number of the pump controller.</Documentation>
+				</ParameterBlueprint>
 			</CategoryBlueprint>
-			<CategoryBlueprint name="Pump A Description">
-				<ParameterBlueprint name="Pump Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Pump Model" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Pump Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="Pump B Description">
-				<ParameterBlueprint name="Pump Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Pump Model" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Pump Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="Pump C Description">
-				<ParameterBlueprint name="Pump Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Pump Model" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Pump Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
+			<CategoryBlueprint name="Pump Description" modality="optional" maxOccurs="unbounded">
+				<ParameterBlueprint name="Identifier" parameterType="String" modality="required" maxOccurs="1">
+					<Documentation>Unique name for the pump, e.g., "Pump A"</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Manufacturer" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Manufacturer of the pump.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Model" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Model name of the pump.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Serial Number" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Serial number of the pump.</Documentation>
+				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<!-- CHECK FOR SFC WITH BACKPRESSURE REGULATORS -->
 			<CategoryBlueprint name="Pump Method">

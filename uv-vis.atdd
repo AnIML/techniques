@@ -848,6 +848,9 @@
 						</Unit>
 					</Quantity>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="Scan Response Filter" modality="optional" parameterType="Float">
+					<Documentation>TODO</Documentation>
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Spectral Bandwidth" modality="optional" parameterType="Float">
 					<Documentation literatureReferenceID="ASTM E131-05">The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
 					<Quantity name="Length">
@@ -1463,6 +1466,18 @@
 			<ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
 				<Documentation>The number of scans performed when acquiring this spectrum.</Documentation>
 			</ParameterBlueprint>
+			<ParameterBlueprint name="Sample Temperature" parameterType="Float" modality="optional">
+				<Documentation>Measured temparature of the sample, recorded with a probe which is in direct contact with the sample.</Documentation>
+				<Quantity name="Temperature">
+					&degK; &degC; &degF;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Sample Holder Temperature" parameterType="Float" modality="optional">
+				<Documentation>Measured temparature of the sample holder.</Documentation>
+				<Quantity name="Temperature">
+					&degK; &degC; &degF;
+				</Quantity>
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Ambient Conditions">
 			<Documentation>Ambient temperature and pressure in the optical chamber during the experiment.</Documentation>
@@ -1473,7 +1488,7 @@
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Temperature" parameterType="Float" modality="required">
-				<Documentation>Temperature at which the experiment was performed.</Documentation>
+				<Documentation>Measured temperature in the optical path of the instrument.</Documentation>
 				<Quantity name="Temperature">
 					&degK; &degC; &degF;
 				</Quantity>

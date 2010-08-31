@@ -56,6 +56,8 @@ CONTROL METHOD
 	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
 	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
 	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
+	<!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
+	<!ENTITY uL "<Unit label='µl'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
 	<!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
 ]>
@@ -1410,28 +1412,11 @@ CONTROL METHOD
 				<ParameterBlueprint name="Identifier" parameterType="String" modality="required" maxOccurs="1">
 					<Documentation>Unique name for the pump controller, e.g., "Controller A"</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Manufacturer" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Manufacturer of the pump controller.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Model" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Model name of the pump controller.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Serial Number" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Serial number of the pump controller.</Documentation>
-				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Pump Description" modality="optional" maxOccurs="unbounded">
+				<Documentation>Repeat once per pump</Documentation>
 				<ParameterBlueprint name="Identifier" parameterType="String" modality="required" maxOccurs="1">
 					<Documentation>Unique name for the pump, e.g., "Pump A"</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Manufacturer" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Manufacturer of the pump.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Model" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Model name of the pump.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Serial Number" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Serial number of the pump.</Documentation>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<!-- CHECK FOR SFC WITH BACKPRESSURE REGULATORS -->
@@ -1439,6 +1424,7 @@ CONTROL METHOD
 				<SeriesSetBlueprint name="Control Table">
 					<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
 						<Quantity name="Time">
+							&min; &s; &ms;
 						</Quantity>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Event Name" seriesType="String" plotScale="none" dependency="dependent" modality="required">
@@ -1447,21 +1433,9 @@ CONTROL METHOD
 						<Quantity name="Flow Rate">
 						</Quantity>
 					</SeriesBlueprint>
-					<SeriesBlueprint name="Max Pressure" seriesType="Int" plotScale="linear" dependency="dependent" modality="optional">
-						<Quantity name="Pressure">
-						</Quantity>
-					</SeriesBlueprint>
 					<!-- how do we know which solvent was used in which position - do we care?; how do we allow this multiple times and specify the solvent name?-->
-					<SeriesBlueprint name="% Mobile Phase A" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
-						<Quantity name="Percent">
-						</Quantity>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="% Mobile Phase B" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
-						<Quantity name="Percent">
-						</Quantity>
-					</SeriesBlueprint>
-					<!--MFB  A and B are expressed as fractions of 100%, while C is simply flow rate -->
-					<SeriesBlueprint name="Mobile Phase C Flow" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+					<SeriesBlueprint name="% Mobile Phase" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional" maxOccurs="unbounded">
+						<Documentation>Percent ratio of mobile phase. Use one Series per phase, correlating to the order in which the mobile phase samples are referenced.</Documentation>
 						<Quantity name="Percent">
 						</Quantity>
 					</SeriesBlueprint>
@@ -1470,8 +1444,12 @@ CONTROL METHOD
 						</Quantity>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
-				<CategoryBlueprint name="Pump Settings">
+				<CategoryBlueprint name="Pump Settings" maxOccurs="unbounded">
+					<Documentation>Repeat once per pump</Documentation>
 					<!-- should Pumping Mode be required?-->
+					<ParameterBlueprint name="Compressibility Factor" parameterType="Float">
+						<Documentation>Compressibility factor of the solvent the pump should assume.</Documentation>
+					</ParameterBlueprint>
 					<ParameterBlueprint name="Pumping Mode" parameterType="String" maxOccurs="1" modality="required">
 						<Documentation/>
 						<AllowedValue>
@@ -1489,6 +1467,32 @@ CONTROL METHOD
 					</ParameterBlueprint>
 				</CategoryBlueprint>
 			</CategoryBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Mixing" modality="optional">
+			<ParameterBlueprint name="Mode" parameterType="String" modality="optional">
+				<Documentation>Mobile phase mixing scheme.</Documentation>
+				<AllowedValue>
+					<String>Low-pressure mixing</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>High-pressure mixing</String>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Volume" parameterType="Float">
+				<Documentation>Volume of the mixing chamber.</Documentation>
+				<Quantity name="Volume">
+					&mL; &uL;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Type" parameterType="String">
+				<Documentation>Type of mixing mechanism.</Documentation>
+				<AllowedValue>
+					<String>static</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>dynamic</String>
+				</AllowedValue>
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Separation Medium" modality="optional" maxOccurs="unbounded">
 			<ParameterBlueprint name="Order" parameterType="Int" maxOccurs="1">

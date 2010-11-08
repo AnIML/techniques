@@ -7,20 +7,15 @@
   -->
 <!-- STATUS:  reviewed the Sample Introduced and started on Mobile Phaase -->
 <!-- NOTES AND QUESTIONS 
-- Can we have generic parameters in AnIML?  What about a free text AllowedValue?
 - Mass - what about moles rather than kg.  Or do we mean weight not mass?  Mass supllied or mass measured?
 - Does chromatography need allowable values on phase?
 -  Storage Information and Storage Location definitions redundant in UV-Vis (especially Sample and Substance)
-- Why support K or F in temp.  Scientists all use C
-- >&quot ? in Description?
 -  Molecular Mass or Average Molecular Mass - Wikipedia recommends molar mass and I agree as this is computed
 - Need a Sample Parameters module?
 -  Table column titles: now space delimited?  One word translated into variables more easily.  Space is user friendly.
 - Start - End, or Begin - End and Start - Stop
 - Fraction table - need to be able to reference a Peak Table !!!!!!!! But how?  Possibly just by time
-- Volume as ml not mL for now
 - Timestamp not Time Stamp?
-- MethodBlueprint should be unbounded in schema?  No, just multiple categories
 - Avoiding shorthand <Parameter/>
 - Help with maxOccurs 1 or unbounded in categories, parameters, SeriesSet etc.
 - Tabular Series dependency="independent" or leave blank?
@@ -35,12 +30,10 @@ MFB Feb 13, 2009
 - Check that it is OK that we omitted BolingPoint, MeltingPoint, Refractive Index 
 -  So we need Substance Number?
 -  Do we need Substance concentration if we have Sample concentration?  Probably
--  What is InChI?
 -  Do we need Disposal, Handling precautions, storage, lot, etc for Substance if we have them in Sample?  Might need Lot
 -  Added Lot and Origin for Substance under Sample
 - Readback data in CategorySet not in SeriesSet as it is not a sample measurement
 - I think Inlet in Dale's design needs review is this GC and LC or just one?
-- µ or um?
 - check Activated Position (now unbounded)
 INJECTION 
 SAMPLE REFRENCE SET - part of Samples
@@ -280,6 +273,9 @@ CONTROL METHOD
 				<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28, 12.</Documentation>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="InChI Key" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Hash value of IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28, 12.</Documentation>
+				</ParameterBlueprint>				
 				<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
 				</ParameterBlueprint>

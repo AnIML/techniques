@@ -249,6 +249,9 @@
 				<ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28, 12.</Documentation>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="InChI Key" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Hash value of IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28, 12.</Documentation>
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
 				</ParameterBlueprint>

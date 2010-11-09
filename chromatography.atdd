@@ -43,12 +43,12 @@ CONTROL METHOD
 <!DOCTYPE Technique [
 	<!ENTITY lamda "&#955;">
 	<!ENTITY Delta "&#916;">
-	
 	<!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
 	<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY degC "<Unit label='&#176;C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
 	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
 	<!ENTITY degF "<Unit label='&#176;F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+	<!ENTITY degC_per_min "<Unit label='&#176;C/min'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='60' exponent='-1'>s</SIUnit></Unit>">
 	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
 	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
 	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
@@ -56,6 +56,7 @@ CONTROL METHOD
 	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
 	<!ENTITY uL "<Unit label='µl'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
 	<!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
+	<!ENTITY mL_per_min2 "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
@@ -63,9 +64,17 @@ CONTROL METHOD
 	<!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
 	<!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
 	<!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
-
 	<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+	<!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+	<!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+	<!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+	<!ENTITY Pa_per_min "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
+	<!ENTITY bar_per_min "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
+	<!ENTITY psig_per_min "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
+
 ]>
+<!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
+<!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
 <Technique name="Chromatography" version="0.34" extension="false" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique Definition for Chromatography (A physical method of separation in which the components to be separated are distributed between two phases, one of which is stationary (stationary phase) while the other (the mobile phase) moves in a definite direction. 1993, 65, 823; O.B. 92; 1990, 62, 2179; see IUPAC Gold Book).  Chromatography, as here constituted, comprises sample introduction, separation, and fractionation.  Chromatography is a sample alteration technique that separates complex introduced samples  into their component parts; thus it alters, but does not measure or detect, the sample.
 	</Documentation>
@@ -151,7 +160,7 @@ CONTROL METHOD
 			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation/>
 				<Quantity name="Pressure">
-					&Pa;
+					&Pa; &psig; &bar;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
@@ -187,7 +196,7 @@ CONTROL METHOD
 				<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Pressure at which the boiling point has been determined. If not given, ambient pressure is assumed.</Documentation>
 					<Quantity name="Pressure">
-						&Pa;
+						&Pa; &psig; &bar;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -275,7 +284,7 @@ CONTROL METHOD
 				</ParameterBlueprint>
 				<ParameterBlueprint name="InChI Key" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Hash value of IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28, 12.</Documentation>
-				</ParameterBlueprint>				
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Structural formula clustering code based on the Beilstein System. It is used for locating information in Beilstein databases. The code contains only structural information and can be generated locally on microcomputers from connection table data alone. A simple description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed. (ACS, Washington, D.C.,1987), pp. 80-87.</Documentation>
 				</ParameterBlueprint>
@@ -1377,6 +1386,42 @@ CONTROL METHOD
 				</CategoryBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
+		<CategoryBlueprint name="Carrier Gas Control" modality="optional">
+			<SeriesSetBlueprint name="Carrier Gas Control Table" modality="required">
+				<SeriesBlueprint name="Event Time" seriesType="Float" dependency="independent" modality="required">
+					<Quantity name="Time">
+						&min; &s;
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprintChoice modality="required">
+					<SeriesBlueprint name="Pressure" seriesType="Float" dependency="dependent">
+						<Quantity name="Pressure">
+							&Pa; &psig; &bar;
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Flow Rate" seriesType="Float" dependency="dependent">
+						<Quantity name="Volume per Time">
+							&mL_per_min;
+						</Quantity>
+					</SeriesBlueprint>
+				</SeriesBlueprintChoice>
+				<SeriesBlueprintChoice modality="optional">
+					<Documentation>
+							If present, indicates the change rate between the current and the next event (gradient). If not present, the flow/pressure between two adjacent events is linearly interpolated (connect the dots).
+					</Documentation>
+					<SeriesBlueprint name="Pressure Change Rate" seriesType="Float" dependency="dependent">
+						<Quantity name="Pressure">
+							&Pa_per_min; &psig_per_min; &bar_per_min;
+						</Quantity>
+					</SeriesBlueprint>
+					<SeriesBlueprint name="Flow Change Rate" seriesType="Float" dependency="dependent">
+						<Quantity name="Volume per Time">
+							&mL_per_min2;
+						</Quantity>
+					</SeriesBlueprint>
+				</SeriesBlueprintChoice>
+			</SeriesSetBlueprint>
+		</CategoryBlueprint>
 		<CategoryBlueprint name="Mixing" modality="optional">
 			<ParameterBlueprint name="Mode" parameterType="String" modality="optional">
 				<Documentation>Mobile phase mixing scheme.</Documentation>
@@ -1454,23 +1499,27 @@ CONTROL METHOD
 				<ParameterBlueprint name="Oven Model" parameterType="String" modality="optional" maxOccurs="1"/>
 				<ParameterBlueprint name="Oven Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
 			</CategoryBlueprint>
-			<CategoryBlueprint name="Temperature Control" modality="optional" maxOccurs="unbounded">
-				<SeriesSetBlueprint name="Control Table">
+			<CategoryBlueprint name="Temperature Control" modality="required" maxOccurs="1">
+				<SeriesSetBlueprint name="Temperature Control Table">
 					<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
+						<Documentation>Time relative to injection</Documentation>
 						<Quantity name="Time">
+							&min; &s;
 						</Quantity>
 					</SeriesBlueprint>
-					<SeriesBlueprint name="Temperature" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+					<SeriesBlueprint name="Temperature" seriesType="Float" plotScale="linear" dependency="dependent" modality="required">
+						<Documentation>Temperature active at event time</Documentation>
 						<Quantity name="Temperature">
+							&degC; &degF; &degK;
 						</Quantity>
 					</SeriesBlueprint>
 					<!-- TODO is Rate Change really needed? -->
-					<SeriesBlueprint name="Rate Change" seriesType="Int" plotScale="linear" dependency="dependent" modality="optional">
-						<Quantity name="Pressure">
-						</Quantity>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Hold Time" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
-						<Quantity name="Time">
+					<SeriesBlueprint name="Change Rate" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+						<Documentation>
+							If present, indicates the temperature change rate between the current and the next event (gradient). If not present, the temperature between two adjacent events is linearly interpolated (connect the dots).
+						</Documentation>
+						<Quantity name="Temperature Change per Time">
+							&degC_per_min;
 						</Quantity>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
@@ -1481,27 +1530,17 @@ CONTROL METHOD
 			<SeriesSetBlueprint name="Control Table">
 				<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent">
 					<Quantity name="Time">
+						&min; &s;
 					</Quantity>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Switch Position" seriesType="String" plotScale="none" dependency="dependent">
-				</SeriesBlueprint>
-				<!-- note I changed allowed values from Open-Closed to Active-Inactive with a destination -->
-				<!-- what about contact closure vs pulse??-->
-				<SeriesBlueprint name="Switch State" seriesType="String" plotScale="none" dependency="dependent">
-					<AllowedValue>
-						<String>Active</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>Inactive</String>
-					</AllowedValue>
+				<SeriesBlueprint name="Switch Valve Event" seriesType="String" plotScale="none" dependency="dependent">
+					<Documentation>Position of the switch valve</Documentation>
 				</SeriesBlueprint>
 			</SeriesSetBlueprint>
 			<ParameterBlueprint parameterType="String" name="Valve Name" modality="optional" maxOccurs="1"/>
 			<ParameterBlueprint parameterType="String" name="Manufacturer" modality="optional" maxOccurs="1"/>
 			<ParameterBlueprint parameterType="String" name="Model" modality="optional" maxOccurs="1"/>
 			<ParameterBlueprint parameterType="String" name="Serial Number" modality="optional" maxOccurs="1"/>
-			<ParameterBlueprint parameterType="String" name="Activated Destination" modality="optional" maxOccurs="unbounded"/>
-			<ParameterBlueprint parameterType="String" name="Inactive Destination" modality="optional" maxOccurs="unbounded"/>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Fraction Collector" modality="optional" maxOccurs="unbounded">
 			<Documentation>A fraction collector is attached at the end of a detector or separation container, takes the separated output and places it into individual containers.  Fraction collection has 3 modes: Timed Collection,  Peak Threshold Collection, and Peak Parameter Collection.  It is often, but not always, linked to Peak Table Results</Documentation>

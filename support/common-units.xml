@@ -41,6 +41,9 @@
 	<!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+	<!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
+	<!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
+	
 	<!-- Pressure Change Rate -->
 	<!ENTITY Pa_per_min "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY bar_per_min "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">

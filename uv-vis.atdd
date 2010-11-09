@@ -22,6 +22,8 @@
 	<!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
 	<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+	<!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+	<!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
 	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
 	<!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
@@ -55,7 +57,7 @@
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Common, trade, or other names.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional">
 				<Documentation>Mass of the sample used to prepare the test material.</Documentation>
 				<Quantity name="Mass">
 					&mg;
@@ -106,7 +108,7 @@
 					<String>crystal</String>
 				</AllowedValue>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" >
 				<Documentation literatureReferenceID="ASTM E2077-00">Sample disposal procedure, also in accordance with the U.S. Department of Labor Occupational Safety and Health Administration (OSHA) regulations.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
@@ -127,7 +129,7 @@
 			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation/>
 				<Quantity name="Pressure">
-					&Pa;
+					&Pa; &psig; &bar;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
@@ -163,7 +165,7 @@
 				<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Pressure at which the boiling point has been determined. If not given, ambient pressure is assumed.</Documentation>
 					<Quantity name="Pressure">
-						&Pa;
+						&Pa; &psig; &bar;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
@@ -685,7 +687,7 @@
 				<ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
 					<Documentation>Ambient pressure in the optical path of the instrument.</Documentation>
 					<Quantity name="Pressure">
-						&Pa;
+						&Pa; &psig; &bar;
 					</Quantity>
 				</ParameterBlueprint>
 				<CategoryBlueprint name="Spectral Range" modality="optional">
@@ -1485,7 +1487,7 @@
 			<ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
 				<Documentation>Measured ambient pressure in the optical path of the instrument.</Documentation>
 				<Quantity name="Pressure">
-					&Pa;
+					&Pa; &psig; &bar;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Temperature" parameterType="Float" modality="required">
@@ -1579,7 +1581,7 @@ containing raw data; can be in absorbance,  transmittance or percent transmittan
 			<ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
 				<Documentation>Measured ambient pressure in the optical path of the instrument.</Documentation>
 				<Quantity name="Pressure">
-					&Pa;
+					&Pa; &psig; &bar;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Temperature" parameterType="Float" modality="required">

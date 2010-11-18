@@ -49,9 +49,11 @@ CONTROL METHOD
 	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
 	<!ENTITY degF "<Unit label='&#176;F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
 	<!ENTITY degC_per_min "<Unit label='&#176;C/min'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='60' exponent='-1'>s</SIUnit></Unit>">
+	<!ENTITY h "<Unit label='h'><SIUnit factor='3600'>s</SIUnit></Unit>">
 	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
 	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
 	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
+	<!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
 	<!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
 	<!ENTITY uL "<Unit label='µl'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
@@ -71,7 +73,7 @@ CONTROL METHOD
 	<!ENTITY Pa_per_min "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY bar_per_min "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY psig_per_min "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-
+	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">	
 ]>
 <!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
 <!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
@@ -1325,66 +1327,57 @@ CONTROL METHOD
 		</CategoryBlueprint>
 		<!-- LC, SFC PUMPS -->
 		<CategoryBlueprint name="Pump" modality="optional" maxOccurs="unbounded">
-			<Documentation>Pumps come with or without switches. A simple pump would generally use a switch to introduce solvents. Pumps have event tables for introducing solvents.  A quad pump(4) can introduce upto 4 solvents at one time. All solvents combine to equal 100%. You could have one only one solvent being introduced and that solvent would equal 100%.</Documentation>
-			<CategoryBlueprint name="Pump Controller" modality="optional">
-				<ParameterBlueprint name="Identifier" parameterType="String" modality="required" maxOccurs="1">
-					<Documentation>Unique name for the pump controller, e.g., "Controller A"</Documentation>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="Pump Description" modality="optional" maxOccurs="unbounded">
-				<Documentation>Repeat once per pump</Documentation>
-				<ParameterBlueprint name="Identifier" parameterType="String" modality="required" maxOccurs="1">
-					<Documentation>Unique name for the pump, e.g., "Pump A"</Documentation>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
+			<Documentation>Pumps come with or without switches. A simple pump would generally use a switch to introduce solvents. Pumps have event tables for introducing solvents.  A quad pump(4) can introduce upto 4 solvents at one time. All solvents combine to equal 100%. You could have one only one solvent being introduced and that solvent would equal 100%. Repeat for each pump.</Documentation>
+			<SeriesSetBlueprint name="Control Table">
+				<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
+					<Quantity name="Time">
+						&min; &s; &ms;
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Event Name" seriesType="String" plotScale="none" dependency="dependent" modality="required">
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Flow Rate" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+					<Quantity name="Flow Rate">
+					</Quantity>
+				</SeriesBlueprint>
+				<!-- how do we know which solvent was used in which position - do we care?; how do we allow this multiple times and specify the solvent name?-->
+				<SeriesBlueprint name="% Mobile Phase" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional" maxOccurs="unbounded">
+					<Documentation>Percent ratio of mobile phase. Use one Series per phase, correlating to the order in which the mobile phase samples are referenced.</Documentation>
+					<Quantity name="Percent">
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Curve" seriesType="Int" plotScale="none" dependency="dependent" modality="optional">
+					<Quantity name="Percent">
+					</Quantity>
+				</SeriesBlueprint>
+			</SeriesSetBlueprint>
+
+
+			<ParameterBlueprint name="Pump Controller Identifier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Unique name for the pump controller, e.g., "Controller A"</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Pump Identifier" parameterType="String" modality="optional" maxOccurs="1">
+				<Documentation>Unique name for the pump, e.g., "Pump A"</Documentation>
+			</ParameterBlueprint>
 			<!-- CHECK FOR SFC WITH BACKPRESSURE REGULATORS -->
-			<CategoryBlueprint name="Pump Method">
-				<SeriesSetBlueprint name="Control Table">
-					<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
-						<Quantity name="Time">
-							&min; &s; &ms;
-						</Quantity>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Event Name" seriesType="String" plotScale="none" dependency="dependent" modality="required">
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Flow Rate" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
-						<Quantity name="Flow Rate">
-						</Quantity>
-					</SeriesBlueprint>
-					<!-- how do we know which solvent was used in which position - do we care?; how do we allow this multiple times and specify the solvent name?-->
-					<SeriesBlueprint name="% Mobile Phase" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional" maxOccurs="unbounded">
-						<Documentation>Percent ratio of mobile phase. Use one Series per phase, correlating to the order in which the mobile phase samples are referenced.</Documentation>
-						<Quantity name="Percent">
-						</Quantity>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Curve" seriesType="Int" plotScale="none" dependency="dependent" modality="optional">
-						<Quantity name="Percent">
-						</Quantity>
-					</SeriesBlueprint>
-				</SeriesSetBlueprint>
-				<CategoryBlueprint name="Pump Settings" maxOccurs="unbounded">
-					<Documentation>Repeat once per pump</Documentation>
-					<!-- should Pumping Mode be required?-->
-					<ParameterBlueprint name="Compressibility Factor" parameterType="Float">
-						<Documentation>Compressibility factor of the solvent the pump should assume.</Documentation>
-					</ParameterBlueprint>
-					<ParameterBlueprint name="Pumping Mode" parameterType="String" maxOccurs="1" modality="required">
-						<Documentation/>
-						<AllowedValue>
-							<String>Binary Gradient</String>
-						</AllowedValue>
-						<AllowedValue>
-							<String>Isocratic</String>
-						</AllowedValue>
-					</ParameterBlueprint>
-					<ParameterBlueprint name="Pressure Minimum" parameterType="Float" maxOccurs="1" modality="optional">
-					</ParameterBlueprint>
-					<ParameterBlueprint name="Pressure Maximum" parameterType="Float" maxOccurs="1" modality="optional">
-					</ParameterBlueprint>
-					<ParameterBlueprint name="Pre-run Equilibration Time" parameterType="Float" maxOccurs="1" modality="optional">
-					</ParameterBlueprint>
-				</CategoryBlueprint>
-			</CategoryBlueprint>
+			<ParameterBlueprint name="Compressibility Factor" parameterType="Float">
+				<Documentation>Compressibility factor of the solvent the pump should assume.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Pumping Mode" parameterType="String" maxOccurs="1" modality="optional">
+				<Documentation/>
+				<AllowedValue>
+					<String>Binary Gradient</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>Isocratic</String>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Pressure Minimum" parameterType="Float" maxOccurs="1" modality="optional">
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Pressure Maximum" parameterType="Float" maxOccurs="1" modality="optional">
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Pre-run Equilibration Time" parameterType="Float" maxOccurs="1" modality="optional">
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Carrier Gas Control" modality="optional">
 			<SeriesSetBlueprint name="Carrier Gas Control Table" modality="required">
@@ -1449,6 +1442,7 @@ CONTROL METHOD
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Separation Medium" modality="optional" maxOccurs="unbounded">
+			<Documentation>Medium used for separation, e.g., column. Repeat once per separation medium.</Documentation>
 			<ParameterBlueprint name="Order" parameterType="Int" maxOccurs="1">
 				<Documentation>Order in which this separation medium is used in the experimental setup. One-based.</Documentation>
 				<Quantity name="sequence">
@@ -1462,7 +1456,7 @@ CONTROL METHOD
 					</AllowedRange>
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Container" parameterType="String" modality="optional" maxOccurs="unbounded">
+			<ParameterBlueprint name="Container" parameterType="String" modality="optional" maxOccurs="1">
 				<AllowedValue>
 					<String>Packed Column</String>
 				</AllowedValue>
@@ -1493,54 +1487,46 @@ CONTROL METHOD
 			<ParameterBlueprint name="Pore Size" parameterType="Float" modality="optional" maxOccurs="1"/>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Oven" modality="optional" maxOccurs="unbounded">
-			<Documentation>These settings control the temperature of the oven.</Documentation>
-			<CategoryBlueprint name="Oven Description">
-				<ParameterBlueprint name="Oven Manufacturer" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Oven Model" parameterType="String" modality="optional" maxOccurs="1"/>
-				<ParameterBlueprint name="Oven Serial Number" parameterType="String" modality="optional" maxOccurs="1"/>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="Temperature Control" modality="required" maxOccurs="1">
-				<SeriesSetBlueprint name="Temperature Control Table">
-					<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
-						<Documentation>Time relative to injection</Documentation>
-						<Quantity name="Time">
-							&min; &s;
-						</Quantity>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Temperature" seriesType="Float" plotScale="linear" dependency="dependent" modality="required">
-						<Documentation>Temperature active at event time</Documentation>
-						<Quantity name="Temperature">
-							&degC; &degF; &degK;
-						</Quantity>
-					</SeriesBlueprint>
-					<!-- TODO is Rate Change really needed? -->
-					<SeriesBlueprint name="Change Rate" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
-						<Documentation>
-							If present, indicates the temperature change rate between the current and the next event (gradient). If not present, the temperature between two adjacent events is linearly interpolated (connect the dots).
-						</Documentation>
-						<Quantity name="Temperature Change per Time">
-							&degC_per_min;
-						</Quantity>
-					</SeriesBlueprint>
-				</SeriesSetBlueprint>
-			</CategoryBlueprint>
+			<Documentation>These settings control the temperature of the oven. Repeat once per oven.</Documentation>
+			<SeriesSetBlueprint name="Temperature Control Table">
+				<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
+					<Documentation>Time relative to injection</Documentation>
+					<Quantity name="Time">
+						&min; &s;
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Temperature" seriesType="Float" plotScale="linear" dependency="dependent" modality="required">
+					<Documentation>Temperature active at event time</Documentation>
+					<Quantity name="Temperature">
+						&degC; &degF; &degK;
+					</Quantity>
+				</SeriesBlueprint>
+				<!-- TODO is Rate Change really needed? -->
+				<SeriesBlueprint name="Change Rate" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
+					<Documentation>
+						If present, indicates the temperature change rate between the current and the next event (gradient). If not present, the temperature between two adjacent events is linearly interpolated (connect the dots).
+					</Documentation>
+					<Quantity name="Temperature Change per Time">
+						&degC_per_min;
+					</Quantity>
+				</SeriesBlueprint>
+			</SeriesSetBlueprint>
+			<ParameterBlueprint name="Oven Identifier" parameterType="String" modality="optional" maxOccurs="1"/>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Switch Valve" modality="optional" maxOccurs="unbounded">
-			<Documentation>Switching valves can be used to select solvents, columns, or as detector diverters.</Documentation>
+			<Documentation>Switching valves can be used to select solvents, columns, or as detector diverters. Repeat once per valve.</Documentation>
 			<SeriesSetBlueprint name="Control Table">
 				<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent">
+					<Documentation>Timestamp of event, relative to time of injection</Documentation>
 					<Quantity name="Time">
 						&min; &s;
 					</Quantity>
 				</SeriesBlueprint>
 				<SeriesBlueprint name="Switch Valve Event" seriesType="String" plotScale="none" dependency="dependent">
-					<Documentation>Position of the switch valve</Documentation>
+					<Documentation>Event name or valve position</Documentation>
 				</SeriesBlueprint>
 			</SeriesSetBlueprint>
-			<ParameterBlueprint parameterType="String" name="Valve Name" modality="optional" maxOccurs="1"/>
-			<ParameterBlueprint parameterType="String" name="Manufacturer" modality="optional" maxOccurs="1"/>
-			<ParameterBlueprint parameterType="String" name="Model" modality="optional" maxOccurs="1"/>
-			<ParameterBlueprint parameterType="String" name="Serial Number" modality="optional" maxOccurs="1"/>
+			<ParameterBlueprint parameterType="String" name="Valve Identifier" modality="optional" maxOccurs="1"/>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Fraction Collector" modality="optional" maxOccurs="unbounded">
 			<Documentation>A fraction collector is attached at the end of a detector or separation container, takes the separated output and places it into individual containers.  Fraction collection has 3 modes: Timed Collection,  Peak Threshold Collection, and Peak Parameter Collection.  It is often, but not always, linked to Peak Table Results</Documentation>
@@ -1559,34 +1545,84 @@ CONTROL METHOD
 					<String>Other</String>
 				</AllowedValue>
 			</ParameterBlueprint-->
-			<CategoryBlueprint name="Time-based Collection Parameters">
-				<ParameterBlueprint name="Start Fractionation" parameterType="Float" modality="required" maxOccurs="1">
-					<Documentation>The Time the fraction collecting will begin</Documentation>
-					<Quantity name="Time"/>
+			<CategoryBlueprint name="Time-based Collection" modality="optional">
+				<Documentation>TODO: Can be merged with Trigger-based Collection?</Documentation>
+				<ParameterBlueprint name="Start Fractionation" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Time the fraction collecting will begin</Documentation>
+					<Quantity name="Time">
+						&h; &min; &s;
+					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="End Fractionation" parameterType="Float" modality="required" maxOccurs="1">
-					<Documentation>The Time the fraction collecting will End</Documentation>
-					<Quantity name="Time"/>
+				<ParameterBlueprint name="End Fractionation" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Time the fraction collecting will end</Documentation>
+					<Quantity name="Time">
+						&h; &min; &s;
+					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Max Duration" parameterType="Float" modality="required" maxOccurs="1">
-					<Documentation>The maximum duration for each collected fraction</Documentation>
-					<Quantity name="Time"/>
+				<ParameterBlueprint name="Max Duration" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Maximum duration for each collected fraction</Documentation>
+					<Quantity name="Time">
+						&h; &min; &s;
+					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
-			<CategoryBlueprint name="Fractionation Trigger Start">
+			<CategoryBlueprint name="Trigger-based Collection" modality="optional">
+				<Documentation>TODO: Can be merged with Time-based Collection?</Documentation>
+				<ParameterBlueprint name="Trigger Variable" parameterType="String" modality="required" maxOccurs="unbounded">
+					<Documentation>Variable that is monitored during the run which triggers the fraction collection, e.g., "Intensity at 254 nm"</Documentation>
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Starting Threshold" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Peak-based thresholding; threshold to trigger fraction collection start. The fraction collection cannot exceed the Max Duration</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Starting Slope" parameterType="Float" modality="optional" maxOccurs="1"/>
-			</CategoryBlueprint>
-			<CategoryBlueprint name="Fractionation Trigger End">
 				<ParameterBlueprint name="Ending Threshold" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Peak-based thresholding; threshold to trigger fraction collection end. The fraction collection cannot exceed the Max Duration</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Ending Slope" parameterType="Float" modality="optional" maxOccurs="1"/>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
-		<CategoryBlueprint name="Analog-Digital Converter">
+		<CategoryBlueprint name="Analog-Digital Converter Channel" modality="optional">
+			<ParameterBlueprint name="ADC Identifier" parameterType="String">
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Channel Number" parameterType="Int" modality="optional">
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Description" parameterType="String" modality="optional">
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Sampling Rate" parameterType="Float" modality="optional">
+				<Quantity name="Frequency">
+					&Hz;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Start Time" parameterType="Float">
+				<Documentation>Time the acquisition starts, relative to injection.</Documentation>
+				<Quantity name="Time">
+					&min; &s;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="End Time" parameterType="Float">
+				<Documentation>Time the acquisition ends, relative to injection.</Documentation>
+				<Quantity name="Time">
+					&min; &s;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Range Start" parameterType="Float">
+				<Documentation>Lower end of input range. Use negative values for negative polarity.</Documentation>
+				<Quantity name="Voltage">
+					&V;
+				</Quantity>
+				<Quantity name="Current">
+					<!-- TODO A, mA -->
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Range End" parameterType="Float">
+				<Documentation>Upper end of input range. Use negative values for negative polarity.</Documentation>			
+				<Quantity name="Voltage">
+					&V;
+				</Quantity>
+				<Quantity name="Current">
+					<!-- TODO A, mA -->
+				</Quantity>
+			</ParameterBlueprint>
 			<ParameterBlueprint name="ADC Delay Interval" parameterType="Float" modality="optional" maxOccurs="1"/>
 		</CategoryBlueprint>
 	</MethodBlueprint>
@@ -1622,6 +1658,7 @@ CONTROL METHOD
 		<Documentation>Readbacks report the state of the chromatograph during a run rather than record information about the test sample.	</Documentation>
 		<SeriesSetBlueprint name="Time">
 			<SeriesBlueprint name="Time" seriesType="Float" dependency="independent" modality="required" plotScale="linear">
+				<Documentation>t=0 represents the time of injection</Documentation>
 				<Quantity name="min">
 					<Unit label="min">
 						<SIUnit exponent="1" factor="0.1666666">s</SIUnit>

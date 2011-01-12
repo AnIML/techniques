@@ -73,7 +73,12 @@ CONTROL METHOD
 	<!ENTITY Pa_per_min "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY bar_per_min "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY psig_per_min "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">	
+	<!-- Voltage -->
+	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!ENTITY mV "<Unit label='V'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!-- Current -->
+	<!ENTITY A "<Unit label='A'><SIUnit>A</SIUnit></Unit>">
+	<!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
 ]>
 <!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
 <!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
@@ -1002,6 +1007,15 @@ CONTROL METHOD
 	<!-- * Methods * -->
 	<!-- ================== -->
 	<MethodBlueprint>
+		<CategoryBlueprint name="Method Description" modality="optional">
+			<Documentation>Basic contextual information about the measurement method.</Documentation>
+			<ParameterBlueprint name="Method Name" parameterType="String" modality="optional">
+				<Documentation>Name of the method used for the measurement.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
+				<Documentation>External reference to measurement method.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>	
 		<!-- PROBLEM - AUTOSAMPLERS ARE SOMETIMES CONTROLLED SEPARATELY  (CTC Leap) -->
 		<CategoryBlueprint name="Instrument System Description" modality="optional" maxOccurs="1">
 			<Documentation>Instrument module information</Documentation>
@@ -1351,8 +1365,6 @@ CONTROL METHOD
 					</Quantity>
 				</SeriesBlueprint>
 			</SeriesSetBlueprint>
-
-
 			<ParameterBlueprint name="Pump Controller Identifier" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Unique name for the pump controller, e.g., "Controller A"</Documentation>
 			</ParameterBlueprint>
@@ -1582,17 +1594,42 @@ CONTROL METHOD
 			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Analog-Digital Converter Channel" modality="optional">
-			<ParameterBlueprint name="ADC Identifier" parameterType="String">
+			<ParameterBlueprint name="ADC Module Identifier" parameterType="String">
+				<Documentation>Identifier of the instrument module containing this ADC channel.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Channel Number" parameterType="Int" modality="optional">
+			<ParameterBlueprint name="Channel Identifier" parameterType="String" modality="optional">
+				<Documentation>Name or number of the ADC module channel. In most cases unique per module.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Description" parameterType="String" modality="optional">
+				<Documentation>Description of this ADC channel.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Sampling Rate" parameterType="Float" modality="optional">
 				<Quantity name="Frequency">
 					&Hz;
 				</Quantity>
 			</ParameterBlueprint>
+			<ParameterBlueprint name="Input Offset" parameterType="Float" modality="optional">
+				<Documentation>Voltage or current offset to add to signal prior to digitization. May be negative.</Documentation>
+				<Quantity name="Voltage">
+					&V;
+				</Quantity>
+				<Quantity name="Current">
+					&A; &mA;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Input Multiplier" parameterType="Float" modality="optional">
+				<Documentation>Gain or attenuation factor to apply to signal prior to digitization. This multiplication is reflected in the raw data.</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Viewing Scale Factor" parameterType="Float" modality="optional">
+				<Documentation>
+					Factor to apply to acquired signal when viewing. This factor is not reflected in the 
+					raw data but will be applied by the viewer application.
+				</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Viewing Unit" parameterType="String" modality="optional">
+				<Documentation>Unit to display the acquired data in when viewing.</Documentation>
+			</ParameterBlueprint>
+			<!-- Units ? -->
 			<ParameterBlueprint name="Start Time" parameterType="Float">
 				<Documentation>Time the acquisition starts, relative to injection.</Documentation>
 				<Quantity name="Time">
@@ -1615,7 +1652,7 @@ CONTROL METHOD
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Range End" parameterType="Float">
-				<Documentation>Upper end of input range. Use negative values for negative polarity.</Documentation>			
+				<Documentation>Upper end of input range. Use negative values for negative polarity.</Documentation>
 				<Quantity name="Voltage">
 					&V;
 				</Quantity>

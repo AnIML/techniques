@@ -21,7 +21,8 @@
 	<!-- Volume -->
 	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
 	<!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY uL "<Unit label='µl'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
+	<!ENTITY uL "<Unit label='µL'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
+	<!ENTITY nL "<Unit label='nL'><SIUnit exponent='3' factor='1e-12'>m</SIUnit></Unit>">	
 	<!-- Time -->
 	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
 	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
@@ -35,16 +36,23 @@
 	<!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+	<!ENTITY kgf_per_cm2 "<Unit label='kgf/cm²'><SIUnit exponent='1'>kg</SIUnit><SIUnit factor='1e-2' exponent='-2'>m</SIUnit></Unit>">
 	<!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
 	<!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
 	<!-- Pressure Change Rate -->
-	<!ENTITY Pa_per_min "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY bar_per_min "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY psig_per_min "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
+	<!ENTITY Pa_per_min "<Unit label='Pa/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
+	<!ENTITY bar_per_min "<Unit label='bar/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
+	<!ENTITY psig_per_min "<Unit label='psig/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
 	<!-- Temperature -->
 	<!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
 	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
 	<!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+	<!-- Voltage -->
+	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!ENTITY mV "<Unit label='V'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!-- Current -->
+	<!ENTITY A "<Unit label='A'><SIUnit>A</SIUnit></Unit>">
+	<!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
 	<!-- Temperature Change Rate -->
 	<!ENTITY degC_per_min "<Unit label='&#176;C/min'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='60' exponent='-1'>s</SIUnit></Unit>">
 	<!-- Concentration -->
@@ -68,10 +76,9 @@
 	<!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
 	<!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
 	<!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY A "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+	<!ENTITY Absorbance "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
 ]>

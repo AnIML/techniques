@@ -57,7 +57,7 @@ CONTROL METHOD
 	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
 	<!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY uL "<Unit label='µL'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
-	<!ENTITY nL "<Unit label='nL'><SIUnit exponent='3' factor='1e-12'>m</SIUnit></Unit>">	
+	<!ENTITY nL "<Unit label='nL'><SIUnit exponent='3' factor='1e-12'>m</SIUnit></Unit>">
 	<!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY mL_per_min2 "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
@@ -1595,7 +1595,6 @@ CONTROL METHOD
 				<ParameterBlueprint name="Ending Slope" parameterType="Float" modality="optional" maxOccurs="1"/>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
-		
 		<CategoryBlueprint name="Analog-Digital Converter Channel" modality="optional">
 			<ParameterBlueprint name="ADC Module Identifier" parameterType="String">
 				<Documentation>Identifier of the instrument module containing this ADC channel.</Documentation>
@@ -1669,50 +1668,6 @@ CONTROL METHOD
 	<!-- -->
 	<!-- * Results * -->
 	<!-- ================== -->
-	<ResultBlueprint name="Fraction Collection" modality="optional">
-		<Documentation>Report of fractions collected during separation run.</Documentation>
-		<!-- TODO: talk to Vicki about this for Agilent, Waters, Gilson -->
-		<SeriesSetBlueprint name="Fraction Table" modality="required">
-			<!-- SeriesSet is marked as required only because there's nothing else in this ResultBlueprint -->
-			<Documentation>List of fractions collected during separation run.</Documentation>
-			<SeriesBlueprint name="Number" seriesType="Int" plotScale="none" dependency="independent" modality="required">
-				<Documentation>Numeric identifier for fraction.</Documentation>
-			</SeriesBlueprint>
-			<SeriesBlueprint name="Description" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
-				<Documentation>Textual description of fraction.</Documentation>
-			</SeriesBlueprint>
-			<SeriesBlueprint name="Start Time" seriesType="Float" plotScale="none" dependency="dependent" modality="optional">
-				<Documentation>Time the collection of this fraction began. t=0 represents the time of injection</Documentation>
-				<Quantity name="Time">
-					&ms; &s; &min;
-				</Quantity>
-			</SeriesBlueprint>
-			<SeriesBlueprint name="End Time" seriesType="Float" plotScale="none" dependency="dependent" modality="optional">
-				<Documentation>Time the collection of this fraction finished. t=0 represents the time of injection</Documentation>
-				<Quantity name="Time">
-					&ms; &s; &min;
-				</Quantity>
-			</SeriesBlueprint>
-			<SeriesBlueprint name="Start Rack" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
-				<Documentation>ID of first container holder (rack, tray, ...) the fraction collector dispenses into.</Documentation>
-			</SeriesBlueprint>
-			<SeriesBlueprint name="End Rack" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
-				<Documentation>ID of last container holder (rack, tray, ...) the fraction collector dispenses into.</Documentation>
-			</SeriesBlueprint>
-			<SeriesBlueprint name="Start Tube" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
-				<Documentation>First position in container (vial, test tube, well, ...) the fraction collector dispenses into.</Documentation>
-			</SeriesBlueprint>
-			<SeriesBlueprint name="End Tube" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
-				<Documentation>Last position in container (vial, test tube, well, ...) the fraction collector dispenses into.</Documentation>
-			</SeriesBlueprint>
-			<SeriesBlueprint name="Volume" seriesType="Float" plotScale="none" dependency="dependent" modality="optional">
-				<Documentation>Quantity of fraction (potentially spanning several containers)</Documentation>
-				<Quantity name="Volume">
-					&nL; &uL; &mL; &L;
-				</Quantity>
-			</SeriesBlueprint>
-		</SeriesSetBlueprint>
-	</ResultBlueprint>
 	<ResultBlueprint name="Separation Monitoring" modality="required">
 		<Documentation>Monitoring data of chromatographic run. Detector readings are stored in child ExperimentSteps under this Result element.</Documentation>
 		<SeriesSetBlueprint name="Separation Monitoring" modality="required">
@@ -1790,6 +1745,51 @@ CONTROL METHOD
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</ResultBlueprint>
+	<ResultBlueprint name="Fraction Collection" modality="optional">
+		<Documentation>Report of fractions collected during separation run. A fraction is a collected portion of the eluent. It may be collected into one or multiple containers.</Documentation>
+		<SeriesSetBlueprint name="Fraction Table" modality="required">
+			<!-- SeriesSet is marked as required only because there's nothing else in this ResultBlueprint -->
+			<Documentation>List of fractions collected during separation run.
+				TODO: Find out whether we can actually get the start time and end time of individual tubes/containers. If so, consider going to one tube per row (not one fraction per row)
+			</Documentation>
+			<SeriesBlueprint name="Number" seriesType="Int" plotScale="none" dependency="independent" modality="required">
+				<Documentation>Numeric identifier for fraction.</Documentation>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Description" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
+				<Documentation>Textual description of fraction.</Documentation>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Start Time" seriesType="Float" plotScale="none" dependency="dependent" modality="optional">
+				<Documentation>Time the collection of this fraction began. t=0 represents the time of injection</Documentation>
+				<Quantity name="Time">
+					&ms; &s; &min;
+				</Quantity>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="End Time" seriesType="Float" plotScale="none" dependency="dependent" modality="optional">
+				<Documentation>Time the collection of this fraction finished. t=0 represents the time of injection</Documentation>
+				<Quantity name="Time">
+					&ms; &s; &min;
+				</Quantity>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Start Rack" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
+				<Documentation>ID of first container holder (rack, tray, ...) the fraction collector dispenses into.</Documentation>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="End Rack" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
+				<Documentation>ID of last container holder (rack, tray, ...) the fraction collector dispenses into.</Documentation>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Start Tube" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
+				<Documentation>First position in container (vial, test tube, well, ...) the fraction collector dispenses into.</Documentation>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="End Tube" seriesType="String" plotScale="none" dependency="dependent" modality="optional">
+				<Documentation>Last position in container (vial, test tube, well, ...) the fraction collector dispenses into.</Documentation>
+			</SeriesBlueprint>
+			<SeriesBlueprint name="Volume" seriesType="Float" plotScale="none" dependency="dependent" modality="optional">
+				<Documentation>Quantity of fraction (potentially spanning several containers)</Documentation>
+				<Quantity name="Volume">
+					&nL; &uL; &mL; &L;
+				</Quantity>
+			</SeriesBlueprint>
+		</SeriesSetBlueprint>
+	</ResultBlueprint>	
 	<Bibliography>
 		<LiteratureReference literatureReferenceID="ASTM D1129-06A">
 			ASTM Standard D1129-06A: TODO

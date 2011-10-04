@@ -16,6 +16,7 @@
 	<!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
+	<!ENTITY inch "<Unit label='in'><SIUnit factor='0.0254' exponent='1'>m</SIUnit></Unit>">
 	<!-- Velocity -->
 	<!ENTITY cm_per_s "<Unit label='cm/s'><SIUnit exponent='1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
 	<!-- Volume -->
@@ -24,7 +25,6 @@
 	<!ENTITY uL "<Unit label='µL'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
 	<!ENTITY nL "<Unit label='nL'><SIUnit exponent='3' factor='1e-12'>m</SIUnit></Unit>">	
 	<!-- Time -->
-	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
 	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
 	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
 	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
@@ -49,10 +49,22 @@
 	<!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
 	<!-- Voltage -->
 	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY mV "<Unit label='V'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!ENTITY uV "<Unit label='µV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!ENTITY nV "<Unit label='nV'><SIUnit factor='1e-09'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!ENTITY pV "<Unit label='pV'><SIUnit factor='1e-12'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
 	<!-- Current -->
 	<!ENTITY A "<Unit label='A'><SIUnit>A</SIUnit></Unit>">
 	<!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
+	<!ENTITY uA "<Unit label='µA'><SIUnit factor='1e-06'>A</SIUnit></Unit>">
+	<!ENTITY nA "<Unit label='nA'><SIUnit factor='1e-09'>A</SIUnit></Unit>">
+	<!ENTITY pA "<Unit label='pA'><SIUnit factor='1e-12'>A</SIUnit></Unit>">
+	<!ENTITY fA "<Unit label='fA'><SIUnit factor='1e-15'>A</SIUnit></Unit>">
+	<!-- Current per Voltage -->
+	<!ENTITY A_per_V "<Unit label='A/V'><SIUnit exponent="2">A</SIUnit><SIUnit exponent='3'>s</SIUnit><SIUnit exponent="-1">kg</SIUnit><SIUnit exponent='-2'>m</SIUnit></Unit>">
+	<!-- Bandwidth / Voltage per Time -->
+	<!ENTITY mV_per_s "<Unit label='mV/s'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
+	<!ENTITY uV_per_s "<Unit label='µV/s'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
 	<!-- Temperature Change Rate -->
 	<!ENTITY degC_per_min "<Unit label='&#176;C/min'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='60' exponent='-1'>s</SIUnit></Unit>">
 	<!-- Concentration -->
@@ -76,6 +88,7 @@
 	<!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
 	<!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
 	<!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+	<!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY Absorbance "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">

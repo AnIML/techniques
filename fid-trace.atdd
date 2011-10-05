@@ -7,6 +7,7 @@
   -->
 <!DOCTYPE Technique [
 	<!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+	<!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
 	
 	<!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY inch "<Unit label='in'><SIUnit factor='0.0254' exponent='1'>m</SIUnit></Unit>">	
@@ -229,8 +230,63 @@
 				<Documentation literatureReferenceID="IEEE 421A-1978">Amount of time required for response to reach 1-1/e (~ 63.2 %) full scale.</Documentation>
 			</ParameterBlueprint>
 		</CategoryBlueprint>
-		<CategoryBlueprint name="A/D Converter Settings">
-			<ParameterBlueprint name="TODO" parameterType="String"></ParameterBlueprint>
+		<CategoryBlueprint name="A/D Converter Settings" modality="optional">
+				<!--
+					ADC Channel ID (A, B, … or 1, 2, …)
+					ACD Mode (Single-ended, differential (A-B), …
+					ADC Range (Quantity = voltage; Units = V, mV, µV)
+					ADC Resolution (Units = bits)
+					Digitization Rate (Units = s-1)
+					Averaging Factor (Units = none)
+					Number of Data Points (Units = none)
+					Bandwidth (Units = Hz)
+				-->
+			<ParameterBlueprint name="Channel ID" parameterType="String" modality="optional">
+				<Documentation>A/D converter channel ID, e.g. 'A', 'B', ... or '1', '2', ...</Documentation>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Mode" parameterType="String" modality="optional">
+				<Documentation>Acquisition scheme for detection.</Documentation>
+				<AllowedValue>
+					<String>single-ended</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>differential</String>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Range" parameterType="Float" modality="optional">
+				<Documentation>Maximum full-scale voltage of the A/D converter.</Documentation>
+				<Quantity name="Voltage">
+					&V; &mV; &uV;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint parameterType="String" name="Range Polarity" modality="optional">
+				<Documentation>Polarity of the voltage range of the A/D converter.</Documentation>
+				<AllowedValue>
+					<String>positive</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>negative</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>bipolar</String>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Resolution" parameterType="Int" modality="optional">
+				<Documentation>A/D converter signal resolution, given in number of bits, e.g. 12, 16, 24.</Documentation>
+				<Quantity name="Bits">
+					&bits;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Digitization Rate" parameterType="Float" modality="optional">
+				<Documentation>Number of data points collected per second (after any averaging).</Documentation>
+				<Quantity name="Frequency">
+					&Hz;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Averaging Factor" parameterType="Float" modality="optional">
+				<Documentation>Number of raw values averaged to obtain a data point.</Documentation>
+				<Quantity name="Count"/>
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</MethodBlueprint>
 	<ResultBlueprint name="FID Trace" modality="required">

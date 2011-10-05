@@ -82,6 +82,7 @@
 	<!ENTITY mL_per_min2 "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
 	<!-- Various simple units-->
 	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
+	<!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 	<!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
 	<!-- Not sorted yet -->

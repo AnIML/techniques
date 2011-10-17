@@ -16,6 +16,7 @@
 	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
 	<!ENTITY us "<Unit label='µs'><SIUnit exponent='1' factor='1e-6'>s</SIUnit></Unit>">
 	<!-- Voltage -->
+	<!ENTITY kV "<Unit label='kV'><SIUnit factor='1e03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
 	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
 	<!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
 	<!ENTITY uV "<Unit label='µV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
@@ -77,8 +78,8 @@
 	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 ]>
-<Technique name="Flame Ionization Detector" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
-	<Documentation>Technique definition for Flame Ionization Point Detector data</Documentation>
+<Technique name="Flame Photometric Detector" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
+	<Documentation>Technique definition for Flame Photometric Point Detector data. Measures the color of the flame.</Documentation>
 	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed">
 		<Documentation>Reference to the GC separation experiment step.</Documentation>
 	</ExperimentDataRoleBlueprint>
@@ -93,39 +94,45 @@
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Detector Properties" modality="optional">
-			<ParameterBlueprint name="Flame Tip Type" parameterType="String" modality="optional">
-				<Documentation>Whether the flame tip is grounded or floating (=isolated).</Documentation>
-				<AllowedValue>
-					<String>grounded</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>floating</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>other</String>
-				</AllowedValue>
-			</ParameterBlueprint>
+			<SeriesSetBlueprint name="Optical Filters" modality="optional">
+				<Documentation>Optical filters used to modify the detector response for given wavelength ranges.</Documentation>
+				<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+					<Documentation>The lower-bound x-axis value from which the specified filter was used.</Documentation>
+					<Quantity name="Reciprocal Length">
+						&reciprocal_cm;
+					</Quantity>
+					<Quantity name="Length">
+						&um;
+						&nm;
+						&pm;
+					</Quantity>
+					<Quantity name="Energy">
+						&eV;
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
+					<Documentation>The upper-bound  x-axis value from which the specified filter was used..</Documentation>
+					<Quantity name="Reciprocal Length">
+						&reciprocal_cm;
+					</Quantity>
+					<Quantity name="Length">
+						&um; &nm; &pm;
+					</Quantity>
+					<Quantity name="Energy">
+						&eV;
+					</Quantity>
+				</SeriesBlueprint>
+				<SeriesBlueprint name="Filter Description" seriesType="String" dependency="dependent" modality="required" plotScale="none">
+				</SeriesBlueprint>
+			</SeriesSetBlueprint>
+			<!-- removed "Flame Tip Type" -->
 			<ParameterBlueprint name="Flame Tip Diameter" parameterType="Float" modality="optional">
 				<Documentation>Diameter of the flame tip jet.</Documentation>
 				<Quantity name="Length">
 					&mm; &inch;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Detector Geometry" parameterType="String" modality="optional">
-				<Documentation>Collector electrode design.</Documentation>
-				<AllowedValue>
-					<String>loop</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>tube</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>lateral plates</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>other</String>
-				</AllowedValue>
-			</ParameterBlueprint>
+			<!-- removed "Detector Geometry" -->
 			<ParameterBlueprint name="Detector Position" parameterType="String" modality="optional">
 				<Documentation>Position of the detector in the instrument. Often called 'A' or 'B', 'left' or 'right', ...</Documentation>
 			</ParameterBlueprint>
@@ -146,7 +153,7 @@
 				<AllowedValue>
 					<String>other</String>
 				</AllowedValue>
-			</ParameterBlueprint>			
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Detector Settings" modality="optional">
 			<ParameterBlueprint name="Block Temperature" parameterType="Float" modality="optional">
@@ -155,10 +162,11 @@
 					&degK; &degC; &degF;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint parameterType="Float" name="Bias Voltage" modality="optional">
-				<Documentation>DC polarizing voltage, typically between 100-300 V.</Documentation>
+			<!-- removed "Bias Voltage" -->
+			<ParameterBlueprint parameterType="Float" name="Photomultiplier Bias Voltage" modality="optional">
+				<Documentation>DC voltage for biasing the dynode string.</Documentation>
 				<Quantity name="Voltage">
-					&V;
+					&V; &kV;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Hydrogen Flow Rate" parameterType="Float" modality="optional">
@@ -186,9 +194,9 @@
 				</Quantity>
 			</ParameterBlueprint>
 		</CategoryBlueprint>
-		<CategoryBlueprint name="Electrometer Settings" modality="optional">
+		<CategoryBlueprint name="Current Amplifier Settings" modality="optional">
 			<ParameterBlueprint name="Range" parameterType="Float" modality="optional">
-				<Documentation>Full-scale range of the electrometer, mostly given in full decades.</Documentation>
+				<Documentation>Full-scale range of the current amplifier, mostly given in full decades.</Documentation>
 				<Quantity name="Current">
 					&A; &mA; &uA; &nA; &pA; &fA;
 				</Quantity>
@@ -215,7 +223,7 @@
 				<Documentation>Pre-A/D conversion amplitude control factor, typically in the range of 1-1024.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Bandwidth" parameterType="Float" modality="optional">
-				<Documentation>Response rate of the electrometer.</Documentation>
+				<Documentation>Response rate of the current amplifier.</Documentation>
 				<Quantity name="Rate">
 					&uV_per_s; &mV_per_s;
 				</Quantity>
@@ -286,9 +294,9 @@
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</MethodBlueprint>
-	<ResultBlueprint name="FID Trace" modality="required">
-		<Documentation>Time-base trace of FID detector data.</Documentation>
-		<SeriesSetBlueprint name="FID Trace" modality="required">
+	<ResultBlueprint name="FPD Trace" modality="required">
+		<Documentation>Time-base trace of FPD detector data.</Documentation>
+		<SeriesSetBlueprint name="FPD Trace" modality="required">
 			<SeriesBlueprint name="Time" seriesType="Float" plotScale="linear" dependency="independent">
 				<Documentation>TODO</Documentation>
 				<Quantity name="Time">

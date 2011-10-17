@@ -77,8 +77,8 @@
 	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 ]>
-<Technique name="Flame Ionization Detector" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
-	<Documentation>Technique definition for Flame Ionization Point Detector data</Documentation>
+<Technique name="Nitrogen-Phosphorus Detector" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
+	<Documentation>Technique definition for Nitrogen-Phosphorus Point Detector data</Documentation>
 	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed">
 		<Documentation>Reference to the GC separation experiment step.</Documentation>
 	</ExperimentDataRoleBlueprint>
@@ -146,7 +146,65 @@
 				<AllowedValue>
 					<String>other</String>
 				</AllowedValue>
-			</ParameterBlueprint>			
+			</ParameterBlueprint>
+			<!-- except for this category, the technique is largely identical to FID (except for naming) -->
+			<CategoryBlueprint name="Alkali Ion Source Properties" modality="optional">
+				<Documentation>Characteristics of the alkali salt used as the ion source in the detector.</Documentation>
+				<ParameterBlueprint name="Ion Source Identity" parameterType="String" modality="optional">
+					<Documentation>Alkali salt used as the ion source, typically cesium or rubidium.</Documentation>
+					<AllowedValue>
+						<String>cesium</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>rubidium</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>other</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Ion Source Type" parameterType="String" modality="optional">
+					<Documentation>Physical form of the alkali salt used as the ion source.</Documentation>
+					<AllowedValue>
+						<String>pellets</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>coated grid</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>coated wire</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>purged capillary</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>other</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Heating Mode" parameterType="String" modality="optional">
+					<Documentation>Method for heating the alkali salt. Direct: Separate heater is used. Indirect: Flame is used for heating.</Documentation>
+					<AllowedValue>
+						<String>direct</String>
+					</AllowedValue>
+					<AllowedValue>
+						<String>indirect</String>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Direct Mode Heater Current" parameterType="Float" modality="optional">
+					<Documentation>Current used for direct heating of the alkali salt. Only Present if 'direct' heating mode is used.</Documentation>
+					<Quantity name="Current">
+						&mA;
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Purge Capillary Gas Identity" parameterType="String" modality="optional">
+					<Documentation>Identity of the gas that flows through the purge capillary ion source.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Purge Capillary Gas Flow Rate" parameterType="Float" modality="optional">
+					<Documentation>Flow rate of the gas that flows through the purge capillary ion source.</Documentation>
+					<Quantity name="Flow Rate">
+						&mL_per_min; &uL_per_min;
+					</Quantity>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Detector Settings" modality="optional">
 			<ParameterBlueprint name="Block Temperature" parameterType="Float" modality="optional">
@@ -286,9 +344,9 @@
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</MethodBlueprint>
-	<ResultBlueprint name="FID Trace" modality="required">
-		<Documentation>Time-base trace of FID detector data.</Documentation>
-		<SeriesSetBlueprint name="FID Trace" modality="required">
+	<ResultBlueprint name="NPD Trace" modality="required">
+		<Documentation>Time-base trace of NPD detector data.</Documentation>
+		<SeriesSetBlueprint name="NPD Trace" modality="required">
 			<SeriesBlueprint name="Time" seriesType="Float" plotScale="linear" dependency="independent">
 				<Documentation>TODO</Documentation>
 				<Quantity name="Time">

@@ -77,8 +77,8 @@
 	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 ]>
-<Technique name="Flame Ionization Detector" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
-	<Documentation>Technique definition for Flame Ionization Point Detector data</Documentation>
+<Technique name="Electron Capture Detector" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
+	<Documentation>Technique definition for Electron Capture Point Detector data</Documentation>
 	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed">
 		<Documentation>Reference to the GC separation experiment step.</Documentation>
 	</ExperimentDataRoleBlueprint>
@@ -93,24 +93,8 @@
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Detector Properties" modality="optional">
-			<ParameterBlueprint name="Flame Tip Type" parameterType="String" modality="optional">
-				<Documentation>Whether the flame tip is grounded or floating (=isolated).</Documentation>
-				<AllowedValue>
-					<String>grounded</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>floating</String>
-				</AllowedValue>
-				<AllowedValue>
-					<String>other</String>
-				</AllowedValue>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Flame Tip Diameter" parameterType="Float" modality="optional">
-				<Documentation>Diameter of the flame tip jet.</Documentation>
-				<Quantity name="Length">
-					&mm; &inch;
-				</Quantity>
-			</ParameterBlueprint>
+			<!-- removed "Flame Tip Type" -->
+			<!-- removed "Flame Tip Diameter" -->
 			<ParameterBlueprint name="Detector Geometry" parameterType="String" modality="optional">
 				<Documentation>Collector electrode design.</Documentation>
 				<AllowedValue>
@@ -146,7 +130,49 @@
 				<AllowedValue>
 					<String>other</String>
 				</AllowedValue>
-			</ParameterBlueprint>			
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Moderating Gas Identity" parameterType="String" modality="optional">
+				<Documentation>Identity of the moderating gas of the detector.</Documentation>
+				<AllowedValue>
+					<String>argon + 5 % methane</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>nitrogen</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>other</String>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Radiation Source" parameterType="String" modality="optional">
+				<Documentation>Material used as a source of beta particles for ionization.</Documentation>
+				<AllowedValue>
+					<String>tritium</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>nickel-63</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>krypton-85</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>other</String>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Ionizer Type" parameterType="String" modality="optional">
+				<Documentation>Physical form of radiation source.</Documentation>
+				<AllowedValue>
+					<String>foil</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>rod</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>plate</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>other</String>
+				</AllowedValue>
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Detector Settings" modality="optional">
 			<ParameterBlueprint name="Block Temperature" parameterType="Float" modality="optional">
@@ -155,10 +181,37 @@
 					&degK; &degC; &degF;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint parameterType="Float" name="Bias Voltage" modality="optional">
-				<Documentation>DC polarizing voltage, typically between 100-300 V.</Documentation>
+			<ParameterBlueprint name="Maximum Block Temperature" parameterType="Float" modality="optional">
+				<Documentation>Configured maximum temperature of the detector base block.</Documentation>
+				<Quantity name="Temperature">
+					&degK; &degC; &degF;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Bias Voltage" parameterType="Float" modality="optional">
+				<Documentation>Polarizing voltage.</Documentation>
 				<Quantity name="Voltage">
 					&V;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Bias Voltage Type" parameterType="String" modality="optional">
+				<Documentation>Whether the bias voltage is DC (continuous) or AC (pulsed).</Documentation>
+				<AllowedValue>
+					<String>continuous</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>pulsed</String>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Bias Voltage Pulse Rate" parameterType="Float" modality="optional">
+				<Documentation>Frequency of the bias voltage pulse sequence.</Documentation>
+				<Quantity name="Frequency">
+					&Hz;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Bias Voltage Pulse Period" parameterType="Float" modality="optional">
+				<Documentation>Period of the bias voltage pulse.</Documentation>
+				<Quantity name="Time">
+					&ms; &us;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Hydrogen Flow Rate" parameterType="Float" modality="optional">
@@ -181,6 +234,12 @@
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Make Up Gas Flow Rate" parameterType="Float" modality="optional">
 				<Documentation>Flow rate of the make up (also called auxiliary) gas.</Documentation>
+				<Quantity name="Flow Rate">
+					&mL_per_min; &uL_per_min;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Moderating Gas Flow Rate" parameterType="Float" modality="optional">
+				<Documentation>Flow rate of the moderating gas.</Documentation>
 				<Quantity name="Flow Rate">
 					&mL_per_min; &uL_per_min;
 				</Quantity>
@@ -286,9 +345,9 @@
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</MethodBlueprint>
-	<ResultBlueprint name="FID Trace" modality="required">
-		<Documentation>Time-base trace of FID detector data.</Documentation>
-		<SeriesSetBlueprint name="FID Trace" modality="required">
+	<ResultBlueprint name="ECD Trace" modality="required">
+		<Documentation>Time-base trace of ECD detector data.</Documentation>
+		<SeriesSetBlueprint name="ECD Trace" modality="required">
 			<SeriesBlueprint name="Time" seriesType="Float" plotScale="linear" dependency="independent">
 				<Documentation>TODO</Documentation>
 				<Quantity name="Time">

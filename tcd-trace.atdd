@@ -77,8 +77,8 @@
 	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 ]>
-<Technique name="Flame Ionization Detector" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
-	<Documentation>Technique definition for Flame Ionization Point Detector data</Documentation>
+<Technique name="Thermal Conductivity Detector" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
+	<Documentation>Technique definition for Thermal Conductivity Point Detector data</Documentation>
 	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed">
 		<Documentation>Reference to the GC separation experiment step.</Documentation>
 	</ExperimentDataRoleBlueprint>
@@ -93,34 +93,48 @@
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Detector Properties" modality="optional">
-			<ParameterBlueprint name="Flame Tip Type" parameterType="String" modality="optional">
-				<Documentation>Whether the flame tip is grounded or floating (=isolated).</Documentation>
+			<!-- removed "Flame Tip Type" -->
+			<!-- removed "Flame Tip Diameter" -->
+			<ParameterBlueprint name="Detector Geometry" parameterType="String" modality="optional">
+				<Documentation>General design of the detector.</Documentation>
 				<AllowedValue>
-					<String>grounded</String>
+					<String>dual-column</String>
 				</AllowedValue>
 				<AllowedValue>
-					<String>floating</String>
+					<String>single-column with reference</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>single-column with re-flow</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>single-column switched (pulse modulated)</String>
 				</AllowedValue>
 				<AllowedValue>
 					<String>other</String>
 				</AllowedValue>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Flame Tip Diameter" parameterType="Float" modality="optional">
-				<Documentation>Diameter of the flame tip jet.</Documentation>
-				<Quantity name="Length">
-					&mm; &inch;
-				</Quantity>
+			<ParameterBlueprint name="Filament Number" parameterType="Int" modality="optional">
+				<Documentation>Number of filaments in the detector.</Documentation>
+				<AllowedValue>
+					<Int32>1</Int32>
+				</AllowedValue>
+				<AllowedValue>
+					<Int32>2</Int32>
+				</AllowedValue>
+				<AllowedValue>
+					<Int32>4</Int32>
+				</AllowedValue>				
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Detector Geometry" parameterType="String" modality="optional">
-				<Documentation>Collector electrode design.</Documentation>
+			<ParameterBlueprint name="Filament Type" parameterType="String" modality="optional">
+				<Documentation>Material the filament is made of. (W: tungsten, WX: tungsten-rhenium, WXR: tungsten-rhodium)</Documentation>
 				<AllowedValue>
-					<String>loop</String>
+					<String>W</String>
 				</AllowedValue>
 				<AllowedValue>
-					<String>tube</String>
+					<String>WX</String>
 				</AllowedValue>
 				<AllowedValue>
-					<String>lateral plates</String>
+					<String>WXR</String>
 				</AllowedValue>
 				<AllowedValue>
 					<String>other</String>
@@ -146,6 +160,24 @@
 				<AllowedValue>
 					<String>other</String>
 				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Reference Gas Identity" parameterType="String" modality="optional">
+				<Documentation>Identity of the reference gas of the detector.</Documentation>
+				<AllowedValue>
+					<String>helium</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>hydrogen</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>nitrogen</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>argon</String>
+				</AllowedValue>
+				<AllowedValue>
+					<String>other</String>
+				</AllowedValue>
 			</ParameterBlueprint>			
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Detector Settings" modality="optional">
@@ -155,58 +187,43 @@
 					&degK; &degC; &degF;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint parameterType="Float" name="Bias Voltage" modality="optional">
-				<Documentation>DC polarizing voltage, typically between 100-300 V.</Documentation>
-				<Quantity name="Voltage">
-					&V;
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Hydrogen Flow Rate" parameterType="Float" modality="optional">
-				<Documentation>Flow rate of the hydrogen going to the flame.</Documentation>
-				<Quantity name="Flow Rate">
-					&mL_per_min; &uL_per_min;
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Air Flow Rate" parameterType="Float" modality="optional">
-				<Documentation>Flow rate of the air going to the flame.</Documentation>
-				<Quantity name="Flow Rate">
-					&mL_per_min; &uL_per_min;
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Oxygen Flow Rate" parameterType="Float" modality="optional">
-				<Documentation>Flow rate of the oxygen going to the flame.</Documentation>
-				<Quantity name="Flow Rate">
-					&mL_per_min; &uL_per_min;
-				</Quantity>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Make Up Gas Flow Rate" parameterType="Float" modality="optional">
 				<Documentation>Flow rate of the make up (also called auxiliary) gas.</Documentation>
 				<Quantity name="Flow Rate">
 					&mL_per_min; &uL_per_min;
 				</Quantity>
 			</ParameterBlueprint>
+			<ParameterBlueprint name="Reference Gas Flow Rate" parameterType="Float" modality="optional">
+				<Documentation>Flow rate of the reference gas.</Documentation>
+				<Quantity name="Flow Rate">
+					&mL_per_min; &uL_per_min;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Filament Current" parameterType="Float" modality="optional">
+				<Documentation>Total current through the filaments.</Documentation>
+				<Quantity name="Current">
+					&mA;
+				</Quantity>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Switching Frequency" parameterType="Float" modality="optional">
+				<Documentation>Switching rate between the analyte flow and the reference gas flow in a single filament (pulse-modulated) detector.</Documentation>
+				<Quantity name="Frequency">
+					&Hz;
+				</Quantity>
+			</ParameterBlueprint>
 		</CategoryBlueprint>
-		<CategoryBlueprint name="Electrometer Settings" modality="optional">
-			<ParameterBlueprint name="Range" parameterType="Float" modality="optional">
-				<Documentation>Full-scale range of the electrometer, mostly given in full decades.</Documentation>
-				<Quantity name="Current">
-					&A; &mA; &uA; &nA; &pA; &fA;
-				</Quantity>
+		<CategoryBlueprint name="Bridge/Voltage Amplifier Settings" modality="optional">
+			<ParameterBlueprint name="Voltage Gain" parameterType="Float">
+				<Documentation>Gain of the voltage amplifier, e.g., 1, 2, 5, 10, 20, 50, ..., 100, 1000.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Current to Voltage Conversion Factor" parameterType="Float" modality="optional">
-				<Documentation>Gain factor on the conversion from current to voltage.</Documentation>
-				<Quantity name="Factor">
-					&A_per_V;
-				</Quantity>
-			</ParameterBlueprint>
-			<ParameterBlueprint name="Offset Current" parameterType="Float" modality="optional">
-				<Documentation>Bucking (zero adjustment) current to remove background ions, applied before current-to-voltage conversion.</Documentation>
-				<Quantity name="Current">
-					&uA; &nA; &pA; &fA;
+			<ParameterBlueprint name="Balance Voltage" parameterType="Float" modality="optional">
+				<Documentation>Voltage that is added to one side of the bridge to set zero.</Documentation>
+				<Quantity name="Voltage">
+					&V; &mV; &uV; &nV;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Offset Voltage" parameterType="Float" modality="optional">
-				<Documentation>Bucking (zero adjustment) voltage to remove background ions, applied after current-to-voltage conversion.</Documentation>
+				<Documentation>Voltage to set zero on the voltage amplifier.</Documentation>
 				<Quantity name="Voltage">
 					&V; &mV; &uV; &nV;
 				</Quantity>
@@ -286,9 +303,9 @@
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</MethodBlueprint>
-	<ResultBlueprint name="FID Trace" modality="required">
-		<Documentation>Time-base trace of FID detector data.</Documentation>
-		<SeriesSetBlueprint name="FID Trace" modality="required">
+	<ResultBlueprint name="TCD Trace" modality="required">
+		<Documentation>Time-base trace of TCD detector data.</Documentation>
+		<SeriesSetBlueprint name="TCD Trace" modality="required">
 			<SeriesBlueprint name="Time" seriesType="Float" plotScale="linear" dependency="independent">
 				<Documentation>TODO</Documentation>
 				<Quantity name="Time">

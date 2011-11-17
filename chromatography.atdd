@@ -2,41 +2,47 @@
 <!-- edited with XMLSpy v2005 sp1 U (http://www.xmlspy.com) by Maren Fiege (Waters GmbH) -->
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (BSSN Software) -->
 <!--
-	Repository version: $Id$
 	see CVS comments for change log
   -->
 <!-- STATUS:  Result of task group reviews -->
-<!-- NOTES AND QUESTIONS 
-- removed old comments - see version 1.16
-- fixed typo in entity "lamda" to "lambda"
-- Changed entity "degK" to "K"
-- Changed documentation for Sample Roles "Tests Sample" and "Mobile Phase" so only one Reference was needed.
-- marked still open items with "TODO"
--->
 <!DOCTYPE Technique [
+	<!-- Dimensionless -->
 	<!ENTITY lambda "&#955;">
 	<!ENTITY Delta "&#916;">
+	<!ENTITY percent "<Unit label='&#37;'><SIUnit factor='1'>1</SIUnit></Unit>">
+	<!ENTITY counts "<Unit label='Counts'><SIUnit factor='1'>1</SIUnit></Unit>">
+	<!-- Weight -->
+	<!ENTITY g "<Unit label='g'><SIUnit factor='1e-03'>kg</SIUnit></Unit>">
 	<!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
+	<!ENTITY ug "<Unit label='µg'><SIUnit factor='1e-12'>kg</SIUnit></Unit>">
+	<!ENTITY ng "<Unit label='ng'><SIUnit factor='1e-15'>kg</SIUnit></Unit>">
+	<!ENTITY pg "<Unit label='pg'><SIUnit factor='1e-18'>kg</SIUnit></Unit>">
+	<!-- Length -->
 	<!ENTITY m "<Unit label='m'><SIUnit factor='1' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
 	<!ENTITY Angstrom "<Unit label='&#8491;'><SIUnit factor='1e-10' exponent='1'>m</SIUnit></Unit>">
+	<!-- Temperature -->	
 	<!ENTITY degC "<Unit label='&#176;C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
 	<!ENTITY K "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
 	<!ENTITY degF "<Unit label='&#176;F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+   <!-- Temperature change per time -->
 	<!ENTITY degC_per_min "<Unit label='&#176;C/min'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='60' exponent='-1'>s</SIUnit></Unit>">
 	<!ENTITY degC_per_s "<Unit label='&#176;C/s'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='1' exponent='-1'>s</SIUnit></Unit>">
+	<!-- Time --> 	
 	<!ENTITY h "<Unit label='h'><SIUnit factor='3600'>s</SIUnit></Unit>">
 	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
 	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
 	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
 	<!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
+	<!-- Volume -->
 	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
 	<!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY uL "<Unit label='µL'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
 	<!ENTITY nL "<Unit label='nL'><SIUnit exponent='3' factor='1e-12'>m</SIUnit></Unit>">
+	<!-- Volume per time and derived units -->
 	<!ENTITY L_per_min "<Unit label='L/min'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY L_per_s2 "<Unit label='L/s²'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-2' factor='1'>s</SIUnit></Unit>">
 	<!ENTITY L_per_min2 "<Unit label='L/min²'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
@@ -52,6 +58,7 @@
 	<!ENTITY nL_per_min2 "<Unit label='nL/min²'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY nL_per_s "<Unit label='nL/s'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
 	<!ENTITY nL_per_s2 "<Unit label='nL/s²'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-2' factor='1'>s</SIUnit></Unit>">
+	<!-- Concentration -->
 	<!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
@@ -59,11 +66,15 @@
 	<!ENTITY g_per_mL "<Unit label='g/mL'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
 	<!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
+	<!ENTITY ug_per_mL "<Unit label='µg/mL'><SIUnit exponent='1' factor='1e-12'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
+	<!ENTITY mL_per_L "<Unit label='ml/L'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
+	<!-- Pressure-->
 	<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY kgf_per_cm2 "<Unit label='kgf/cm²'><SIUnit exponent='1'>kg</SIUnit><SIUnit factor='1e-2' exponent='-2'>m</SIUnit></Unit>">
+	<!-- Pressure change per time-->
 	<!ENTITY Pa_per_min "<Unit label='Pa/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY bar_per_min "<Unit label='bar/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY psig_per_min "<Unit label='psig/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
@@ -72,17 +83,14 @@
 	<!ENTITY psig_per_s "<Unit label='psig/s'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='1'>s</SIUnit></Unit>">
 	<!-- Voltage -->
 	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY mV "<Unit label='V'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!ENTITY uV "<Unit label='uV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+	<!ENTITY nV "<Unit label='nV'><SIUnit factor='1e-09'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
 	<!-- Current -->
 	<!ENTITY A "<Unit label='A'><SIUnit>A</SIUnit></Unit>">
 	<!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
-	<!ENTITY g "<Unit label='g'><SIUnit factor='1e-03'>kg</SIUnit></Unit>">
-	<!ENTITY ug "<Unit label='µg'><SIUnit factor='1e-12'>kg</SIUnit></Unit>">
-	<!ENTITY ng "<Unit label='ng'><SIUnit factor='1e-15'>kg</SIUnit></Unit>">
-	<!ENTITY pg "<Unit label='pg'><SIUnit factor='1e-18'>kg</SIUnit></Unit>">
-	<!ENTITY ug_per_mL "<Unit label='µg/mL'><SIUnit exponent='1' factor='1e-12'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY mL_per_L "<Unit label='ml/L'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
-	<!ENTITY percent "<Unit label='&#37;'><SIUnit factor='1'>1</SIUnit></Unit>">
+	<!ENTITY nA "<Unit label='nA'><SIUnit factor='1e-09'>A</SIUnit></Unit>">
+	<!ENTITY pA "<Unit label='pA'><SIUnit factor='1e-12'>A</SIUnit></Unit>">
 ]>
 <!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
 <!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
@@ -388,7 +396,7 @@
 				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>TODO</Documentation>
+				<Documentation>Proprietary substance identifier.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Lot or batch name/number</Documentation>
@@ -527,7 +535,7 @@
 				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>TODO</Documentation>
+				<Documentation>Proprietary substance identifier.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Lot or batch name/number</Documentation>
@@ -658,7 +666,7 @@
 				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>TODO</Documentation>
+				<Documentation>Proprietary substance identifier.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Lot or batch name/number</Documentation>
@@ -789,7 +797,7 @@
 				<Documentation>Description of a substance in the introduced sample. Generally this is what the experiment is looking for or a calibration reference</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="SubstanceID" parameterType="String" modality="optional" maxOccurs="1">
-				<Documentation>TODO</Documentation>
+				<Documentation>Proprietary substance identifier.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Lot" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Lot or batch name/number</Documentation>
@@ -887,7 +895,7 @@
 					<Documentation>Role or function of the module, e.g., "System Controller", "I/O Box"</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Port" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>TODO - Communication port of the module, e.g., COM1, 129.23.4.6.</Documentation>
+					<Documentation>Communication port of the module, e.g., COM1, 129.23.4.6.</Documentation>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
@@ -969,15 +977,6 @@
 				<ParameterBlueprint name="Tray Container Type" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Description of the shelf container.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Sequential Position" parameterType="Int" modality="optional" maxOccurs="1">
-					<Documentation>MIGHT GO INTO CORE - (e.g. 16). relative to plate/tray</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Addressed Position" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>MIGHT GO INTO CORE - (e.g. B4).</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Row-Column Position" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>MIGHT GO INTO CORE - (e.g. 2:4; unrestricted delimiter).</Documentation>
-				</ParameterBlueprint>
 				<ParameterBlueprint name="Injection Volume" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Volume of sample to be chromatographed.</Documentation>
 					<Quantity name="Volume">
@@ -1009,7 +1008,7 @@
 					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Syringe Fill Speed" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>TODO - same as "aspiration speed"</Documentation>
+					<Documentation>Volume of fluid aspirated per unit time.</Documentation>
 					<Quantity name="Volume per Time">
 						&mL_per_s; &uL_per_s; &nL_per_s;
 					</Quantity>
@@ -1021,7 +1020,7 @@
 					<Documentation>Effective injection point. Used if multiple injector valves are present.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Injection Speed" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>TODO</Documentation>
+					<Documentation>Volume of fluid dispensed per unit time.</Documentation>
 					<Quantity name="Volume per Time">
 						&mL_per_s; &uL_per_s; &nL_per_s;
 					</Quantity>
@@ -1046,7 +1045,7 @@
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Washes" modality="optional" maxOccurs="unbounded">
-				<Documentation>TODO</Documentation>
+				<Documentation>Component cleaning aimed to avoid mass transfer.</Documentation>
 				<ParameterBlueprint name="Timing" parameterType="String" modality="required" maxOccurs="1">
 					<Documentation>Specifies when the washing step occurs relative to injection.</Documentation>
 					<AllowedValue>
@@ -1069,7 +1068,7 @@
 					<Documentation>Wash count.</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Part cleaned" parameterType="String" modality="required" maxOccurs="1">
-					<Documentation>Component of the system the washing step applies to.</Documentation>
+					<Documentation>Component of the system to which the washing step applies.</Documentation>
 					<AllowedValue>
 						<String>Needle</String>
 					</AllowedValue>
@@ -1492,7 +1491,7 @@ In Planar Chromatography, the plane can be a paper, serving as such or impregnat
 				<Documentation>Reference to fraction collector module; name of fraction collector (e.g. “waste collector”).</Documentation>
 			</ParameterBlueprint>
 			<CategoryBlueprint name="Fraction Collection" modality="optional">
-				<Documentation>TODO</Documentation>
+				<Documentation>Parameters to determine the portion of the effluent stream that is accumulated in order to obtain a constituent of interest. Applies to time-based or peak-based fractionation.</Documentation>
 				<ParameterBlueprint name="Start Fractionation" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Time the fraction collecting will begin.</Documentation>
 					<Quantity name="Time">
@@ -1526,6 +1525,12 @@ In Planar Chromatography, the plane can be a paper, serving as such or impregnat
 				<ParameterBlueprint name="Ending Slope" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Peak slope-based thresholding; threshold to trigger fraction collection end. (Negative value!) The fraction collection cannot exceed the Max Duration.</Documentation>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="Starting Threshold Logic" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Conditions used for initiating fraction collection</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Ending Threshold Logic" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Conditions used for terminating fraction collection</Documentation>
+				</ParameterBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Analog-to-Digital Converter Channel" modality="optional">
@@ -1545,12 +1550,15 @@ In Planar Chromatography, the plane can be a paper, serving as such or impregnat
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Input Offset" parameterType="Float" modality="optional">
-				<Documentation>Voltage or current offset to add to signal prior to digitization. May be negative.</Documentation>
+				<Documentation>Voltage, current, or count offset to add to signal prior to digitization. May be negative.</Documentation>
 				<Quantity name="Voltage">
-					&V;
+					&V; &mV; &nV; &uV;
 				</Quantity>
 				<Quantity name="Current">
-					&A; &mA;
+					&A; &mA; &nA; &pA;
+				</Quantity>
+				<Quantity name="Counts">
+					&counts;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Input Multiplier" parameterType="Float" modality="optional">
@@ -1581,19 +1589,25 @@ In Planar Chromatography, the plane can be a paper, serving as such or impregnat
 			<ParameterBlueprint name="Range Start" parameterType="Float">
 				<Documentation>Lower end of input range. Use negative values for negative polarity.</Documentation>
 				<Quantity name="Voltage">
-					&V;
+					&V; &mV;
 				</Quantity>
 				<Quantity name="Current">
-					&A;&mA;
+					&mA;
+				</Quantity>
+				<Quantity name="Counts">
+					&counts;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Range End" parameterType="Float">
 				<Documentation>Upper end of input range. Use negative values for negative polarity.</Documentation>
 				<Quantity name="Voltage">
-					&V;
+					&V; &mV;
 				</Quantity>
 				<Quantity name="Current">
-					&A;&mA;
+					&mA;
+				</Quantity>
+				<Quantity name="Counts">
+					&counts;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Analog-to-Digital Converter Delay Interval" parameterType="Float" modality="optional" maxOccurs="1">
@@ -1664,8 +1678,8 @@ In Planar Chromatography, the plane can be a paper, serving as such or impregnat
 	<!-- * Literature *-->
 	<!-- ================== -->
 	<Bibliography>
-		<LiteratureReference literatureReferenceID="ASTM D1129-06A">
-			TODO: Superseded by 2010 version! ASTM Standard D1129-06A: Standard Terminology Relating to Water, DOI: 10.1520/D1129-06 
+		<LiteratureReference literatureReferenceID="ASTM D1129-10">
+			ASTM Standard D1129-10: Standard Terminology Relating to Water, DOI: 10.1520/D1129-10
 		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="ASTM E131-05">
 			ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05

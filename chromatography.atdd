@@ -1107,7 +1107,7 @@
 				</SeriesBlueprint>
 			</SeriesSetBlueprint>
 			<SeriesSetBlueprint name="Flow Control Table" modality="optional">
-				<Documentation>TODO -- IS THIS LC OR GC OR SFC??</Documentation>
+				<Documentation>Generic chromatograph flow control.</Documentation>
 				<SeriesBlueprint name="Event Time" seriesType="Float" plotScale="linear" dependency="independent" modality="required">
 					<Documentation>Time of the command relative to the time of injection (t0). Events occurring before the injection carry a negative time value.</Documentation>
 					<Quantity name="Time">

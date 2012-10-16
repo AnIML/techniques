@@ -77,7 +77,7 @@
 	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 ]>
-<Technique name="Thermal Conductivity Detector" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
+<Technique name="Thermal Conductivity Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for Thermal Conductivity Point Detector data</Documentation>
 	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed">
 		<Documentation>Reference to the GC separation experiment step.</Documentation>
@@ -85,9 +85,6 @@
 	<MethodBlueprint>
 		<CategoryBlueprint name="Method Description" modality="optional">
 			<Documentation>Basic contextual information about the measurement method.</Documentation>
-			<ParameterBlueprint name="Method Name" parameterType="String" modality="optional">
-				<Documentation>Name of the method used for the measurement.</Documentation>
-			</ParameterBlueprint>
 			<ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
 				<Documentation>External reference to measurement method.</Documentation>
 			</ParameterBlueprint>
@@ -98,46 +95,46 @@
 			<ParameterBlueprint name="Detector Geometry" parameterType="String" modality="optional">
 				<Documentation>General design of the detector.</Documentation>
 				<AllowedValue>
-					<String>dual-column</String>
+					<S>dual-column</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>single-column with reference</String>
+					<S>single-column with reference</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>single-column with re-flow</String>
+					<S>single-column with re-flow</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>single-column switched (pulse modulated)</String>
+					<S>single-column switched (pulse modulated)</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>other</String>
+					<S>other</S>
 				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Filament Number" parameterType="Int" modality="optional">
 				<Documentation>Number of filaments in the detector.</Documentation>
 				<AllowedValue>
-					<Int32>1</Int32>
+					<I>1</I>
 				</AllowedValue>
 				<AllowedValue>
-					<Int32>2</Int32>
+					<I>2</I>
 				</AllowedValue>
 				<AllowedValue>
-					<Int32>4</Int32>
-				</AllowedValue>				
+					<I>4</I>
+				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Filament Type" parameterType="String" modality="optional">
 				<Documentation>Material the filament is made of. (W: tungsten, WX: tungsten-rhenium, WXR: tungsten-rhodium)</Documentation>
 				<AllowedValue>
-					<String>W</String>
+					<S>W</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>WX</String>
+					<S>WX</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>WXR</String>
+					<S>WXR</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>other</String>
+					<S>other</S>
 				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Detector Position" parameterType="String" modality="optional">
@@ -146,39 +143,39 @@
 			<ParameterBlueprint name="Make Up Gas Identity" parameterType="String" modality="optional">
 				<Documentation>Identity of the make up (also called auxiliary) gas of the detector.</Documentation>
 				<AllowedValue>
-					<String>helium</String>
+					<S>helium</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>hydrogen</String>
+					<S>hydrogen</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>nitrogen</String>
+					<S>nitrogen</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>argon</String>
+					<S>argon</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>other</String>
+					<S>other</S>
 				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Reference Gas Identity" parameterType="String" modality="optional">
 				<Documentation>Identity of the reference gas of the detector.</Documentation>
 				<AllowedValue>
-					<String>helium</String>
+					<S>helium</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>hydrogen</String>
+					<S>hydrogen</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>nitrogen</String>
+					<S>nitrogen</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>argon</String>
+					<S>argon</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>other</String>
+					<S>other</S>
 				</AllowedValue>
-			</ParameterBlueprint>			
+			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Detector Settings" modality="optional">
 			<ParameterBlueprint name="Block Temperature" parameterType="Float" modality="optional">
@@ -261,10 +258,10 @@
 			<ParameterBlueprint name="Mode" parameterType="String" modality="optional">
 				<Documentation>Acquisition scheme for detection.</Documentation>
 				<AllowedValue>
-					<String>single-ended</String>
+					<S>single-ended</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>differential</String>
+					<S>differential</S>
 				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Range" parameterType="Float" modality="optional">
@@ -276,13 +273,13 @@
 			<ParameterBlueprint parameterType="String" name="Range Polarity" modality="optional">
 				<Documentation>Polarity of the voltage range of the A/D converter.</Documentation>
 				<AllowedValue>
-					<String>positive</String>
+					<S>positive</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>negative</String>
+					<S>negative</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>bipolar</String>
+					<S>bipolar</S>
 				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Resolution" parameterType="Int" modality="optional">

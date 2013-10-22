@@ -269,7 +269,7 @@
 		<!--same parameters as Test Sample-->
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
-		<Documentation literatureReferenceID="ASTM D1129-13A">A matrix whose analytes of interest are of known or accepted concentration or property.</Documentation>
+		<Documentation literatureReferenceID="ASTM D1129-13">A matrix whose analytes of interest are of known or accepted concentration or property.</Documentation>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>Reference to the sample used for calibration. A document reference about the qualification test often used in a QA/QC setting. This is only a reference, so no parameters are required.</Documentation>
@@ -1641,8 +1641,8 @@ containing raw data; can be in absorbance,  transmittance or percent transmittan
 		</CategoryBlueprint>
 	</ResultBlueprint>
 	<Bibliography>
-		<LiteratureReference literatureReferenceID="ASTM D1129-13A">
-			ASTM Standard D1129-13A: Standard Terminology Relating to Water, DOI: 10.1520/D1129-13
+		<LiteratureReference literatureReferenceID="ASTM D1129-13">
+			ASTM Standard D1129-13: Standard Terminology Relating to Water, DOI: 10.1520/D1129-13
 		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="ASTM E131-05">
 			ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05

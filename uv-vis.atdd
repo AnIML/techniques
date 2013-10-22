@@ -34,6 +34,7 @@
 	<!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
 	<!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
 	<!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
+	<!ENTITY reciprocal_um "<Unit label='1/µm'><SIUnit exponent='-1' factor='1e-6'>m</SIUnit></Unit>">
 	<!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
 	<!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY A "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
@@ -48,7 +49,7 @@
 	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 ]>
-<Technique name="UV/Vis" version="0.34" xmlns="urn:org:astm:animl:schema:technique:draft:0.34" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.34 http://schemas.animl.org/current/animl-technique.xsd">
+<Technique name="UV/Vis" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for UV/Visible spectrophotometry</Documentation>
 	<SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1" inheritable="true">
 		<Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory sample which has a suitable sample weight or volume for one or more determinations by chemical analysis. This sample role represents the sample that is analyzed in the given ExperimentStep.</Documentation>
@@ -78,37 +79,37 @@
 			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="JCAMP-DX IR">Phase of matter of the sample.</Documentation>
 				<AllowedValue>
-					<String>solid</String>
+					<S>solid</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>amorphous solid</String>
+					<S>amorphous solid</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>crystalline solid</String>
+					<S>crystalline solid</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>liquid</String>
+					<S>liquid</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>liquid crystal</String>
+					<S>liquid crystal</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>gas</String>
+					<S>gas</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>supercritical fluid</String>
+					<S>supercritical fluid</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>colloid</String>
+					<S>colloid</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>plasma</String>
+					<S>plasma</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>crystal</String>
+					<S>crystal</S>
 				</AllowedValue>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional" >
+			<ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional">
 				<Documentation literatureReferenceID="ASTM E2077-00">Sample disposal procedure, also in accordance with the U.S. Department of Labor Occupational Safety and Health Administration (OSHA) regulations.</Documentation>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
@@ -268,7 +269,7 @@
 		<!--same parameters as Test Sample-->
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
-		<Documentation literatureReferenceID="ASTM D1129-06A">A matrix whose analytes of interest are of known or accepted concentration or property.</Documentation>
+		<Documentation literatureReferenceID="ASTM D1129-13A">A matrix whose analytes of interest are of known or accepted concentration or property.</Documentation>
 	</SampleRoleBlueprint>
 	<SampleRoleBlueprint name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
 		<Documentation>Reference to the sample used for calibration. A document reference about the qualification test often used in a QA/QC setting. This is only a reference, so no parameters are required.</Documentation>
@@ -317,25 +318,25 @@
 				<ParameterBlueprint name="Measurement Mode" parameterType="String" maxOccurs="1" modality="optional">
 					<Documentation>The optical mode with respect to the sample with which the measurement was made, such as reflectance and transmittance.</Documentation>
 					<AllowedValue>
-						<String>Reflectance, diffuse</String>
+						<S>Reflectance, diffuse</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Reflectance, grazing</String>
+						<S>Reflectance, grazing</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Reflectance, multiple internal</String>
+						<S>Reflectance, multiple internal</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Reflectance, specular</String>
+						<S>Reflectance, specular</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Transmittance, apparent</String>
+						<S>Transmittance, apparent</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Transmittance, diffuse</String>
+						<S>Transmittance, diffuse</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Transmittance, true</String>
+						<S>Transmittance, true</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
@@ -381,40 +382,40 @@
 					<SeriesBlueprint name="Source Type" seriesType="String" modality="required" dependency="dependent" plotScale="none">
 						<Documentation>Description of the light source type.</Documentation>
 						<AllowedValue>
-							<String>Tungsten Source</String>
+							<S>Tungsten Source</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Deuterium Source</String>
+							<S>Deuterium Source</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Xenon Source</String>
+							<S>Xenon Source</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Mercury Source</String>
+							<S>Mercury Source</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Glow Bar Source</String>
+							<S>Glow Bar Source</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Other Source</String>
+							<S>Other Source</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Plasma Emission</String>
+							<S>Plasma Emission</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Flame Emission</String>
+							<S>Flame Emission</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Spark Emission</String>
+							<S>Spark Emission</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Thermal Emission</String>
+							<S>Thermal Emission</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Laser Ablation Emission</String>
+							<S>Laser Ablation Emission</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Other Emission</String>
+							<S>Other Emission</S>
 						</AllowedValue>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
@@ -449,19 +450,19 @@
 					<SeriesBlueprint name="Polarizer Type" seriesType="String" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>Type of optical element used for polarization, e.g., Glan-Taylor, Glan-Thomson, Wollaston, Nanoparticle</Documentation>
 						<AllowedValue>
-							<String>Glan-Taylor</String>
+							<S>Glan-Taylor</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Glan-Thomson</String>
+							<S>Glan-Thomson</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Wollaston</String>
+							<S>Wollaston</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Nanoparticle</String>
+							<S>Nanoparticle</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>other</String>
+							<S>other</S>
 						</AllowedValue>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
@@ -530,25 +531,25 @@
 					<SeriesBlueprint name="Detector Type" seriesType="String" dependency="dependent" modality="optional" plotScale="none">
 						<Documentation>The type of the detector used for the measurement.</Documentation>
 						<AllowedValue>
-							<String>Photomultiplier</String>
+							<S>Photomultiplier</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Photodiode</String>
+							<S>Photodiode</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Diode Array</String>
+							<S>Diode Array</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>CCD Array</String>
+							<S>CCD Array</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>PbS</String>
+							<S>PbS</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Thermopile</String>
+							<S>Thermopile</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>other</String>
+							<S>other</S>
 						</AllowedValue>
 					</SeriesBlueprint>
 					<SeriesBlueprint name="Detector Description" seriesType="String" dependency="dependent" modality="optional" plotScale="none">
@@ -595,19 +596,19 @@
 					<SeriesBlueprint name="Polarizer Type" seriesType="String" dependency="dependent" modality="required" plotScale="none">
 						<Documentation>Type of optical element used for polarization.</Documentation>
 						<AllowedValue>
-							<String>Glan-Taylor</String>
+							<S>Glan-Taylor</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Glan-Thomson</String>
+							<S>Glan-Thomson</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Wollaston</String>
+							<S>Wollaston</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Nanoparticle</String>
+							<S>Nanoparticle</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>other</String>
+							<S>other</S>
 						</AllowedValue>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
@@ -645,13 +646,13 @@
 				<ParameterBlueprint name="Measurement Type" parameterType="String" modality="required">
 					<Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one wavelength is recorded. Discrete means that absorbance of multiple exactly specified wavelengths is recorded. Spectrum means that a single range or multiple discrete ranges is/are recorded.</Documentation>
 					<AllowedValue>
-						<String>Single</String>
+						<S>Single</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Discrete</String>
+						<S>Discrete</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Spectrum</String>
+						<S>Spectrum</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Holder Position" parameterType="String" modality="optional">
@@ -666,22 +667,22 @@
 				<ParameterBlueprint name="Optical Path Environment" parameterType="String" modality="optional">
 					<Documentation>Describes the environment of the optical path.</Documentation>
 					<AllowedValue>
-						<String>Ambient air</String>
+						<S>Ambient air</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Dry air</String>
+						<S>Dry air</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Vacuum</String>
+						<S>Vacuum</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Nitrogen</String>
+						<S>Nitrogen</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Argon</String>
+						<S>Argon</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Other</String>
+						<S>Other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
@@ -726,13 +727,13 @@
 				<ParameterBlueprint name="Dispersion Element" parameterType="String" modality="optional">
 					<Documentation/>
 					<AllowedValue>
-						<String>Prism</String>
+						<S>Prism</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Grating</String>
+						<S>Grating</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Other</String>
+						<S>Other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Prism Material" parameterType="String">
@@ -752,16 +753,16 @@
 				<ParameterBlueprint name="Instrument Type" parameterType="String" modality="optional">
 					<Documentation>Whether the instrument is a single beam, double beam, or diode array instrument.</Documentation>
 					<AllowedValue>
-						<String>single beam</String>
+						<S>single beam</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>double beam</String>
+						<S>double beam</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>array-based</String>
+						<S>array-based</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>other</String>
+						<S>other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
@@ -791,13 +792,13 @@
 				<ParameterBlueprint name="Slit Function" parameterType="String" modality="required">
 					<Documentation>Adjustment of the slit width to maintain constant resolution or constant energy over the course of the scan.</Documentation>
 					<AllowedValue>
-						<String>Constant resolution</String>
+						<S>Constant resolution</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Constant energy</String>
+						<S>Constant energy</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>other</String>
+						<S>other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Spectral Slit Width" parameterType="Float" modality="optional">
@@ -821,16 +822,16 @@
 				<ParameterBlueprint name="Degree of Derivatization" parameterType="Int" modality="required">
 					<Documentation>Derivative spectra can be used to enhance differences among spectra, to resolve overlapping bands in qualitative analysis and, most importantly, to reduce the effects of interference from scattering, matrix, or other absorbing compounds in quantitative analysis. Use this parameter only to state how the data were acquired. Values: 0-Not differentiated (default), 1-1st derivative spectrum, 2-2nd derivative spectrum, 3-3rd derivative spectrum, 4-4th derivative spectrum.</Documentation>
 					<AllowedValue>
-						<Int32>0</Int32>
+						<I>0</I>
 					</AllowedValue>
 					<AllowedValue>
-						<Int32>1</Int32>
+						<I>1</I>
 					</AllowedValue>
 					<AllowedValue>
-						<Int32>2</Int32>
+						<I>2</I>
 					</AllowedValue>
 					<AllowedValue>
-						<Int32>3</Int32>
+						<I>3</I>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Derivatization Algorithm Description" parameterType="String" modality="optional">
@@ -862,41 +863,41 @@
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
-		<CategoryBlueprint name="Interferometric Method" modality="optional">
+		<CategoryBlueprint name="Interferometric Acquitision Method" modality="optional">
 			<Documentation>Specific parameters for interferometric measurements.</Documentation>
 			<CategoryBlueprint name="Instrument Properties">
 				<Documentation>Fixed characteristics of the instrument, specific to interferometric measurements.</Documentation>
 				<ParameterBlueprint name="Interferometer Type" parameterType="String" modality="optional">
 					<Documentation>Type of the interferometer.</Documentation>
 					<AllowedValue>
-						<String>Michelson plane mirror</String>
+						<S>Michelson plane mirror</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Michelson cat's eye</String>
+						<S>Michelson cat's eye</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Michelson corner cube</String>
+						<S>Michelson corner cube</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Fabry-Perot</String>
+						<S>Fabry-Perot</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Other</String>
+						<S>Other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Monitor Laser Type" parameterType="String">
 					<Documentation>Type of the reference (monitor) laser.</Documentation>
 					<AllowedValue>
-						<String>HeNe single-mode</String>
+						<S>HeNe single-mode</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>HeNe multi-mode</String>
+						<S>HeNe multi-mode</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>HeNe (unknown)</String>
+						<S>HeNe (unknown)</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Other</String>
+						<S>Other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Monitor Laser Wavelength" parameterType="Float">
@@ -937,10 +938,10 @@
 					<ParameterBlueprint name="Splitter Type" parameterType="String" modality="required">
 						<Documentation>Whether the instrument allows reconfiguration of the beam splitter. This is done to optimize performance over a given optical range.</Documentation>
 						<AllowedValue>
-							<String>fixed</String>
+							<S>fixed</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>removable</String>
+							<S>removable</S>
 						</AllowedValue>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Substrate" parameterType="String" modality="optional">
@@ -983,28 +984,28 @@
 				<ParameterBlueprint name="Spectrum data source" parameterType="String" modality="optional">
 					<Documentation>Type of data source from which spectrum is derived.</Documentation>
 					<AllowedValue>
-						<String>Measured dispersive spectrum</String>
+						<S>Measured dispersive spectrum</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>FT power spectrum</String>
+						<S>FT power spectrum</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>FT real spectrum</String>
+						<S>FT real spectrum</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>FT imaginary spectrum</String>
+						<S>FT imaginary spectrum</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Interferogram Aquisition Mode" parameterType="String">
 					<Documentation>Type of interferogram data.</Documentation>
 					<AllowedValue>
-						<String>complex sequential</String>
+						<S>complex sequential</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>complex simultaneous</String>
+						<S>complex simultaneous</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>real-only</String>
+						<S>real-only</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Air Correction" parameterType="Boolean" modality="optional">
@@ -1067,6 +1068,59 @@
 						&count;
 					</Quantity>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="Scan Type" parameterType="String" modality="optional">
+					<Documentation>Method by which the optical path difference of the interferometer is changed.</Documentation>
+					<AllowedValue>
+						<S>step</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>continuous</S>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Integration Time Per Point" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Time interval over which data is integrated per data point during acquisition. Applies only to step scans.</Documentation>
+					<Quantity name="Time">
+						&ms; &s;
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Number of Scans" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Number of scans coadded during data acquisition.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Scan Direction" parameterType="String" modality="optional" maxOccurs="1">
+					<Documentation>Direction of mirror movement in which data acquisition occurs.</Documentation>
+					<AllowedValue>
+						<S>forward only</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>reverse only</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>forward and reverse</S>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Jacquinot Stop" parameterType="Float" modality="optional" maxOccurs="1">
+					<Documentation>Limiting optical aperture actually used in the spectrometer. Also called "limiting aperture" or "J-Stop".</Documentation>
+					<Quantity name="Length">
+						&mm;
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Interferogram Type" parameterType="String" modality="optional">
+					<Documentation>Whether data are collected from one side or both sides of the center burst.</Documentation>
+					<AllowedValue>
+						<S>single-sided</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>double-sided</S>
+					</AllowedValue>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+		
+		<CategoryBlueprint name="Interferometric Processing Method" modality="optional">
+			<Documentation>Specific parameters for interferometric measurements.</Documentation>
+			<CategoryBlueprint name="TODO Instrument Settings">
+
+				
 				<ParameterBlueprint name="Zero-Filling Point Count" parameterType="Int" modality="optional">
 					<Documentation>Absolute number of zero points appended to the end of the interferogram to make the total data point count an even power of two.</Documentation>
 					<Quantity name="Count">
@@ -1083,61 +1137,17 @@
 						</Unit>
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Scan Type" parameterType="String" modality="optional">
-					<Documentation>Method by which the optical path difference of the interferometer is changed.</Documentation>
-					<AllowedValue>
-						<String>step</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>continuous</String>
-					</AllowedValue>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Integration Time Per Point" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Time interval over which data is integrated per data point during acquisition. Applies only to step scans.</Documentation>
-					<Quantity name="Time">
-						&ms; &s;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Number of Scans" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Number of scans coadded during data acquisition.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Scan Direction" parameterType="String" modality="optional" maxOccurs="1">
-					<Documentation>Direction of mirror movement in which data acquisition occurs.</Documentation>
-					<AllowedValue>
-						<String>forward only</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>reverse only</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>forward and reverse</String>
-					</AllowedValue>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Jacquinot Stop" parameterType="Float" modality="optional" maxOccurs="1">
-					<Documentation>Limiting optical aperture actually used in the spectrometer. Also called "limiting aperture" or "J-Stop".</Documentation>
-					<Quantity name="Length">
-						&mm;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Interferogram Type" parameterType="String" modality="optional">
-					<Documentation>Whether data are collected from one side or both sides of the center burst.</Documentation>
-					<AllowedValue>
-						<String>single-sided</String>
-					</AllowedValue>
-					<AllowedValue>
-						<String>double-sided</String>
-					</AllowedValue>
-				</ParameterBlueprint>
+
 				<ParameterBlueprint name="Apodization Function" parameterType="String" modality="optional">
 					<Documentation>Weighting function applied to the interferogram prior to fourrier transformation to control either spectral line shape or to reduce spectral artifacts.</Documentation>
 					<AllowedValue>
-						<String>boxcar</String>
+						<S>boxcar</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>triangular</String>
+						<S>triangular</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>other</String>
+						<S>other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Apodization Function Variable" parameterType="Float" modality="optional" maxOccurs="unbounded">
@@ -1146,50 +1156,58 @@
 				<ParameterBlueprint name="Fourier Transformation Algorithm" parameterType="String" modality="required">
 					<Documentation>Mathematical method which performs the domain conversion.</Documentation>
 					<AllowedValue>
-						<String>Cooley-Tuckey (FFT)</String>
+						<S>Cooley-Tuckey (FFT)</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Variable Radix</String>
+						<S>Variable Radix</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>other</String>
+						<S>other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Spectrum Type" parameterType="String" modality="optional">
 					<Documentation>Format of the spectrum resulting from the domain transformation.</Documentation>
 					<AllowedValue>
-						<String>Magnitude (Power) Spectrum</String>
+						<S>Magnitude Spectrum</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Phase-Corrected Amplitude (Intensity) Spectrum</String>
+						<S>Power Spectrum</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>Real Spectrum</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>Imaginary Spectrum</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>Phase-Corrected Real Spectrum</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>Phase-Corrected Imaginary Spectrum</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Phase Correction Mode" parameterType="String" modality="optional">
 					<Documentation>Method used to correct the phase of the spectrum resulting from the domain transformation.</Documentation>
 					<AllowedValue>
-						<String>Multiplication</String>
+						<S>Multiplication</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>Convolution</String>
+						<S>Convolution</S>
 					</AllowedValue>
 					<AllowedValue>
-						<String>other</String>
+						<S>other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Phase Correction Variable" parameterType="Float" modality="optional" maxOccurs="unbounded">
 					<Documentation>Parameter associated with the order of the phase correction.</Documentation>
 				</ParameterBlueprint>
-				<!-- probably not needed - where did this come from?
-				<ParameterBlueprint name="Phase Resolution" parameterType="Float">
-					<Documentation>Smallest amount of phase change possible. TODO - unclear about meaning and quantity</Documentation>
-					<Quantity name="TODO">
+				<ParameterBlueprint name="Phase Resolution" parameterType="Float" modality="optional">
+					<Documentation>Minimum allowed amount of phase change. TODO.</Documentation>
+					<Quantity name="TODO Gary, might be degrees">
 						&reciprocal_cm;
-						<Unit label="1/µm">
-							<SIUnit factor="1e-6">m</SIUnit>
-						</Unit>
+						&reciprocal_um;						
 					</Quantity>
 				</ParameterBlueprint>
-				-->
 				<ParameterBlueprint name="Baseline Correction Method" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Name or description of algorithm for baseline correction.</Documentation>
 				</ParameterBlueprint>
@@ -1198,37 +1216,37 @@
 					<ParameterBlueprint name="Type" parameterType="String" modality="required">
 						<Documentation>Whether a lowpass, highpass, bandpass or notch type filter algorithm was used. See IEEE 151-1965W.</Documentation>
 						<AllowedValue>
-							<String>Lowpass</String>
+							<S>Lowpass</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Highpass</String>
+							<S>Highpass</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Bandpass</String>
+							<S>Bandpass</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Notch</String>
+							<S>Notch</S>
 						</AllowedValue>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Function" parameterType="String" modality="optional">
 						<Documentation>Shape of the filter response as defined by the polynomials approximating it.</Documentation>
 						<AllowedValue>
-							<String>Bezel</String>
+							<S>Bezel</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Butterworth</String>
+							<S>Butterworth</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Cauchy</String>
+							<S>Cauchy</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Chebyshev</String>
+							<S>Chebyshev</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>elliptical</String>
+							<S>elliptical</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>other</String>
+							<S>other</S>
 						</AllowedValue>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Order" parameterType="Int" modality="optional">
@@ -1258,37 +1276,37 @@
 					<ParameterBlueprint name="Type" parameterType="String" modality="required">
 						<Documentation>Whether a lowpass, highpass, bandpass or notch type filter was used. See IEEE 151-1965W.</Documentation>
 						<AllowedValue>
-							<String>Lowpass</String>
+							<S>Lowpass</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Highpass</String>
+							<S>Highpass</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Bandpass</String>
+							<S>Bandpass</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Notch</String>
+							<S>Notch</S>
 						</AllowedValue>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Function" parameterType="String" modality="optional">
 						<Documentation>Shape of the filter response as defined by the polynomials approximating it.</Documentation>
 						<AllowedValue>
-							<String>Bezel</String>
+							<S>Bezel</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Butterworth</String>
+							<S>Butterworth</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Cauchy</String>
+							<S>Cauchy</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Chebyshev</String>
+							<S>Chebyshev</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>elliptical</String>
+							<S>elliptical</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>other</String>
+							<S>other</S>
 						</AllowedValue>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Order" parameterType="Int" modality="optional">
@@ -1318,16 +1336,16 @@
 					<ParameterBlueprint name="Type" parameterType="String" modality="required">
 						<Documentation>Whether a shortpass, longpass, bandpass or notch type filter was used. See IEEE 151-1965W.</Documentation>
 						<AllowedValue>
-							<String>Shortpass</String>
+							<S>Shortpass</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Longpass</String>
+							<S>Longpass</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Bandpass</String>
+							<S>Bandpass</S>
 						</AllowedValue>
 						<AllowedValue>
-							<String>Notch</String>
+							<S>Notch</S>
 						</AllowedValue>
 					</ParameterBlueprint>
 					<ParameterBlueprint name="Center" parameterType="Float" modality="optional">
@@ -1502,16 +1520,16 @@
 			<ParameterBlueprint name="Spectrum Data Source" parameterType="String" modality="optional">
 				<Documentation>Type of data source from which this spectrum has been derived.</Documentation>
 				<AllowedValue>
-					<String>Measured dispersive spectrum</String>
+					<S>Measured dispersive spectrum</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>FT power spectrum</String>
+					<S>FT power spectrum</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>FT real spectrum</String>
+					<S>FT real spectrum</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>FT imaginary spectrum</String>
+					<S>FT imaginary spectrum</S>
 				</AllowedValue>
 			</ParameterBlueprint>
 		</CategoryBlueprint>
@@ -1596,13 +1614,13 @@ containing raw data; can be in absorbance,  transmittance or percent transmittan
 			<ParameterBlueprint name="Aquisition Mode" parameterType="String">
 				<Documentation>Type of measured data.</Documentation>
 				<AllowedValue>
-					<String>complex sequential</String>
+					<S>complex sequential</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>complex simultaneous</String>
+					<S>complex simultaneous</S>
 				</AllowedValue>
 				<AllowedValue>
-					<String>real-only</String>
+					<S>real-only</S>
 				</AllowedValue>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Modulation Efficiency" parameterType="Float">
@@ -1623,8 +1641,8 @@ containing raw data; can be in absorbance,  transmittance or percent transmittan
 		</CategoryBlueprint>
 	</ResultBlueprint>
 	<Bibliography>
-		<LiteratureReference literatureReferenceID="ASTM D1129-06A">
-			ASTM Standard D1129-06A: TODO
+		<LiteratureReference literatureReferenceID="ASTM D1129-13A">
+			ASTM Standard D1129-13A: Standard Terminology Relating to Water
 		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="ASTM E131-05">
 			ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05

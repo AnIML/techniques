@@ -1642,7 +1642,7 @@ containing raw data; can be in absorbance,  transmittance or percent transmittan
 	</ResultBlueprint>
 	<Bibliography>
 		<LiteratureReference literatureReferenceID="ASTM D1129-13A">
-			ASTM Standard D1129-13A: Standard Terminology Relating to Water
+			ASTM Standard D1129-13A: Standard Terminology Relating to Water, DOI: 10.1520/D1129-13
 		</LiteratureReference>
 		<LiteratureReference literatureReferenceID="ASTM E131-05">
 			ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05

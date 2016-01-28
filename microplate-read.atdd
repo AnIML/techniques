@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Technique name="Microtiter Plate Read" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
+    <Documentation>
+        This technique definition describes the operation of a microtiter plate reader to read a single plate.
+    </Documentation>
+
+    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" maxOccurs="1">
+        <Documentation>The microtiter plate that was measured.</Documentation>
+    </SampleRoleBlueprint>
+
+    <ResultBlueprint name="Read">
+        <SeriesSetBlueprint name="Read" modality="required">
+            <Documentation>
+                The values detected in each well of the microplate.
+            </Documentation>
+            <SeriesBlueprint name="Position" plotScale="none" seriesType="Int" dependency="independent" modality="required">
+                <Documentation>Position of the well. This is index-based, starting at 0 in the upper-left corner, incrementing by column (left to right), then by row (top to bottom). 0=A1, 1=A2, ...</Documentation>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Value" plotScale="none" seriesType="Numeric" dependency="dependent" modality="required">
+                <Documentation>The value measured at the well given by the "Position" series.</Documentation>
+            </SeriesBlueprint>
+        </SeriesSetBlueprint>
+    </ResultBlueprint>
+</Technique>

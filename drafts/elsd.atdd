@@ -193,15 +193,14 @@
     <ResultBlueprint name="ELSD Trace" modality="required">
         <Documentation>Time-based trace of ELS detector data.</Documentation>
         <SeriesSetBlueprint name="ELSD Trace" modality="required">
-            <SeriesBlueprint name="Time" seriesType="Numeric" plotScale="linear" dependency="independent">
+            <SeriesBlueprint name="Time" seriesType="Numeric" modality="required" dependency="independent" plotScale="linear" >
                 <Documentation>TODO</Documentation>
                 <Quantity name="Time">
                     &ms; &s; &min;
                 </Quantity>
             </SeriesBlueprint>
             <!-- Not sure about the following section. Couldn't find any information on the actual measurement results -->
-            <SeriesBlueprint name="Intensity" seriesType="Numeric" modality="required" plotScale="linear"
-                             dependency="dependent">
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" modality="required" dependency="dependent" plotScale="linear">
                 <Documentation>The amount of light scattered by the eluent</Documentation>
                 <Quantity name="Absorbance">
                     &AU; &A;

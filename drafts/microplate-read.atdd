@@ -47,12 +47,18 @@
         <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
         ]>
 
-<Technique name="Laboratory Balance"
+<Technique name="MIcroplate Read"
            version="0.90"
            xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90">
-<MethodBlueprint>
+    <Documentation>
+        This technique definition describes the operation of a microtiter plate reader to read a single plate.
+    </Documentation>
+    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" maxOccurs="1">
+        <Documentation>The microtiter plate that was measured.</Documentation>
+    </SampleRoleBlueprint>
+    <MethodBlueprint>
     <CategoryBlueprint name="Common Method" modality="required">
         <Documentation>Information describing the instrument and its environment.</Documentation>
         <ParameterBlueprint name="Description" parameterType="String" modality="optional">
@@ -63,12 +69,12 @@
         </ParameterBlueprint>
     </CategoryBlueprint>
 </MethodBlueprint>
-    <ResultBlueprint name="Microplate Array" modality="required">
-        <SeriesSetBlueprint name="Well" modality="required">
-            <SeriesBlueprint name="Well" seriesType="Int" dependency="independent" modality="required">
-                <Documentation>One unique number (ID) for each well </Documentation>
+    <ResultBlueprint name="Read" modality="required">
+        <SeriesSetBlueprint name="Reda" modality="required">
+            <SeriesBlueprint name="Position" plotScale="none" seriesType="Int" dependency="independent" modality="required">
+                <Documentation>Position of the well. This is index-based, starting at 0 in the upper-left corner, incrementing by column (left to right), then by row (top to bottom). 0=A1, 1=A2, ...</Documentation>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Intensity" seriesType="Float" dependency="dependent">
+            <SeriesBlueprint name="Value" seriesType="Float" dependency="dependent">
                 <Quantity name="Absorbance">
                     &AU; &A;
                 </Quantity>
@@ -84,8 +90,8 @@
             </SeriesBlueprint>
         </SeriesSetBlueprint>
         <!-- Maybe modality could be "optional". One could determine the shape of the plate from the number of used wells. -->
-        <CategoryBlueprint name="Rows" modality="required">
-            <Documentation>Number of rows of the microplate.</Documentation>
+        <CategoryBlueprint name="Rows" modality="optional">
+            <Documentation>Number of rows of the microplate. Can be used for visualization.</Documentation>
         </CategoryBlueprint>
     </ResultBlueprint>
 </Technique>

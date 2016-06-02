@@ -52,7 +52,7 @@
            xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90">
-    <Documentation>This technique definition reflects the structure of a common laboratory balance</Documentation>
+    <Documentation>This technique definition describes the operation of a laboratory balance</Documentation>
     <MethodBlueprint>
         <CategoryBlueprint name="Common Method" modality="required">
             <Documentation>Information describing the instrument and its environment.</Documentation>
@@ -66,14 +66,20 @@
                 <Documentation>Accuracy (resolution) of the balance</Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Maximum Weight" parameterType="Float" modality="optional">
-
+                <Quantity name="Weight">
+                    &ug; &mg; &g;
+                </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
     </MethodBlueprint>
     <ResultBlueprint name="Weight" modality="required">
         <CategoryBlueprint name="Weight">
             <SeriesSetBlueprint name="Weight">
-                <SeriesBlueprint name="Weight" seriesType="Float" dependency="independent"></SeriesBlueprint>
+                <SeriesBlueprint name="Weight" seriesType="Float" dependency="independent">
+                    <Quantity name="Weight">
+                        &ug; &mg; &g;
+                    </Quantity>
+                </SeriesBlueprint>
             </SeriesSetBlueprint>
         </CategoryBlueprint>
     </ResultBlueprint>

@@ -47,7 +47,7 @@
         <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
         ]>
 
-<Technique name="MIcroplate Read"
+<Technique name="Microplate Read"
            version="0.90"
            xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -55,26 +55,69 @@
     <Documentation>
         This technique definition describes the operation of a microtiter plate reader to read a single plate.
     </Documentation>
-    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" maxOccurs="1">
+    <SampleRoleBlueprint name="Test Sample" modality="optional" samplePurpose="consumed" maxOccurs="1">
         <Documentation>The microtiter plate that was measured.</Documentation>
     </SampleRoleBlueprint>
     <MethodBlueprint>
-    <CategoryBlueprint name="Common Method" modality="required">
-        <Documentation>Information describing the instrument and its environment.</Documentation>
-        <ParameterBlueprint name="Description" parameterType="String" modality="optional">
-            <Documentation>A textual description of the instrument.</Documentation>
-        </ParameterBlueprint>
-        <ParameterBlueprint name="Comments" parameterType="String" modality="optional">
-            <Documentation>Comments about the instrument.</Documentation>
-        </ParameterBlueprint>
-    </CategoryBlueprint>
-</MethodBlueprint>
+        <CategoryBlueprint name="Common Method" modality="required">
+            <Documentation>Information describing the instrument and its environment.</Documentation>
+            <ParameterBlueprint name="Description" parameterType="String" modality="optional">
+                <Documentation>A textual description of the instrument.</Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Number of Light Pulses" parameterType="Int"></ParameterBlueprint>
+            <ParameterBlueprint name="Focus Position" parameterType="Numeric"></ParameterBlueprint>
+            <ParameterBlueprint name="Comments" parameterType="String" modality="optional">
+                <Documentation>Comments about the instrument.</Documentation>
+            </ParameterBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Background Information" modality="optional">
+            <ParameterBlueprint name="Number of Flashes / Time" parameterType="Int" modality="optional"></ParameterBlueprint>
+            <ParameterBlueprint name="Signal" parameterType="Int" modality="optional"></ParameterBlueprint>
+            <ParameterBlueprint name="Duration" parameterType="Numeric" modality="optional"></ParameterBlueprint>
+            <ParameterBlueprint name="Measurement Info" parameterType="String" modality="optional"></ParameterBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Mirror Modules" modality="optional">
+            <ParameterBlueprint name="Fluorescent Dye" parameterType="String"></ParameterBlueprint>
+            <ParameterBlueprint name="Used by" parameterType="String"></ParameterBlueprint>
+            <ParameterBlueprint name="Dual" parameterType="Boolean"></ParameterBlueprint>
+            <ParameterBlueprint name="Notes" parameterType="String"></ParameterBlueprint>
+            <ParameterBlueprint name="Used with" parameterType="String"></ParameterBlueprint>
+            <ParameterBlueprint name="Last edited by" parameterType="String"></ParameterBlueprint>
+            <ParameterBlueprint name="Last edited" parameterType="DateTime"></ParameterBlueprint>
+            <ParameterBlueprint name="Factory preset" parameterType="Boolean"></ParameterBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Used Filters" modality="optional">
+            <CategoryBlueprint name="Filter" modality="optional">
+                <ParameterBlueprint name="Filter Name" parameterType="String"></ParameterBlueprint>
+                <ParameterBlueprint name="Filter Type" parameterType="String"></ParameterBlueprint>
+                <ParameterBlueprint name="Notes" parameterType="String"></ParameterBlueprint>
+                <ParameterBlueprint name="Used with" parameterType="String"></ParameterBlueprint>
+                <ParameterBlueprint name="Last edited by" parameterType="String"></ParameterBlueprint>
+                <ParameterBlueprint name="Last edited" parameterType="DateTime"></ParameterBlueprint>
+                <ParameterBlueprint name="Factory Preset" parameterType="Boolean"></ParameterBlueprint>
+            </CategoryBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Other" modality="optional">
+            <ParameterBlueprint name="G-Factor" parameterType="Numeric"></ParameterBlueprint>
+            <ParameterBlueprint name="Number of Flashes integrated" parameterType="Int"></ParameterBlueprint>
+            <ParameterBlueprint name="PMT gain" parameterType="Int"></ParameterBlueprint>
+            <ParameterBlueprint name="Reference to AD Gain" parameterType="Int"></ParameterBlueprint>
+            <ParameterBlueprint name="Reference Signal" parameterType="Int"></ParameterBlueprint>
+            <ParameterBlueprint name="Last edited by" parameterType="String"></ParameterBlueprint>
+            <ParameterBlueprint name="Last edited" parameterType="DateTime"></ParameterBlueprint>
+            <ParameterBlueprint name="Factory Preset" parameterType="Boolean"></ParameterBlueprint>
+        </CategoryBlueprint>
+    </MethodBlueprint>
     <ResultBlueprint name="Read" modality="required">
-        <SeriesSetBlueprint name="Reda" modality="required">
-            <SeriesBlueprint name="Position" plotScale="none" seriesType="Int" dependency="independent" modality="required">
-                <Documentation>Position of the well. This is index-based, starting at 0 in the upper-left corner, incrementing by column (left to right), then by row (top to bottom). 0=A1, 1=A2, ...</Documentation>
+        <SeriesSetBlueprint name="Read" modality="required">
+            <SeriesBlueprint name="Position" modality="required" seriesType="Int" dependency="independent"
+                             plotScale="none">
+                <Documentation>Position of the well. This is index-based, starting at 0 in the upper-left corner,
+                    incrementing by column (left to right), then by row (top to bottom). 0=A1, 1=A2, ...
+                </Documentation>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Value" seriesType="Float" dependency="dependent">
+            <SeriesBlueprint name="Value" modality="required" seriesType="Numeric" dependency="dependent"
+                             plotScale="none">
                 <Quantity name="Absorbance">
                     &AU; &A;
                 </Quantity>

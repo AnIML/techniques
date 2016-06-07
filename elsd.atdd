@@ -101,50 +101,163 @@
                 <ParameterBlueprint name="Comments" parameterType="String" modality="optional">
                     <Documentation>Comments about the instrument.</Documentation>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Light Source" parameterType="String" modality="optional">
-                    <Documentation>Comments about the light source.</Documentation>
-                    <AllowedValue>
-                        <S>LED</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Laser</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Wavelength" parameterType="Float" modality="optional">
-                    <Documentation>Wavelength of the light source</Documentation>
-                    <Quantity name="wavelength">
-                        &nm;
-                    </Quantity>
-                </ParameterBlueprint>
                 <ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
                     <Documentation>The type or name of the assembly that holds the sample container in the optical beam,
                         e.g., cuvette holder, sample changer. (The sample container itself is described within the
                         Sample element in the AnIML Core Schema.)
                     </Documentation>
                 </ParameterBlueprint>
-                <!-- Maybe irrelevant:  -->
-                <ParameterBlueprint name="Analog-to-Digital Converter Resolution" parameterType="Float"
-                                    modality="optional" maxOccurs="1">
-                    <Documentation>Digital resolution of the analog-to-digital converter.</Documentation>
-                    <Quantity name="bits">
-                        <Unit label="bit">
-                            <SIUnit>1</SIUnit>
-                        </Unit>
+                <CategoryBlueprint name="Optical Component Specification" modality="optional" maxOccurs="1">
+                    <ParameterBlueprint name="Description" parameterType="String" modality="optional" maxOccurs="1">
+                        <Documentation>Details on the optical component of the detector.</Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Light Source" parameterType="String" modality="optional" maxOccurs="1">
+                        <Documentation>Comments about the light source.</Documentation>
+                        <AllowedValue>
+                            <S>LED</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Laser</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Halogen</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Other</S>
+                        </AllowedValue>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Light Source Life Time" parameterType="Numeric" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="Time">
+                            &min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Wavelength" parameterType="Float" modality="optional">
+                        <Documentation>Wavelength of the light source</Documentation>
+                        <Quantity name="wavelength">
+                            &nm;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Detector Type" parameterType="String" modality="optional"
+                                        maxOccurs="1"></ParameterBlueprint>
+                    <ParameterBlueprint name="Detector Position" parameterType="String" modality="optional"
+                                        maxOccurs="1">
+                        <Documentation>Position of the detector in the instrument. Often called 'A' or 'B', 'left' or
+                            'right',
+                            ...
+                        </Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Scattering Angle" parameterType="Numeric" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="degree">
+                            &degree;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Measurement Range" parameterType="Numeric" modality="optional" maxOccurs="1">
+                        <Quantity name="light scatter units">
+                            &A; &AU;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Operating Specifications">
+                    <ParameterBlueprint name="Eluent Minimum Flow" parameterType="Numeric" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="rate">
+                            &L_per_min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Eluent Maximum Flow" parameterType="Numeric" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="rate">
+                            &L_per_min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Type" parameterType="String" modality="optional" maxOccurs="1">
+                        <Documentation>The types of gas, that can be used with the detector (typically Nitrogen or Argon).</Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Minimum Pressure" parameterType="Numeric" modality="optional">
+                        <Quantity name="pressure">
+                            &bar; &psig;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Maximum Pressure" parameterType="Numeric" modality="optional">
+                        <Quantity name="pressure">
+                            &bar; &psig;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Consumption" parameterType="Numeric" modality="optional" maxOccurs="1">
+                        <Quantity name="rate"> <!-- please check name -->
+                            &L_per_min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Minimum Flow" parameterType="Numeric" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="rate">
+                            &L_per_min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Maximum Flow" parameterType="Numeric" modality="optional"
+                                                                                 maxOccurs="1">
+                    <Quantity name="rate">
+                        &L_per_min;
                     </Quantity>
                 </ParameterBlueprint>
+                    <ParameterBlueprint name="Nebulizer Minimum Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+                        <Quantity name="temperature">
+                            &degC; &degK; &degF;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Nebulizer Maximum Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+                        <Quantity name="temperature">
+                            &degC; &degK; &degF;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Evaporator Minimum Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+                        <Quantity name="temperature">
+                            &degC; &degK; &degF;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Evaporator Maximum Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+                        <Quantity name="temperature">
+                            &degC; &degK; &degF;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Electrical Specifications" modality="optional" maxOccurs="1">
+                    <ParameterBlueprint name="Input" parameterType="String" modality="optional">
+                        <Documentation>Information about the input connectors of the device</Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Output" parameterType="String" modality="optional">
+                        <Documentation>Information about the output connectors of the device</Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Signal Noise" parameterType="Numeric" modality="optional" maxOccurs="1">
+                        <Quantity name="noise">
+                            &mV;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Sampling Rate" parameterType="Numeric" modality="optional" maxOccurs="1">
+                        <Quantity name="frequency">
+                            &Hz;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <!-- Maybe irrelevant:  -->
+                    <ParameterBlueprint name="Analog-to-Digital Converter Resolution" parameterType="Float"
+                                        modality="optional" maxOccurs="1">
+                        <Documentation>Digital resolution of the analog-to-digital converter.</Documentation>
+                        <Quantity name="bits">
+                            <Unit label="bit">
+                                <SIUnit>1</SIUnit>
+                            </Unit>
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
             </CategoryBlueprint>
-
             <CategoryBlueprint name="Instrument Settings" modality="required">
                 <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
                 <ParameterBlueprint name="LED Intensity" parameterType="Numeric" modality="optional">
                     <Documentation>The adjusted intensity of the LED in Percent</Documentation>
                     <Quantity name="Intensity">
                         &percent;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Output Rate" parameterType="Numeric" modality="optional">
-                    <Quantity name="Frequency">
-                        &Hz;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Smoothing" parameterType="Numeric" modality="optional">
@@ -154,9 +267,13 @@
                     <Quantity name="Response Time">
                         &s;
                     </Quantity>
-
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Evaporator Gas Flow" parameterType="Numeric" modality="optional">
+                <ParameterBlueprint name="Eluent Flow" parameterType="Numeric" modality="optional">
+                    <Quantity name="Liter per Minute">
+                        &L_per_min;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Gas Flow" parameterType="Numeric" modality="optional">
                     <Documentation>The evaporator gas flow is used to control the ELS detector’s evaporation
                         process.
                     </Documentation>
@@ -164,8 +281,13 @@
                         &L_per_min;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Nebuliser Temperature" parameterType="Numeric" modality="optional">
-                    <Documentation>Temperature of the Nebuliser</Documentation>
+                <ParameterBlueprint name="Gas Pressure" parameterType="Numeric" modality="optional">
+                    <Quantity name="pressure">
+                        &bar; &psig;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Nebulizer Temperature" parameterType="Numeric" modality="optional">
+                    <Documentation>Temperature of the Nebulizer</Documentation>
                     <Quantity name="Temperature">
                         <Unit label="degree">
                             <SIUnit>K</SIUnit>
@@ -180,27 +302,37 @@
                         </Unit>
                     </Quantity>
                 </ParameterBlueprint>
+                <ParameterBlueprint name="Sampling Rate" parameterType="Numeric" modality="optional">
+                    <Quantity name="Frequency">
+                        &Hz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <CategoryBlueprint name="Signal Filter" modality="optional">
+                    <ParameterBlueprint name="Filter Type" parameterType="String" modality="optional" >
+                        <Documentation>The type(s) of filter that can be used to smooth the electrical output signal.</Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Filter Parameter" parameterType="Numeric" modality="optional">
+                        <!-- not sure how to adequately prepare for different kinds of filters -->
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+
             </CategoryBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Detector Properties" modality="optional">
-            <ParameterBlueprint name="Detector Position" parameterType="String" modality="optional">
-                <Documentation>Position of the detector in the instrument. Often called 'A' or 'B', 'left' or 'right',
-                    ...
-                </Documentation>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
+
     </MethodBlueprint>
     <ResultBlueprint name="ELSD Trace" modality="required">
         <Documentation>Time-based trace of ELS detector data.</Documentation>
         <SeriesSetBlueprint name="ELSD Trace" modality="required">
-            <SeriesBlueprint name="Time" seriesType="Numeric" modality="required" dependency="independent" plotScale="linear" >
+            <SeriesBlueprint name="Time" seriesType="Numeric" modality="required" dependency="independent"
+                             plotScale="linear">
                 <Documentation>TODO</Documentation>
                 <Quantity name="Time">
                     &ms; &s; &min;
                 </Quantity>
             </SeriesBlueprint>
             <!-- Not sure about the following section. Couldn't find any information on the actual measurement results -->
-            <SeriesBlueprint name="Intensity" seriesType="Numeric" modality="required" dependency="dependent" plotScale="linear">
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" modality="required" dependency="dependent"
+                             plotScale="linear">
                 <Documentation>The amount of light scattered by the eluent</Documentation>
                 <Quantity name="Absorbance">
                     &AU; &A;

@@ -359,7 +359,7 @@
     </SampleRoleBlueprint>
 
     <MethodBlueprint>
-        <CategoryBlueprint name="Common Method" modality="required">
+        <CategoryBlueprint name="Common Method" modality="optional">
             <Documentation>Information describing the instrument and its environment.</Documentation>
             <CategoryBlueprint name="Instrument Properties" modality="optional">
                 <Documentation>Fixed characteristics of the instrument.</Documentation>
@@ -370,34 +370,34 @@
                     <Documentation>Comments about the instrument.</Documentation>
                 </ParameterBlueprint>
             </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings" modality="required">
-                <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-                <ParameterBlueprint name="Scan Mode" parameterType="String" modality="required">
-                    <AllowedValue>
-                        <S>Full Scan</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Selected Ion Monitoring</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Polarity" parameterType="String" modality="required">
-                    <Documentation>Mandy Mass Spectrometers can work in either positive or negative ion mode. This
-                        information is crucial for the interpretation of the data.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>"+"</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>"positive"</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>"-"</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>"negative"</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Instrument Settings" modality="required">
+            <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
+            <ParameterBlueprint name="Scan Mode" parameterType="String" modality="required">
+                <AllowedValue>
+                    <S>Full Scan</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Selected Ion Monitoring</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Polarity" parameterType="String" modality="required">
+                <Documentation>Mandy Mass Spectrometers can work in either positive or negative ion mode. This
+                    information is crucial for the interpretation of the data.
+                </Documentation>
+                <AllowedValue>
+                    <S>"+"</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>"positive"</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>"-"</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>"negative"</S>
+                </AllowedValue>
+            </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Method Description" modality="optional">
             <Documentation>Basic contextual information about the measurement method.</Documentation>
@@ -549,7 +549,7 @@
                     &u;
                 </Quantity>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Total Ion Count" parameterType="Numeric">
+            <ParameterBlueprint name="Total Ion Current" parameterType="Numeric">
                 <Quantity name="Abundance">
                     &AU; &A;
                 </Quantity>

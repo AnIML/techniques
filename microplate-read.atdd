@@ -384,6 +384,7 @@
             <CategoryBlueprint name="Instrument Settings" modality="required">
                 <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
                 <SeriesSetBlueprint name="Gas Control" modality="optional">
+                    <Documentation>Gas concentrations that are set for the experiment environment.</Documentation>
                     <SeriesBlueprint name="Gas" seriesType="String" dependency="independent" modality="required">
                         <Documentation>The name of the gas</Documentation>
                     </SeriesBlueprint>
@@ -465,7 +466,12 @@
                         </AllowedValue>
                     </SeriesBlueprint>
                 </SeriesSetBlueprint>
-                <ParameterBlueprint name="Temperature Control" parameterType=""
+                <ParameterBlueprint name="Temperature Control" parameterType="Numeric">
+                    <Documentation>The temperature that is set for the experiment.</Documentation>
+                    <Quantity name="temperature">
+                        &degC; &degF; &degK;
+                    </Quantity>
+                </ParameterBlueprint>
                 <ParameterBlueprint name="Measurement Type" parameterType="String" modality="required">
                     <Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of
                         discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one

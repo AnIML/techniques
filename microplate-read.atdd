@@ -383,8 +383,18 @@
             </CategoryBlueprint>
             <CategoryBlueprint name="Instrument Settings" modality="required">
                 <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
+                <SeriesSetBlueprint name="Gas Control" modality="optional">
+                    <SeriesBlueprint name="Gas" seriesType="String" dependency="independent" modality="required">
+                        <Documentation>The name of the gas</Documentation>
+                    </SeriesBlueprint>
+                    <SeriesBlueprint name="Gas Concentration" seriesType="Numeric" dependency="dependent" modality="optional">
+                        <Quantity name="Concentration">
+                            &percent;
+                        </Quantity>
+                    </SeriesBlueprint>
+                </SeriesSetBlueprint>
                 <SeriesSetBlueprint name="Light Sources" modality="optional">
-                    <Documentation>Description of light sources being used whithin the experiment described.
+                    <Documentation>Description of light sources being used within the experiment described.
                     </Documentation>
                     <SeriesBlueprint name="Lower Bound" seriesType="Float" modality="required" dependency="dependent"
                                      plotScale="none">
@@ -455,6 +465,7 @@
                         </AllowedValue>
                     </SeriesBlueprint>
                 </SeriesSetBlueprint>
+                <ParameterBlueprint name="Temperature Control" parameterType=""
                 <ParameterBlueprint name="Measurement Type" parameterType="String" modality="required">
                     <Documentation>The name of the experiment mode, e.g. measuring of a single wavelength, measuring of
                         discrete wavelengths or measuring of a spectrum. Single Mode means that absorbance of only one
@@ -514,6 +525,15 @@
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional">
                     <Documentation>The wavelenght at which the measurement took place.</Documentation>
+                </ParameterBlueprint>
+
+                <ParameterBlueprint name="Reading Position" parameterType="String" modality="optional">
+                    <AllowedValue>
+                        <S>top</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>bottom</S>
+                    </AllowedValue>
                 </ParameterBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>

@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (BSSN Software) -->
-<!--
-	Repository version: $Id$
-	
-	see CVS comments for change log
-  -->
+
 <!DOCTYPE Technique [
 	<!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
@@ -77,10 +72,10 @@
 	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 ]>
-<Technique name="UV/Vis Trace Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
-	<Documentation>Technique definition for UV/Vis Point Detector data</Documentation>
-	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed">
-		<Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the spectra (if applicable).</Documentation>
+<Technique name="Fluorescence Trace Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
+	<Documentation>Technique definition for Fluorescence Point Detector data</Documentation>
+	<ExperimentDataRoleBlueprint name="Other Wavelength Detection" experimentStepPurpose="consumed" >
+		<Documentation>This would reference another excitation/emission detection run (if applicable).</Documentation> <!-- Not sure, if this is feasible -->
 	</ExperimentDataRoleBlueprint>
 	<MethodBlueprint>
 		<CategoryBlueprint name="Method Description" modality="optional">
@@ -89,7 +84,6 @@
 				<Documentation>External reference to measurement method.</Documentation>
 			</ParameterBlueprint>
 		</CategoryBlueprint>
-		
 		<CategoryBlueprint name="Common Method" modality="required">
 			<Documentation>Information describing the instrument and its environment. This information is common to both dispersive and interferometric measurements.</Documentation>
 			<CategoryBlueprint name="Instrument Properties" modality="optional">
@@ -99,33 +93,6 @@
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Comments" parameterType="String" modality="optional">
 					<Documentation>Comments about the instrument.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Measurement Mode" parameterType="String" maxOccurs="1" modality="optional">
-					<Documentation>The optical mode with respect to the sample with which the measurement was made, such as reflectance and transmittance.</Documentation>
-					<AllowedValue>
-						<S>Reflectance, diffuse</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Reflectance, grazing</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Reflectance, multiple internal</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Reflectance, specular</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Transmittance, apparent</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Transmittance, diffuse</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Transmittance, true</S>
-					</AllowedValue>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
-					<Documentation>The type or name of the assembly that holds the sample container in the optical beam, e.g., cuvette holder, sample changer. (The sample container itself is described within the Sample element in the AnIML Core Schema.)</Documentation>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Analog-to-Digital Converter Resolution" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Digital resolution of the analog-to-digital converter.</Documentation>
@@ -350,53 +317,6 @@
 						<Documentation>Factor for converting radiant energy incident on the detector to an electrical signal at the detector output.</Documentation>
 					</SeriesBlueprint>
 				</SeriesSetBlueprint>
-				<SeriesSetBlueprint name="Detector Polarization" modality="optional">
-					<Documentation>Sequence of polarizing elements used to modify the detector polarization for the given wavelength ranges.</Documentation>
-					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
-						<Documentation>The lower-bound x-axis value from which the given polarizer was used.</Documentation>
-						<Quantity name="Reciprocal Length">
-							&reciprocal_cm;
-						</Quantity>
-						<Quantity name="Length">
-							&um;
-							&nm;
-							&pm;
-						</Quantity>
-						<Quantity name="Energy">
-							&eV;
-						</Quantity>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
-						<Documentation>The upper-bound x-axis value up to which the given polarizer was used..</Documentation>
-						<Quantity name="Reciprocal Length">
-							&reciprocal_cm;
-						</Quantity>
-						<Quantity name="Length">
-							&um; &nm; &pm;
-						</Quantity>
-						<Quantity name="Energy">
-							&eV;
-						</Quantity>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Polarizer Type" seriesType="String" dependency="dependent" modality="required" plotScale="none">
-						<Documentation>Type of optical element used for polarization.</Documentation>
-						<AllowedValue>
-							<S>Glan-Taylor</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Glan-Thomson</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Wollaston</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Nanoparticle</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>other</S>
-						</AllowedValue>
-					</SeriesBlueprint>
-				</SeriesSetBlueprint>
 				<SeriesSetBlueprint name="Detector Optical Filters" modality="optional">
 					<Documentation>Sequence of optical filters used to modify the detector response for given wavelength ranges.</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required" plotScale="none">
@@ -464,131 +384,28 @@
 						&Pa; &psig; &bar;
 					</Quantity>
 				</ParameterBlueprint>
-
-					<ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional">
-						<Documentation>The wavelength observed in this experiment step. TODO - move to top?</Documentation>
-						<Quantity name="Reciprocal Length">
-							&reciprocal_cm;
-						</Quantity>
-						<Quantity name="Length">
-							&um; &nm; &pm;
-						</Quantity>
-						<Quantity name="Energy">
-							&eV;
-						</Quantity>
-					</ParameterBlueprint>
-
-			</CategoryBlueprint>
-		</CategoryBlueprint>
-		<CategoryBlueprint name="Dispersive Method" modality="optional">
-			<Documentation>Specific parameters for dispersive measurements.</Documentation>
-			<CategoryBlueprint name="Instrument Properties">
-				<Documentation>Fixed characteristics of the instrument, specific to dispersive measurements.</Documentation>
-				<ParameterBlueprint name="Dispersion Element" parameterType="String" modality="optional">
-					<Documentation/>
-					<AllowedValue>
-						<S>Prism</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Grating</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Other</S>
-					</AllowedValue>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Prism Material" parameterType="String">
-					<Documentation>Material from which the prism is made.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Grating Ruling" parameterType="Int">
-					<Documentation>Number of lines per unit distance in the grating.</Documentation>
-					<Quantity name="lines per distance">
-						<Unit label="lines/mm">
-							<SIUnit factor="10e-3" exponent="-1">m</SIUnit>
-						</Unit>
+				<ParameterBlueprint name="Minimum Excitation Wavelength" parameterType="Float" maxOccurs="1" modality="required">
+					<Quantity name="Wavelength">
+						&nm;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Grating Blaze Angle" parameterType="Float">
-					<Documentation>Angle at which grating lines have been cut.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Instrument Type" parameterType="String" modality="optional">
-					<Documentation>Whether the instrument is a single beam, double beam, or diode array instrument.</Documentation>
-					<AllowedValue>
-						<S>single beam</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>double beam</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>array-based</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>other</S>
-					</AllowedValue>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
-					<Documentation literatureReferenceID="ASTM E131-05">The wavelength dispersion at the exit slit of the instrument.</Documentation>
-					<Quantity name="Ratio">
-						<Unit label="nm/mm">
-							<SIUnit exponent="1" factor="1e-9">m</SIUnit>
-							<SIUnit exponent="1" factor="1e-3">m</SIUnit>
-						</Unit>
+				<ParameterBlueprint name="Maximum Excitation Wavelength" parameterType="Float" maxOccurs="1" modality="required">
+					<Quantity name="Wavelength">
+						&nm;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
-					<Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector. Resolution - &Delta;&lamda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lamda;, or wavenumber interval, &Delta;v, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
-					<Quantity name="Energy">
-						&eV;
+				<ParameterBlueprint name="Minimum Emission Wavelength" parameterType="Float" maxOccurs="1" modality="required">
+					<Quantity name="Wavelength">
+						&nm;
 					</Quantity>
-					<Quantity name="Reciprocal Length">
-						&reciprocal_cm;
-					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Maximum Emission Wavelength" parameterType="Float" maxOccurs="1" modality="required">
 					<Quantity name="Wavelength">
 						&nm;
 					</Quantity>
 				</ParameterBlueprint>
 			</CategoryBlueprint>
-			<CategoryBlueprint name="Instrument Settings">
-				<Documentation>Variable characteristics or configuration parameters of the instrument, specific to dispersive measurements.</Documentation>
-				<ParameterBlueprint name="Slit Function" parameterType="String" modality="required">
-					<Documentation>Adjustment of the slit width to maintain constant resolution or constant energy over the course of the scan.</Documentation>
-					<AllowedValue>
-						<S>Constant resolution</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Constant energy</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>other</S>
-					</AllowedValue>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Spectral Slit Width" parameterType="Float" modality="optional">
-					<Documentation literatureReferenceID="ASTM E131-05">Mechanical width of the exit slit, divided by the linear dispersion in the exit slit plan. Use parameter if constant.</Documentation>
-					<Quantity name="Length">
-						&nm;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Slit Width" parameterType="Float" modality="optional">
-					<Documentation>Mechanical width of the monochromator slits. Use parameter if constant.</Documentation>
-					<Quantity name="Length">
-						&mm; &nm;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Integration Period" parameterType="Float" modality="optional">
-					<Documentation>The time interval over which discrete detector readings are averaged to produce a data point. Use this parameter only to state how the data were acquired.</Documentation>
-					<Quantity name="Time">
-						&ms; &s;
-					</Quantity>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Spectral Bandwidth" modality="optional" parameterType="Float">
-					<Documentation literatureReferenceID="ASTM E131-05">The wavelength interval of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
-					<Quantity name="Length">
-						&nm;
-					</Quantity>
-				</ParameterBlueprint>
-			</CategoryBlueprint>
 		</CategoryBlueprint>
-
-		
 		<CategoryBlueprint name="Detector Properties" modality="optional">
 			<ParameterBlueprint name="Detector Position" parameterType="String" modality="optional">
 				<Documentation>Position of the detector in the instrument. Often called 'A' or 'B', 'left' or 'right', ...</Documentation>

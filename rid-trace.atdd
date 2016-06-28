@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (BSSN Software) -->
-<!--
-	Repository version: $Id$
-	
-	see CVS comments for change log
-  -->
+<!-- by Patrick Boba (BSSN Software) -->
+
 <!DOCTYPE Technique [
 	<!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
@@ -337,12 +333,15 @@
 					&ms; &s; &min;
 				</Quantity>
 			</SeriesBlueprint>
-			<SeriesBlueprint name="Intensity" seriesType="Numeric" modality="required" plotScale="linear" dependency="dependent">
-				<Documentation literatureReferenceID="ASTM E131-05">Intensity can be measured in transmittance or absorbance units; the dependent variable in the experiment. Transmittance is the ratio of radiant power transmitted by the sample to the radiant power incident on the sample. Reflectance is the ratio of the radiant power reflected by the sample to the radiant power incident on the sample.</Documentation>
-				<Quantity name="Refraction Index">
-					&AU;&A;
+			<SeriesBlueprint name="Refraction Index" seriesType="Numeric" modality="required" plotScale="linear" dependency="dependent">
+				<Quantity name="Refraction Index Unit">
+					<Unit label="RID">
+						<SIUnit factor="1" exponent="1">1</SIUnit>
+						<!-- RID is without unit. -->
+					</Unit>
 				</Quantity>
 			</SeriesBlueprint>
+			<SeriesBlueprint name="Wavelength" seriesType="Numeric" dependency="dependent" maxOccurs="1"
 		</SeriesSetBlueprint>
 	</ResultBlueprint>
 	<Bibliography>

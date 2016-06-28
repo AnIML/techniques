@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (BSSN Software) -->
-<!--
-	Repository version: $Id$
-	
-	see CVS comments for change log
-  -->
+<!-- edited with by Patrick Boba -->
+
 <!DOCTYPE Technique [
 	<!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 	<!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
@@ -78,10 +74,7 @@
 	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 ]>
 <Technique name="UV/Vis Trace Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
-	<Documentation>Technique definition for UV/Vis Point Detector data</Documentation>
-	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed">
-		<Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the spectra (if applicable).</Documentation>
-	</ExperimentDataRoleBlueprint>
+	<Documentation>Technique definition for fluorescence trace detector data</Documentation>
 	<MethodBlueprint>
 		<CategoryBlueprint name="Method Description" modality="optional">
 			<Documentation>Basic contextual information about the measurement method.</Documentation>
@@ -89,7 +82,6 @@
 				<Documentation>External reference to measurement method.</Documentation>
 			</ParameterBlueprint>
 		</CategoryBlueprint>
-		
 		<CategoryBlueprint name="Common Method" modality="required">
 			<Documentation>Information describing the instrument and its environment. This information is common to both dispersive and interferometric measurements.</Documentation>
 			<CategoryBlueprint name="Instrument Properties" modality="optional">
@@ -139,7 +131,7 @@
 			<CategoryBlueprint name="Instrument Settings" modality="required">
 				<Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
 				<SeriesSetBlueprint name="Light Sources" modality="optional">
-					<Documentation>Description of light sources being used whithin the experiment described.</Documentation>
+					<Documentation>Description of light sources being used within the experiment described.</Documentation>
 					<SeriesBlueprint name="Lower Bound" seriesType="Float" modality="required" dependency="dependent" plotScale="none">
 						<Documentation>The lower-bound x-axis value from which the given light source was used.</Documentation>
 						<Quantity name="Reciprocal Length">
@@ -587,8 +579,6 @@
 				</ParameterBlueprint>
 			</CategoryBlueprint>
 		</CategoryBlueprint>
-
-		
 		<CategoryBlueprint name="Detector Properties" modality="optional">
 			<ParameterBlueprint name="Detector Position" parameterType="String" modality="optional">
 				<Documentation>Position of the detector in the instrument. Often called 'A' or 'B', 'left' or 'right', ...</Documentation>

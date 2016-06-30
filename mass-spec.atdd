@@ -87,7 +87,9 @@
            xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90">
-    <Documentation>Technique Definition for Mass Spectrometry (The study of matter through the formation of gaseous ions that are characterized by their mass and charge.  "Standard Definitions of Terms Relating to Mass Spectrometry", Second Draft, May 2006 IUPAC, Analytical Chemistry Division.  It is a detection (sample measuring) technique.
+    <Documentation>Technique Definition for Mass Spectrometry (The study of matter through the formation of gaseous ions
+        that are characterized by their mass and charge. "Standard Definitions of Terms Relating to Mass Spectrometry",
+        Second Draft, May 2006 IUPAC, Analytical Chemistry Division. It is a detection (sample measuring) technique.
     </Documentation>
     <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1"
                          inheritable="true">
@@ -338,24 +340,25 @@
         <CategoryBlueprint name="Sample Preparation" maxOccurs="1" modality="optional">
             <ParameterBlueprint name="Reagent Gas" parameterType="String" modality="optional" maxOccurs="1">
             </ParameterBlueprint>
-            <ParameterBlueprint name="Nebulization Gas"  parameterType="String" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Nebulization Gas" parameterType="String" modality="optional" maxOccurs="1">
             </ParameterBlueprint>
-            <ParameterBlueprint name="Curtain Gas"  parameterType="String" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Curtain Gas" parameterType="String" modality="optional" maxOccurs="1">
             </ParameterBlueprint>
-            <ParameterBlueprint name="Collision Gas"  parameterType="String" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Collision Gas" parameterType="String" modality="optional" maxOccurs="1">
             </ParameterBlueprint>
-            <ParameterBlueprint name="Exhaust Gas"  parameterType="String" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Exhaust Gas" parameterType="String" modality="optional" maxOccurs="1">
             </ParameterBlueprint>
-            <ParameterBlueprint name="Solvent"  parameterType="String" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Solvent" parameterType="String" modality="optional" maxOccurs="1">
             </ParameterBlueprint>
-            <ParameterBlueprint name="Matrix"  parameterType="String" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Matrix" parameterType="String" modality="optional" maxOccurs="1">
             </ParameterBlueprint>
-            <ParameterBlueprint name="Additive"  parameterType="String" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Additive" parameterType="String" modality="optional" maxOccurs="1">
             </ParameterBlueprint>
         </CategoryBlueprint>
 
     </SampleRoleBlueprint>
-    <SampleRoleBlueprint name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="true">
+    <SampleRoleBlueprint name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
+                         inheritable="true">
     </SampleRoleBlueprint>
 
     <MethodBlueprint>
@@ -373,9 +376,9 @@
         </CategoryBlueprint>
         <CategoryBlueprint name="Instrument Settings" modality="required">
             <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-            <ParameterBlueprint name="Scan Mode" parameterType="String" modality="required">
+            <ParameterBlueprint name="Operation Mode" parameterType="String" modality="required">
                 <AllowedValue>
-                    <S>Full Scan</S>
+                    <S>Scan</S>
                 </AllowedValue>
                 <AllowedValue>
                     <S>Selected Ion Monitoring</S>
@@ -438,7 +441,7 @@
                     <S>Ion Mobility Spectrometry</S>
                 </AllowedValue>
                 <AllowedValue>
-                    <S>other</S>
+                    <S>Other</S>
                 </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
@@ -467,11 +470,18 @@
                 </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="DetectorComponentType" maxOccurs="unbounded" modality="optional">
-            <ParameterBlueprint parameterType="Int" name="Order" maxOccurs="1" modality="optional">
-                <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the quadrupole would be 0, and the TOF 1"</Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint parameterType="String" name="Name" maxOccurs="1" modality="required"/>
+        <CategoryBlueprint name="Detector Components" modality="optional" maxOccurs="1">
+            <SeriesSetBlueprint name="Detector Components" modality="optional">
+                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1" modality="required">
+                    <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
+                        quadrupole would be 0, and the TOF 1"
+                    </Documentation>
+                </SeriesBlueprint>
+                <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
+                                 dependency="dependent">
+                    <Documentation></Documentation>
+                </SeriesBlueprint>
+            </SeriesSetBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Mass Selection" modality="optional">
             <ParameterBlueprint name="Mass Selection" parameterType="String" maxOccurs="1" modality="optional">
@@ -523,6 +533,9 @@
                 <Quantity name="Abundance">
                     &AU; &A; &percent;
                 </Quantity>
+                <Quantity name="Counts">
+                    &count;
+                </Quantity>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="required">
@@ -534,7 +547,7 @@
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
-                <Documentation>The total number of scans performed.</Documentation>
+                <Documentation>The total number of scans performed. This should be identical for the each single scan</Documentation>
             </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Spectrum Details" modality="optional" maxOccurs="1">
@@ -552,6 +565,9 @@
             <ParameterBlueprint name="Total Ion Current" parameterType="Numeric">
                 <Quantity name="Abundance">
                     &AU; &A;
+                </Quantity>
+                <Quantity name="Counts">
+                    &count;
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>

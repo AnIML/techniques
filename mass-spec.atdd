@@ -372,35 +372,51 @@
                 <ParameterBlueprint name="Comments" parameterType="String" modality="optional">
                     <Documentation>Comments about the instrument.</Documentation>
                 </ParameterBlueprint>
+                <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
+                    <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1"></ParameterBlueprint>
+                    <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1"></ParameterBlueprint>
+                </CategoryBlueprint>
+                <ParameterBlueprint name="Resolution" parameterType="Numeric" modality="1">
+                    <Documentation literatureReferenceID="PAC-REC-06-04-06">Resolution in mass spectrometry defined as
+                        the m/delta_m, where m is the
+                        mass of the ion of interest and delta_m is the peak width (peak width definition) or the spacing
+                        between two
+                        equal intensity peaks with a valley between them no more than 10 % of their height (10 % valley
+                        definition).
+                    </Documentation>
+                </ParameterBlueprint>
+
             </CategoryBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Instrument Settings" modality="required">
-            <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-            <ParameterBlueprint name="Operation Mode" parameterType="String" modality="required">
-                <AllowedValue>
-                    <S>Scan</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Selected Ion Monitoring</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Polarity" parameterType="String" modality="required">
-                <Documentation>Mandy Mass Spectrometers can work in either positive or negative ion mode. This
-                    information is crucial for the interpretation of the data.
-                </Documentation>
-                <AllowedValue>
-                    <S>"+"</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>"positive"</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>"-"</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>"negative"</S>
-                </AllowedValue>
-            </ParameterBlueprint>
+            <CategoryBlueprint name="Instrument Settings" modality="required">
+                <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
+                <ParameterBlueprint name="Operation Mode" parameterType="String" modality="required">
+                    <AllowedValue>
+                        <S>Scan</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Selected Ion Monitoring</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Polarity" parameterType="String" modality="required">
+                    <Documentation>Mandy Mass Spectrometers can work in either positive or negative ion mode. This
+                        information is crucial for the interpretation of the data.
+                    </Documentation>
+                    <AllowedValue>
+                        <S>"+"</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>"positive"</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>"-"</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>"negative"</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Method Description" modality="optional">
             <Documentation>Basic contextual information about the measurement method.</Documentation>
@@ -447,23 +463,80 @@
         </CategoryBlueprint>
         <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
         </CategoryBlueprint>
-        <CategoryBlueprint name="Ion Source" modality="optional">
-            <Documentation>The method used to ionize the sample</Documentation>
+        <CategoryBlueprint name="Ionization Method" modality="optional">
+            <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.</Documentation>
             <ParameterBlueprint name="Ion Source" parameterType="String" modality="optional">
                 <AllowedValue>
-                    <S>Fast Atom Bombardment</S>
+                    <S>Atmospheric Pressure Chemical Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Atmospheric Pressure Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Atmospheric Pressure Matrix-Assisted Laser Desorption/Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Atmospheric Pressure Photoionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Continuous Flow Fast Atom Bombardment</S>
                 </AllowedValue>
                 <AllowedValue>
                     <S>Chemical Ionization</S>
                 </AllowedValue>
                 <AllowedValue>
-                    <S>Atmospheric-Pressure Chemical Ionization</S>
+                    <S>Continuous Flow Matrix-Assisted Laser Desorption/Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Desorption Chemical Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Desorption Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Desorption Ionization on Silicon</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Dielectric Barrier Discharge Ionization</S>
                 </AllowedValue>
                 <AllowedValue>
                     <S>Electrospray Ionization</S>
                 </AllowedValue>
                 <AllowedValue>
+                    <S>Fast Atom Bombardment</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Fast Ion Bombardment</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Field Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Laser Desorption Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Laser Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
                     <S>Matrix-Assisted Laser Desorption/Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Negative Ion Chemical Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Spray Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Surface-Assisted Laser Desorption/Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Surface-Enhanced Laser Desorption/Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Thermal Ionization</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Thermospray Ionization</S>
                 </AllowedValue>
                 <AllowedValue>
                     <S>Other</S>
@@ -472,7 +545,8 @@
         </CategoryBlueprint>
         <CategoryBlueprint name="Detector Components" modality="optional" maxOccurs="1">
             <SeriesSetBlueprint name="Detector Components" modality="optional">
-                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1" modality="required">
+                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
+                                 modality="required">
                     <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
                         quadrupole would be 0, and the TOF 1"
                     </Documentation>
@@ -547,7 +621,8 @@
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
-                <Documentation>The total number of scans performed. This should be identical for the each single scan</Documentation>
+                <Documentation>The total number of scans performed. This should be identical for the each single scan
+                </Documentation>
             </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Spectrum Details" modality="optional" maxOccurs="1">
@@ -576,6 +651,9 @@
     <Bibliography>
         <LiteratureReference literatureReferenceID="ASTM D1129-06A">
             ASTM Standard D1129-06A: TODO
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="PAC-REC-06-04-06">
+            DOI: 10.1351/PAC-REC-06-04-06
         </LiteratureReference>
     </Bibliography>
 

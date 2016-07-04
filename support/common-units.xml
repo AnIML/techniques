@@ -14,7 +14,7 @@
         <!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
         <!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
         <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
-        <!ENTITY percent "<Unit label='%'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
+        <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
         <!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
 
         <!-- Mass -->

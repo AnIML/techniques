@@ -5,105 +5,131 @@
 	$Id$
  -->
 <!DOCTYPE Technique [
-	<!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY lamda "&#955;">
-	<!ENTITY Delta "&#916;">
-	<!-- Mass -->
-	<!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
-	<!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
-	<!-- Length -->
-	<!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY Angstrom "<Unit label='Å'><SIUnit factor='1e-10' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY inch "<Unit label='in'><SIUnit factor='0.0254' exponent='1'>m</SIUnit></Unit>">
-	<!-- Velocity -->
-	<!ENTITY cm_per_s "<Unit label='cm/s'><SIUnit exponent='1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!-- Volume -->
-	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
-	<!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY uL "<Unit label='µL'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
-	<!ENTITY nL "<Unit label='nL'><SIUnit exponent='3' factor='1e-12'>m</SIUnit></Unit>">	
-	<!-- Time -->
-	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
-	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
-	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
-	<!ENTITY us "<Unit label='µs'><SIUnit exponent='1' factor='1e-6'>s</SIUnit></Unit>">
-	<!ENTITY ns "<Unit label='ns'><SIUnit exponent='1' factor='1e-9'>s</SIUnit></Unit>">
-	<!ENTITY ps "<Unit label='ps'><SIUnit exponent='1' factor='1e-12'>s</SIUnit></Unit>">
-	<!-- Frequency -->
-	<!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY kHz "<Unit label='kHz'><SIUnit exponent='-1' factor='1e+3'>s</SIUnit></Unit>">
-	<!-- Pressure -->
-	<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY kgf_per_cm2 "<Unit label='kgf/cm²'><SIUnit exponent='1'>kg</SIUnit><SIUnit factor='1e-2' exponent='-2'>m</SIUnit></Unit>">
-	<!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
-	<!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
-	<!-- Pressure Change Rate -->
-	<!ENTITY Pa_per_min "<Unit label='Pa/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY bar_per_min "<Unit label='bar/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY psig_per_min "<Unit label='psig/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-	<!-- Temperature -->
-	<!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
-	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
-	<!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
-	<!-- Voltage -->
-	<!ENTITY kV "<Unit label='kV'><SIUnit factor='1e03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY uV "<Unit label='µV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY nV "<Unit label='nV'><SIUnit factor='1e-09'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY pV "<Unit label='pV'><SIUnit factor='1e-12'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!-- Current -->
-	<!ENTITY A "<Unit label='A'><SIUnit>A</SIUnit></Unit>">
-	<!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
-	<!ENTITY uA "<Unit label='µA'><SIUnit factor='1e-06'>A</SIUnit></Unit>">
-	<!ENTITY nA "<Unit label='nA'><SIUnit factor='1e-09'>A</SIUnit></Unit>">
-	<!ENTITY pA "<Unit label='pA'><SIUnit factor='1e-12'>A</SIUnit></Unit>">
-	<!ENTITY fA "<Unit label='fA'><SIUnit factor='1e-15'>A</SIUnit></Unit>">
-	<!-- Current per Voltage -->
-	<!ENTITY A_per_V "<Unit label='A/V'><SIUnit exponent='2'>A</SIUnit><SIUnit exponent='3'>s</SIUnit><SIUnit exponent='-1'>kg</SIUnit><SIUnit exponent='-2'>m</SIUnit></Unit>">
-	<!-- Bandwidth / Voltage per Time -->
-	<!ENTITY mV_per_s "<Unit label='mV/s'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
-	<!ENTITY uV_per_s "<Unit label='µV/s'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
-	<!-- Temperature Change Rate -->
-	<!ENTITY degC_per_min "<Unit label='&#176;C/min'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='60' exponent='-1'>s</SIUnit></Unit>">
-	<!-- Concentration -->
-	<!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
-	<!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
-	<!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
-	<!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
-	<!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
-	<!-- Flow Rate -->
-	<!ENTITY mL_per_s "<Unit label='mL/s'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY uL_per_s "<Unit label='µL/s'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY nL_per_min "<Unit label='nL/min'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY nL_per_s "<Unit label='nL/s'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY L_per_min "<Unit label='L/min'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY L_per_s "<Unit label='L/s'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!-- Flow Rate Change -->
-	<!ENTITY mL_per_min2 "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
-	<!-- Various simple units-->
-	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
-	<!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
-	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
-	<!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
-	<!-- Not sorted yet -->
-	<!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
-	<!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
-	<!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY Absorbance "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-]>
+        <!-- letters -->
+        <!ENTITY lamda "&#955;">
+        <!ENTITY Delta "&#916;">
+        <!ENTITY alpha "&#945;">
+
+        <!-- Various simple units-->
+        <!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
+        <!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
+        <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
+        <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
+        <!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+
+        <!-- Mass -->
+        <!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
+        <!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
+        <!ENTITY atomic_mass_unit "<Unit label='u'><SIUnit exponent='-27' factor='1.660539040'>kg</SIUnit></Unit>" >
+        <!ENTITY mass_charge_ratio "<Unit label='m/z'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!-- m/z per definition dimensionless. But shouldn't there be relation to other units?-->
+
+        <!-- Length -->
+        <!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY Angstrom "<Unit label='Å'><SIUnit factor='1e-10' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY inch "<Unit label='in'><SIUnit factor='0.0254' exponent='1'>m</SIUnit></Unit>">
+
+        <!-- Velocity -->
+        <!ENTITY cm_per_s "<Unit label='cm/s'><SIUnit exponent='1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+
+        <!-- Volume -->
+        <!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
+        <!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
+        <!ENTITY uL "<Unit label='µL'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
+        <!ENTITY nL "<Unit label='nL'><SIUnit exponent='3' factor='1e-12'>m</SIUnit></Unit>">
+
+        <!-- Time -->
+        <!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
+        <!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
+        <!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
+        <!ENTITY us "<Unit label='µs'><SIUnit exponent='1' factor='1e-6'>s</SIUnit></Unit>">
+        <!ENTITY ns "<Unit label='ns'><SIUnit exponent='1' factor='1e-9'>s</SIUnit></Unit>">
+        <!ENTITY ps "<Unit label='ps'><SIUnit exponent='1' factor='1e-12'>s</SIUnit></Unit>">
+
+        <!-- Frequency -->
+        <!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
+        <!ENTITY kHz "<Unit label='kHz'><SIUnit exponent='-1' factor='1e+3'>s</SIUnit></Unit>">
+
+        <!-- Pressure -->
+        <!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY kgf_per_cm2 "<Unit label='kgf/cm²'><SIUnit exponent='1'>kg</SIUnit><SIUnit factor='1e-2' exponent='-2'>m</SIUnit></Unit>">
+        <!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
+        <!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
+        <!-- Pressure Change Rate -->
+        <!ENTITY Pa_per_min "<Unit label='Pa/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
+        <!ENTITY bar_per_min "<Unit label='bar/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
+        <!ENTITY psig_per_min "<Unit label='psig/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
+
+        <!-- Temperature -->
+        <!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
+        <!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
+        <!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+
+        <!-- Voltage -->
+        <!ENTITY kV "<Unit label='kV'><SIUnit factor='1e03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+        <!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+        <!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+        <!ENTITY uV "<Unit label='µV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+        <!ENTITY nV "<Unit label='nV'><SIUnit factor='1e-09'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+        <!ENTITY pV "<Unit label='pV'><SIUnit factor='1e-12'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+
+        <!-- Current -->
+        <!ENTITY A "<Unit label='A'><SIUnit>A</SIUnit></Unit>"> <!-- same label as Absorbance !!! -->
+        <!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
+        <!ENTITY uA "<Unit label='µA'><SIUnit factor='1e-06'>A</SIUnit></Unit>">
+        <!ENTITY nA "<Unit label='nA'><SIUnit factor='1e-09'>A</SIUnit></Unit>">
+        <!ENTITY pA "<Unit label='pA'><SIUnit factor='1e-12'>A</SIUnit></Unit>">
+        <!ENTITY fA "<Unit label='fA'><SIUnit factor='1e-15'>A</SIUnit></Unit>">
+
+        <!-- Absorbance -->
+        <!ENTITY A "<Unit label='A'><SIUnit>1</SIUnit></Unit>"> <!-- same label as Current !!! -->
+        <!ENTITY AU "<Unit label='AU'><SIUnit>1</SIUnit></Unit>">
+
+        <!-- Energy -->
+        <!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
+
+        <!-- Current per Voltage -->
+        <!ENTITY A_per_V "<Unit label='A/V'><SIUnit exponent='2'>A</SIUnit><SIUnit exponent='3'>s</SIUnit><SIUnit exponent='-1'>kg</SIUnit><SIUnit exponent='-2'>m</SIUnit></Unit>">
+        <!-- Bandwidth / Voltage per Time -->
+        <!ENTITY mV_per_s "<Unit label='mV/s'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
+        <!ENTITY uV_per_s "<Unit label='µV/s'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
+        <!-- Temperature Change Rate -->
+        <!ENTITY degC_per_min "<Unit label='&#176;C/min'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='60' exponent='-1'>s</SIUnit></Unit>">
+
+        <!-- Concentration -->
+        <!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
+        <!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
+        <!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
+        <!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
+        <!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
+        <!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
+        <!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
+
+        <!-- Flow Rate -->
+        <!ENTITY mL_per_s "<Unit label='mL/s'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+        <!ENTITY uL_per_s "<Unit label='µL/s'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+        <!ENTITY nL_per_min "<Unit label='nL/min'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
+        <!ENTITY nL_per_s "<Unit label='nL/s'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+        <!ENTITY L_per_min "<Unit label='L/min'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
+        <!ENTITY L_per_s "<Unit label='L/s'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+        <!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
+        <!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
+        <!-- Flow Rate Change -->
+        <!ENTITY mL_per_min2 "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
+
+        <!-- MISC -->
+        <!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
+        <!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
+        <!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+
+        ]>

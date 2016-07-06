@@ -1,49 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited by Patrick Boba  -->
+<!-- edited by Patrick Boba (BSSN Software)  -->
 
 <!DOCTYPE Technique [
+        <!-- letters -->
         <!ENTITY lamda "&#955;">
         <!ENTITY Delta "&#916;">
+
+        <!-- Various simple units-->
+        <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
+        <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
+        <!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+
+        <!-- Mass -->
         <!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
-        <!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
+
+        <!-- Length -->
         <!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
         <!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
         <!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
         <!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
         <!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
+
+        <!-- Volume -->
+        <!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
+        <!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
+
+        <!-- Time -->
+        <!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
         <!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
         <!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
-        <!ENTITY cm_per_s "<Unit label='cm/s'><SIUnit exponent='1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-        <!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
-        <!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
+
+        <!-- Pressure -->
         <!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
         <!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
         <!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+
+        <!-- Temperature -->
         <!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
         <!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
         <!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+
+        <!-- Frequency -->
+        <!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
+
+        <!-- Voltage -->
+        <!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+
+        <!-- Absorbance -->
+        <!ENTITY A "<Unit label='A'><SIUnit>1</SIUnit></Unit>"> <!-- same label as Current !!! -->
+        <!ENTITY AU "<Unit label='AU'><SIUnit>1</SIUnit></Unit>">
+
+        <!-- Energy -->
+        <!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
+
+        <!-- Concentration -->
         <!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
         <!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
         <!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
         <!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
         <!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
         <!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
+
+        <!-- MISC -->
         <!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
-        <!ENTITY reciprocal_um "<Unit label='1/µm'><SIUnit exponent='-1' factor='1e-6'>m</SIUnit></Unit>">
         <!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
-        <!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY A "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
         <!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
         <!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
         <!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
-        <!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
-        <!ENTITY kHz "<Unit label='kHz'><SIUnit exponent='-1' factor='1e+3'>s</SIUnit></Unit>">
-        <!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-        <!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
-        <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
         ]>
 <Technique name="Fluorescence Detector Spectrum" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -1046,601 +1071,6 @@
                 </ParameterBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Interferometric Acquitision Method" modality="optional">
-            <Documentation>Specific parameters for interferometric measurements.</Documentation>
-            <CategoryBlueprint name="Instrument Properties">
-                <Documentation>Fixed characteristics of the instrument, specific to interferometric measurements.
-                </Documentation>
-                <ParameterBlueprint name="Interferometer Type" parameterType="String" modality="optional">
-                    <Documentation>Type of the interferometer.</Documentation>
-                    <AllowedValue>
-                        <S>Michelson plane mirror</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Michelson cat's eye</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Michelson corner cube</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Fabry-Perot</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Monitor Laser Type" parameterType="String">
-                    <Documentation>Type of the reference (monitor) laser.</Documentation>
-                    <AllowedValue>
-                        <S>HeNe single-mode</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>HeNe multi-mode</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>HeNe (unknown)</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Monitor Laser Wavelength" parameterType="Float">
-                    <Documentation>Wavelength or wavenumber of the monitor or reference laser.</Documentation>
-                    <Quantity name="Wavelength">
-                        &nm;
-                    </Quantity>
-                    <Quantity name="Wavenumber">
-                        &reciprocal_cm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Collimating Mirror Focal Length" parameterType="Float" modality="optional">
-                    <Documentation>Focal length of the collimating mirror, also known as "input focal length".
-                    </Documentation>
-                    <Quantity name="Length">
-                        &cm; &mm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Collimating Mirror Diameter" parameterType="Float" modality="optional">
-                    <Documentation>Diameter of the collimating mirror.</Documentation>
-                    <Quantity name="Length">
-                        &cm; &mm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Photometric Non-linearity" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E131-05">The inability of a photometric system to yield a
-                        linear relationship between the radiant power incident on its detector and some measurable
-                        quantity provided by the system, expressed as percentage. See "photometric linearity".
-                    </Documentation>
-                    <Quantity name="Non-linearity">
-                        &percent;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Maximum Aperture" parameterType="Float" modality="optional" maxOccurs="1">
-                    <Documentation>Maximum optical aperture supported by the spectrometer.</Documentation>
-                    <Quantity name="Length">
-                        &mm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <CategoryBlueprint name="Beam Splitter" modality="optional">
-                    <Documentation>Optical element that separates light into the sample and reference beams.
-                    </Documentation>
-                    <ParameterBlueprint name="Splitter Type" parameterType="String" modality="required">
-                        <Documentation>Whether the instrument allows reconfiguration of the beam splitter. This is done
-                            to optimize performance over a given optical range.
-                        </Documentation>
-                        <AllowedValue>
-                            <S>fixed</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>removable</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Substrate" parameterType="String" modality="optional">
-                        <Documentation>Base material that affects the transmittance band of the beam splitter.
-                        </Documentation>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Coating" parameterType="String" modality="optional">
-                        <Documentation>Surface treatment that affects the reflectance/transmittance ratio of the beam
-                            splitter.
-                        </Documentation>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Incidence Angle" parameterType="Float" modality="optional">
-                        <Documentation>Angle at which the light is incident on the beam splitter.</Documentation>
-                        <Quantity name="Angle">
-                            &degree;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <CategoryBlueprint name="Effective Range" maxOccurs="1" modality="optional">
-                        <Documentation>Effective spectral operating range of the beam splitter.</Documentation>
-                        <ParameterBlueprint name="Lower Bound" parameterType="Float" modality="optional" maxOccurs="1">
-                            <Documentation>Lower boundary of effective range.</Documentation>
-                            <Quantity name="Wavelength">
-                                &nm;
-                            </Quantity>
-                            <Quantity name="Wavenumber">
-                                &reciprocal_cm;
-                            </Quantity>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Upper Bound" parameterType="Float" modality="optional" maxOccurs="1">
-                            <Documentation>Upper boundary of effective range.</Documentation>
-                            <Quantity name="Wavelength">
-                                &nm;
-                            </Quantity>
-                            <Quantity name="Wavenumber">
-                                &reciprocal_cm;
-                            </Quantity>
-                        </ParameterBlueprint>
-                    </CategoryBlueprint>
-                </CategoryBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings">
-                <Documentation>Variable characteristics or configuration parameters of the instrument, specific to
-                    interferometric measurements.
-                </Documentation>
-                <ParameterBlueprint name="Spectrum data source" parameterType="String" modality="optional">
-                    <Documentation>Type of data source from which spectrum is derived.</Documentation>
-                    <AllowedValue>
-                        <S>Measured dispersive spectrum</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>FT power spectrum</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>FT real spectrum</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>FT imaginary spectrum</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Interferogram Aquisition Mode" parameterType="String">
-                    <Documentation>Type of interferogram data.</Documentation>
-                    <AllowedValue>
-                        <S>complex sequential</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>complex simultaneous</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>real-only</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Air Correction" parameterType="Boolean" modality="optional">
-                    <Documentation>Whether data are adjusted for the refractive index of air.</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Maximum Effective Optical Path Difference" parameterType="Float"
-                                    modality="optional">
-                    <Documentation>Distance (Xmax) the mirror moves to change the optical path length. Does not include
-                        the overscan range.
-                    </Documentation>
-                    <Quantity name="Length">
-                        &cm; &mm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Spectral Resolution" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="Bertie Vib Spec">Smallest difference between wavenumbers or
-                        wavelengths at which one can distinguish different spectral properties.
-                    </Documentation>
-                    <Quantity name="Wavelength">
-                        &nm;
-                    </Quantity>
-                    <Quantity name="Wavenumber">
-                        &reciprocal_cm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Mirror Velocity" parameterType="Float" modality="optional">
-                    <Documentation>Velocity of reference mirror in the interferometer.</Documentation>
-                    <Quantity name="Velocity">
-                        &cm_per_s;
-                        <Unit label="mm/s">
-                            <SIUnit exponent="1" factor="1e-3">m</SIUnit>
-                            <SIUnit exponent="-1">s</SIUnit>
-                        </Unit>
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Mirror Frequency" parameterType="Float" modality="optional">
-                    <Documentation>Frequency of reference mirror movement in the interferometer.</Documentation>
-                    <Quantity name="Frequency">
-                        &Hz; &kHz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Optical Retardation Velocity" parameterType="Float" modality="optional">
-                    <Documentation>Effective scan speed of a continuous scan. Rate of change of the path difference of
-                        the interferometer. Equal to two times the mirror velocity.
-                    </Documentation>
-                    <Quantity name="Velocity">
-                        &cm_per_s;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Sampling Interval" parameterType="Float" modality="optional" maxOccurs="1">
-                    <Documentation>Interval between data point acquisitions of the interferogram. May be measured in
-                        terms of distance traveled by the scan mirror or by counting interference fringes of the
-                        reference laser. Also given as "sampling rate" or "sampling frequency".
-                    </Documentation>
-                    <Quantity name="Length">
-                        &um;
-                    </Quantity>
-                    <Quantity name="Count">
-                        <Unit label="Fringes">
-                            <SIUnit>1</SIUnit>
-                        </Unit>
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Decimation Factor" parameterType="Int" modality="optional" maxOccurs="1">
-                    <Documentation>Factor by which the number of data points is reduced in a discrete time interval.
-                    </Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Number of Data Points" parameterType="Int" modality="optional">
-                    <Documentation>Number of data points collected per interferogram.</Documentation>
-                    <Quantity name="Count">
-                        &count;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Scan Type" parameterType="String" modality="optional">
-                    <Documentation>Method by which the optical path difference of the interferometer is changed.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>step</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>continuous</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Integration Time Per Point" parameterType="Float" modality="optional"
-                                    maxOccurs="1">
-                    <Documentation>Time interval over which data is integrated per data point during acquisition.
-                        Applies only to step scans.
-                    </Documentation>
-                    <Quantity name="Time">
-                        &ms; &s;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Number of Scans" parameterType="Float" modality="optional" maxOccurs="1">
-                    <Documentation>Number of scans coadded during data acquisition.</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Scan Direction" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>Direction of mirror movement in which data acquisition occurs.</Documentation>
-                    <AllowedValue>
-                        <S>forward only</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>reverse only</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>forward and reverse</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Jacquinot Stop" parameterType="Float" modality="optional" maxOccurs="1">
-                    <Documentation>Limiting optical aperture actually used in the spectrometer. Also called "limiting
-                        aperture" or "J-Stop".
-                    </Documentation>
-                    <Quantity name="Length">
-                        &mm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Interferogram Type" parameterType="String" modality="optional">
-                    <Documentation>Whether data are collected from one side or both sides of the center burst.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>single-sided</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>double-sided</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-        </CategoryBlueprint>
-
-        <CategoryBlueprint name="Interferometric Processing Method" modality="optional">
-            <Documentation>Specific parameters for interferometric measurements.</Documentation>
-            <CategoryBlueprint name="TODO Instrument Settings">
-
-
-                <ParameterBlueprint name="Zero-Filling Point Count" parameterType="Int" modality="optional">
-                    <Documentation>Absolute number of zero points appended to the end of the interferogram to make the
-                        total data point count an even power of two.
-                    </Documentation>
-                    <Quantity name="Count">
-                        <Unit label="points">
-                            <SIUnit>1</SIUnit>
-                        </Unit>
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Zero-Filling Factor" parameterType="Int" modality="optional">
-                    <Documentation>Number of zero points appended to the end of the interferogram, given as a factor
-                        applied to the interferogram length, after padded to the nearest power of two, e.g., "1x", "2x",
-                        "4x". This factor must be a power of two.
-                    </Documentation>
-                    <Quantity name="Factor">
-                        <Unit label="x">
-                            <SIUnit>1</SIUnit>
-                        </Unit>
-                    </Quantity>
-                </ParameterBlueprint>
-
-                <ParameterBlueprint name="Apodization Function" parameterType="String" modality="optional">
-                    <Documentation>Weighting function applied to the interferogram prior to fourrier transformation to
-                        control either spectral line shape or to reduce spectral artifacts.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>boxcar</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>triangular</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Apodization Function Variable" parameterType="Float" modality="optional"
-                                    maxOccurs="unbounded">
-                    <Documentation>Variable controlling the apodization function.</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Fourier Transformation Algorithm" parameterType="String" modality="required">
-                    <Documentation>Mathematical method which performs the domain conversion.</Documentation>
-                    <AllowedValue>
-                        <S>Cooley-Tuckey (FFT)</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Variable Radix</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Spectrum Type" parameterType="String" modality="optional">
-                    <Documentation>Format of the spectrum resulting from the domain transformation.</Documentation>
-                    <AllowedValue>
-                        <S>Magnitude Spectrum</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Power Spectrum</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Real Spectrum</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Imaginary Spectrum</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Phase-Corrected Real Spectrum</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Phase-Corrected Imaginary Spectrum</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Phase Correction Mode" parameterType="String" modality="optional">
-                    <Documentation>Method used to correct the phase of the spectrum resulting from the domain
-                        transformation.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>Multiplication</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Convolution</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Phase Correction Variable" parameterType="Float" modality="optional"
-                                    maxOccurs="unbounded">
-                    <Documentation>Parameter associated with the order of the phase correction.</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Phase Resolution" parameterType="Float" modality="optional">
-                    <Documentation>Minimum allowed amount of phase change. TODO.</Documentation>
-                    <Quantity name="TODO Gary, might be degrees">
-                        &reciprocal_cm;
-                        &reciprocal_um;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Baseline Correction Method" parameterType="String" modality="optional"
-                                    maxOccurs="1">
-                    <Documentation>Name or description of algorithm for baseline correction.</Documentation>
-                </ParameterBlueprint>
-                <CategoryBlueprint name="Digital Filter" modality="optional" maxOccurs="1">
-                    <Documentation>Settings for a digital filter applied to the FT signal set.</Documentation>
-                    <ParameterBlueprint name="Type" parameterType="String" modality="required">
-                        <Documentation>Whether a lowpass, highpass, bandpass or notch type filter algorithm was used.
-                            See IEEE 151-1965W.
-                        </Documentation>
-                        <AllowedValue>
-                            <S>Lowpass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Highpass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Bandpass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Notch</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Function" parameterType="String" modality="optional">
-                        <Documentation>Shape of the filter response as defined by the polynomials approximating it.
-                        </Documentation>
-                        <AllowedValue>
-                            <S>Bezel</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Butterworth</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Cauchy</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Chebyshev</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>elliptical</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>other</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Order" parameterType="Int" modality="optional">
-                        <Documentation>Order of the polynomial approximating function the filter is based upon.
-                        </Documentation>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Center frequency" parameterType="Float" modality="optional">
-                        <Documentation>Only applicable to notch and bandpass filters: Mid-point frequency of the stop or
-                            pass band.
-                        </Documentation>
-                        <Quantity name="Frequency">
-                            &Hz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Pass band frequency" parameterType="Float" modality="optional">
-                        <Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass),
-                            or pass band (bandpass, notch) frequency of the filter.
-                        </Documentation>
-                        <Quantity name="Frequency">
-                            &Hz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Stop band frequency" parameterType="Float" modality="optional">
-                        <Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass),
-                            or stop band (bandpass, notch) frequency of the filter.
-                        </Documentation>
-                        <Quantity name="Frequency">
-                            &Hz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Analog Filter" modality="optional" maxOccurs="unbounded">
-                    <Documentation>Characteristics of a single analog filter applied to the FT signal.</Documentation>
-                    <ParameterBlueprint name="Type" parameterType="String" modality="required">
-                        <Documentation>Whether a lowpass, highpass, bandpass or notch type filter was used. See IEEE
-                            151-1965W.
-                        </Documentation>
-                        <AllowedValue>
-                            <S>Lowpass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Highpass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Bandpass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Notch</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Function" parameterType="String" modality="optional">
-                        <Documentation>Shape of the filter response as defined by the polynomials approximating it.
-                        </Documentation>
-                        <AllowedValue>
-                            <S>Bezel</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Butterworth</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Cauchy</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Chebyshev</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>elliptical</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>other</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Order" parameterType="Int" modality="optional">
-                        <Documentation>Order of the polynomial approximating function the filter is based upon.
-                        </Documentation>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Center frequency" parameterType="Float" modality="optional">
-                        <Documentation>Only applicable to notch and bandpass filters: Mid-point frequency of the stop or
-                            pass band.
-                        </Documentation>
-                        <Quantity name="Frequency">
-                            &Hz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Pass band frequency" parameterType="Float" modality="optional">
-                        <Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass),
-                            or pass band (bandpass, notch) frequency of the filter.
-                        </Documentation>
-                        <Quantity name="Frequency">
-                            &Hz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Stop band frequency" parameterType="Float" modality="optional">
-                        <Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass),
-                            or stop band (bandpass, notch) frequency of the filter.
-                        </Documentation>
-                        <Quantity name="Frequency">
-                            &Hz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Anti-Aliasing Filter" modality="optional" maxOccurs="unbounded">
-                    <Documentation>Characteristics of anti-aliasing filter applied to the FT signal.</Documentation>
-                    <ParameterBlueprint name="Type" parameterType="String" modality="required">
-                        <Documentation>Whether a shortpass, longpass, bandpass or notch type filter was used. See IEEE
-                            151-1965W.
-                        </Documentation>
-                        <AllowedValue>
-                            <S>Shortpass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Longpass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Bandpass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Notch</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Center" parameterType="Float" modality="optional">
-                        <Documentation>Only applicable to notch and bandpass filters: Mid-point of the stop or pass
-                            band.
-                        </Documentation>
-                        <Quantity name="Frequency">
-                            &Hz;
-                        </Quantity>
-                        <Quantity name="Wavelength">
-                            &nm;
-                        </Quantity>
-                        <Quantity name="Wavenumbers">
-                            &reciprocal_cm;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Pass band" parameterType="Float" modality="optional">
-                        <Documentation>Depending on the filter type, this is the cut-on (highpass), cut-off (lowpass),
-                            or pass band (bandpass, notch) of the filter.
-                        </Documentation>
-                        <Quantity name="Frequency">
-                            &Hz;
-                        </Quantity>
-                        <Quantity name="Wavelength">
-                            &nm;
-                        </Quantity>
-                        <Quantity name="Wavenumbers">
-                            &reciprocal_cm;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Stop band" parameterType="Float" modality="optional">
-                        <Documentation>Depending on the filter type, this is the cut-on (lowpass), cut-off (highpass),
-                            or stop band (bandpass, notch) of the filter.
-                        </Documentation>
-                        <Quantity name="Frequency">
-                            &Hz;
-                        </Quantity>
-                        <Quantity name="Wavelength">
-                            &nm;
-                        </Quantity>
-                        <Quantity name="Wavenumbers">
-                            &reciprocal_cm;
-                        </Quantity>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
-            </CategoryBlueprint>
-        </CategoryBlueprint>
         <CategoryBlueprint name="Spectral Post-Processing" modality="optional">
             <Documentation>Post-processing of spectral data.</Documentation>
             <CategoryBlueprint name="Spectral Correction" maxOccurs="1" modality="optional">
@@ -1820,141 +1250,6 @@
                 <AllowedValue>
                     <S>FT imaginary spectrum</S>
                 </AllowedValue>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
-    </ResultBlueprint>
-    <ResultBlueprint name="Interferogram" modality="optional">
-        <Documentation>I(σ) - record of the modulated component of the interference signal measured as a function of
-            retardation by the detector. DISCUSSION-1-An alternate symbol is I (x). DISCUSSION-2-The recommended symbol
-            for the spectrum computed from I (d) is B (n). An alternate symbol is B (s).
-        </Documentation>
-        <SeriesSetBlueprint name="Interferogram" modality="required">
-            <SeriesBlueprint name="Time" seriesType="Float" modality="required" plotScale="linear"
-                             dependency="independent">
-                <Documentation literatureReferenceID="JCAMP-DX IR">This is a set of values of dimension time, containing
-                    the abscissa value for each raw data ordinate value. This set of values has a unit of time.
-                </Documentation>
-                <Quantity name="Time">
-                    &s;
-                </Quantity>
-            </SeriesBlueprint>
-            <SeriesBlueprint name="Intensity (real)" seriesType="Float" modality="required" plotScale="linear"
-                             dependency="dependent">
-                <Documentation literatureReferenceID="JCAMP-DX IR">Set of real intensity values of dimension length,
-                    containing the ordinate values. This set of values has a unit of detector-unit. This is a required
-                    field for datasets
-                    containing raw data; can be in absorbance, transmittance or percent transmittance, Kubelka-Munk, or
-                    reflectance.
-                </Documentation>
-                <Quantity name="Absorbance">
-                    &AU; &A;
-                </Quantity>
-                <Quantity name="Transmittance">
-                    &T; &percentT;
-                </Quantity>
-                <Quantity name="Reflectance">
-                    &R; &percentR;
-                </Quantity>
-            </SeriesBlueprint>
-            <SeriesBlueprint name="Intensity (complex)" seriesType="Float" modality="optional" plotScale="linear"
-                             dependency="dependent">
-                <Documentation literatureReferenceID="JCAMP-DX IR">Set of complex intensity values of dimension length,
-                    containing the ordinate values. This set of values has a unit of detector-unit. This is a required
-                    field for datasets
-                    containing raw data; can be in absorbance, transmittance or percent transmittance, Kubelka-Munk, or
-                    reflectance.
-                </Documentation>
-                <Quantity name="Absorbance">
-                    &AU; &A;
-                </Quantity>
-                <Quantity name="Transmittance">
-                    &T; &percentT;
-                </Quantity>
-                <Quantity name="Reflectance">
-                    &R; &percentR;
-                </Quantity>
-            </SeriesBlueprint>
-        </SeriesSetBlueprint>
-        <CategoryBlueprint name="Measurement Parameters" modality="required" maxOccurs="1">
-            <Documentation>Parameters defining the measurement</Documentation>
-            <ParameterBlueprint name="Experiment Duration" parameterType="Float" modality="required">
-                <Documentation>Duration of the entire experiment covered by this ExperimentStep.</Documentation>
-                <Quantity name="Time">
-                    &s;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Scan Duration" parameterType="Float" modality="optional">
-                <Documentation>Duration of a single scan.</Documentation>
-                <Quantity name="Time">
-                    &s;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
-                <Documentation>The number of scans performed when acquiring this interferogram.</Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Aliasing Ratio" parameterType="Float" modality="optional">
-                <Documentation literatureReferenceID="JCAMP-DX IR">Aliasing: the appearance of features at wavenumbers
-                    other than their true value caused by using a sampling frequency less than twice the highest
-                    modulation frequency in the interferogram; also known as "folding." (ASTM E131-02) A fraction whose
-                    denominator is the number of possible aliases for a given sample and whose numerator is the number
-                    of the alias represented by the data. For sampling at alternate laser fringes, the number of aliases
-                    is 2, and the alias for the region starting at zero frequency is 1, giving an ##ALIAS=of 1/2
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Zero Path Difference" parameterType="Float" modality="optional">
-                <Documentation literatureReferenceID="JCAMP-DX IR">The number of data points before zero path difference
-                    (ZPD).
-                </Documentation>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Ambient Conditions">
-            <Documentation>Ambient temperature and pressure in the optical chamber during the experiment.
-            </Documentation>
-            <ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
-                <Documentation>Measured ambient pressure in the optical path of the instrument.</Documentation>
-                <Quantity name="Pressure">
-                    &Pa; &psig; &bar;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Temperature" parameterType="Float" modality="required">
-                <Documentation>Temperature at which the experiment was performed.</Documentation>
-                <Quantity name="Temperature">
-                    &degK; &degC; &degF;
-                </Quantity>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Interferogram Description">
-            <Documentation>Description of the interferogram.</Documentation>
-            <ParameterBlueprint name="Aquisition Mode" parameterType="String">
-                <Documentation>Type of measured data.</Documentation>
-                <AllowedValue>
-                    <S>complex sequential</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>complex simultaneous</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>real-only</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Modulation Efficiency" parameterType="Float">
-                <Documentation>Efficiency of the modulation in the interferometer.</Documentation>
-                <Quantity name="%">
-                    &percent;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Point Number of Central Fringe" parameterType="Int" modality="optional">
-                <Documentation>Point number (before input skipping) where the central fringe can be found.
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Points Skipped on Input" parameterType="Int" modality="optional">
-                <Documentation>Number of points skipped to move the central fringe to the middle of the interferogram.
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Data Points Used" parameterType="Int" modality="optional">
-                <Documentation>Number of measured data points actually included in the transformation into the frequency
-                    domain. Must be zero-filled to the nearest power of two.
-                </Documentation>
             </ParameterBlueprint>
         </CategoryBlueprint>
     </ResultBlueprint>

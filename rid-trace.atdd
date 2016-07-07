@@ -2,77 +2,42 @@
 <!-- by Patrick Boba (BSSN Software) -->
 
 <!DOCTYPE Technique [
-	<!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
-	<!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY inch "<Unit label='in'><SIUnit factor='0.0254' exponent='1'>m</SIUnit></Unit>">
-	<!-- Time -->
-	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
-	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
-	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
-	<!ENTITY us "<Unit label='µs'><SIUnit exponent='1' factor='1e-6'>s</SIUnit></Unit>">
-	<!-- Voltage -->
-	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY uV "<Unit label='µV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY nV "<Unit label='nV'><SIUnit factor='1e-09'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY pV "<Unit label='pV'><SIUnit factor='1e-12'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!-- Current -->
-	<!ENTITY A "<Unit label='A'><SIUnit>A</SIUnit></Unit>">
-	<!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
-	<!ENTITY uA "<Unit label='µA'><SIUnit factor='1e-06'>A</SIUnit></Unit>">
-	<!ENTITY nA "<Unit label='nA'><SIUnit factor='1e-09'>A</SIUnit></Unit>">
-	<!ENTITY pA "<Unit label='pA'><SIUnit factor='1e-12'>A</SIUnit></Unit>">
-	<!ENTITY fA "<Unit label='fA'><SIUnit factor='1e-15'>A</SIUnit></Unit>">
-	<!-- Current per Voltage -->
-	<!ENTITY A_per_V "<Unit label='A/V'><SIUnit exponent='2'>A</SIUnit><SIUnit exponent='3'>s</SIUnit><SIUnit exponent='-1'>kg</SIUnit><SIUnit exponent='-2'>m</SIUnit></Unit>">
-	<!-- Bandwidth / Voltage per Time -->
-	<!ENTITY mV_per_s "<Unit label='mV/s'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
-	<!ENTITY uV_per_s "<Unit label='µV/s'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
-	<!-- Flow Rate -->
-	<!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY lamda "&#955;">
-	<!ENTITY Delta "&#916;">
-	<!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
-	<!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
-	<!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
-	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
-	<!ENTITY cm_per_s "<Unit label='cm/s'><SIUnit exponent='1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
-	<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
-	<!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
-	<!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
-	<!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
-	<!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
-	<!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
-	<!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
-	<!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
-	<!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
-	<!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY A "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-	<!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
-	<!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY kHz "<Unit label='kHz'><SIUnit exponent='-1' factor='1e+3'>s</SIUnit></Unit>">
-	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
-	<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
-]>
+		<!-- Various simple units-->
+		<!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
+		<!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
+
+		<!-- Optical Metrics -->
+		<!ENTITY RIU "<Unit label='RIU'><SIUnit>1</SIUnit></Unit>">
+
+		<!-- Time -->
+		<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
+		<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
+		<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
+		<!ENTITY us "<Unit label='µs'><SIUnit exponent='1' factor='1e-6'>s</SIUnit></Unit>">
+
+		<!-- Frequency -->
+		<!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
+
+		<!-- Pressure -->
+		<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+		<!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+		<!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+		<!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+
+		<!-- Length -->
+		<!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
+		<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
+
+		<!-- Voltage -->
+		<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+		<!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+		<!ENTITY uV "<Unit label='µV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+		<!ENTITY nV "<Unit label='nV'><SIUnit factor='1e-09'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+
+		<!-- Bandwidth / Voltage per Time -->
+		<!ENTITY mV_per_s "<Unit label='mV/s'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
+		<!ENTITY uV_per_s "<Unit label='µV/s'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
+		]>
 <Technique name="Refractive Index Trace Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for Refractive Index Point Detector data</Documentation>
 	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed">
@@ -95,30 +60,6 @@
 				<ParameterBlueprint name="Comments" parameterType="String" modality="optional">
 					<Documentation>Comments about the instrument.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Measurement Mode" parameterType="String" maxOccurs="1" modality="optional">
-					<Documentation>The optical mode with respect to the sample with which the measurement was made, such as reflectance and transmittance.</Documentation>
-					<AllowedValue>
-						<S>Reflectance, diffuse</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Reflectance, grazing</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Reflectance, multiple internal</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Reflectance, specular</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Transmittance, apparent</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Transmittance, diffuse</S>
-					</AllowedValue>
-					<AllowedValue>
-						<S>Transmittance, true</S>
-					</AllowedValue>
-				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
 					<Documentation>The type or name of the assembly that holds the sample container in the optical beam, e.g., cuvette holder, sample changer. (The sample container itself is described within the Sample element in the AnIML Core Schema.)</Documentation>
 				</ParameterBlueprint>
@@ -130,83 +71,53 @@
 						</Unit>
 					</Quantity>
 				</ParameterBlueprint>
+				<ParameterBlueprint name="Detector Type" parameterType="String">
+					<AllowedValue>
+						<S>Differential Refractometer</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>Absolute Refractometer</S>
+					</AllowedValue>
+					<AllowedValue>
+						<S>Other</S>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<CategoryBlueprint name="Light Source">
+					<ParameterBlueprint name="Source Type" parameterType="String">
+						<Documentation>Description of the light source type. Most likely tungsten or LED. </Documentation>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Lower Bound" parameterType="Numeric">
+						<Documentation>The lower-bound x-axis value from which the given light source was used.</Documentation>
+
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Upper Bound" parameterType="Numeric">
+						<Documentation>The upper-bound x-axis value from which the given light source was used.</Documentation>
+
+					</ParameterBlueprint>
+				</CategoryBlueprint>
+				<CategoryBlueprint name="Refractive Index Range" modality="optional">
+					<ParameterBlueprint name="Lower Bound" parameterType="Numeric">
+						<Quantity name="Refractive Index">
+							&RIU;
+						</Quantity>
+					</ParameterBlueprint>
+					<ParameterBlueprint name="Upper Bound" parameterType="Numeric">
+						<Quantity name="Refractive Index">
+							&RIU;
+						</Quantity>
+					</ParameterBlueprint>
+				</CategoryBlueprint>
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Instrument Settings" modality="required">
 				<Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-				<SeriesSetBlueprint name="Light Sources" modality="optional">
-					<Documentation>Description of light sources being used whithin the experiment described.</Documentation>
-					<SeriesBlueprint name="Lower Bound" seriesType="Float" modality="required" dependency="dependent" plotScale="none">
-						<Documentation>The lower-bound x-axis value from which the given light source was used.</Documentation>
-						<Quantity name="Reciprocal Length">
-							&reciprocal_cm;
-						</Quantity>
-						<Quantity name="Length">
-							&um; &nm; &pm;
-						</Quantity>
-						<Quantity name="Energy">
-							&eV;
-						</Quantity>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Upper Bound" seriesType="Float" modality="required" dependency="dependent" plotScale="none">
-						<Documentation>The upper-bound x-axis value up to which the given light source was used.</Documentation>
-						<Quantity name="Reciprocal Length">
-							&reciprocal_cm;
-						</Quantity>
-						<Quantity name="Length">
-							&um; &nm; &pm;
-						</Quantity>
-						<Quantity name="Energy">
-							&eV;
-						</Quantity>
-					</SeriesBlueprint>
-					<SeriesBlueprint name="Source Type" seriesType="String" modality="required" dependency="dependent" plotScale="none">
-						<Documentation>Description of the light source type.</Documentation>
-						<AllowedValue>
-							<S>Tungsten Source</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Deuterium Source</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Xenon Source</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Mercury Source</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Glow Bar Source</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Other Source</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Plasma Emission</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Flame Emission</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Spark Emission</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Thermal Emission</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Laser Ablation Emission</S>
-						</AllowedValue>
-						<AllowedValue>
-							<S>Other Emission</S>
-						</AllowedValue>
-					</SeriesBlueprint>
-				</SeriesSetBlueprint>
+				<ParameterBlueprint name="Measurement Wavelength" parameterType="Numeric">
+					<Documentation>The used wavelength for the refraction measurement.</Documentation>
+					<Quantity name="wavelength">
+						&nm;
+					</Quantity>
+				</ParameterBlueprint>
 				<ParameterBlueprint name="Sample Holder Position" parameterType="String" modality="optional">
 					<Documentation>The position of the sample within the sample holder unit. Note: This is not intended for auto sampler information.</Documentation>
-				</ParameterBlueprint>
-				<ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="optional">
-					<Documentation literatureReferenceID="ASTM E131-05">The distance, measured in the direction of propagation of the beam of radiant energy, between the surface of the specimen on which the radiant energy is incident and the surface of the specimen from which it is emergent.</Documentation>
-					<Quantity name="Length">
-						&cm; &mm;
-					</Quantity>
 				</ParameterBlueprint>
 				<ParameterBlueprint name="Optical Path Environment" parameterType="String" modality="optional">
 					<Documentation>Describes the environment of the optical path.</Documentation>
@@ -229,7 +140,7 @@
 						<S>Other</S>
 					</AllowedValue>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
+				<ParameterBlueprint name="Optical Path Pressure" parameterType="Numeric" modality="optional">
 					<Documentation>Ambient pressure in the optical path of the instrument.</Documentation>
 					<Quantity name="Pressure">
 						&Pa; &psig; &bar;
@@ -333,15 +244,16 @@
 					&ms; &s; &min;
 				</Quantity>
 			</SeriesBlueprint>
-			<SeriesBlueprint name="Refraction Index" seriesType="Numeric" modality="required" plotScale="linear" dependency="dependent">
+			<SeriesBlueprint name="Refraction Index" seriesType="Numeric" modality="optional" plotScale="linear" dependency="dependent">
 				<Quantity name="Refraction Index Unit">
-					<Unit label="RID">
-						<SIUnit factor="1" exponent="1">1</SIUnit>
-						<!-- RID is without unit. -->
-					</Unit>
+					&RIU;
 				</Quantity>
 			</SeriesBlueprint>
-			<SeriesBlueprint name="Wavelength" seriesType="Numeric" dependency="dependent" maxOccurs="1"
+			<SeriesBlueprint name="Refraction Angle" seriesType="Numeric" modality="optional" dependency="dependent">
+				<Quantity name="Refraction Angle">
+					&degree;
+				</Quantity>
+			</SeriesBlueprint>
 		</SeriesSetBlueprint>
 	</ResultBlueprint>
 	<Bibliography>

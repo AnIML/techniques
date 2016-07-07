@@ -43,6 +43,7 @@
         <!ENTITY nL "<Unit label='nL'><SIUnit exponent='3' factor='1e-12'>m</SIUnit></Unit>">
 
         <!-- Time -->
+        <!ENTITY hr "<Unit label='hr'><SIUnit factor='3600'>s</SIUnit></Unit>">
         <!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
         <!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
         <!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
@@ -91,6 +92,7 @@
         <!-- Absorbance -->
         <!ENTITY A "<Unit label='A'><SIUnit>1</SIUnit></Unit>"> <!-- same label as Current !!! -->
         <!ENTITY AU "<Unit label='AU'><SIUnit>1</SIUnit></Unit>">
+        <!ENTITY AU_per_hour "<Unit label='AU/hr'><SIUnit>1</SIUnit><SIUnit exponent='-1' factor='3.6e-3'>s</SIUnit></Unit>">
 
         <!-- Energy -->
         <!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">

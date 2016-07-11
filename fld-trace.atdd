@@ -47,8 +47,10 @@
 		<!-- Voltage -->
 		<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
 
-		<!-- Absorbance -->
-		<!ENTITY EU "<Unit label='EU'><SIUnit>1</SIUnit></Unit>">
+		<!-- Intensity -->
+		<!ENTITY Energy_Units "<Unit label='EU'><SIUnit>1</SIUnit></Unit>">
+		<!ENTITY Emission_Units "<Unit label='EUt'><SIUnit>1</SIUnit></Unit>">
+		<!ENTITY Luminescence_Units "<Unit label='LU'><SIUnit>1</SIUnit></Unit>">
 
 		<!-- Energy -->
 		<!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
@@ -666,7 +668,7 @@
 		<Documentation>Time-base trace of UV/Vis detector data.</Documentation>
 		<SeriesSetBlueprint name="Fluorescence Trace" modality="required">
 			<SeriesBlueprintChoice>
-				<Documentation>Series for the x-Axis of the Spectrum. In contrast to pure UV-Vis, fluorescence detectors traces can be either over time or emission wavelength. </Documentation>
+				<Documentation>Series for the x-Axis of the Spectrum. In contrast to UV-Vis, fluorescence detectors traces can be either over time or emission wavelength. </Documentation>
 				<SeriesBlueprint name="Time" seriesType="Numeric" plotScale="linear" dependency="independent">
 					<Quantity name="Time">
 						&ms; &s; &min;
@@ -681,8 +683,11 @@
 			<SeriesBlueprint name="Intensity" seriesType="Numeric" modality="required" plotScale="linear"
 							 dependency="dependent">
 				<Documentation></Documentation>
-				<Quantity name="Emission">
-					&EU; &arbitrary;
+				<Quantity name="Energy Units">
+					&EU;
+				</Quantity>
+				<Quantity name="Arbitrary Units">
+					&arbitrary;
 				</Quantity>
 			</SeriesBlueprint>
 		</SeriesSetBlueprint>

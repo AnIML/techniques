@@ -1039,10 +1039,7 @@
                     ratio of the radiant power reflected by the sample to the radiant power incident on the sample.
                 </Documentation>
                 <Quantity name="Emission">
-                    &EU;
-                </Quantity>
-                <Quantity name="Arbitrary">
-                    &arbitrary;
+                    &EU; &arbitrary;
                 </Quantity>
             </SeriesBlueprint>
             <SeriesBlueprint name="Resolution" seriesType="Numeric" modality="optional" plotScale="none"

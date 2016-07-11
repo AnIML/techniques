@@ -1283,24 +1283,6 @@
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Spectrum Description">
-            <Documentation>Description of the spectrum.</Documentation>
-            <ParameterBlueprint name="Spectrum Data Source" parameterType="String" modality="optional">
-                <Documentation>Type of data source from which this spectrum has been derived.</Documentation>
-                <AllowedValue>
-                    <S>Measured dispersive spectrum</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>FT power spectrum</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>FT real spectrum</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>FT imaginary spectrum</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
     </ResultBlueprint>
     <Bibliography>
         <LiteratureReference literatureReferenceID="ASTM D1129-06A">

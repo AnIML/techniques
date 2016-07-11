@@ -72,7 +72,7 @@
 <Technique name="Fluorescence Detector Spectrum" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
-    <Documentation>Technique definition for fluorescence spectrophotometry</Documentation>
+    <Documentation literatureReferenceID="USP 851">Technique definition for fluorescence spectrophotometry. USP: "Fluorescence spectrophotometry is the measurement of the emission of light from a chemical substance while it is being exposed to UV, visible, or other electromagnetic radiation. In general, the light emitted by a fluorescent solution is of maximum intensity at a wavelength longer than that of the exciting radiation, usually by some 20 to 30 nm."</Documentation>
     <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1"
                          inheritable="true">
         <Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory
@@ -364,7 +364,7 @@
             being used with. Typically used to monitor contaminants or to establish a baseline for quantitation. Note:
             Uses the same parameters as the Test Sample role.
         </Documentation>
-        <!--same paramete7rs as Test Sample-->
+        <!--same parameters as Test Sample-->
     </SampleRoleBlueprint>
     <SampleRoleBlueprint name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
                          inheritable="false">
@@ -378,45 +378,35 @@
             often used in a QA/QC setting. This is only a reference, so no parameters are required.
         </Documentation>
     </SampleRoleBlueprint>
-    <SampleRoleBlueprint name="Proficiency Reference" samplePurpose="consumed" modality="optional" maxOccurs="1"
-                         inheritable="false">
+    <ExperimentDataRoleBlueprint name="Proficiency Reference" experimentStepPurpose="consumed" modality="optional" maxOccurs="1">
         <Documentation>Reference to the most recent successful proficiency test sample the analyst/system has been
             confronted with. This is only a reference, so no parameters are required.
         </Documentation>
-    </SampleRoleBlueprint>
-    <SampleRoleBlueprint name="Transmittance Calibration Reference" samplePurpose="consumed" modality="optional"
-                         maxOccurs="1" inheritable="false">
-        <Documentation>The material sample or lamp used to calibrate the transmittance/intensity axis. This is only a
+    </ExperimentDataRoleBlueprint>
+    <ExperimentDataRoleBlueprint name="Intensity Calibration Reference" experimentStepPurpose="consumed" modality="optional" maxOccurs="1">
+        <Documentation>The material sample or lamp used to calibrate the intensity axis. This is only a
             reference, so no parameters are required.
         </Documentation>
-    </SampleRoleBlueprint>
-    <SampleRoleBlueprint name="Wavelength Calibration Reference" samplePurpose="consumed" modality="optional"
-                         maxOccurs="1" inheritable="false">
+    </ExperimentDataRoleBlueprint>
+    <ExperimentDataRoleBlueprint name="Wavelength Calibration Reference" experimentStepPurpose="consumed" modality="optional"
+                         maxOccurs="1">
         <Documentation>The material sample or lamp used to calibrate the wavelength axis. This is only a reference, so
             no parameters are required.
         </Documentation>
-    </SampleRoleBlueprint>
+    </ExperimentDataRoleBlueprint>
     <ExperimentDataRoleBlueprint name="Dark Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
         <Documentation>Reference to the spectrum used for dark correction.</Documentation>
     </ExperimentDataRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="100% Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
-        <Documentation>Reference to the spectrum used for 100% correction.</Documentation>
-    </ExperimentDataRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="Reference Correction Spectrum" experimentStepPurpose="consumed"
-                                 modality="optional">
+    <ExperimentDataRoleBlueprint name="Reference Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
         <Documentation>Reference to the spectrum used for reference correction.</Documentation>
     </ExperimentDataRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="Stray light Correction Spectrum" experimentStepPurpose="consumed"
-                                 modality="optional">
+    <ExperimentDataRoleBlueprint name="Stray light Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
         <Documentation>Reference to the spectrum used for stray light correction.</Documentation>
     </ExperimentDataRoleBlueprint>
+    <ExperimentDataRoleBlueprint name="Reference Excitation Spectrum" experimentStepPurpose="consumed" modality="optional">
+        <Documentation>Reference to the spectrum (most likely DAD) taken to optimize the excitation wavelengths.</Documentation>
+    </ExperimentDataRoleBlueprint>
     <MethodBlueprint>
-        <CategoryBlueprint name="Excitation Description" modality="optional">
-            <Documentation>Details on the excitation part of the method.</Documentation>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Emission Description" modality="optional">
-            <Documentation>Details on the emission part of the method.</Documentation>
-        </CategoryBlueprint>
         <CategoryBlueprint name="Method Description" modality="optional">
             <Documentation>Basic contextual information about the measurement method.</Documentation>
             <ParameterBlueprint name="Method Name" parameterType="String" modality="optional">
@@ -876,6 +866,12 @@
                         &Pa; &psig; &bar;
                     </Quantity>
                 </ParameterBlueprint>
+                <ParameterBlueprint name="Lamp Frequency" parameterType="Numeric" modality="optional">
+                    <Documentation>The Frequency at which the excitation lamp flashes.</Documentation>
+                    <Quantity name="Frequency">
+                        &Hz;
+                    </Quantity>
+                </ParameterBlueprint>
                 <CategoryBlueprint name="Spectral Range" modality="optional">
                     <Documentation>The spectral range to acquire, given as wavelength, wave numbers or energy.
                     </Documentation>
@@ -906,7 +902,64 @@
                 </CategoryBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>
-
+        <CategoryBlueprint name="A/D Converter Settings" modality="optional">
+            <!--
+                    ADC Channel ID (A, B, … or 1, 2, …)
+                    ACD Mode (Single-ended, differential (A-B), …
+                    ADC Range (Quantity = voltage; Units = V, mV, µV)
+                    ADC Resolution (Units = bits)
+                    Digitization Rate (Units = s-1)
+                    Averaging Factor (Units = none)
+                    Number of Data Points (Units = none)
+                    Bandwidth (Units = Hz)
+                -->
+            <ParameterBlueprint name="Channel ID" parameterType="String" modality="optional">
+                <Documentation>A/D converter channel ID, e.g. 'A', 'B', ... or '1', '2', ...</Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Mode" parameterType="String" modality="optional">
+                <Documentation>Acquisition scheme for detection.</Documentation>
+                <AllowedValue>
+                    <S>single-ended</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>differential</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Range" parameterType="Float" modality="optional">
+                <Documentation>Maximum full-scale voltage of the A/D converter.</Documentation>
+                <Quantity name="Voltage">
+                    &V; &mV; &uV;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Range Polarity" parameterType="String" modality="optional">
+                <Documentation>Polarity of the voltage range of the A/D converter.</Documentation>
+                <AllowedValue>
+                    <S>positive</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>negative</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>bipolar</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Resolution" parameterType="Int" modality="optional">
+                <Documentation>A/D converter signal resolution, given in number of bits, e.g. 12, 16, 24.</Documentation>
+                <Quantity name="Bits">
+                    &bits;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Digitization Rate" parameterType="Float" modality="optional">
+                <Documentation>Number of data points collected per second (after any averaging).</Documentation>
+                <Quantity name="Frequency">
+                    &Hz;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Averaging Factor" parameterType="Float" modality="optional">
+                <Documentation>Number of raw values averaged to obtain a data point.</Documentation>
+                <Quantity name="Count"/>
+            </ParameterBlueprint>
+        </CategoryBlueprint>
         <CategoryBlueprint name="Spectral Post-Processing" modality="optional">
             <Documentation>Post-processing of spectral data.</Documentation>
             <CategoryBlueprint name="Spectral Correction" maxOccurs="1" modality="optional">
@@ -1090,55 +1143,6 @@
         <LiteratureReference literatureReferenceID="ASTM D1129-13">
             ASTM Standard D1129-13: Standard Terminology Relating to Water, DOI: 10.1520/D1129-13
         </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E131-05">
-            ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E135-09">
-            ASTM Standard E135-09: Standard Terminology Relating to Analytical Chemistry for Metals, Ores, and Related
-            Materials, DOI: 10.1520/E0135-09
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E275-08">
-            ASTM Standard E275-08: Standard Practice for Describing and Measuring Performance of Ultraviolet, Visible,
-            and Near-Infrared Spectrophotometers, DOI: 10.1520/E0275-08
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E609-05">
-            ASTM Standard E609-05: Standard Terminology Relating to Pesticides, DOI: 10.1520/E0609-05
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E1142-07">
-            ASTM Standard E1142-07: Standard Terminology Relating to Thermophysical Properties, DOI: 10.1520/E1142-07
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E1947-98">
-            ASTM Standard E1947-98 (2009): Standard Specification for Analytical Data Interchange Protocol for
-            Chromatographic Data, DOI: 10.1520/E1947-98R09
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E2077-00">
-            ASTM Standard E2077-00 (2005): Standard Specification for Analytical Data Interchange Protocol for Mass
-            Spectrometric Data, DOI: 10.1520/E2077-00R05
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="JCAMP-DX IR">
-            McDonald, R. S., Wilks, P. A., "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer
-            Readable Form," Appl. Spectrosc., Vol 42, No 1, 1988, pp. 151-162.
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="Bertie Vib Spec">
-            Bertie, J. E., "Glossary of Terms used in Vibrational Spectroscopy, Handbook of Vibrational Spectroscopy,"
-            Chalmers, J. M., Griffiths, P. R. (eds.), John Wiley &amp; Sons Ltd., Chichester, 2002
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="Bertie FT">
-            Bertie, J. E., "Specification of Components, Methods and parameters in Fourier Transform Spectroscopy by
-            Michelson and Related Interferometers,"
-            Pure &amp; Appl. Chem., Vol 70, No. 10, 1998, pp. 2039-2045.
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="CML">
-            Murray-Rust, P., Rzepa, H. S., "Chemical markup Language and XML Part I. Basic principles," J. Chem. Inf.
-            Comp. Sci., 1999, 39, 928.
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="Wiswesser">
-            Smith, E. G., "The Wiswesser Line-Formula Chemical Notation," 2nd ed., McGraw-Hill, New York, 1968
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="SMILES">
-            van de Waterbeemd, H., Carter, R.E., Grassy, G., Kubinyi, H., Martin, Y.C., Tute, M.S., Willett, P.,
-            "Glossary of terms used in computational drug design (IUPAC Recommendations 1997)," Pure Appl. Chem. 1997,
-            69, 1137-1152, DOI: 10.1351/pac199769051137
-        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="USP 851">Spectrophotometry and Light-Scattering; https://hmc.usp.org/sites/default/files/documents/HMC/GCs-Pdfs/c851.pdf</LiteratureReference>
     </Bibliography>
 </Technique>

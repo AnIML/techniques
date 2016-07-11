@@ -77,7 +77,8 @@
 <Technique name="UV/Vis" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
-    <Documentation>Technique definition for UV/Visible spectrophotometry to create a dispersive spectrum. </Documentation>
+    <Documentation>Technique definition for UV/Visible spectrophotometry to create a dispersive spectrum.
+    </Documentation>
     <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1"
                          inheritable="true">
         <Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory
@@ -504,18 +505,6 @@
                 <ParameterBlueprint name="Description" parameterType="String" modality="optional">
                     <Documentation>A textual description of the instrument.</Documentation>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Detector Type" parameterType="String" modality="optional">
-                    <Documentation>The operation principle of the detector.</Documentation>
-                    <AllowedValue>
-                        <S>Dispersive Detector</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Diode Array Detector</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
                 <ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
                     <Documentation>The type or name of the assembly that holds the sample container in the optical beam,
                         e.g., cuvette holder, sample changer. (The sample container itself is described within the
@@ -558,6 +547,89 @@
                 <ParameterBlueprint name="Grating Blaze Angle" parameterType="Float">
                     <Documentation>Angle at which grating lines have been cut.</Documentation>
                 </ParameterBlueprint>
+                <CategoryBlueprint name="Detector Type" modality="optional">
+                    <Documentation>Properties depending on the operation principle of the detector.</Documentation>
+                    <CategoryBlueprint name="Dispersive Detector">
+                        <Documentation>Parameters specific for a dispersion detector.</Documentation>
+                        <ParameterBlueprint name="Instrument Type" parameterType="String" modality="optional">
+                            <Documentation>Whether the instrument is a single beam or double beam instrument.
+                            </Documentation>
+                            <AllowedValue>
+                                <S>single beam</S>
+                            </AllowedValue>
+                            <AllowedValue>
+                                <S>double beam</S>
+                            </AllowedValue>
+                            <AllowedValue>
+                                <S>other</S>
+                            </AllowedValue>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Dispersion Element" parameterType="String" modality="optional">
+                            <Documentation/>
+                            <AllowedValue>
+                                <S>Prism</S>
+                            </AllowedValue>
+                            <AllowedValue>
+                                <S>Grating</S>
+                            </AllowedValue>
+                            <AllowedValue>
+                                <S>Other</S>
+                            </AllowedValue>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Prism Material" parameterType="String">
+                            <Documentation>Material from which the prism is made.</Documentation>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
+                            <Documentation literatureReferenceID="ASTM E131-05">The wavelength dispersion at the exit
+                                slit of
+                                the instrument.
+                            </Documentation>
+                            <Quantity name="Ratio">
+                                <Unit label="nm/mm">
+                                    <SIUnit exponent="1" factor="1e-9">m</SIUnit>
+                                    <SIUnit exponent="1" factor="1e-3">m</SIUnit>
+                                </Unit>
+                            </Quantity>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
+                            <Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector.
+                                Resolution
+                                - &Delta;&lamda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy,
+                                the
+                                wavelength interval, &Delta;&lamda;, or wavenumber interval, &Delta;v, of radiant energy
+                                leaving
+                                the exit slit of a monochromator measured at half the peak detected radiant power.
+                            </Documentation>
+                            <Quantity name="Energy">
+                                &eV;
+                            </Quantity>
+                            <Quantity name="Reciprocal Length">
+                                &reciprocal_cm;
+                            </Quantity>
+                            <Quantity name="Wavelength">
+                                &nm;
+                            </Quantity>
+                        </ParameterBlueprint>
+                    </CategoryBlueprint>
+                    <CategoryBlueprint name="Array-based Detector">
+                        <Documentation>Fixed characteristics of the instrument, specific to diode array measurements.
+                        </Documentation>
+                        <SeriesSetBlueprint name="Wavelength Coverage">
+                            <Documentation>The wavelength that is covered by each diode</Documentation>
+                            <SeriesBlueprint name="Diode Number" seriesType="Int" dependency="independent">
+                            </SeriesBlueprint>
+                            <SeriesBlueprint name="Covered Wavelength" seriesType="Numeric" dependency="dependent"
+                                             modality="optional">
+                                <Quantity name="wavelength">
+                                    &nm;
+                                </Quantity>
+                            </SeriesBlueprint>
+                        </SeriesSetBlueprint>
+                        <ParameterBlueprint name="Number Of Diodes" parameterType="Int" modality="optional">
+                            <Documentation>The number of diodes in the array.</Documentation>
+                        </ParameterBlueprint>
+                    </CategoryBlueprint>
+                </CategoryBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="Instrument Settings" modality="required">
                 <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
@@ -748,9 +820,11 @@
                     </SeriesBlueprint>
                 </SeriesSetBlueprint>
                 <SeriesSetBlueprint name="Slit Widths" modality="optional">
-                    <Documentation>Mechanical width of the monochromator slits. Use parameter if variable, otherwise use Slit Width in "Instrument Properties"..
+                    <Documentation>Mechanical width of the monochromator slits. Use parameter if variable, otherwise use
+                        Slit Width in "Instrument Properties"..
                     </Documentation>
-                    <SeriesBlueprint name="Slit Widths" seriesType="Numeric" dependency="independent" modality="required">
+                    <SeriesBlueprint name="Slit Widths" seriesType="Numeric" dependency="independent"
+                                     modality="required">
                         <Quantity name="width">
                             &nm;
                         </Quantity>
@@ -857,265 +931,201 @@
                         </Quantity>
                     </ParameterBlueprint>
                 </CategoryBlueprint>
-            </CategoryBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Dispersion Detector" modality="optional">
-            <Documentation>Parameters specific for a dispersion detector.</Documentation>
-            <CategoryBlueprint name="Instrument Properties">
-                <Documentation>Fixed characteristics of the instrument, specific to dispersive measurements.
-                </Documentation>
-                <ParameterBlueprint name="Instrument Type" parameterType="String" modality="optional">
-                    <Documentation>Whether the instrument is a single beam, double beam, or diode array instrument.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>single beam</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>double beam</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Dispersion Element" parameterType="String" modality="optional">
-                    <Documentation/>
-                    <AllowedValue>
-                        <S>Prism</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Grating</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Prism Material" parameterType="String">
-                    <Documentation>Material from which the prism is made.</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E131-05">The wavelength dispersion at the exit slit of
-                        the instrument.
-                    </Documentation>
-                    <Quantity name="Ratio">
-                        <Unit label="nm/mm">
-                            <SIUnit exponent="1" factor="1e-9">m</SIUnit>
-                            <SIUnit exponent="1" factor="1e-3">m</SIUnit>
-                        </Unit>
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector. Resolution
-                        - &Delta;&lamda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy, the
-                        wavelength interval, &Delta;&lamda;, or wavenumber interval, &Delta;v, of radiant energy leaving
-                        the exit slit of a monochromator measured at half the peak detected radiant power.
-                    </Documentation>
-                    <Quantity name="Energy">
-                        &eV;
-                    </Quantity>
-                    <Quantity name="Reciprocal Length">
-                        &reciprocal_cm;
-                    </Quantity>
-                    <Quantity name="Wavelength">
-                        &nm;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings">
-                <Documentation>Variable characteristics or configuration parameters of the instrument, specific to
-                    dispersive measurements.
-                </Documentation>
-                <SeriesSetBlueprint name="Detectors" modality="optional">
-                    <Documentation>List of detectors used within specific wavelength ranges.</Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required"
-                                     plotScale="none">
-                        <Documentation>The lower-bound x-axis value from which the specified detector was used.
+                <CategoryBlueprint name="Detector Type" modality="optional">
+                    <Documentation>Settings depending on the operation principle of the detector.</Documentation>
+                    <CategoryBlueprint name="Dispersive Detector">
+                        <Documentation>Variable characteristics or configuration parameters of the instrument, specific
+                            to
+                            dispersive measurements.
                         </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um;
-                            &nm;
-                            &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required"
-                                     plotScale="none">
-                        <Documentation>The upper-bound x-axis value from which the specified detector was used..
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um; &nm; &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Detector Name" seriesType="String" dependency="dependent" modality="required"
-                                     plotScale="none">
-                        <Documentation>Name of the detector.</Documentation>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Detector Type" seriesType="String" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>The type of the detector used for the measurement.</Documentation>
-                        <AllowedValue>
-                            <S>Photomultiplier</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Photodiode</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Diode Array</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>CCD Array</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>PbS</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Thermopile</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>other</S>
-                        </AllowedValue>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Detector Description" seriesType="String" dependency="dependent"
-                                     modality="optional" plotScale="none">
-                        <Documentation>Description of the detector.</Documentation>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Bias Voltage" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>Voltage that determines the detector gain.</Documentation>
-                        <Quantity name="Voltage">
-                            &V;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Detector Gain" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>Factor for converting radiant energy incident on the detector to an electrical
-                            signal at the detector output.
-                        </Documentation>
-                    </SeriesBlueprint>
-                </SeriesSetBlueprint>
-                <ParameterBlueprint name="Slit Function" parameterType="String" modality="required">
-                    <Documentation>Adjustment of the slit width to maintain constant resolution or constant energy over
-                        the course of the scan.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>Constant resolution</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Constant energy</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Spectral Slit Width" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E131-05">Mechanical width of the exit slit, divided by
-                        the linear dispersion in the exit slit plan. Use parameter if constant.
-                    </Documentation>
-                    <Quantity name="Length">
-                        &nm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Integration Period" parameterType="Float" modality="optional">
-                    <Documentation>The time interval over which discrete detector readings are averaged to produce a
-                        data point. Use this parameter only to state how the data were acquired.
-                    </Documentation>
-                    <Quantity name="Time">
-                        &ms; &s;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Degree of Derivatization" parameterType="Int" modality="required">
-                    <Documentation>Derivative spectra can be used to enhance differences among spectra, to resolve
-                        overlapping bands in qualitative analysis and, most importantly, to reduce the effects of
-                        interference from scattering, matrix, or other absorbing compounds in quantitative analysis. Use
-                        this parameter only to state how the data were acquired. Values: 0-Not differentiated (default),
-                        1-1st derivative spectrum, 2-2nd derivative spectrum, 3-3rd derivative spectrum, 4-4th
-                        derivative spectrum.
-                    </Documentation>
-                    <AllowedValue>
-                        <I>0</I>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <I>1</I>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <I>2</I>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <I>3</I>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Derivatization Algorithm Description" parameterType="String"
-                                    modality="optional">
-                    <Documentation>Description of or a reference to the algorithm used to perform derivatization.
-                    </Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Scan Speed" parameterType="Float" modality="optional">
-                    <Documentation>The speed of the scan.</Documentation>
-                    <Quantity name="Velocity">
-                        <Unit label="nm/s">
-                            <SIUnit exponent="1" factor="1e-9">m</SIUnit>
-                            <SIUnit exponent="1" factor="1">s</SIUnit>
-                        </Unit>
-                        &reciprocal_cm_per_s;
-                        <Unit label="eV/s">
-                            <SIUnit exponent="1" factor="1.60218e-19">kg</SIUnit>
-                            <SIUnit exponent="2" factor="1">m</SIUnit>
-                            <SIUnit exponent="-3" factor="1">s</SIUnit>
-                        </Unit>
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Scan Response Filter" modality="optional" parameterType="Float">
-                    <Documentation>TODO</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Spectral Bandwidth" modality="optional" parameterType="Float">
-                    <Documentation literatureReferenceID="ASTM E131-05">The wavelength interval of radiant energy
-                        leaving the exit slit of a monochromator measured at half the peak detected radiant power.
-                    </Documentation>
-                    <Quantity name="Length">
-                        &nm;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Diode Array Detector" modality="optional">
-            <Documentation>Specific parameters for a diode array detector (DAD).</Documentation>
-            <CategoryBlueprint name="Instrument Properties" modality="optional">
-                <Documentation>Fixed characteristics of the instrument, specific to DAD measurements.
-                </Documentation>
-                <ParameterBlueprint name="Number Of Diodes" parameterType="Int" modality="optional">
-                    <Documentation>The number of diodes in the array.</Documentation>
-                </ParameterBlueprint>
-                <CategoryBlueprint name="Array Specifics">
-                    <SeriesSetBlueprint name="Wavelength Coverage">
-                        <Documentation>The wavelength that is covered by each diode</Documentation>
-                        <SeriesBlueprint name="Diode Number" seriesType="Int" dependency="independent">
-                        </SeriesBlueprint>
-                        <SeriesBlueprint name="Covered Wavelength" seriesType="Numeric" dependency="dependent" modality="optional">
-                            <Quantity name="wavelength">
+                        <SeriesSetBlueprint name="Detectors" modality="optional">
+                            <Documentation>List of detectors used within specific wavelength ranges.</Documentation>
+                            <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent"
+                                             modality="required"
+                                             plotScale="none">
+                                <Documentation>The lower-bound x-axis value from which the specified detector was used.
+                                </Documentation>
+                                <Quantity name="Reciprocal Length">
+                                    &reciprocal_cm;
+                                </Quantity>
+                                <Quantity name="Length">
+                                    &um;
+                                    &nm;
+                                    &pm;
+                                </Quantity>
+                                <Quantity name="Energy">
+                                    &eV;
+                                </Quantity>
+                            </SeriesBlueprint>
+                            <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent"
+                                             modality="required"
+                                             plotScale="none">
+                                <Documentation>The upper-bound x-axis value from which the specified detector was used..
+                                </Documentation>
+                                <Quantity name="Reciprocal Length">
+                                    &reciprocal_cm;
+                                </Quantity>
+                                <Quantity name="Length">
+                                    &um; &nm; &pm;
+                                </Quantity>
+                                <Quantity name="Energy">
+                                    &eV;
+                                </Quantity>
+                            </SeriesBlueprint>
+                            <SeriesBlueprint name="Detector Name" seriesType="String" dependency="dependent"
+                                             modality="required"
+                                             plotScale="none">
+                                <Documentation>Name of the detector.</Documentation>
+                            </SeriesBlueprint>
+                            <SeriesBlueprint name="Detector Type" seriesType="String" dependency="dependent"
+                                             modality="optional"
+                                             plotScale="none">
+                                <Documentation>The type of the detector used for the measurement.</Documentation>
+                                <AllowedValue>
+                                    <S>Photomultiplier</S>
+                                </AllowedValue>
+                                <AllowedValue>
+                                    <S>Photodiode</S>
+                                </AllowedValue>
+                                <AllowedValue>
+                                    <S>Diode Array</S>
+                                </AllowedValue>
+                                <AllowedValue>
+                                    <S>CCD Array</S>
+                                </AllowedValue>
+                                <AllowedValue>
+                                    <S>PbS</S>
+                                </AllowedValue>
+                                <AllowedValue>
+                                    <S>Thermopile</S>
+                                </AllowedValue>
+                                <AllowedValue>
+                                    <S>other</S>
+                                </AllowedValue>
+                            </SeriesBlueprint>
+                            <SeriesBlueprint name="Detector Description" seriesType="String" dependency="dependent"
+                                             modality="optional" plotScale="none">
+                                <Documentation>Description of the detector.</Documentation>
+                            </SeriesBlueprint>
+                            <SeriesBlueprint name="Bias Voltage" seriesType="Float" dependency="dependent"
+                                             modality="optional"
+                                             plotScale="none">
+                                <Documentation>Voltage that determines the detector gain.</Documentation>
+                                <Quantity name="Voltage">
+                                    &V;
+                                </Quantity>
+                            </SeriesBlueprint>
+                            <SeriesBlueprint name="Detector Gain" seriesType="Float" dependency="dependent"
+                                             modality="optional"
+                                             plotScale="none">
+                                <Documentation>Factor for converting radiant energy incident on the detector to an
+                                    electrical
+                                    signal at the detector output.
+                                </Documentation>
+                            </SeriesBlueprint>
+                        </SeriesSetBlueprint>
+                        <ParameterBlueprint name="Slit Function" parameterType="String" modality="required">
+                            <Documentation>Adjustment of the slit width to maintain constant resolution or constant
+                                energy over
+                                the course of the scan.
+                            </Documentation>
+                            <AllowedValue>
+                                <S>Constant resolution</S>
+                            </AllowedValue>
+                            <AllowedValue>
+                                <S>Constant energy</S>
+                            </AllowedValue>
+                            <AllowedValue>
+                                <S>other</S>
+                            </AllowedValue>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Spectral Slit Width" parameterType="Float" modality="optional">
+                            <Documentation literatureReferenceID="ASTM E131-05">Mechanical width of the exit slit,
+                                divided by
+                                the linear dispersion in the exit slit plan. Use parameter if constant.
+                            </Documentation>
+                            <Quantity name="Length">
                                 &nm;
                             </Quantity>
-                        </SeriesBlueprint>
-                    </SeriesSetBlueprint>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Integration Period" parameterType="Float" modality="optional">
+                            <Documentation>The time interval over which discrete detector readings are averaged to
+                                produce a
+                                data point. Use this parameter only to state how the data were acquired.
+                            </Documentation>
+                            <Quantity name="Time">
+                                &ms; &s;
+                            </Quantity>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Degree of Derivatization" parameterType="Int" modality="required">
+                            <Documentation>Derivative spectra can be used to enhance differences among spectra, to
+                                resolve
+                                overlapping bands in qualitative analysis and, most importantly, to reduce the effects
+                                of
+                                interference from scattering, matrix, or other absorbing compounds in quantitative
+                                analysis. Use
+                                this parameter only to state how the data were acquired. Values: 0-Not differentiated
+                                (default),
+                                1-1st derivative spectrum, 2-2nd derivative spectrum, 3-3rd derivative spectrum, 4-4th
+                                derivative spectrum.
+                            </Documentation>
+                            <AllowedValue>
+                                <I>0</I>
+                            </AllowedValue>
+                            <AllowedValue>
+                                <I>1</I>
+                            </AllowedValue>
+                            <AllowedValue>
+                                <I>2</I>
+                            </AllowedValue>
+                            <AllowedValue>
+                                <I>3</I>
+                            </AllowedValue>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Derivatization Algorithm Description" parameterType="String"
+                                            modality="optional">
+                            <Documentation>Description of or a reference to the algorithm used to perform
+                                derivatization.
+                            </Documentation>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Scan Speed" parameterType="Float" modality="optional">
+                            <Documentation>The speed of the scan.</Documentation>
+                            <Quantity name="Velocity">
+                                <Unit label="nm/s">
+                                    <SIUnit exponent="1" factor="1e-9">m</SIUnit>
+                                    <SIUnit exponent="1" factor="1">s</SIUnit>
+                                </Unit>
+                                &reciprocal_cm_per_s;
+                                <Unit label="eV/s">
+                                    <SIUnit exponent="1" factor="1.60218e-19">kg</SIUnit>
+                                    <SIUnit exponent="2" factor="1">m</SIUnit>
+                                    <SIUnit exponent="-3" factor="1">s</SIUnit>
+                                </Unit>
+                            </Quantity>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Scan Response Filter" modality="optional" parameterType="Float">
+                            <Documentation>TODO</Documentation>
+                        </ParameterBlueprint>
+                        <ParameterBlueprint name="Spectral Bandwidth" modality="optional" parameterType="Float">
+                            <Documentation literatureReferenceID="ASTM E131-05">The wavelength interval of radiant
+                                energy
+                                leaving the exit slit of a monochromator measured at half the peak detected radiant
+                                power.
+                            </Documentation>
+                            <Quantity name="Length">
+                                &nm;
+                            </Quantity>
+                        </ParameterBlueprint>
+                    </CategoryBlueprint>
+                    <CategoryBlueprint name="Array-based Detector">
+                        <Documentation>Variable characteristics or configuration parameters of the instrument, specific
+                            to
+                            diode array measurements.
+                        </Documentation>
+                        <!-- TODO -->
+                    </CategoryBlueprint>
                 </CategoryBlueprint>
-
             </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings" modality="optional">
-                <Documentation>Variable characteristics or configuration parameters of the instrument, specific to
-                    DAD measurements.
-                </Documentation>
-
-            </CategoryBlueprint>
-
         </CategoryBlueprint>
         <CategoryBlueprint name="Spectral Post-Processing" modality="optional">
             <Documentation>Post-processing of spectral data.</Documentation>

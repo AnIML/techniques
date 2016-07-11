@@ -10,6 +10,7 @@
         <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
         <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
         <!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
 
         <!-- Mass -->
         <!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
@@ -46,6 +47,8 @@
 
         <!-- Voltage -->
         <!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+        <!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+        <!ENTITY uV "<Unit label='µV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
 
         <!-- Intensity -->
         <!ENTITY Energy_Units "<Unit label='EU'><SIUnit>1</SIUnit></Unit>">
@@ -374,39 +377,27 @@
             accepted concentration or property.
         </Documentation>
     </SampleRoleBlueprint>
-    <SampleRoleBlueprint name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1"
-                         inheritable="false">
-        <Documentation>Reference to the sample used for calibration. A document reference about the qualification test
-            often used in a QA/QC setting. This is only a reference, so no parameters are required.
-        </Documentation>
-    </SampleRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="Proficiency Reference" experimentStepPurpose="consumed" modality="optional" maxOccurs="1">
-        <Documentation>Reference to the most recent successful proficiency test sample the analyst/system has been
-            confronted with. This is only a reference, so no parameters are required.
+    <ExperimentDataRoleBlueprint name="Qualification Reference" experimentStepPurpose="consumed" modality="optional" maxOccurs="1">
+        <Documentation>Reference to the sample used for calibration. A document reference about the qualification test often used in a QA/QC setting. This is only a reference, so no parameters are required.
         </Documentation>
     </ExperimentDataRoleBlueprint>
     <ExperimentDataRoleBlueprint name="Intensity Calibration Reference" experimentStepPurpose="consumed" modality="optional" maxOccurs="1">
-        <Documentation>The material sample or lamp used to calibrate the intensity axis. This is only a
-            reference, so no parameters are required.
+        <Documentation>The material sample or lamp used to calibrate the intensity axis. This is only a reference, so no parameters are required.
         </Documentation>
     </ExperimentDataRoleBlueprint>
     <ExperimentDataRoleBlueprint name="Wavelength Calibration Reference" experimentStepPurpose="consumed" modality="optional"
                          maxOccurs="1">
-        <Documentation>The material sample or lamp used to calibrate the wavelength axis. This is only a reference, so
-            no parameters are required.
+        <Documentation>The material sample or lamp used to calibrate the wavelength axis. This is only a reference, so no parameters are required.
         </Documentation>
     </ExperimentDataRoleBlueprint>
     <ExperimentDataRoleBlueprint name="Dark Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
         <Documentation>Reference to the spectrum used for dark correction.</Documentation>
     </ExperimentDataRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="Reference Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
-        <Documentation>Reference to the spectrum used for reference correction.</Documentation>
-    </ExperimentDataRoleBlueprint>
     <ExperimentDataRoleBlueprint name="Stray light Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
         <Documentation>Reference to the spectrum used for stray light correction.</Documentation>
     </ExperimentDataRoleBlueprint>
     <ExperimentDataRoleBlueprint name="Reference Excitation Spectrum" experimentStepPurpose="consumed" modality="optional">
-        <Documentation>Reference to the spectrum (most likely DAD) taken to optimize the excitation wavelengths.</Documentation>
+        <Documentation>Reference to the UV/Vis spectrum (most likely DAD) taken to optimize the excitation wavelengths.</Documentation>
     </ExperimentDataRoleBlueprint>
     <MethodBlueprint>
         <CategoryBlueprint name="Method Description" modality="optional">
@@ -476,7 +467,7 @@
                     </Quantity>
                 </ParameterBlueprint>
             </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings" modality="required">
+            <CategoryBlueprint name="Instrument Settings" modality="optional">
                 <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
                 <SeriesSetBlueprint name="Source Polarization" modality="optional">
                     <Documentation>Sequence of polarizing elements used to modify the source polarization for the given
@@ -743,7 +734,6 @@
                                      modality="required" plotScale="none">
                     </SeriesBlueprint>
                 </SeriesSetBlueprint>
-
                 <ParameterBlueprint name="Sample Holder Position" parameterType="String" modality="optional">
                     <Documentation>The position of the sample within the sample holder unit. Note: This is not intended
                         for auto sampler information.
@@ -954,10 +944,10 @@
                              dependency="dependent">
                 <Documentation>The measured fluorescence intensity.</Documentation>
                 <Quantity name="Emission Units">
-                    &EU; &arbitrary;
+                    &Energy_Units; &arbitrary;
                 </Quantity>
                 <Quantity name="Luminescence Units">
-                    &LU; &arbitrary;
+                    &Luminescence_Units; &arbitrary;
                 </Quantity>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
@@ -1013,24 +1003,6 @@
                 <Quantity name="Temperature">
                     &degK; &degC; &degF;
                 </Quantity>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Spectrum Description">
-            <Documentation>Description of the spectrum.</Documentation>
-            <ParameterBlueprint name="Spectrum Data Source" parameterType="String" modality="optional">
-                <Documentation>Type of data source from which this spectrum has been derived.</Documentation>
-                <AllowedValue>
-                    <S>Measured dispersive spectrum</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>FT power spectrum</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>FT real spectrum</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>FT imaginary spectrum</S>
-                </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
     </ResultBlueprint>

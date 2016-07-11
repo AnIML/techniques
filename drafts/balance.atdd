@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited by Patrick Boba(BSSN Software) -->
+
+<!DOCTYPE Technique [
+        <!ENTITY lamda "&#955;">
+        <!ENTITY Delta "&#916;">
+        <!ENTITY pg "<Unit label='pg'><SIUnit exponent='1' factor='1e-15'>kg</SIUnit></Unit>">
+        <!ENTITY ng "<Unit label='ng'><SIUnit exponent='1' factor='1e-12'>kg</SIUnit></Unit>">
+        <!ENTITY ug "<Unit label='µg'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit></Unit>">
+        <!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
+        <!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
+        <!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
+        <!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
+        <!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
+        <!ENTITY cm_per_s "<Unit label='cm/s'><SIUnit exponent='1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+        <!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY ml "<Unit label='ml'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
+        <!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
+        <!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
+        <!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
+        <!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+        <!ENTITY mg_per_ml "<Unit label='mg/ml'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
+        <!ENTITY ml_per_ml "<Unit label='ml/ml'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
+        <!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
+        <!ENTITY ml_per_g "<Unit label='ml/g'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
+        <!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
+        <!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
+        <!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
+        <!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
+        <!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
+        <!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY A "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+        <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
+        <!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
+        <!ENTITY kHz "<Unit label='kHz'><SIUnit exponent='-1' factor='1e+3'>s</SIUnit></Unit>">
+        <!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
+        <!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
+        <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
+        ]>
+
+<Technique name="Laboratory Balance"
+           version="0.90"
+           xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90">
+    <Documentation>This technique definition describes the operation of a laboratory balance</Documentation>
+    <MethodBlueprint>
+        <CategoryBlueprint name="Common Method" modality="required">
+            <Documentation>Information describing the instrument and its environment.</Documentation>
+            <ParameterBlueprint name="Description" parameterType="String" modality="optional">
+                <Documentation>A textual description of the instrument.</Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Comments" parameterType="String" modality="optional">
+                <Documentation>Comments about the instrument.</Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Accuracy" parameterType="Float" modality="optional">
+                <Documentation>Accuracy (resolution) of the balance</Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Maximum Weight" parameterType="Float" modality="optional">
+                <Quantity name="Weight">
+                    &ug; &mg; &g;
+                </Quantity>
+            </ParameterBlueprint>
+        </CategoryBlueprint>
+    </MethodBlueprint>
+    <ResultBlueprint name="Weight" modality="required">
+        <CategoryBlueprint name="Weight">
+            <SeriesSetBlueprint name="Weight">
+                <SeriesBlueprint name="Weight" seriesType="Float" dependency="independent">
+                    <Quantity name="Weight">
+                        &ug; &mg; &g;
+                    </Quantity>
+                </SeriesBlueprint>
+            </SeriesSetBlueprint>
+        </CategoryBlueprint>
+    </ResultBlueprint>
+
+</Technique>

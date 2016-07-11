@@ -1237,6 +1237,17 @@
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="required">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
+            <ParameterBlueprint name="Spectrum Acquisition Method" parameterType="String">
+                <AllowedValue>
+                    <S>Dispersive</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Array-based</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Other</S>
+                </AllowedValue>
+            </ParameterBlueprint>
             <ParameterBlueprint name="Experiment Duration" parameterType="Float" modality="required">
                 <Documentation>Duration of the entire experiment covered by this ExperimentStep.</Documentation>
                 <Quantity name="Time">

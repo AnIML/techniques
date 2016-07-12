@@ -377,19 +377,19 @@
             accepted concentration or property.
         </Documentation>
     </SampleRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="Qualification Reference" experimentStepPurpose="consumed" modality="optional" maxOccurs="1">
+    <SampleRoleBlueprint name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
         <Documentation>Reference to the sample used for calibration. A document reference about the qualification test often used in a QA/QC setting. This is only a reference, so no parameters are required.
         </Documentation>
-    </ExperimentDataRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="Intensity Calibration Reference" experimentStepPurpose="consumed" modality="optional" maxOccurs="1">
+    </SampleRoleBlueprint>
+    <SampleRoleBlueprint name="Intensity Calibration Reference" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="false">
         <Documentation>The material sample or lamp used to calibrate the intensity axis. This is only a reference, so no parameters are required.
         </Documentation>
-    </ExperimentDataRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="Wavelength Calibration Reference" experimentStepPurpose="consumed" modality="optional"
+    </SampleRoleBlueprint>
+    <SampleRoleBlueprint name="Wavelength Calibration Reference" samplePurpose="consumed" modality="optional" inheritable="false"
                          maxOccurs="1">
         <Documentation>The material sample or lamp used to calibrate the wavelength axis. This is only a reference, so no parameters are required.
         </Documentation>
-    </ExperimentDataRoleBlueprint>
+    </SampleRoleBlueprint>
     <ExperimentDataRoleBlueprint name="Dark Correction Spectrum" experimentStepPurpose="consumed" modality="optional">
         <Documentation>Reference to the spectrum used for dark correction.</Documentation>
     </ExperimentDataRoleBlueprint>
@@ -959,16 +959,21 @@
                     &s;
                 </Quantity>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Excitation Wavelength" parameterType="Numeric" modality="required">
-                <Documentation>The wavelength at which the sample was excited.</Documentation>
-                <Quantity name="Wavelength">
-                    &nm;
-                </Quantity>
-            </ParameterBlueprint>
             <ParameterBlueprint name="Scan Duration" parameterType="Numeric" modality="optional">
                 <Documentation>Duration of a single scan.</Documentation>
                 <Quantity name="Time">
                     &s;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Scan Number" parameterType="Int" modality="optional">
+                <Documentation>Duration of a single scan.</Documentation>
+                <Quantity name="Number">
+                    &A;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Excitation Wavelength" parameterType="Numeric" modality="optional">
+                <Quantity name="Wavelength">
+                    &nm;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">

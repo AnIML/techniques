@@ -85,7 +85,7 @@
 	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed"> <!-- This name doesn't explain the reference -->
 		<Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the spectra (if applicable).</Documentation>
 	</ExperimentDataRoleBlueprint>
-	<ExperimentDataRoleBlueprint name="Original Spectrum" experimentStepPurpose="consumed">
+	<ExperimentDataRoleBlueprint name="Original Spectra" experimentStepPurpose="consumed">
 		<Documentation>References one of the spectra the trace was generated from.</Documentation>
 	</ExperimentDataRoleBlueprint>
 	<MethodBlueprint>
@@ -96,7 +96,7 @@
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 		<CategoryBlueprint name="Common Method" modality="required">
-			<Documentation>Information describing the instrument and its environment. This information is common to both dispersive and interferometric measurements.</Documentation>
+			<Documentation>Information describing the instrument and its environment. These parameter are common for all UV-Vis trace detection methods.</Documentation>
 			<CategoryBlueprint name="Instrument Properties" modality="optional">
 				<Documentation>Fixed characteristics of the instrument.</Documentation>
 				<ParameterBlueprint name="Description" parameterType="String" modality="optional">

@@ -82,11 +82,8 @@
 ]>
 <Technique name="UV/Vis Trace Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for UV/Vis Point Detector data</Documentation>
-	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed"> <!-- This name doesn't explain the reference -->
+	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional"> <!-- This name doesn't explain the reference -->
 		<Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the spectra (if applicable).</Documentation>
-	</ExperimentDataRoleBlueprint>
-	<ExperimentDataRoleBlueprint name="Original Spectra" experimentStepPurpose="consumed">
-		<Documentation>References one of the spectra the trace was generated from.</Documentation>
 	</ExperimentDataRoleBlueprint>
 	<MethodBlueprint>
 		<CategoryBlueprint name="Method Description" modality="optional">
@@ -679,7 +676,7 @@
 			</ParameterBlueprint>
 		</CategoryBlueprint>
 	</MethodBlueprint>
-	<ResultBlueprint name="UV/Vis Trace" modality="required">
+	<ResultBlueprint name="UV/Vis Trace" modality="optional">
 		<Documentation>Time-base trace of UV/Vis detector data.</Documentation>
 		<SeriesSetBlueprint name="UV/Vis Trace" modality="required">
 			<SeriesBlueprint name="Time" seriesType="Numeric" plotScale="linear" dependency="independent">

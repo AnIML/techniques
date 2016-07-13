@@ -79,13 +79,13 @@
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
     <Documentation>Technique definition for UV/Visible spectrophotometry to create a dispersive spectrum.
     </Documentation>
-    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1"
+    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
                          inheritable="true">
         <Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory
             sample which has a suitable sample weight or volume for one or more determinations by chemical analysis.
             This sample role represents the sample that is analyzed in the given ExperimentStep.
         </Documentation>
-        <CategoryBlueprint name="Description" modality="required" maxOccurs="1">
+        <CategoryBlueprint name="Description" modality="optional" maxOccurs="1">
             <Documentation>Parameters describing the test sample</Documentation>
             <ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
                 <Documentation>Common, trade, or other names.</Documentation>
@@ -171,10 +171,11 @@
                 </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
-                <Documentation/>
+                <Documentation>The pressure of the used sample, if different and separated from environment.
+                </Documentation>
                 <Quantity name="Pressure">
                     &Pa; &psig; &bar;
-                </Quantity>
+                </Quantity> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
             </ParameterBlueprint>
             <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation literatureReferenceID="JCAMP-DX IR">Sample temperature if significantly different from
@@ -185,16 +186,18 @@
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
-                <Documentation>Density of the test sample. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
+                <Documentation literatureReferenceID="Appl Spectrosc">Density of the test sample.</Documentation>
                 <Quantity name="Density">
                     &g_per_cm3;
                 </Quantity>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Lot or Batch Name/Number" parameterType="String" modality="optional"
+            <ParameterBlueprint name="Batch ID" parameterType="String" modality="optional"
                                 maxOccurs="1">
-                <Documentation>Lot or batch name/number</Documentation>
+                <Documentation>Lot or batch name/number/ID</Documentation>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1"/>
+            <ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation>TODO</Documentation><!-- TODO: update this parameter with documentation -->
+            </ParameterBlueprint>
             <CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
                 <Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under
                     equilibrium boiling conditions.
@@ -255,7 +258,7 @@
                         &degK; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Wavelength" parameterType="Float" modality="optional" maxOccurs="1">
+                <ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
                     <Documentation>Wavelength at which the refractive index has been determined. If not given, the
                         Sodium-D line is assumed.
                     </Documentation>
@@ -275,7 +278,7 @@
                 <Documentation>Common, trade, or other names.</Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
-                <Documentation>Concentration of known components and impurities; see Appl. Spectrosc. 42, 1, 1988.
+                <Documentation literatureReferenceID="Appl Spectrosc">Concentration of known components and impurities;
                 </Documentation>
                 <Quantity name="Concentration">
                     &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
@@ -295,7 +298,7 @@
                     H2 O (chromic acetate monohydrate), H2 ^17O (water, mass 17 oxygen).
                 </Documentation>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
                 <Quantity name="Molar Mass">
                     &g_per_mol;
                 </Quantity>
@@ -435,7 +438,7 @@
                 <SeriesSetBlueprint name="Light Sources" modality="optional">
                     <Documentation>Description of light sources included in the system.
                     </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" modality="required" dependency="dependent"
+                    <SeriesBlueprint name="Lower Bound" seriesType="Numeric" modality="optional" dependency="dependent"
                                      plotScale="none">
                         <Documentation>The lower-bound x-axis value from which the given light source was used.
                         </Documentation>
@@ -449,7 +452,7 @@
                             &eV;
                         </Quantity>
                     </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" modality="required" dependency="dependent"
+                    <SeriesBlueprint name="Upper Bound" seriesType="Numeric" modality="optional" dependency="dependent"
                                      plotScale="none">
                         <Documentation>The upper-bound x-axis value up to which the given light source was used.
                         </Documentation>
@@ -513,7 +516,7 @@
                         Sample element in the AnIML Core Schema.)
                     </Documentation>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Analog-to-Digital Converter Resolution" parameterType="Float"
+                <ParameterBlueprint name="Analog-to-Digital Converter Resolution" parameterType="Numeric"
                                     modality="optional" maxOccurs="1">
                     <Documentation>Digital resolution of the analog-to-digital converter.</Documentation>
                     <Quantity name="bits">
@@ -531,7 +534,7 @@
                         &AU_per_hour;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Slit Width" parameterType="Float" modality="optional">
+                <ParameterBlueprint name="Slit Width" parameterType="Numeric" modality="optional">
                     <Documentation>Mechanical width of the monochromator slits. Use parameter if constant.
                     </Documentation>
                     <Quantity name="Length">
@@ -546,17 +549,17 @@
                         </Unit>
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Grating Blaze Angle" parameterType="Float">
+                <ParameterBlueprint name="Grating Blaze Angle" parameterType="Numeric">
                     <Documentation>Angle at which grating lines have been cut.</Documentation>
                 </ParameterBlueprint>
             </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings" modality="required">
+            <CategoryBlueprint name="Instrument Settings" modality="optional">
                 <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
                 <SeriesSetBlueprint name="Source Polarization" modality="optional">
                     <Documentation>Sequence of polarizing elements used to modify the source polarization for the given
                         wavelength ranges.
                     </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required"
+                    <SeriesBlueprint name="Lower Bound" seriesType="Numeric" dependency="dependent" modality="optional"
                                      plotScale="none">
                         <Documentation>The lower-bound x-axis value from which the given polarizer was used.
                         </Documentation>
@@ -572,7 +575,7 @@
                             &eV;
                         </Quantity>
                     </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required"
+                    <SeriesBlueprint name="Upper Bound" seriesType="Numeric" dependency="dependent" modality="optional"
                                      plotScale="none">
                         <Documentation>The upper-bound x-axis value up to which the given polarizer was used..
                         </Documentation>
@@ -612,7 +615,7 @@
                     <Documentation>Sequence of optical filters used to modify the source intensity for the given
                         wavelength ranges.
                     </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required"
+                    <SeriesBlueprint name="Lower Bound" seriesType="Numeric" dependency="dependent" modality="optional"
                                      plotScale="none">
                         <Documentation>The lower-bound x-axis value from which the specified filter was used.
                         </Documentation>
@@ -628,7 +631,7 @@
                             &eV;
                         </Quantity>
                     </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required"
+                    <SeriesBlueprint name="Upper Bound" seriesType="Numeric" dependency="dependent" modality="optional"
                                      plotScale="none">
                         <Documentation>The upper-bound x-axis value from which the specified filter was used..
                         </Documentation>
@@ -650,7 +653,7 @@
                     <Documentation>Sequence of polarizing elements used to modify the detector polarization for the
                         given wavelength ranges.
                     </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required"
+                    <SeriesBlueprint name="Lower Bound" seriesType="Numeric" dependency="dependent" modality="optional"
                                      plotScale="none">
                         <Documentation>The lower-bound x-axis value from which the given polarizer was used.
                         </Documentation>
@@ -666,7 +669,7 @@
                             &eV;
                         </Quantity>
                     </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required"
+                    <SeriesBlueprint name="Upper Bound" seriesType="Numeric" dependency="dependent" modality="optional"
                                      plotScale="none">
                         <Documentation>The upper-bound x-axis value up to which the given polarizer was used..
                         </Documentation>
@@ -704,7 +707,7 @@
                     <Documentation>Sequence of optical filters used to modify the detector response for given wavelength
                         ranges.
                     </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required"
+                    <SeriesBlueprint name="Lower Bound" seriesType="Numeric" dependency="dependent" modality="optional"
                                      plotScale="none">
                         <Documentation>The lower-bound x-axis value from which the specified filter was used.
                         </Documentation>
@@ -712,15 +715,13 @@
                             &reciprocal_cm;
                         </Quantity>
                         <Quantity name="Length">
-                            &um;
-                            &nm;
-                            &pm;
+                            &um; &nm; &pm;
                         </Quantity>
                         <Quantity name="Energy">
                             &eV;
                         </Quantity>
                     </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required"
+                    <SeriesBlueprint name="Upper Bound" seriesType="Numeric" dependency="dependent" modality="optional"
                                      plotScale="none">
                         <Documentation>The upper-bound x-axis value from which the specified filter was used..
                         </Documentation>
@@ -743,7 +744,7 @@
                         Slit Width in "Instrument Properties"..
                     </Documentation>
                     <SeriesBlueprint name="Slit Widths" seriesType="Numeric" dependency="independent"
-                                     modality="required">
+                                     modality="optional">
                         <Quantity name="width">
                             &nm;
                         </Quantity>
@@ -825,7 +826,7 @@
                 <CategoryBlueprint name="Spectral Range" modality="optional">
                     <Documentation>The spectral range to acquire, given as wavelength, wave numbers or energy.
                     </Documentation>
-                    <ParameterBlueprint name="Min" parameterType="Float" modality="required">
+                    <ParameterBlueprint name="Min" parameterType="Numeric" modality="required">
                         <Documentation>The lower bound of the range to acquire.</Documentation>
                         <Quantity name="Reciprocal Length">
                             &reciprocal_cm;
@@ -837,7 +838,7 @@
                             &eV;
                         </Quantity>
                     </ParameterBlueprint>
-                    <ParameterBlueprint name="Max" parameterType="Float" modality="required">
+                    <ParameterBlueprint name="Max" parameterType="Numeric" modality="required">
                         <Documentation>The upper bound of the range to acquire.</Documentation>
                         <Quantity name="Reciprocal Length">
                             &reciprocal_cm;
@@ -884,7 +885,7 @@
                 <ParameterBlueprint name="Prism Material" parameterType="String">
                     <Documentation>Material from which the prism is made.</Documentation>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
+                <ParameterBlueprint name="Linear Dispersion" parameterType="Numeric" modality="optional">
                     <Documentation literatureReferenceID="ASTM E131-05">The wavelength dispersion at the exit
                         slit of
                         the instrument.
@@ -896,7 +897,7 @@
                         </Unit>
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
+                <ParameterBlueprint name="Physical Resolution" parameterType="Numeric" modality="optional">
                     <Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector.
                         Resolution
                         - &Delta;&lamda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy,
@@ -921,8 +922,8 @@
                 </Documentation>
                 <SeriesSetBlueprint name="Detectors" modality="optional">
                     <Documentation>List of detectors used within specific wavelength ranges.</Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent"
-                                     modality="required"
+                    <SeriesBlueprint name="Lower Bound" seriesType="Numeric" dependency="dependent"
+                                     modality="optional"
                                      plotScale="none">
                         <Documentation>The lower-bound x-axis value from which the specified detector was used.
                         </Documentation>
@@ -938,7 +939,7 @@
                             &eV;
                         </Quantity>
                     </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent"
+                    <SeriesBlueprint name="Upper Bound" seriesType="Numeric" dependency="dependent"
                                      modality="required"
                                      plotScale="none">
                         <Documentation>The upper-bound x-axis value from which the specified detector was used..
@@ -988,7 +989,7 @@
                                      modality="optional" plotScale="none">
                         <Documentation>Description of the detector.</Documentation>
                     </SeriesBlueprint>
-                    <SeriesBlueprint name="Bias Voltage" seriesType="Float" dependency="dependent"
+                    <SeriesBlueprint name="Bias Voltage" seriesType="Numeric" dependency="dependent"
                                      modality="optional"
                                      plotScale="none">
                         <Documentation>Voltage that determines the detector gain.</Documentation>
@@ -996,7 +997,7 @@
                             &V;
                         </Quantity>
                     </SeriesBlueprint>
-                    <SeriesBlueprint name="Detector Gain" seriesType="Float" dependency="dependent"
+                    <SeriesBlueprint name="Detector Gain" seriesType="Numeric" dependency="dependent"
                                      modality="optional"
                                      plotScale="none">
                         <Documentation>Factor for converting radiant energy incident on the detector to an
@@ -1005,7 +1006,7 @@
                         </Documentation>
                     </SeriesBlueprint>
                 </SeriesSetBlueprint>
-                <ParameterBlueprint name="Slit Function" parameterType="String" modality="required">
+                <ParameterBlueprint name="Slit Function" parameterType="String" modality="optional">
                     <Documentation>Adjustment of the slit width to maintain constant resolution or constant
                         energy over
                         the course of the scan.
@@ -1029,7 +1030,7 @@
                         &nm;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Integration Period" parameterType="Float" modality="optional">
+                <ParameterBlueprint name="Integration Period" parameterType="Numeric" modality="optional">
                     <Documentation>The time interval over which discrete detector readings are averaged to
                         produce a
                         data point. Use this parameter only to state how the data were acquired.
@@ -1038,7 +1039,7 @@
                         &ms; &s;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Degree of Derivatization" parameterType="Int" modality="required">
+                <ParameterBlueprint name="Degree of Derivatization" parameterType="Int" modality="optional">
                     <Documentation>Derivative spectra can be used to enhance differences among spectra, to
                         resolve
                         overlapping bands in qualitative analysis and, most importantly, to reduce the effects
@@ -1084,10 +1085,10 @@
                         </Unit>
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Scan Response Filter" modality="optional" parameterType="Float">
+                <ParameterBlueprint name="Scan Response Filter" modality="optional" parameterType="Numeric">
                     <Documentation>TODO</Documentation>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Spectral Bandwidth" modality="optional" parameterType="Float">
+                <ParameterBlueprint name="Spectral Bandwidth" modality="optional" parameterType="Numeric">
                     <Documentation literatureReferenceID="ASTM E131-05">The wavelength interval of radiant
                         energy
                         leaving the exit slit of a monochromator measured at half the peak detected radiant
@@ -1172,7 +1173,7 @@
         <SeriesSetBlueprint name="Spectrum" modality="required">
             <SeriesBlueprintChoice modality="required">
                 <Documentation>Series for the x-Axis of the Spectrum.</Documentation>
-                <SeriesBlueprint name="Wavenumber" seriesType="Float" plotScale="linear" dependency="independent">
+                <SeriesBlueprint name="Wavenumber" seriesType="Numeric" plotScale="linear" dependency="independent">
                     <Documentation literatureReferenceID="ASTM E131-05">Number of waves per unit of length.
                     </Documentation>
                     <Quantity name="Reciprocal Length">
@@ -1186,7 +1187,7 @@
                         &eV;
                     </Quantity>
                 </SeriesBlueprint>
-                <SeriesBlueprint name="Wavelength" seriesType="Float" plotScale="linear" dependency="independent">
+                <SeriesBlueprint name="Wavelength" seriesType="Numeric" plotScale="linear" dependency="independent">
                     <Documentation literatureReferenceID="ASTM E131-05">&lamda; - the distance, measured along the line
                         of propagation, between two points that are in phase on adjacent waves.
                     </Documentation>
@@ -1215,7 +1216,7 @@
                     &arbitrary;
                 </Quantity>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Resolution" seriesType="Float" modality="optional" plotScale="none"
+            <SeriesBlueprint name="Resolution" seriesType="Numeric" modality="optional" plotScale="none"
                              dependency="dependent">
                 <Documentation literatureReferenceID="ASTM E131-05">&Delta;&lamda;, &Delta;v, n - of a dispersive
                     spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lamda;, or wavenumber
@@ -1242,9 +1243,9 @@
                 </Quantity>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
-        <CategoryBlueprint name="Measurement Description" modality="required">
+        <CategoryBlueprint name="Measurement Description" modality="optional">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
-            <ParameterBlueprint name="Spectrum Acquisition Method" parameterType="String">
+            <ParameterBlueprint name="Spectrum Acquisition Method" parameterType="String" modality="optional">
                 <AllowedValue>
                     <S>Dispersive</S>
                 </AllowedValue>
@@ -1255,13 +1256,13 @@
                     <S>Other</S>
                 </AllowedValue>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Experiment Duration" parameterType="Float" modality="required">
+            <ParameterBlueprint name="Experiment Duration" parameterType="Numeric" modality="optional">
                 <Documentation>Duration of the entire experiment covered by this ExperimentStep.</Documentation>
                 <Quantity name="Time">
                     &s;
                 </Quantity>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Scan Duration" parameterType="Float" modality="optional">
+            <ParameterBlueprint name="Scan Duration" parameterType="Numeric" modality="optional">
                 <Documentation>Duration of a single scan.</Documentation>
                 <Quantity name="Time">
                     &s;
@@ -1285,7 +1286,7 @@
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Ambient Conditions">
+        <CategoryBlueprint name="Ambient Conditions" modality="optional">
             <Documentation>Ambient temperature and pressure in the optical chamber during the experiment.
             </Documentation>
             <ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
@@ -1294,7 +1295,7 @@
                     &Pa; &psig; &bar;
                 </Quantity>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Temperature" parameterType="Float" modality="required">
+            <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional">
                 <Documentation>Measured temperature in the optical path of the instrument.</Documentation>
                 <Quantity name="Temperature">
                     &degK; &degC; &degF;
@@ -1304,7 +1305,7 @@
     </ResultBlueprint>
     <Bibliography>
         <LiteratureReference literatureReferenceID="ASTM D1129-06A">
-            ASTM Standard D1129-06A: TODO
+            ASTM Standard D1129-06A: Standard Terminology Relating to Water, DOI: 10.1520/D1129-06A
         </LiteratureReference>
         <LiteratureReference literatureReferenceID="ASTM E131-05">
             ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05
@@ -1313,19 +1314,11 @@
             ASTM Standard E135-09: Standard Terminology Relating to Analytical Chemistry for Metals, Ores, and Related
             Materials, DOI: 10.1520/E0135-09
         </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E275-08">
-            ASTM Standard E275-08: Standard Practice for Describing and Measuring Performance of Ultraviolet, Visible,
-            and Near-Infrared Spectrophotometers, DOI: 10.1520/E0275-08
-        </LiteratureReference>
         <LiteratureReference literatureReferenceID="ASTM E609-05">
             ASTM Standard E609-05: Standard Terminology Relating to Pesticides, DOI: 10.1520/E0609-05
         </LiteratureReference>
         <LiteratureReference literatureReferenceID="ASTM E1142-07">
             ASTM Standard E1142-07: Standard Terminology Relating to Thermophysical Properties, DOI: 10.1520/E1142-07
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E1947-98">
-            ASTM Standard E1947-98 (2009): Standard Specification for Analytical Data Interchange Protocol for
-            Chromatographic Data, DOI: 10.1520/E1947-98R09
         </LiteratureReference>
         <LiteratureReference literatureReferenceID="ASTM E2077-00">
             ASTM Standard E2077-00 (2005): Standard Specification for Analytical Data Interchange Protocol for Mass
@@ -1334,10 +1327,6 @@
         <LiteratureReference literatureReferenceID="JCAMP-DX IR">
             McDonald, R. S., Wilks, P. A., "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer
             Readable Form," Appl. Spectrosc., Vol 42, No 1, 1988, pp. 151-162.
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="Bertie Vib Spec">
-            Bertie, J. E., "Glossary of Terms used in Vibrational Spectroscopy, Handbook of Vibrational Spectroscopy,"
-            Chalmers, J. M., Griffiths, P. R. (eds.), John Wiley &amp; Sons Ltd., Chichester, 2002
         </LiteratureReference>
         <LiteratureReference literatureReferenceID="Bertie FT">
             Bertie, J. E., "Specification of Components, Methods and parameters in Fourier Transform Spectroscopy by
@@ -1356,5 +1345,6 @@
             "Glossary of terms used in computational drug design (IUPAC Recommendations 1997)," Pure Appl. Chem. 1997,
             69, 1137-1152, DOI: 10.1351/pac199769051137
         </LiteratureReference>
+        <LiteratureReference literatureReferenceID="Appl Spectrosc">Appl. Spectrosc. 42, 1, 1988</LiteratureReference>
     </Bibliography>
 </Technique>

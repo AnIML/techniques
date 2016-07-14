@@ -193,7 +193,9 @@
                                 maxOccurs="1">
                 <Documentation>Lot or batch name/number</Documentation>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1"/>
+            <ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+            <Documentation>The origin or supplier of the sample.</Documentation><!-- TODO: This documentation has to be checked! -->
+            </ParameterBlueprint>
             <CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
                 <Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under
                     equilibrium boiling conditions.

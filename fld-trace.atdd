@@ -73,6 +73,9 @@
 ]>
 <Technique name="Fluorescence Trace Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation>Technique definition for fluorescence trace detector data</Documentation>
+	<ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed">
+		<Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the spectra (if applicable).</Documentation>
+	</ExperimentDataRoleBlueprint>
 	<MethodBlueprint>
 		<CategoryBlueprint name="Method Description" modality="optional">
 			<Documentation>Basic contextual information about the measurement method.</Documentation>

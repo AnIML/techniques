@@ -63,6 +63,7 @@
         <!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
         <!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
         <!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
+        <!ENTITY kg_per_mol "<Unit label='kg/mol'><SIUnit exponent='1' factor='1'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
         <!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
 
         <!-- MISC -->
@@ -299,8 +300,9 @@
                 </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>The molar mass is a physical property defined as the mass of a given compound divided by the amount of it.</Documentation>
                 <Quantity name="Molar Mass">
-                    &g_per_mol;
+                    &g_per_mol; &kg_per_mol;
                 </Quantity>
             </ParameterBlueprint>
             <CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
@@ -318,7 +320,7 @@
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>Chemical structure expressed as MOL File. See Pure Appl. Chem. 1997, 69, 1137.
+                    <Documentation literatureReferenceID="Pure Appl Chem 97">Chemical structure expressed as MOL File.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
@@ -328,35 +330,33 @@
                 </ParameterBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
-                <Documentation>Set of different identifiers describing a substance.</Documentation>
+                <Documentation literatureReferenceID="CAS">Set of different identifiers describing a substance.</Documentation>
                 <ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>Name according to Chemical Abstracts naming conventions. See Appendix IV of the 1985
+                    <Documentation literatureReferenceID="CAS">Name according to Chemical Abstracts naming conventions. See Appendix IV of the 1985
                         CAS Index Guide.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices,
+                    <Documentation literatureReferenceID="CAS">CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices,
                         Merck Index, or CAS ONLINE.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28,
+                    <Documentation literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28,
                         12.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="InChI Key" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>Hash value of IUPAC International Chemical Identifier of the substance. See Chem.
+                    <Documentation literatureReferenceID="IUPAC InChI">Hash value of IUPAC International Chemical Identifier of the substance. See Chem.
                         Intl. 2006, 28, 12.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional"
                                     maxOccurs="1">
-                    <Documentation>Structural formula clustering code based on the Beilstein System. It is used for
+                    <Documentation literatureReferenceID="Beilstein">Structural formula clustering code based on the Beilstein System. It is used for
                         locating information in Beilstein databases. The code contains only structural information and
                         can be generated locally on microcomputers from connection table data alone. A simple
-                        description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS
-                        Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed.
-                        (ACS, Washington, D.C.,1987), pp. 80-87.
+                        description of the algorithm has been published (see Bibliography).
                     </Documentation>
                 </ParameterBlueprint>
             </CategoryBlueprint>
@@ -418,6 +418,9 @@
     <ExperimentDataRoleBlueprint name="Stray light Correction Spectrum" experimentStepPurpose="consumed"
                                  modality="optional">
         <Documentation>Reference to the spectrum used for stray light correction.</Documentation>
+    </ExperimentDataRoleBlueprint>
+    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional"> <!-- This name doesn't explain the reference -->
+        <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the spectra (if applicable).</Documentation>
     </ExperimentDataRoleBlueprint>
     <MethodBlueprint>
         <CategoryBlueprint name="Method Description" modality="optional">
@@ -1245,17 +1248,6 @@
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="optional">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
-            <ParameterBlueprint name="Spectrum Acquisition Method" parameterType="String" modality="optional">
-                <AllowedValue>
-                    <S>Dispersive</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Array-based</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Other</S>
-                </AllowedValue>
-            </ParameterBlueprint>
             <ParameterBlueprint name="Experiment Duration" parameterType="Numeric" modality="optional">
                 <Documentation>Duration of the entire experiment covered by this ExperimentStep.</Documentation>
                 <Quantity name="Time">
@@ -1268,8 +1260,14 @@
                     &s;
                 </Quantity>
             </ParameterBlueprint>
+            <ParameterBlueprint name="Scan Number" parameterType="Int" modality="optional">
+                <Documentation>Number of this scan.</Documentation>
+                <Quantity name="Number">
+                    &A;
+                </Quantity>
+            </ParameterBlueprint>
             <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
-                <Documentation>The number of scans performed when acquiring this spectrum.</Documentation>
+                <Documentation>The overall number of scans performed when acquiring this spectrum.</Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Sample Temperature" parameterType="Float" modality="optional">
                 <Documentation>Measured temparature of the sample, recorded with a probe which is in direct contact with
@@ -1328,11 +1326,6 @@
             McDonald, R. S., Wilks, P. A., "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer
             Readable Form," Appl. Spectrosc., Vol 42, No 1, 1988, pp. 151-162.
         </LiteratureReference>
-        <LiteratureReference literatureReferenceID="Bertie FT">
-            Bertie, J. E., "Specification of Components, Methods and parameters in Fourier Transform Spectroscopy by
-            Michelson and Related Interferometers,"
-            Pure &amp; Appl. Chem., Vol 70, No. 10, 1998, pp. 2039-2045.
-        </LiteratureReference>
         <LiteratureReference literatureReferenceID="CML">
             Murray-Rust, P., Rzepa, H. S., "Chemical markup Language and XML Part I. Basic principles," J. Chem. Inf.
             Comp. Sci., 1999, 39, 928.
@@ -1346,5 +1339,10 @@
             69, 1137-1152, DOI: 10.1351/pac199769051137
         </LiteratureReference>
         <LiteratureReference literatureReferenceID="Appl Spectrosc">Appl. Spectrosc. 42, 1, 1988</LiteratureReference>
+        <LiteratureReference literatureReferenceID="Pure Appl Chem 97">Pure Appl. Chem., 1997, Vol. 69, No. 5, pp. 1137-1152
+            http://dx.doi.org/10.1351/pac199769051137</LiteratureReference>
+        <LiteratureReference literatureReferenceID="CAS">Chemical Abstracts Service, https://www.cas.org</LiteratureReference>
+        <LiteratureReference literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier, http://iupac.org/who-we-are/divisions/division-details/inchi/</LiteratureReference>
+        <LiteratureReference literatureReferenceID="Beilstein">Warr, Wendy A. Graphics for Chemical Structures: Intregration with Text and Data. American chemical society, 1987.</LiteratureReference>
     </Bibliography>
 </Technique>

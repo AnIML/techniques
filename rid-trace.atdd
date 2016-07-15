@@ -452,7 +452,7 @@
                         &nm;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Detector Noise" parameterType="Float" modality="optional">
+                <ParameterBlueprint name="Signal Noise" parameterType="Float" modality="optional">
                     <Documentation literatureReferenceID="ASTM E-1303-95">Short term noise of the detector</Documentation>
                     <Quantity name="RIU">
                         &RIU;
@@ -467,7 +467,7 @@
                         &degree;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Detector Drift" parameterType="Float" modality="optional">
+                <ParameterBlueprint name="Signal Drift" parameterType="Float" modality="optional">
                     <Documentation literatureReferenceID="ASTM E-1303-95">The signal drift of the detector.</Documentation>
                     <Quantity name="RIU">
                         &RIU;

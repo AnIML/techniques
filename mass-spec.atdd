@@ -2,84 +2,47 @@
 <!-- edited by Patrick Boba(BSSN Software) -->
 
 <!DOCTYPE Technique [
+        <!-- Unit Definitions -->
+
+        <!-- Various simple units-->
+        <!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
+        <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
         <!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
-        <!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
-        <!ENTITY inch "<Unit label='in'><SIUnit factor='0.0254' exponent='1'>m</SIUnit></Unit>">
-        <!-- Time -->
-        <!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
-        <!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
-        <!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
-        <!ENTITY us "<Unit label='µs'><SIUnit exponent='1' factor='1e-6'>s</SIUnit></Unit>">
-        <!-- Voltage -->
-        <!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-        <!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-        <!ENTITY uV "<Unit label='µV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-        <!ENTITY nV "<Unit label='nV'><SIUnit factor='1e-09'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-        <!ENTITY pV "<Unit label='pV'><SIUnit factor='1e-12'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-        <!-- Current -->
-        <!ENTITY A "<Unit label='A'><SIUnit>A</SIUnit></Unit>">
-        <!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
-        <!ENTITY uA "<Unit label='µA'><SIUnit factor='1e-06'>A</SIUnit></Unit>">
-        <!ENTITY nA "<Unit label='nA'><SIUnit factor='1e-09'>A</SIUnit></Unit>">
-        <!ENTITY pA "<Unit label='pA'><SIUnit factor='1e-12'>A</SIUnit></Unit>">
-        <!ENTITY fA "<Unit label='fA'><SIUnit factor='1e-15'>A</SIUnit></Unit>">
-        <!-- Current per Voltage -->
-        <!ENTITY A_per_V "<Unit label='A/V'><SIUnit exponent='2'>A</SIUnit><SIUnit exponent='3'>s</SIUnit><SIUnit exponent='-1'>kg</SIUnit><SIUnit exponent='-2'>m</SIUnit></Unit>">
-        <!-- Bandwidth / Voltage per Time -->
-        <!ENTITY mV_per_s "<Unit label='mV/s'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
-        <!ENTITY uV_per_s "<Unit label='µV/s'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-4'>s</SIUnit></Unit>">
-        <!-- Flow Rate -->
-        <!ENTITY L_per_min "<Unit label='L/min'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-        <!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-        <!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-        <!ENTITY lamda "&#955;">
-        <!ENTITY Delta "&#916;">
+
         <!-- Mass -->
-        <!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
         <!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
-        <!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
-        <!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
-        <!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
-        <!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
-        <!-- From IUPAC orange book: -->
-        <!ENTITY u "<Unit label='u'><SIUnit factor='1.660538921' exponent='-27'>m</SIUnit></Unit>">
-        <!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
-        <!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
-        <!ENTITY cm_per_s "<Unit label='cm/s'><SIUnit exponent='1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-        <!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
+        <!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
+        <!ENTITY atomic_mass_unit "<Unit label='u'><SIUnit exponent='-27' factor='1.660539040'>kg</SIUnit></Unit>" >
+
+        <!-- Volume -->
         <!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
-        <!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
-        <!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
-        <!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+        <!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
+
+        <!-- Concentration -->
         <!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
         <!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
         <!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
         <!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
         <!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
+        <!ENTITY kg_per_mol "<Unit label='kg/mol'><SIUnit exponent='1' factor='1'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
+        <!ENTITY kg_per_mol "<Unit label='kg/mol'><SIUnit exponent='1' factor='1'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
         <!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
-        <!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
-        <!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
-        <!ENTITY AU "<Unit label='AU'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY A "<Unit label='A'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
-        <!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
-        <!ENTITY kHz "<Unit label='kHz'><SIUnit exponent='-1' factor='1e+3'>s</SIUnit></Unit>">
-        <!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-        <!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
-        <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
-        <!ENTITY L_per_min "<Unit label='L/min'><SIUnit exponent='1' factor='1'>L</SIUnit><SIUnit exponent='-1' factor=60>s</SIUnit></Unit>" >
-        <!ENTITY atomic_mass_unit "<Unit label='u'><SIUnit exponent='-27' factor='1.660539040'>kg</SIUnit></Unit>" >
-        <!-- m/z per definition dimensionless. But shouldn't there be relation to other units?-->
-        <!ENTITY mass_charge_ratio "<Unit label='m/z'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
+
+        <!-- Pressure -->
+        <!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
+
+        <!-- Temperature -->
+        <!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
+        <!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
+        <!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+
+        <!-- Length -->
+        <!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
+
+        <!-- Absorbance -->
+        <!ENTITY AU "<Unit label='AU'><SIUnit>1</SIUnit></Unit>">
         ]>
 
 <Technique name="Mass Spectrometry"
@@ -91,7 +54,7 @@
         that are characterized by their mass and charge. "Standard Definitions of Terms Relating to Mass Spectrometry",
         Second Draft, May 2006 IUPAC, Analytical Chemistry Division. It is a detection (sample measuring) technique.
     </Documentation>
-    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="required" maxOccurs="1"
+    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
                          inheritable="true">
         <Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory
             sample which has a suitable sample weight or volume for one or more determinations by chemical analysis.
@@ -119,6 +82,39 @@
                 <Quantity name="Concentration">
                     &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
                 </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="JCAMP-DX IR">Phase of matter of the sample.</Documentation>
+                <AllowedValue>
+                    <S>solid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>amorphous solid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>crystalline solid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>liquid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>liquid crystal</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>gas</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>supercritical fluid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>colloid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>plasma</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>crystal</S>
+                </AllowedValue>
             </ParameterBlueprint>
             <ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional">
                 <Documentation literatureReferenceID="ASTM E2077-00">Sample disposal procedure, also in accordance with
@@ -150,9 +146,11 @@
                 </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
+                <Documentation>The pressure of the used sample, if different and separated from environment.
+                </Documentation>
                 <Quantity name="Pressure">
                     &Pa; &psig; &bar;
-                </Quantity>
+                </Quantity> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
             </ParameterBlueprint>
             <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation literatureReferenceID="JCAMP-DX IR">Sample temperature if significantly different from
@@ -163,16 +161,17 @@
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
-                <Documentation>Density of the test sample. See Appl. Spectrosc. 42, 1, 1988.</Documentation>
+                <Documentation literatureReferenceID="Appl Spectrosc">Density of the test sample.</Documentation>
                 <Quantity name="Density">
                     &g_per_cm3;
                 </Quantity>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Lot or Batch Name/Number" parameterType="String" modality="optional"
+            <ParameterBlueprint name="Batch ID" parameterType="String" modality="optional"
                                 maxOccurs="1">
-                <Documentation>Lot or batch name/number</Documentation>
+                <Documentation>Lot or batch name/number/ID</Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation>TODO</Documentation><!-- TODO: update this parameter with documentation -->
             </ParameterBlueprint>
             <CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
                 <Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under
@@ -234,7 +233,7 @@
                         &degK; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Wavelength" parameterType="Float" modality="optional" maxOccurs="1">
+                <ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
                     <Documentation>Wavelength at which the refractive index has been determined. If not given, the
                         Sodium-D line is assumed.
                     </Documentation>
@@ -254,7 +253,7 @@
                 <Documentation>Common, trade, or other names.</Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
-                <Documentation>Concentration of known components and impurities; see Appl. Spectrosc. 42, 1, 1988.
+                <Documentation literatureReferenceID="Appl Spectrosc">Concentration of known components and impurities;
                 </Documentation>
                 <Quantity name="Concentration">
                     &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
@@ -274,9 +273,10 @@
                     H2 O (chromic acetate monohydrate), H2 ^17O (water, mass 17 oxygen).
                 </Documentation>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>The molar mass is a physical property defined as the mass of a given compound divided by the amount of it.</Documentation>
                 <Quantity name="Molar Mass">
-                    &g_per_mol;
+                    &g_per_mol; &kg_per_mol;
                 </Quantity>
             </ParameterBlueprint>
             <CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
@@ -294,7 +294,7 @@
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>Chemical structure expressed as MOL File. See Pure Appl. Chem. 1997, 69, 1137.
+                    <Documentation literatureReferenceID="Pure Appl Chem 97">Chemical structure expressed as MOL File.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
@@ -304,63 +304,61 @@
                 </ParameterBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
-                <Documentation>Set of different identifiers describing a substance.</Documentation>
+                <Documentation literatureReferenceID="CAS">Set of different identifiers describing a substance.</Documentation>
                 <ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>Name according to Chemical Abstracts naming conventions. See Appendix IV of the 1985
+                    <Documentation literatureReferenceID="CAS">Name according to Chemical Abstracts naming conventions. See Appendix IV of the 1985
                         CAS Index Guide.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices,
+                    <Documentation literatureReferenceID="CAS">CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices,
                         Merck Index, or CAS ONLINE.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28,
+                    <Documentation literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28,
                         12.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="InChI Key" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation>Hash value of IUPAC International Chemical Identifier of the substance. See Chem.
+                    <Documentation literatureReferenceID="IUPAC InChI">Hash value of IUPAC International Chemical Identifier of the substance. See Chem.
                         Intl. 2006, 28, 12.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional"
                                     maxOccurs="1">
-                    <Documentation>Structural formula clustering code based on the Beilstein System. It is used for
+                    <Documentation literatureReferenceID="Beilstein">Structural formula clustering code based on the Beilstein System. It is used for
                         locating information in Beilstein databases. The code contains only structural information and
                         can be generated locally on microcomputers from connection table data alone. A simple
-                        description of the algorithm has been published (see A. J. Lawson, Structure Graphics, ACS
-                        Symposium #341, Graphics for Chemical Structures-Integration with Text and Data, W. Warr, Ed.
-                        (ACS, Washington, D.C.,1987), pp. 80-87.
+                        description of the algorithm has been published (see Bibliography).
                     </Documentation>
                 </ParameterBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Sample Preparation" maxOccurs="1" modality="optional">
-            <ParameterBlueprint name="Reagent Gas" parameterType="String" modality="optional" maxOccurs="1">
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Nebulization Gas" parameterType="String" modality="optional" maxOccurs="1">
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Curtain Gas" parameterType="String" modality="optional" maxOccurs="1">
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Collision Gas" parameterType="String" modality="optional" maxOccurs="1">
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Exhaust Gas" parameterType="String" modality="optional" maxOccurs="1">
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Solvent" parameterType="String" modality="optional" maxOccurs="1">
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Matrix" parameterType="String" modality="optional" maxOccurs="1">
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Additive" parameterType="String" modality="optional" maxOccurs="1">
-            </ParameterBlueprint>
-        </CategoryBlueprint>
-
     </SampleRoleBlueprint>
     <SampleRoleBlueprint name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
                          inheritable="true">
     </SampleRoleBlueprint>
-
+    <SampleRoleBlueprint name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1"
+                         inheritable="false">
+        <Documentation>Reference to the sample used for calibration. A document reference about the qualification test
+            often used in a QA/QC setting. This is only a reference, so no parameters are required.
+        </Documentation>
+    </SampleRoleBlueprint>
+    <SampleRoleBlueprint name="Proficiency Reference" samplePurpose="consumed" modality="optional" maxOccurs="1"
+                         inheritable="false">
+        <Documentation>Reference to the most recent successful proficiency test sample the analyst/system has been
+            confronted with. This is only a reference, so no parameters are required.
+        </Documentation>
+    </SampleRoleBlueprint>
+    <SampleRoleBlueprint name="Calibration Reference" samplePurpose="consumed" modality="optional"
+                         maxOccurs="1" inheritable="false">
+        <Documentation>The material sample or lamp used to calibrate the device.
+        </Documentation>
+    </SampleRoleBlueprint>
+    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional"> <!-- This name doesn't explain the reference -->
+        <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the spectra (if applicable).</Documentation>
+    </ExperimentDataRoleBlueprint>
     <MethodBlueprint>
         <CategoryBlueprint name="Common Method" modality="optional">
             <Documentation>Information describing the instrument and its environment.</Documentation>
@@ -374,9 +372,17 @@
                 </ParameterBlueprint>
                 <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
                     <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1"></ParameterBlueprint>
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
                     <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1"></ParameterBlueprint>
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
                 </CategoryBlueprint>
                 <ParameterBlueprint name="Resolution" parameterType="Numeric" modality="1">
                     <Documentation literatureReferenceID="PAC-REC-06-04-06">Resolution in mass spectrometry defined as
@@ -462,6 +468,7 @@
             </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
+            <!-- TODO: add content -->
         </CategoryBlueprint>
         <CategoryBlueprint name="Ionization Method" modality="optional">
             <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.</Documentation>
@@ -553,7 +560,7 @@
                 </SeriesBlueprint>
                 <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
                                  dependency="dependent">
-                    <Documentation></Documentation>
+                    <Documentation>The name of the detector component.</Documentation>
                 </SeriesBlueprint>
             </SeriesSetBlueprint>
         </CategoryBlueprint>
@@ -590,7 +597,6 @@
             </ParameterBlueprint>
         </CategoryBlueprint>
     </MethodBlueprint>
-
     <ResultBlueprint name="Spectrum" modality="optional">
         <SeriesSetBlueprint name="Spectrum" modality="required">
 
@@ -598,26 +604,26 @@
                              plotScale="linear">
                 <Documentation>The x-axis of the mass spectrum</Documentation>
                 <Quantity name="Mass/Charge Ratio">
-                    &mass_charge_ratio;
+
                 </Quantity>
             </SeriesBlueprint>
             <!-- MSConstants enthält "CHARGE_SERIES_NAME". Weiß nicht so recht, was ich damit anfangen soll -->
             <SeriesBlueprint name="Intensity" seriesType="Float" dependency="dependent" modality="required"
                              plotScale="linear">
                 <Quantity name="Abundance">
-                    &AU; &A; &percent;
+                    &AU; &arbitrary; &percent;
                 </Quantity>
                 <Quantity name="Counts">
                     &count;
                 </Quantity>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
-        <CategoryBlueprint name="Measurement Description" modality="required">
+        <CategoryBlueprint name="Measurement Description" modality="optional">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
             <ParameterBlueprint name="Scan Number" parameterType="Int" modality="optional">
                 <Documentation>Duration of a single scan.</Documentation>
                 <Quantity name="Number">
-                    &A;
+                    &arbitrary;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
@@ -628,33 +634,64 @@
         <CategoryBlueprint name="Spectrum Details" modality="optional" maxOccurs="1">
             <ParameterBlueprint name="Basepeak Intensity" parameterType="Numeric">
                 <Quantity name="Abundance">
-                    &AU; &A;
+                    &AU; &arbitrary;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Basepeak Mass" parameterType="Numeric">
                 <Quantity name="Mass">
-                    <!-- u and m/z have to be put in relation somehow ... -->
-                    &u;
+                    <!-- TODO: do we have to put u and m/z in relation somehow ..? -->
+                    &atomic_mass_unit;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Total Ion Current" parameterType="Numeric">
                 <Quantity name="Abundance">
-                    &AU; &A;
+                    &AU; &arbitrary;
                 </Quantity>
                 <Quantity name="Counts">
                     &count;
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
-
     </ResultBlueprint>
     <Bibliography>
         <LiteratureReference literatureReferenceID="ASTM D1129-06A">
-            ASTM Standard D1129-06A: TODO
+            ASTM Standard D1129-06A: Standard Terminology Relating to Water, DOI: 10.1520/D1129-06A
         </LiteratureReference>
-        <LiteratureReference literatureReferenceID="PAC-REC-06-04-06">
-            DOI: 10.1351/PAC-REC-06-04-06
+        <LiteratureReference literatureReferenceID="ASTM E131-05">
+            ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05
         </LiteratureReference>
+        <LiteratureReference literatureReferenceID="ASTM E135-09">
+            ASTM Standard E135-09: Standard Terminology Relating to Analytical Chemistry for Metals, Ores, and Related
+            Materials, DOI: 10.1520/E0135-09
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="ASTM E1142-07">
+            ASTM Standard E1142-07: Standard Terminology Relating to Thermophysical Properties, DOI: 10.1520/E1142-07
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="ASTM E2077-00">
+            ASTM Standard E2077-00 (2005): Standard Specification for Analytical Data Interchange Protocol for Mass
+            Spectrometric Data, DOI: 10.1520/E2077-00R05
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="JCAMP-DX IR">
+            McDonald, R. S., Wilks, P. A., "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer
+            Readable Form," Appl. Spectrosc., Vol 42, No 1, 1988, pp. 151-162.
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="CML">
+            Murray-Rust, P., Rzepa, H. S., "Chemical markup Language and XML Part I. Basic principles," J. Chem. Inf.
+            Comp. Sci., 1999, 39, 928.
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="Wiswesser">
+            Smith, E. G., "The Wiswesser Line-Formula Chemical Notation," 2nd ed., McGraw-Hill, New York, 1968
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="SMILES">
+            van de Waterbeemd, H., Carter, R.E., Grassy, G., Kubinyi, H., Martin, Y.C., Tute, M.S., Willett, P.,
+            "Glossary of terms used in computational drug design (IUPAC Recommendations 1997)," Pure Appl. Chem. 1997,
+            69, 1137-1152, DOI: 10.1351/pac199769051137
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="Appl Spectrosc">Appl. Spectrosc. 42, 1, 1988</LiteratureReference>
+        <LiteratureReference literatureReferenceID="Pure Appl Chem 97">Pure Appl. Chem., 1997, Vol. 69, No. 5, pp. 1137-1152
+            http://dx.doi.org/10.1351/pac199769051137</LiteratureReference>
+        <LiteratureReference literatureReferenceID="CAS">Chemical Abstracts Service, https://www.cas.org</LiteratureReference>
+        <LiteratureReference literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier, http://iupac.org/who-we-are/divisions/division-details/inchi/</LiteratureReference>
+        <LiteratureReference literatureReferenceID="Beilstein">Warr, Wendy A. Graphics for Chemical Structures: Intregration with Text and Data. American chemical society, 1987.</LiteratureReference>
     </Bibliography>
-
 </Technique>

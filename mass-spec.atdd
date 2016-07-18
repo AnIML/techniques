@@ -274,7 +274,9 @@
                 </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation>The molar mass is a physical property defined as the mass of a given compound divided by the amount of it.</Documentation>
+                <Documentation>The molar mass is a physical property defined as the mass of a given compound divided by
+                    the amount of it.
+                </Documentation>
                 <Quantity name="Molar Mass">
                     &g_per_mol; &kg_per_mol;
                 </Quantity>
@@ -304,30 +306,36 @@
                 </ParameterBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
-                <Documentation literatureReferenceID="CAS">Set of different identifiers describing a substance.</Documentation>
+                <Documentation literatureReferenceID="CAS">Set of different identifiers describing a substance.
+                </Documentation>
                 <ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="CAS">Name according to Chemical Abstracts naming conventions. See Appendix IV of the 1985
+                    <Documentation literatureReferenceID="CAS">Name according to Chemical Abstracts naming conventions.
+                        See Appendix IV of the 1985
                         CAS Index Guide.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="CAS">CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices,
+                    <Documentation literatureReferenceID="CAS">CAS Registry Numbers for many compounds can be found in
+                        Chemical Abstracts indices,
                         Merck Index, or CAS ONLINE.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28,
+                    <Documentation literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier of the
+                        substance. See Chem. Intl. 2006, 28,
                         12.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="InChI Key" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="IUPAC InChI">Hash value of IUPAC International Chemical Identifier of the substance. See Chem.
+                    <Documentation literatureReferenceID="IUPAC InChI">Hash value of IUPAC International Chemical
+                        Identifier of the substance. See Chem.
                         Intl. 2006, 28, 12.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional"
                                     maxOccurs="1">
-                    <Documentation literatureReferenceID="Beilstein">Structural formula clustering code based on the Beilstein System. It is used for
+                    <Documentation literatureReferenceID="Beilstein">Structural formula clustering code based on the
+                        Beilstein System. It is used for
                         locating information in Beilstein databases. The code contains only structural information and
                         can be generated locally on microcomputers from connection table data alone. A simple
                         description of the algorithm has been published (see Bibliography).
@@ -356,8 +364,11 @@
         <Documentation>The material sample or lamp used to calibrate the device.
         </Documentation>
     </SampleRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional"> <!-- This name doesn't explain the reference -->
-        <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the spectra (if applicable).</Documentation>
+    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed"
+                                 modality="optional"> <!-- This name doesn't explain the reference -->
+        <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the
+            spectra (if applicable).
+        </Documentation>
     </ExperimentDataRoleBlueprint>
     <MethodBlueprint>
         <CategoryBlueprint name="Common Method" modality="optional">
@@ -371,6 +382,7 @@
                     <Documentation>Comments about the instrument.</Documentation>
                 </ParameterBlueprint>
                 <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
+                    <Documentation>The mass detection range of the instrumen.</Documentation>
                     <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
                                         maxOccurs="1">
                         <Quantity name="Mass">
@@ -393,25 +405,26 @@
                         definition).
                     </Documentation>
                 </ParameterBlueprint>
-
             </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings" modality="required">
+            <CategoryBlueprint name="Instrument Settings" modality="optional">
                 <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-                <ParameterBlueprint name="Operation Mode" parameterType="String" modality="required">
+                <ParameterBlueprint name="Operation Mode" parameterType="String" modality="optional">
                     <AllowedValue>
                         <S>Scan</S>
                     </AllowedValue>
                     <AllowedValue>
                         <S>Selected Ion Monitoring</S>
                     </AllowedValue>
+                    <AllowedValue>Other</AllowedValue>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Polarity" parameterType="String" modality="required">
-                    <Documentation>Mandy Mass Spectrometers can work in either positive or negative ion mode. This
+                <ParameterBlueprint name="Polarity" parameterType="String"
+                                    modality="optional"> <!-- TODO: maybe required? -->
+                    <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
                         information is crucial for the interpretation of the data.
                     </Documentation>
                     <AllowedValue>
                         <S>"+"</S>
-                    </AllowedValue>
+                    </AllowedValue> <!-- TODO: atm. "+" and "positive" as different entries. Maybe consolidate? -->
                     <AllowedValue>
                         <S>"positive"</S>
                     </AllowedValue>
@@ -467,11 +480,30 @@
                 </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
+        <CategoryBlueprint name="Sample Introduction" maxOccurs="1" modality="optional">
+            <Documentation>The type of inlet used for the experiment step.</Documentation>
+            <ParameterBlueprint name="Inlet Type"> <!-- TODO: This section needs revision ! -->
+                <AllowedValue>
+                    <S>Direct Vapor Inlet</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Capillary Gas Chromatography Column</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Direct Insertion Probe</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Electrokinetic Injection</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Pressure Injection</S>
+                </AllowedValue>
+            </ParameterBlueprint>
             <!-- TODO: add content -->
         </CategoryBlueprint>
         <CategoryBlueprint name="Ionization Method" modality="optional">
-            <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.</Documentation>
+            <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.
+            </Documentation>
             <ParameterBlueprint name="Ion Source" parameterType="String" modality="optional">
                 <AllowedValue>
                     <S>Atmospheric Pressure Chemical Ionization</S>
@@ -550,20 +582,18 @@
                 </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Detector Components" modality="optional" maxOccurs="1">
-            <SeriesSetBlueprint name="Detector Components" modality="optional">
-                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
-                                 modality="required">
-                    <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
-                        quadrupole would be 0, and the TOF 1"
-                    </Documentation>
-                </SeriesBlueprint>
-                <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
-                                 dependency="dependent">
-                    <Documentation>The name of the detector component.</Documentation>
-                </SeriesBlueprint>
-            </SeriesSetBlueprint>
-        </CategoryBlueprint>
+        <SeriesSetBlueprint name="Detector Components" modality="optional">
+            <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
+                             modality="optional">
+                <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
+                    quadrupole would be 0, and the TOF 1"
+                </Documentation>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
+                             dependency="dependent">
+                <Documentation>The name of the detector component.</Documentation>
+            </SeriesBlueprint>
+        </SeriesSetBlueprint>
         <CategoryBlueprint name="Mass Selection" modality="optional">
             <ParameterBlueprint name="Mass Selection" parameterType="String" maxOccurs="1" modality="optional">
                 <!-- this is just a coarse grained list. More details? Extensions? ... -->
@@ -599,16 +629,15 @@
     </MethodBlueprint>
     <ResultBlueprint name="Spectrum" modality="optional">
         <SeriesSetBlueprint name="Spectrum" modality="required">
-
-            <SeriesBlueprint name="Mass" seriesType="Numeric" dependency="independent" modality="required"
+            <SeriesBlueprint name="Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
                              plotScale="linear">
                 <Documentation>The x-axis of the mass spectrum</Documentation>
                 <Quantity name="Mass/Charge Ratio">
-
+                    &arbitray;
                 </Quantity>
             </SeriesBlueprint>
             <!-- MSConstants enthält "CHARGE_SERIES_NAME". Weiß nicht so recht, was ich damit anfangen soll -->
-            <SeriesBlueprint name="Intensity" seriesType="Float" dependency="dependent" modality="required"
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
                              plotScale="linear">
                 <Quantity name="Abundance">
                     &AU; &arbitrary; &percent;
@@ -688,10 +717,17 @@
             69, 1137-1152, DOI: 10.1351/pac199769051137
         </LiteratureReference>
         <LiteratureReference literatureReferenceID="Appl Spectrosc">Appl. Spectrosc. 42, 1, 1988</LiteratureReference>
-        <LiteratureReference literatureReferenceID="Pure Appl Chem 97">Pure Appl. Chem., 1997, Vol. 69, No. 5, pp. 1137-1152
-            http://dx.doi.org/10.1351/pac199769051137</LiteratureReference>
-        <LiteratureReference literatureReferenceID="CAS">Chemical Abstracts Service, https://www.cas.org</LiteratureReference>
-        <LiteratureReference literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier, http://iupac.org/who-we-are/divisions/division-details/inchi/</LiteratureReference>
-        <LiteratureReference literatureReferenceID="Beilstein">Warr, Wendy A. Graphics for Chemical Structures: Intregration with Text and Data. American chemical society, 1987.</LiteratureReference>
+        <LiteratureReference literatureReferenceID="Pure Appl Chem 97">Pure Appl. Chem., 1997, Vol. 69, No. 5, pp.
+            1137-1152
+            http://dx.doi.org/10.1351/pac199769051137
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="CAS">Chemical Abstracts Service, https://www.cas.org
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier,
+            http://iupac.org/who-we-are/divisions/division-details/inchi/
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="Beilstein">Warr, Wendy A. Graphics for Chemical Structures:
+            Intregration with Text and Data. American chemical society, 1987.
+        </LiteratureReference>
     </Bibliography>
 </Technique>

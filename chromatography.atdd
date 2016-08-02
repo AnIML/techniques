@@ -83,7 +83,11 @@ CONTROL METHOD
 	<!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY mL_per_min2 "<Unit label='mL/min²'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY mL_per_s2 "<Unit label='mL/s²'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
+		<!ENTITY mL_per_s "<Unit label='mL/s'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+		<!ENTITY uL_per_s "<Unit label='µL/s'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+		<!ENTITY nL_per_s "<Unit label='nL/s'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
+		<!ENTITY nL_per_min "<Unit label='nL/min'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
+		<!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY uL_per_min2 "<Unit label='µL/min²'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
 	<!ENTITY uL_per_s2 "<Unit label='µL/s²'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
 	<!ENTITY nL_per_min2 "<Unit label='nL/min²'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
@@ -120,13 +124,7 @@ CONTROL METHOD
 	<!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
 	<!ENTITY nA "<Unit label='nA'><SIUnit factor='1e-09'>A</SIUnit></Unit>">
 	<!ENTITY pA "<Unit label='pA'><SIUnit factor='1e-12'>A</SIUnit></Unit>">
-	<!-- Flow -->
-	<!ENTITY L_per_min "<Unit label='L/min'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY nL_per_min "<Unit label='nL/min'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY mL_per_s "<Unit label='mL/s'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY uL_per_s "<Unit label='µL/s'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY nL_per_s "<Unit label='nL/s'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	
+
 ]>
 <!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
 <!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
@@ -142,19 +140,19 @@ CONTROL METHOD
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Common, trade, or other names.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Mass of the sample used to prepare the test material.</Documentation>
 				<Quantity name="Mass">
 					&mg;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample used to prepare the test material.</Documentation>
 				<Quantity name="Volume">
 					&mL; &L;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of sample in solvent, if applicable.</Documentation>
 				<Quantity name="Concentration">
 					&mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
@@ -211,19 +209,19 @@ CONTROL METHOD
 			<ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="ASTM E2077-00">Textual description or name of the procedure used to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example: &quot;supercritical fluid extraction.&quot;.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Pressure" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="IUPAC Gold Book">Sample pressure as introduced, if significantly different from ambient pressure. Used for gaseous samples only.  pressure, p: Normal force acting on a surface divided by the area of that surface. For a mixture of gases the contribution by each constituent is called the partial pressure pi = xip, where xi is the amount fraction of the ith constituent and p is the total pressure.</Documentation>
 				<Quantity name="Pressure">
 					&Pa; &psig; &bar;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="JCAMP-DX IR">Sample temperature if significantly different from room temperature.</Documentation>
 				<Quantity name="Temperature">
 					&K; &degC; &degF;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Density" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="JCAMP-DX IR">Density of the test sample.</Documentation>
 				<Quantity name="Density">
 					&g_per_cm3;
@@ -237,19 +235,19 @@ CONTROL METHOD
 			</ParameterBlueprint>
 			<CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
 				<Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under equilibrium boiling conditions.</Documentation>
-				<ParameterBlueprint name="Minimum Temperature" parameterType="Numeric" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of boiling temperature range. Use only this value if sample has an actual boiling "point".</Documentation>
 					<Quantity name="Temperature">
 						&K; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Maximum Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of boiling temperature range. </Documentation>
 					<Quantity name="Temperature">
 						&K; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Pressure" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Pressure at which the boiling point has been determined. If not given, ambient pressure is assumed.</Documentation>
 					<Quantity name="Pressure">
 						&Pa; &psig; &bar;
@@ -258,13 +256,13 @@ CONTROL METHOD
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Melting Point" maxOccurs="1" modality="optional">
 				<Documentation literatureReferenceID="ASTM E1142-07">In a phase diagram, the temperature at which the liquidus and solidus coincide at an invariant point.</Documentation>
-				<ParameterBlueprint name="Minimum Temperature" parameterType="Numeric" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Lower bound of melting temperature range. Use only this value if sample has an actual melting "point".</Documentation>
 					<Quantity name="Temperature">
 						&K; &degC; &degF;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Maximum Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Upper bound of melting temperature range.</Documentation>
 					<Quantity name="Temperature">
 						&K; &degC; &degF;
@@ -273,10 +271,10 @@ CONTROL METHOD
 			</CategoryBlueprint>
 			<CategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
 				<Documentation literatureReferenceID="ASTM E131-05">The phase velocity of radiant power in a vacuum divided by the phase velocity of the same radiant power in a specified medium. When one medium is a vacuum, n is the ratio of the sine of the angle of incidence to the sine of the angle of refraction.</Documentation>
-				<ParameterBlueprint name="Refractive Index" parameterType="Numeric" modality="required" maxOccurs="1">
+				<ParameterBlueprint name="Refractive Index" parameterType="Float" modality="required" maxOccurs="1">
 					<Documentation>Refractive index of the sample.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Temperature at which the refractive index has been determined.</Documentation>
 					<Quantity name="Temperature">
 						&K; &degC; &degF;
@@ -298,7 +296,7 @@ CONTROL METHOD
 			<ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Common, trade, or other names.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="JCAMP-DX IR">Concentration of known components and impurities.</Documentation>
 				<Quantity name="Concentration">
 					&mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
@@ -307,7 +305,7 @@ CONTROL METHOD
 			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="JCAMP-DX IR">Molecular formula. Elemental symbols are arranged with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order. The first letter of each elemental symbol is capitalized. The second letter, if required, is lower case. One-letter symbols must be separated from the next symbol by a blank or digit.  Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic symbol may be separated from its predecessor by a space. For substances which are represented by dot-disconnected formulas (hydrates, etc.), each fragment is represented in the above order, and the dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used for deuterium and tritium, respectively. Examples: C2H4O2 or C2 H4 O2 (acetic acid), C6 H9 Cr O6 * H2 O (chromic acetate monohydrate), H2 ^17O (water, mass 17 oxygen).</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
 				<Quantity name="Molar Mass">
 					&g_per_mol;
@@ -393,25 +391,25 @@ CONTROL METHOD
 			<ParameterBlueprint name="Percent Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
 				<Documentation>Percent volume of the sample.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample.</Documentation>
 				<Quantity name="Volume">
 					&mL;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="ASTM E1947-98">Mass used.</Documentation>
 				<Quantity name="Mass">
 					&g; &mg; &ug; &ng; &pg;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of sample.</Documentation>
 				<Quantity name="Concentration">
 					&g_per_mL; &mg_per_mL;&ug_per_mL;&mL_per_L;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample temperature as introduced, if significantly different from room temperature."</Documentation>
 				<Quantity name="Temperature">
 					&degC; &K; &degF;
@@ -444,7 +442,7 @@ CONTROL METHOD
 	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
 	H2 ^17O (water, mass 17 oxygen).</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
 				<Quantity name="Molar Mass">
 					&g_per_mol;
@@ -523,19 +521,19 @@ CONTROL METHOD
 			<ParameterBlueprint name="Percent Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
 				<Documentation>Percent volume of the sample.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample.</Documentation>
 				<Quantity name="Volume">
 					&mL;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="ASTM E1947-98">Mass used.</Documentation>
 				<Quantity name="Mass">
 					&g; &mg;&ug; &ng;&pg;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of sample.</Documentation>
 				<Quantity name="Concentration">
 					&g_per_mL; &mg_per_mL;&ug_per_mL; &mL_per_L;
@@ -544,13 +542,13 @@ CONTROL METHOD
 			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="JCAMP-DX IR">Phase of matter of the sample.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Pressure" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample pressure as introduced.</Documentation>
 				<Quantity name="Pressure">
 					&Pa;&psig;&bar;&kgf_per_cm2;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample temperature as introduced, if significantly different from room temperature."</Documentation>
 				<Quantity name="Temperature">
 					&degC; &K; &degF;
@@ -584,7 +582,7 @@ CONTROL METHOD
 	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
 	H2 ^17O (water, mass 17 oxygen).</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
 				<Quantity name="Molar Mass">
 					&g_per_mol;
@@ -663,25 +661,25 @@ CONTROL METHOD
 			<ParameterBlueprint name="Percent Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
 				<Documentation>Percent volume of the sample.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample.</Documentation>
 				<Quantity name="Volume">
 					&mL;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="ASTM E1947-98">Mass used.</Documentation>
 				<Quantity name="Mass">
 					&g;&mg;&ug;&ng;&pg;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of sample.</Documentation>
 				<Quantity name="Concentration">
 					&g_per_mL;&mg_per_mL;&ug_per_mL;&mL_per_L;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample temperature ias introduced, f significantly different from room temperature."</Documentation>
 				<Quantity name="Temperature">
 					&degC; &K; &degF;
@@ -715,7 +713,7 @@ CONTROL METHOD
 	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
 	H2 ^17O (water, mass 17 oxygen).</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
 				<Quantity name="Molar Mass">
 					&g_per_mol;
@@ -794,25 +792,25 @@ CONTROL METHOD
 			<ParameterBlueprint name="Percent Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
 				<Documentation>Percent volume of the sample.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Volume of the sample.</Documentation>
 				<Quantity name="Volume">
 					&mL;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="ASTM E1947-98">Mass used.</Documentation>
 				<Quantity name="Mass">
 					&g;&mg;&ug;&ng;&pg;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Concentration" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of sample.</Documentation>
 				<Quantity name="Concentration">
 					&g_per_mL;&mg_per_mL;&ug_per_mL;&mL_per_L;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample temperature as introduced, if significantly different from room temperature."</Documentation>
 				<Quantity name="Temperature">
 					&degC; &K; &degF;
@@ -846,7 +844,7 @@ CONTROL METHOD
 	C6 H9 Cr O6 * H2 O (chromic acetate monohydrate)
 	H2 ^17O (water, mass 17 oxygen).</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Molar Mass" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>The mass of one mole of the substance as computed from the molecular formula.</Documentation>
 				<Quantity name="Molar Mass">
 					&g_per_mol;
@@ -935,13 +933,13 @@ CONTROL METHOD
 		</CategoryBlueprint>
 		<!-- Sciex Analyst CTC PAL Autosampler Method, Waters Acquity Autosampler -->
 		<CategoryBlueprint name="Sample Introduction" modality="optional" maxOccurs="unbounded">
-			<Documentation>Introducton of sample into the instrument system. Includes manual or autosampler injection.</Documentation>
+			<Documentation>Introduction of sample into the instrument system. Includes manual or autosampler injection.</Documentation>
 			<CategoryBlueprint name="Injector Description">
 				<Documentation>Information on the Injector.</Documentation>
 				<ParameterBlueprint name="Injector Identifier" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Reference to Injector module.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Syringe Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Syringe Volume" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Volume of the syringe, if any.</Documentation>
 					<Quantity name="Volume">
 						&mL;&uL;&nL;
@@ -950,7 +948,7 @@ CONTROL METHOD
 				<ParameterBlueprint name="Syringe Model" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Manufacturer’s syringe model name.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Loop Volume 1" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Loop Volume 1" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Volume of the first injector loop.</Documentation>
 					<Quantity name="Volume">
 						&mL;&uL;&nL;
@@ -1016,19 +1014,19 @@ CONTROL METHOD
 						&mL;&uL;&nL;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Pre Air Gap Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Pre Air Gap Volume" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Volume of air gap aspirated prior to the actual sample</Documentation>
 					<Quantity name="Volume">
 						&mL;&uL;&nL;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Post Air Gap Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Post Air Gap Volume" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Volume of air gap aspirated after the actual sample.</Documentation>
 					<Quantity name="Volume">
 						&mL;&uL;&nL;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Backing Solvent Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Backing Solvent Volume" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Volume of solvent aspirated prior to the actual sample.</Documentation>
 					<Quantity name="Volume">
 						&mL;&uL;&nL;
@@ -1040,7 +1038,7 @@ CONTROL METHOD
 						&ms;&s;&min;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Syringe Fill Speed" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Syringe Fill Speed" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Volume of fluid aspirated per unit time.</Documentation>
 					<Quantity name="Volume per Time">
 						&mL_per_s; &uL_per_s; &nL_per_s;
@@ -1052,13 +1050,13 @@ CONTROL METHOD
 				<ParameterBlueprint name="Inject Location" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Effective injection point. Used if multiple injector valves are present.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Injection Speed" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Injection Speed" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Volume of fluid dispensed per unit time.</Documentation>
 					<Quantity name="Volume per Time">
 						&mL_per_s; &uL_per_s; &nL_per_s;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Sample Compartment Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Sample Compartment Temperature" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Requested temperature for the autosampler compartment.</Documentation>
 					<Quantity name="Temperature">
 						&degC;&degF;&K;
@@ -1091,7 +1089,7 @@ CONTROL METHOD
 				<ParameterBlueprint name="Solvent Description" parameterType="String" modality="required" maxOccurs="1">
 					<Documentation>Free text description of the wash solvent (or mixture) used.</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Solvent Volume" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Solvent Volume" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Volume of the wash solvent (or mixture) used.</Documentation>
 					<Quantity name="Volume">
 							&mL;&uL;&nL;
@@ -1120,13 +1118,13 @@ CONTROL METHOD
 						&min; &s;
 					</Quantity>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Temperature" seriesType="Numeric" plotScale="linear" dependency="dependent" modality="required">
+				<SeriesBlueprint name="Temperature" seriesType="Float" plotScale="linear" dependency="dependent" modality="required">
 					<Documentation>Requested value at time of command.</Documentation>
 					<Quantity name="Temperature">
 						&degC;
 					</Quantity>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Rate Change" seriesType="Numeric" plotScale="none" dependency="dependent" modality="optional">
+				<SeriesBlueprint name="Rate Change" seriesType="Float" plotScale="none" dependency="dependent" modality="optional">
 					<Documentation>Requested linear value change rate.</Documentation>
 					<Quantity name="Temperature per Time">
 						&degC_per_min; &degC_per_s;
@@ -1147,19 +1145,19 @@ CONTROL METHOD
 						&min; &s;
 					</Quantity>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Pressure" seriesType="Numeric" plotScale="linear" dependency="dependent" modality="optional" maxOccurs="1">
+				<SeriesBlueprint name="Pressure" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional" maxOccurs="1">
 					<Documentation>Requested value at time of command.</Documentation>
 					<Quantity name="Pressure">
 						&Pa;&psig;&bar;
 					</Quantity>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Pressure Change Rate" seriesType="Numeric" plotScale="none" dependency="dependent" modality="optional" maxOccurs="1">
+				<SeriesBlueprint name="Pressure Change Rate" seriesType="Float" plotScale="none" dependency="dependent" modality="optional" maxOccurs="1">
 					<Documentation>Requested linear value change rate.</Documentation>
 					<Quantity name="Pressure Change per Time">
 						&Pa_per_min;&psig_per_min;&bar_per_min;&Pa_per_s;&psig_per_s;&bar_per_s;
 					</Quantity>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Flow Change Rate" seriesType="Numeric" plotScale="none" dependency="dependent" modality="optional" maxOccurs="1">
+				<SeriesBlueprint name="Flow Change Rate" seriesType="Float" plotScale="none" dependency="dependent" modality="optional" maxOccurs="1">
 					<Documentation>Requested linear value change rate.</Documentation>
 					<Quantity name="Volume Change per Time">
 						&uL_per_min2;&mL_per_min2;&nL_per_min2; &L_per_min2;&uL_per_s2;&mL_per_s2;&L_per_s2;&nL_per_s2;
@@ -1188,7 +1186,7 @@ CONTROL METHOD
 						<S>Constant Pressure</S>
 					</AllowedValue>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Total Flow" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Total Flow" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Total flow in the inlet, before any split</Documentation>
 					<Quantity name="flow rate">
 						&mL_per_min; &uL_per_min;&L_per_min;
@@ -1197,13 +1195,13 @@ CONTROL METHOD
 				<ParameterBlueprint name="Split Ratio" parameterType="String" modality="optional" maxOccurs="1">
 					<Documentation>Output ratio of pre-column split, defined as "split flow : column flow", e.g., "10:1", where column flow := total flow - split flow</Documentation>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Split Flow" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Split Flow" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Flow rate out of pre-column split directed away from the column, typically to waste.</Documentation>
 					<Quantity name="Flow Rate">
 						&mL_per_min; &uL_per_min;&L_per_min;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Column Flow" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Column Flow" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Flow rate out of pre-column split directed to column.</Documentation>
 					<Quantity name="Flow Rate">
 						&uL_per_min;&mL_per_min;&L_per_min;
@@ -1215,7 +1213,7 @@ CONTROL METHOD
 						&min; &s; &ms;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Split Vent Purge Flow" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Split Vent Purge Flow" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Flow rate for purging the split vent. Used in GC only.</Documentation>
 					<Quantity name="flow rate">
 						&mL_per_min; &uL_per_min;&L_per_min;
@@ -1227,7 +1225,7 @@ CONTROL METHOD
 						&min; &s; &ms;
 					</Quantity>
 				</ParameterBlueprint>
-				<ParameterBlueprint name="Septum Purge Flow" parameterType="Numeric" modality="optional" maxOccurs="1">
+				<ParameterBlueprint name="Septum Purge Flow" parameterType="Float" modality="optional" maxOccurs="1">
 					<Documentation>Flow rate through the septum purge valve. Used in GC only.</Documentation>
 					<Quantity name="flow rate">
 						&mL_per_min; &L_per_min;
@@ -1248,7 +1246,7 @@ CONTROL METHOD
 				<SeriesBlueprint name="Event Name" seriesType="String" plotScale="none" dependency="dependent" modality="required">
 					<Documentation>Vendor-specific string representation of the command/event.</Documentation>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Flow Rate" seriesType="Numeric" plotScale="linear" dependency="dependent" modality="optional">
+				<SeriesBlueprint name="Flow Rate" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
 					<Documentation literatureReferenceID="Ettre PAC">The volume of mobile phase passing through the column in unit time.</Documentation>
 					<Quantity name="Flow Rate">
 						&L_per_min; &mL_per_min; &uL_per_min; &nL_per_min;
@@ -1273,13 +1271,13 @@ CONTROL METHOD
 					<S>Isocratic</S>
 				</AllowedValue>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Pressure Minimum" parameterType="Numeric" maxOccurs="1" modality="optional">
+			<ParameterBlueprint name="Pressure Minimum" parameterType="Float" maxOccurs="1" modality="optional">
 				<Documentation>Minimum allowable pressure measured at the pressure transducer.</Documentation>
 				<Quantity name="Pressure">
 					&Pa;&psig;&bar;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Pressure Maximum" parameterType="Numeric" maxOccurs="1" modality="optional">
+			<ParameterBlueprint name="Pressure Maximum" parameterType="Float" maxOccurs="1" modality="optional">
 				<Documentation>Maximum allowable pressure measured at the pressure transducer.</Documentation>
 				<Quantity name="Pressure">
 					&Pa;&psig;&bar;
@@ -1295,13 +1293,13 @@ CONTROL METHOD
 					</Quantity>
 				</SeriesBlueprint>
 				<SeriesBlueprintChoice modality="required">
-					<SeriesBlueprint name="Pressure" seriesType="Numeric" dependency="dependent">
+					<SeriesBlueprint name="Pressure" seriesType="Float" dependency="dependent">
 						<Documentation>Inlet pressure of the carrier gas.</Documentation>
 						<Quantity name="Pressure">
 							&Pa; &psig; &bar;
 						</Quantity>
 					</SeriesBlueprint>
-					<SeriesBlueprint name="Flow Rate" seriesType="Numeric" dependency="dependent">
+					<SeriesBlueprint name="Flow Rate" seriesType="Float" dependency="dependent">
 						<Documentation literatureReferenceID="Ettre PAC">The volume of mobile phase passing through the column in unit time. </Documentation>
 						<Quantity name="Flow Rate">
 							&mL_per_min;&L_per_min;&uL_per_min;&nL_per_min;
@@ -1312,13 +1310,13 @@ CONTROL METHOD
 					<Documentation>
 							If present, indicates the change rate between the current and the next event (gradient). If not present, the flow/pressure between two adjacent events is linearly interpolated (connect the dots).
 					</Documentation>
-					<SeriesBlueprint name="Pressure Change Rate" seriesType="Numeric" dependency="dependent" plotScale="none">
+					<SeriesBlueprint name="Pressure Change Rate" seriesType="Float" dependency="dependent" plotScale="none">
 						<Documentation literatureReferenceID="Ettre PAC">Use for pressure programming – a procedure in which the inlet pressure of the mobile phase is changed systematically during a part or whole of the separation. </Documentation>
 						<Quantity name="Pressure">
 							&Pa_per_min; &psig_per_min; &bar_per_min;
 						</Quantity>
 					</SeriesBlueprint>
-					<SeriesBlueprint name="Flow Change Rate" seriesType="Numeric" dependency="dependent" plotScale="none">
+					<SeriesBlueprint name="Flow Change Rate" seriesType="Float" dependency="dependent" plotScale="none">
 						<Documentation literatureReferenceID="Ettre PAC">Use for flow rate programming – a procedure in which the rate of flow of the mobile phase is changed systematically during a part or the whole of the separation.</Documentation>
 						<Quantity name="Flow Rate per Time">
 							&mL_per_min2;&L_per_min2;&uL_per_min2;&nL_per_min2;
@@ -1403,20 +1401,20 @@ CONTROL METHOD
 			<ParameterBlueprint name="Batch Number" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Manufacturer’s/vendor’s batch number for separation medium.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Container Diameter" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Container Diameter" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>For column chromatography, this is the column inner diameter. For planar chromatography, use this parameter to describe the width of the medium.</Documentation>
 				<Quantity name="Length">
 					&um; &mm; &cm;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Container Length" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Container Length" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>For column chromatography, this is the column length. For planar chromatography, use this parameter to describe the length of the medium.
 </Documentation>
 				<Quantity name="Length">
 					&cm; &m;
 				</Quantity>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Film Thickness" parameterType="Numeric" modality="optional" maxOccurs="1">
+			<ParameterBlueprint name="Film Thickness" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Stationary Phase Film Thickness – for example, with open-tubular columns expresses the average thickness of the stationary phase film coated on the inside wall of the tubing.</Documentation>
 				<Quantity name="Length">
 					&um; &mm; &cm;
@@ -1444,13 +1442,13 @@ CONTROL METHOD
 						&min; &s;
 					</Quantity>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Temperature" seriesType="Numeric" plotScale="linear" dependency="dependent" modality="required">
+				<SeriesBlueprint name="Temperature" seriesType="Float" plotScale="linear" dependency="dependent" modality="required">
 					<Documentation>Temperature active at event time</Documentation>
 					<Quantity name="Temperature">
 						&degC; 
 					</Quantity>
 				</SeriesBlueprint>
-				<SeriesBlueprint name="Temperature Change Rate" seriesType="Numeric" plotScale="linear" dependency="dependent" modality="optional">
+				<SeriesBlueprint name="Temperature Change Rate" seriesType="Float" plotScale="linear" dependency="dependent" modality="optional">
 					<Documentation>
 						If present, indicates the temperature change rate between the current and the next event (gradient). If not present, the temperature between two adjacent events is linearly interpolated (connect the dots).
 					</Documentation>
@@ -1497,7 +1495,7 @@ CONTROL METHOD
 			<ParameterBlueprint name="Split Ratio" parameterType="String" modality="optional" maxOccurs="1">
 				<Documentation>Output ratio of post-column split, defined as "split flow : column flow", e.g., "10:1", where column flow := total flow - split flow.</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Split Flow A" parameterType="Numeric" modality="required" maxOccurs="1">
+			<ParameterBlueprint name="Split Flow A" parameterType="Float" modality="required" maxOccurs="1">
 				<Documentation>Flow rate out of post-column splitter directed to destination A.</Documentation>
 				<Quantity name="Flow Rate">
 					&uL_per_min;&mL_per_min;&L_per_min;
@@ -1506,7 +1504,7 @@ CONTROL METHOD
 			<ParameterBlueprint name="Destination A Identifier" parameterType="String" modality="required" maxOccurs="unbounded">
 				<Documentation>Reference to module; name of device (e.g. “UV detector”).</Documentation>
 			</ParameterBlueprint>
-			<ParameterBlueprint name="Split Flow B" parameterType="Numeric" modality="required" maxOccurs="1">
+			<ParameterBlueprint name="Split Flow B" parameterType="Float" modality="required" maxOccurs="1">
 				<Documentation>Flow rate out of post-column splitter directed to destination B.</Documentation>
 				<Quantity name="Flow Rate">
 					&uL_per_min;&mL_per_min;&L_per_min;
@@ -1665,25 +1663,25 @@ CONTROL METHOD
 					&ms; &s; &min;
 				</Quantity>
 			</SeriesBlueprint>
-			<SeriesBlueprint name="Inlet Pressure" seriesType="Numeric" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
+			<SeriesBlueprint name="Inlet Pressure" seriesType="Float" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
 				<Documentation>Measured inlet pressure. Sometimes called System Pressure.</Documentation>
 				<Quantity name="Pressure">
 					&Pa; &bar; &psig; &kgf_per_cm2;
 				</Quantity>
 			</SeriesBlueprint>
-			<SeriesBlueprint name="Column Temperature" seriesType="Numeric" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
+			<SeriesBlueprint name="Column Temperature" seriesType="Float" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
 				<Documentation literatureReferenceID="IUPAC Orange Book">Separation Temperature - The temperature of the chromatographic bed under isothermal operation. In column chromatography it is called the Column Temperature.</Documentation>
 				<Quantity name="Temperature">
 					&degC; &K; &degF;
 				</Quantity>
 			</SeriesBlueprint>
-			<SeriesBlueprint name="Inlet Temperature" seriesType="Numeric" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
+			<SeriesBlueprint name="Inlet Temperature" seriesType="Float" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
 				<Documentation literatureReferenceID="IUPAC Orange Book">The temperature within the injection device.</Documentation>
 				<Quantity name="Temperature">
 					&degC; &K; &degF;
 				</Quantity>
 			</SeriesBlueprint>
-			<SeriesBlueprint name="Flow Rate" seriesType="Numeric" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
+			<SeriesBlueprint name="Flow Rate" seriesType="Float" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
 				<Documentation literatureReferenceID="Ettre PAC">The volume of mobile phase passing through the column in unit time.</Documentation>
 				<Quantity name="Flow Rate">
 					&L_per_min;&mL_per_min;&uL_per_min;&nL_per_min;
@@ -1697,7 +1695,7 @@ CONTROL METHOD
 			</SeriesBlueprint>
 		</SeriesSetBlueprint>
 		<CategoryBlueprint name="Injection Details" modality="optional">
-			<ParameterBlueprint name="Injection Volume" parameterType="Numeric" modality="optional">
+			<ParameterBlueprint name="Injection Volume" parameterType="Float" modality="optional">
 				<Documentation>Actual injection volume</Documentation>
 				<Quantity name="Volume">
 					&mL; &uL; &nL;

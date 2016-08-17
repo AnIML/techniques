@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE units SYSTEM "animl_unit_entities.dtd">
+<!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
 <Technique name="Thermal Conductivity Detector" version="0.90" 
     xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"

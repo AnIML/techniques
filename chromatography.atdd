@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (BSSN Software) -->
-<!--
-	Repository version: $Id$
-	
-	see CVS comments for change log
-  -->
-<!-- STATUS:  reviewed the Sample Introduced and started on Mobile Phaase -->
-<!-- NOTES AND QUESTIONS 
+<!-- NOTES AND QUESTIONS
 - Mass - what about moles rather than kg.  Or do we mean weight not mass?  Mass supllied or mass measured?
 - Does chromatography need allowable values on phase?
 -  Storage Information and Storage Location definitions redundant in UV-Vis (especially Sample and Substance)
@@ -40,94 +33,7 @@ SAMPLE REFRENCE SET - part of Samples
 CONTROL METHOD
 - 
 -->
-<!DOCTYPE Technique [
-	<!ENTITY lambda "&#955;">
-	<!ENTITY Delta "&#916;">
-	<!ENTITY percent "<Unit label='&#37;'><SIUnit factor='1'>1</SIUnit></Unit>">
-	<!ENTITY counts "<Unit label='Counts'><SIUnit factor='1'>1</SIUnit></Unit>">
-	<!-- Weight -->
-	<!ENTITY g "<Unit label='g'><SIUnit factor='1e-03'>kg</SIUnit></Unit>">	
-	<!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
-	<!ENTITY ug "<Unit label='µg'><SIUnit factor='1e-12'>kg</SIUnit></Unit>">
-	<!ENTITY ng "<Unit label='ng'><SIUnit factor='1e-15'>kg</SIUnit></Unit>">
-	<!ENTITY pg "<Unit label='pg'><SIUnit factor='1e-18'>kg</SIUnit></Unit>">
-	<!-- Length -->
-	<!ENTITY m "<Unit label='m'><SIUnit factor='1' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
-	<!ENTITY Angstrom "<Unit label='Å'><SIUnit factor='1e-10' exponent='1'>m</SIUnit></Unit>">
-	<!-- Temperature -->
-	<!ENTITY degC "<Unit label='&#176;C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
-	<!ENTITY K "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
-	<!ENTITY degF "<Unit label='&#176;F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
-	<!-- Temperature change per time -->
-	<!ENTITY degC_per_min "<Unit label='&#176;C/min'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='60' exponent='-1'>s</SIUnit></Unit>">
-	<!ENTITY degC_per_s "<Unit label='&#176;C/s'><SIUnit offset='-273.15'>K</SIUnit><SIUnit factor='1' exponent='-1'>s</SIUnit></Unit>">
-	<!-- Time --> 	
-	<!ENTITY h "<Unit label='h'><SIUnit factor='3600'>s</SIUnit></Unit>">
-	<!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
-	<!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
-	<!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
-	<!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
-	<!-- Volume -->
-	<!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
-	<!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY uL "<Unit label='µL'><SIUnit exponent='3' factor='1e-9'>m</SIUnit></Unit>">
-	<!ENTITY nL "<Unit label='nL'><SIUnit exponent='3' factor='1e-12'>m</SIUnit></Unit>">
-	<!-- Volume per time and derived units -->
-	<!ENTITY L_per_min "<Unit label='L/min'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY L_per_s2 "<Unit label='L/s²'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-2' factor='1'>s</SIUnit></Unit>">
-	<!ENTITY L_per_min2 "<Unit label='L/min²'><SIUnit exponent='3' factor='1e-3'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY mL_per_min "<Unit label='mL/min'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY mL_per_min2 "<Unit label='mL/min²'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY mL_per_s2 "<Unit label='mL/s²'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-		<!ENTITY mL_per_s "<Unit label='mL/s'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-		<!ENTITY uL_per_s "<Unit label='µL/s'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-		<!ENTITY nL_per_s "<Unit label='nL/s'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
-		<!ENTITY nL_per_min "<Unit label='nL/min'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-		<!ENTITY uL_per_min "<Unit label='µL/min'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-1' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY uL_per_min2 "<Unit label='µL/min²'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY uL_per_s2 "<Unit label='µL/s²'><SIUnit exponent='3' factor='1e-9'>m</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY nL_per_min2 "<Unit label='nL/min²'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-2' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY nL_per_s2 "<Unit label='nL/s²'><SIUnit exponent='3' factor='1e-12'>m</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!-- Concentration -->
-	<!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY mL_per_L "<Unit label='mL/L'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
-	<!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
-	<!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY g_per_mL "<Unit label='g/mL'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY ug_per_mL "<Unit label='µg/mL'><SIUnit exponent='1' factor='1e-12'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-	<!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
-	<!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
-	<!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-	<!ENTITY kgf_per_cm2 "<Unit label='kgf/cm²'><SIUnit exponent='1'>kg</SIUnit><SIUnit factor='1e-2' exponent='-2'>m</SIUnit></Unit>">
-	<!-- Pressure change per time-->
-	<!ENTITY Pa_per_min "<Unit label='Pa/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY bar_per_min "<Unit label='bar/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY psig_per_min "<Unit label='psig/min'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3' factor='60'>s</SIUnit></Unit>">
-	<!ENTITY Pa_per_s "<Unit label='Pa/s'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY bar_per_s "<Unit label='bar/s'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY psig_per_s "<Unit label='psig/s'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!-- Voltage -->
-	<!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY mV "<Unit label='mV'><SIUnit factor='1e-03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY uV "<Unit label='µV'><SIUnit factor='1e-06'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!ENTITY nV "<Unit label='nV'><SIUnit factor='1e-09'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-	<!-- Current -->
-	<!ENTITY A "<Unit label='A'><SIUnit>A</SIUnit></Unit>">
-	<!ENTITY mA "<Unit label='mA'><SIUnit factor='1e-03'>A</SIUnit></Unit>">
-	<!ENTITY nA "<Unit label='nA'><SIUnit factor='1e-09'>A</SIUnit></Unit>">
-	<!ENTITY pA "<Unit label='pA'><SIUnit factor='1e-12'>A</SIUnit></Unit>">
-
-]>
-<!-- psig conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
-<!-- torr conversion factor taken from "Guide for the use of the International System of Units (SI)" NIST SP 811 -->
+<!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
 <Technique name="Chromatography" version="0.90" extension="false" xmlns="urn:org:astm:animl:schema:technique:draft:0.90" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
 	<Documentation literatureReferenceID="IUPAC Orange Book">Technique Definition for Chromatography (A physical method of separation in which the components to be separated are distributed between two phases, one of which is stationary (stationary phase) while the other (the mobile phase) moves in a definite direction. Chromatography, as here constituted, comprises sample introduction, separation, and fractionation.  Chromatography is a sample alteration technique that separates complex introduced samples  into their component parts; thus it alters, but does not measure or detect, the sample.</Documentation>
 	<!-- -->
@@ -155,7 +61,7 @@ CONTROL METHOD
 			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Concentration of sample in solvent, if applicable.</Documentation>
 				<Quantity name="Concentration">
-					&mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
+					&mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
@@ -299,7 +205,7 @@ CONTROL METHOD
 			<ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation literatureReferenceID="JCAMP-DX IR">Concentration of known components and impurities.</Documentation>
 				<Quantity name="Concentration">
-					&mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
+					&mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">

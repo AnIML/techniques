@@ -2,7 +2,9 @@
 <!-- edited by Patrick Boba(BSSN Software) -->
 
 <!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
-    <Technique name="Evaporative Light Scattering Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
+    <Technique name="Evaporative Light Scattering Detector"
+               version="0.90"
+               xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
     <Documentation>Technique definition for Evaporative Light Scattering Detector (ELSD) data</Documentation>

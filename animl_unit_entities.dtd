@@ -13,6 +13,9 @@
         <!ENTITY ug "<Unit label='µg'><SIUnit factor='1e-12'>kg</SIUnit></Unit>">
         <!ENTITY ng "<Unit label='ng'><SIUnit factor='1e-15'>kg</SIUnit></Unit>">
         <!ENTITY pg "<Unit label='pg'><SIUnit factor='1e-18'>kg</SIUnit></Unit>">
+        <!ENTITY atomic_mass_unit "<Unit label='u'><SIUnit exponent='-27' factor='1.660539040'>kg</SIUnit></Unit>" >
+        <!ENTITY mz "<Unit label='m/z'><SIUnit factor='1'>1</SIUnit></Unit>">
+
 
         <!-- Length -->
         <!ENTITY m "<Unit label='m'><SIUnit factor='1' exponent='1'>m</SIUnit></Unit>">

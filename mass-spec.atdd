@@ -1,55 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited by Patrick Boba(BSSN Software) -->
 
-<!DOCTYPE Technique [
-        <!-- Unit Definitions -->
-
-        <!-- Various simple units-->
-        <!ENTITY count "<Unit label='count'><SIUnit>1</SIUnit></Unit>">
-        <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
-        <!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-
-        <!-- Mass -->
-        <!ENTITY g "<Unit label='g'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit></Unit>">
-        <!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
-        <!ENTITY atomic_mass_unit "<Unit label='u'><SIUnit exponent='-27' factor='1.660539040'>kg</SIUnit></Unit>" >
-
-        <!-- Volume -->
-        <!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
-        <!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
-
-        <!-- Concentration -->
-        <!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-        <!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-        <!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
-        <!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
-        <!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
-        <!ENTITY kg_per_mol "<Unit label='kg/mol'><SIUnit exponent='1' factor='1'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
-        <!ENTITY kg_per_mol "<Unit label='kg/mol'><SIUnit exponent='1' factor='1'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
-        <!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
-
-        <!-- Pressure -->
-        <!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-
-        <!-- Temperature -->
-        <!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
-        <!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
-        <!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
-
-        <!-- Length -->
-        <!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
-
-        <!-- Absorbance -->
-        <!ENTITY AU "<Unit label='AU'><SIUnit>1</SIUnit></Unit>">
-        ]>
+<!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
 
 <Technique name="Mass Spectrometry"
            version="0.90"
            xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90">
+           xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
     <Documentation>Technique Definition for Mass Spectrometry (The study of matter through the formation of gaseous ions
         that are characterized by their mass and charge. "Standard Definitions of Terms Relating to Mass Spectrometry",
         Second Draft, May 2006 IUPAC, Analytical Chemistry Division. It is a detection (sample measuring) technique.
@@ -80,7 +38,7 @@
             <ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation>Concentration of sample in solvent, if applicable.</Documentation>
                 <Quantity name="Concentration">
-                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
+                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
@@ -157,7 +115,7 @@
                     room temperature.
                 </Documentation>
                 <Quantity name="Temperature">
-                    &degK; &degC; &degF;
+                    &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
@@ -182,13 +140,13 @@
                         boiling "point".
                     </Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                     <Documentation>Upper bound of boiling temperature range.</Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
@@ -209,13 +167,13 @@
                         melting "point".
                     </Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                     <Documentation>Upper bound of melting temperature range.</Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
             </CategoryBlueprint>
@@ -230,7 +188,7 @@
                 <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                     <Documentation>Temperature at which the refractive index has been determined.</Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
@@ -256,7 +214,7 @@
                 <Documentation literatureReferenceID="Appl Spectrosc">Concentration of known components and impurities;
                 </Documentation>
                 <Quantity name="Concentration">
-                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
+                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
@@ -371,72 +329,6 @@
         </Documentation>
     </ExperimentDataRoleBlueprint>
     <MethodBlueprint>
-        <CategoryBlueprint name="Common Method" modality="optional">
-            <Documentation>Information describing the instrument and its environment.</Documentation>
-            <CategoryBlueprint name="Instrument Properties" modality="optional">
-                <Documentation>Fixed characteristics of the instrument.</Documentation>
-                <ParameterBlueprint name="Description" parameterType="String" modality="optional">
-                    <Documentation>A textual description of the instrument.</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Comments" parameterType="String" modality="optional">
-                    <Documentation>Comments about the instrument.</Documentation>
-                </ParameterBlueprint>
-                <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
-                    <Documentation>The mass detection range of the instrumen.</Documentation>
-                    <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1">
-                        <Quantity name="Mass">
-                            &atomic_mass_unit;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1">
-                        <Quantity name="Mass">
-                            &atomic_mass_unit;
-                        </Quantity>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
-                <ParameterBlueprint name="Resolution" parameterType="Numeric" modality="1">
-                    <Documentation literatureReferenceID="PAC-REC-06-04-06">Resolution in mass spectrometry defined as
-                        the m/delta_m, where m is the
-                        mass of the ion of interest and delta_m is the peak width (peak width definition) or the spacing
-                        between two
-                        equal intensity peaks with a valley between them no more than 10 % of their height (10 % valley
-                        definition).
-                    </Documentation>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings" modality="optional">
-                <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-                <ParameterBlueprint name="Operation Mode" parameterType="String" modality="optional">
-                    <AllowedValue>
-                        <S>Scan</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Selected Ion Monitoring</S>
-                    </AllowedValue>
-                    <AllowedValue>Other</AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Polarity" parameterType="String"
-                                    modality="optional"> <!-- TODO: maybe required? -->
-                    <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
-                        information is crucial for the interpretation of the data.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>"+"</S>
-                    </AllowedValue> <!-- TODO: atm. "+" and "positive" as different entries. Maybe consolidate? -->
-                    <AllowedValue>
-                        <S>"positive"</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>"-"</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>"negative"</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-        </CategoryBlueprint>
         <CategoryBlueprint name="Method Description" modality="optional">
             <Documentation>Basic contextual information about the measurement method.</Documentation>
             <ParameterBlueprint name="Method Name" parameterType="String" modality="optional">
@@ -482,7 +374,7 @@
         </CategoryBlueprint>
         <CategoryBlueprint name="Sample Introduction" maxOccurs="1" modality="optional">
             <Documentation>The type of inlet used for the experiment step.</Documentation>
-            <ParameterBlueprint name="Inlet Type"> <!-- TODO: This section needs revision ! -->
+            <ParameterBlueprint name="Inlet Type" parameterType="String"> <!-- TODO: This section needs revision ! -->
                 <AllowedValue>
                     <S>Direct Vapor Inlet</S>
                 </AllowedValue>
@@ -582,18 +474,6 @@
                 </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <SeriesSetBlueprint name="Detector Components" modality="optional">
-            <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
-                             modality="optional">
-                <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
-                    quadrupole would be 0, and the TOF 1"
-                </Documentation>
-            </SeriesBlueprint>
-            <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
-                             dependency="dependent">
-                <Documentation>The name of the detector component.</Documentation>
-            </SeriesBlueprint>
-        </SeriesSetBlueprint>
         <CategoryBlueprint name="Mass Selection" modality="optional">
             <ParameterBlueprint name="Mass Selection" parameterType="String" maxOccurs="1" modality="optional">
                 <!-- this is just a coarse grained list. More details? Extensions? ... -->
@@ -626,6 +506,92 @@
                 </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
+        <CategoryBlueprint name="Common Method" modality="optional">
+            <Documentation>Information describing the instrument and its environment.</Documentation>
+            <CategoryBlueprint name="Instrument Properties" modality="optional">
+                <Documentation>Fixed characteristics of the instrument.</Documentation>
+                <ParameterBlueprint name="Resolution" parameterType="Numeric" modality="optional">
+                    <Documentation literatureReferenceID="PAC-REC-06-04-06">Resolution in mass spectrometry defined as
+                        the m/delta_m, where m is the
+                        mass of the ion of interest and delta_m is the peak width (peak width definition) or the spacing
+                        between two
+                        equal intensity peaks with a valley between them no more than 10 % of their height (10 % valley
+                        definition).
+                    </Documentation>
+                    <Quantity name="m/z">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <CategoryBlueprint name="Description" modality="optional">
+                    <Documentation>A textual description of the instrument.</Documentation>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Comments" modality="optional">
+                    <Documentation>Comments about the instrument.</Documentation>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
+                    <Documentation>The mass detection range of the instrumen.</Documentation>
+                    <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Instrument Settings" modality="optional">
+                <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
+                <ParameterBlueprint name="Operation Mode" parameterType="String" modality="optional">
+                    <AllowedValue>
+                        <S>Scan</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Selected Ion Monitoring</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Other</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Polarity" parameterType="String"
+                                    modality="optional"> <!-- TODO: maybe required? -->
+                    <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
+                        information is crucial for the interpretation of the data.
+                    </Documentation>
+                    <AllowedValue>
+                        <S>"+"</S>
+                    </AllowedValue> <!-- TODO: atm. "+" and "positive" as different entries. Maybe consolidate? -->
+                    <AllowedValue>
+                        <S>"positive"</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>"-"</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>"negative"</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+        </CategoryBlueprint>
+
+        <CategoryBlueprint name="Detector Components" modality="optional">
+            <SeriesSetBlueprint name="Detector Components">
+                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
+                                 modality="optional">
+                    <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
+                        quadrupole would be 0, and the TOF 1"
+                    </Documentation>
+                </SeriesBlueprint>
+                <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
+                                 dependency="dependent">
+                    <Documentation>The name of the detector component.</Documentation>
+                </SeriesBlueprint>
+            </SeriesSetBlueprint>
+        </CategoryBlueprint>
     </MethodBlueprint>
     <ResultBlueprint name="Spectrum" modality="optional">
         <SeriesSetBlueprint name="Spectrum" modality="required">
@@ -633,7 +599,7 @@
                              plotScale="linear">
                 <Documentation>The x-axis of the mass spectrum</Documentation>
                 <Quantity name="Mass/Charge Ratio">
-                    &arbitray;
+                    &arbitrary;
                 </Quantity>
             </SeriesBlueprint>
             <!-- MSConstants enthält "CHARGE_SERIES_NAME". Weiß nicht so recht, was ich damit anfangen soll -->
@@ -643,7 +609,7 @@
                     &AU; &arbitrary; &percent;
                 </Quantity>
                 <Quantity name="Counts">
-                    &count;
+                    &counts;
                 </Quantity>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
@@ -677,7 +643,7 @@
                     &AU; &arbitrary;
                 </Quantity>
                 <Quantity name="Counts">
-                    &count;
+                    &counts;
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>

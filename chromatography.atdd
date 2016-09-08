@@ -451,7 +451,7 @@ CONTROL METHOD
 			<ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
 				<Documentation>Sample pressure as introduced.</Documentation>
 				<Quantity name="Pressure">
-					&Pa;&psig;&bar;&kgf_per_cm2;
+					&Pa;&psig;&bar;&kg_per_cm2;
 				</Quantity>
 			</ParameterBlueprint>
 			<ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
@@ -1572,7 +1572,7 @@ CONTROL METHOD
 			<SeriesBlueprint name="Inlet Pressure" seriesType="Float" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
 				<Documentation>Measured inlet pressure. Sometimes called System Pressure.</Documentation>
 				<Quantity name="Pressure">
-					&Pa; &bar; &psig; &kgf_per_cm2;
+					&Pa; &bar; &psig; &kg_per_cm2;
 				</Quantity>
 			</SeriesBlueprint>
 			<SeriesBlueprint name="Column Temperature" seriesType="Float" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">

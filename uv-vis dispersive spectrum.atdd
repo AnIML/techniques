@@ -629,7 +629,7 @@
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector. Resolution - &Delta;&lamda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lamda;, or wavenumber interval, &Delta;v, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
+                    <Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector. Resolution - &Delta;&lambda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lambda;, or wavenumber interval, &Delta;v, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power.</Documentation>
                     <Quantity name="Energy"> &eV; </Quantity>
                     <Quantity name="Reciprocal Length"> &reciprocal_cm; </Quantity>
                     <Quantity name="Wavelength"> &nm; </Quantity>
@@ -744,7 +744,7 @@
                     <Quantity name="Energy"> &eV; </Quantity>
                 </SeriesBlueprint>
                 <SeriesBlueprint name="Wavelength" seriesType="Float" plotScale="linear" dependency="independent">
-                    <Documentation literatureReferenceID="ASTM E131-05">&lamda; - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves.</Documentation>
+                    <Documentation literatureReferenceID="ASTM E131-05">&lambda; - the distance, measured along the line of propagation, between two points that are in phase on adjacent waves.</Documentation>
                     <Quantity name="Wavelength"> &um; &nm; &pm; </Quantity>
                 </SeriesBlueprint>
             </SeriesBlueprintChoice>
@@ -758,7 +758,7 @@
             </SeriesBlueprint>
             <SeriesBlueprint name="Resolution" seriesType="Float" modality="optional" plotScale="none"
                 dependency="dependent">
-                <Documentation literatureReferenceID="ASTM E131-05">&Delta;&lamda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lamda;, or wavenumber interval, &Delta;v, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. Use this series if resolution is variable.</Documentation>
+                <Documentation literatureReferenceID="ASTM E131-05">&Delta;&lambda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lambda;, or wavenumber interval, &Delta;v, of radiant energy leaving the exit slit of a monochromator measured at half the peak detected radiant power. Use this series if resolution is variable.</Documentation>
                 <Quantity name="Reciprocal Length"> &reciprocal_cm; </Quantity>
                 <Quantity name="Energy"> &eV; </Quantity>
                 <Quantity name="Wavelength"> &nm; </Quantity>

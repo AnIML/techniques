@@ -32,7 +32,7 @@
             <ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation>Concentration of sample in solvent, if applicable.</Documentation>
                 <Quantity name="Concentration">
-                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
+                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
@@ -109,7 +109,7 @@
                     room temperature.
                 </Documentation>
                 <Quantity name="Temperature">
-                    &degK; &degC; &degF;
+                    &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
@@ -134,13 +134,13 @@
                         boiling "point".
                     </Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                     <Documentation>Upper bound of boiling temperature range.</Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
@@ -161,13 +161,13 @@
                         melting "point".
                     </Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                     <Documentation>Upper bound of melting temperature range.</Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
             </CategoryBlueprint>
@@ -182,7 +182,7 @@
                 <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                     <Documentation>Temperature at which the refractive index has been determined.</Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
@@ -208,7 +208,7 @@
                 <Documentation literatureReferenceID="Appl Spectrosc">Concentration of known components and impurities;
                 </Documentation>
                 <Quantity name="Concentration">
-                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
+                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
@@ -633,13 +633,13 @@
                     the sample.
                 </Documentation>
                 <Quantity name="Temperature">
-                    &degK; &degC; &degF;
+                    &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Sample Holder Temperature" parameterType="Float" modality="optional">
                 <Documentation>Measured temparature of the sample holder.</Documentation>
                 <Quantity name="Temperature">
-                    &degK; &degC; &degF;
+                    &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
@@ -655,7 +655,7 @@
             <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional">
                 <Documentation>Measured temperature in the optical path of the instrument.</Documentation>
                 <Quantity name="Temperature">
-                    &degK; &degC; &degF;
+                    &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>

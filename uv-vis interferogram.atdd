@@ -739,7 +739,7 @@
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Number of Data Points" parameterType="Int" modality="optional">
                     <Documentation>Number of data points collected per interferogram.</Documentation>
-                    <Quantity name="Count"> &count; </Quantity>
+                    <Quantity name="Counts"> &counts; </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Scan Type" parameterType="String" modality="optional">
                     <Documentation>Method by which the optical path difference of the interferometer is changed.</Documentation>

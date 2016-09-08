@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (BSSN Software) -->
-<!-- edited by Patrick Boba (BSSN Software)  -->
+<!-- edited by Patrick Boba(BSSN Software) -->
 
 <!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
-<Technique name="UV/Vis Trace Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
-    <Documentation>Technique definition for UV/Vis Point Detector data</Documentation>
+    <Technique name="Evaporative Light Scattering Detector" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
+    <Documentation>Technique definition for Evaporative Light Scattering Detector (ELSD) data</Documentation>
     <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
                          inheritable="true">
         <Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory
@@ -227,7 +226,9 @@
                 </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation>The molar mass is a physical property defined as the mass of a given compound divided by the amount of it.</Documentation>
+                <Documentation>The molar mass is a physical property defined as the mass of a given compound divided by
+                    the amount of it.
+                </Documentation>
                 <Quantity name="Molar Mass">
                     &g_per_mol; &kg_per_mol;
                 </Quantity>
@@ -257,30 +258,36 @@
                 </ParameterBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
-                <Documentation literatureReferenceID="CAS">Set of different identifiers describing a substance.</Documentation>
+                <Documentation literatureReferenceID="CAS">Set of different identifiers describing a substance.
+                </Documentation>
                 <ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="CAS">Name according to Chemical Abstracts naming conventions. See Appendix IV of the 1985
+                    <Documentation literatureReferenceID="CAS">Name according to Chemical Abstracts naming conventions.
+                        See Appendix IV of the 1985
                         CAS Index Guide.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="CAS">CAS Registry Numbers for many compounds can be found in Chemical Abstracts indices,
+                    <Documentation literatureReferenceID="CAS">CAS Registry Numbers for many compounds can be found in
+                        Chemical Abstracts indices,
                         Merck Index, or CAS ONLINE.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier of the substance. See Chem. Intl. 2006, 28,
+                    <Documentation literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier of the
+                        substance. See Chem. Intl. 2006, 28,
                         12.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="InChI Key" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="IUPAC InChI">Hash value of IUPAC International Chemical Identifier of the substance. See Chem.
+                    <Documentation literatureReferenceID="IUPAC InChI">Hash value of IUPAC International Chemical
+                        Identifier of the substance. See Chem.
                         Intl. 2006, 28, 12.
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional"
                                     maxOccurs="1">
-                    <Documentation literatureReferenceID="Beilstein">Structural formula clustering code based on the Beilstein System. It is used for
+                    <Documentation literatureReferenceID="Beilstein">Structural formula clustering code based on the
+                        Beilstein System. It is used for
                         locating information in Beilstein databases. The code contains only structural information and
                         can be generated locally on microcomputers from connection table data alone. A simple
                         description of the algorithm has been published (see Bibliography).
@@ -320,18 +327,6 @@
             confronted with. This is only a reference, so no parameters are required.
         </Documentation>
     </SampleRoleBlueprint>
-    <SampleRoleBlueprint name="Transmittance Calibration Reference" samplePurpose="consumed" modality="optional"
-                         maxOccurs="1" inheritable="false">
-        <Documentation>The material sample or lamp used to calibrate the transmittance/intensity axis. This is only a
-            reference, so no parameters are required.
-        </Documentation>
-    </SampleRoleBlueprint>
-    <SampleRoleBlueprint name="Wavelength Calibration Reference" samplePurpose="consumed" modality="optional"
-                         maxOccurs="1" inheritable="false">
-        <Documentation>The material sample or lamp used to calibrate the wavelength axis. This is only a reference, so
-            no parameters are required.
-        </Documentation>
-    </SampleRoleBlueprint>
     <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed"
                                  modality="optional"> <!-- This name doesn't explain the reference -->
         <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the
@@ -345,9 +340,9 @@
                 <Documentation>External reference to measurement method.</Documentation>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Common Method" modality="optional">
-            <Documentation>Information describing the instrument and its environment. These parameter are common for all
-                UV-Vis trace detection methods.
+        <CategoryBlueprint name="Common Method" modality="required">
+            <Documentation>Information describing the instrument and its environment. This information is common to
+                both dispersive and interferometric measurements.
             </Documentation>
             <CategoryBlueprint name="Instrument Properties" modality="optional">
                 <Documentation>Fixed characteristics of the instrument.</Documentation>
@@ -356,32 +351,6 @@
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Comments" parameterType="String" modality="optional">
                     <Documentation>Comments about the instrument.</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Measurement Mode" parameterType="String" maxOccurs="1" modality="optional">
-                    <Documentation>The optical mode with respect to the sample with which the measurement was made, such
-                        as reflectance and transmittance.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>Reflectance, diffuse</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Reflectance, grazing</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Reflectance, multiple internal</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Reflectance, specular</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Transmittance, apparent</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Transmittance, diffuse</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Transmittance, true</S>
-                    </AllowedValue>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Sample Holder" parameterType="String" modality="optional">
                     <Documentation>The type or name of the assembly that holds the sample container in the optical beam,
@@ -398,511 +367,209 @@
                         </Unit>
                     </Quantity>
                 </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings" modality="optional">
-                <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-                <SeriesSetBlueprint name="Light Sources" modality="optional">
-                    <Documentation>Description of light sources being used whithin the experiment described.
-                    </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" modality="optional" dependency="dependent"
-                                     plotScale="none">
-                        <Documentation>The lower-bound x-axis value from which the given light source was used.
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um; &nm; &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" modality="optional" dependency="dependent"
-                                     plotScale="none">
-                        <Documentation>The upper-bound x-axis value up to which the given light source was used.
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um; &nm; &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Source Type" seriesType="String" modality="required" dependency="dependent"
-                                     plotScale="none">
-                        <Documentation>Description of the light source type.</Documentation>
-                        <AllowedValue>
-                            <S>Tungsten Source</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Deuterium Source</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Xenon Source</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Mercury Source</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Glow Bar Source</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Other Source</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Plasma Emission</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Flame Emission</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Spark Emission</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Thermal Emission</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Laser Ablation Emission</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Other Emission</S>
-                        </AllowedValue>
-                    </SeriesBlueprint>
-                </SeriesSetBlueprint>
-                <SeriesSetBlueprint name="Source Polarization" modality="optional">
-                    <Documentation>Sequence of polarizing elements used to modify the source polarization for the given
-                        wavelength ranges.
-                    </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required"
-                                     plotScale="none">
-                        <Documentation>The lower-bound x-axis value from which the given polarizer was used.
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um;
-                            &nm;
-                            &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required"
-                                     plotScale="none">
-                        <Documentation>The upper-bound x-axis value up to which the given polarizer was used..
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um; &nm; &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Polarizer Type" seriesType="String" dependency="dependent"
-                                     modality="required" plotScale="none">
-                        <Documentation>Type of optical element used for polarization, e.g., Glan-Taylor, Glan-Thomson,
-                            Wollaston, Nanoparticle
-                        </Documentation>
-                        <AllowedValue>
-                            <S>Glan-Taylor</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Glan-Thomson</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Wollaston</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Nanoparticle</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>other</S>
-                        </AllowedValue>
-                    </SeriesBlueprint>
-                </SeriesSetBlueprint>
-                <SeriesSetBlueprint name="Source Optical Filters" modality="optional">
-                    <Documentation>Sequence of optical filters used to modify the source intensity for the given
-                        wavelength ranges.
-                    </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="required"
-                                     plotScale="none">
-                        <Documentation>The lower-bound x-axis value from which the specified filter was used.
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um;
-                            &nm;
-                            &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="required"
-                                     plotScale="none">
-                        <Documentation>The upper-bound x-axis value from which the specified filter was used..
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um; &nm; &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Filter Description" seriesType="String" dependency="dependent"
-                                     modality="required" plotScale="none">
-                    </SeriesBlueprint>
-                </SeriesSetBlueprint>
-                <SeriesSetBlueprint name="Detectors" modality="optional">
-                    <Documentation>List of detectors used within specific wavelength ranges.</Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>The lower-bound x-axis value from which the specified detector was used.
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um;
-                            &nm;
-                            &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>The upper-bound x-axis value from which the specified detector was used..
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um; &nm; &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Detector Name" seriesType="String" dependency="dependent" modality="required"
-                                     plotScale="none">
-                        <Documentation>Name of the detector.</Documentation>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Detector Type" seriesType="String" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>The type of the detector used for the measurement.</Documentation>
-                        <AllowedValue>
-                            <S>Photomultiplier</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Photodiode</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Diode Array</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>CCD Array</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>PbS</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Thermopile</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>other</S>
-                        </AllowedValue>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Detector Description" seriesType="String" dependency="dependent"
-                                     modality="optional" plotScale="none">
-                        <Documentation>Description of the detector.</Documentation>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Bias Voltage" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>Voltage that determines the detector gain.</Documentation>
-                        <Quantity name="Voltage">
-                            &V;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Detector Gain" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>Factor for converting radiant energy incident on the detector to an electrical
-                            signal at the detector output.
-                        </Documentation>
-                    </SeriesBlueprint>
-                </SeriesSetBlueprint>
-                <SeriesSetBlueprint name="Detector Polarization" modality="optional">
-                    <Documentation>Sequence of polarizing elements used to modify the detector polarization for the
-                        given wavelength ranges.
-                    </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>The lower-bound x-axis value from which the given polarizer was used.
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um;
-                            &nm;
-                            &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>The upper-bound x-axis value up to which the given polarizer was used..
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um; &nm; &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Polarizer Type" seriesType="String" dependency="dependent"
-                                     modality="required" plotScale="none">
-                        <Documentation>Type of optical element used for polarization.</Documentation>
-                        <AllowedValue>
-                            <S>Glan-Taylor</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Glan-Thomson</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Wollaston</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Nanoparticle</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>other</S>
-                        </AllowedValue>
-                    </SeriesBlueprint>
-                </SeriesSetBlueprint>
-                <SeriesSetBlueprint name="Detector Optical Filters" modality="optional">
-                    <Documentation>Sequence of optical filters used to modify the detector response for given wavelength
-                        ranges.
-                    </Documentation>
-                    <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>The lower-bound x-axis value from which the specified filter was used.
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um;
-                            &nm;
-                            &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Upper Bound" seriesType="Float" dependency="dependent" modality="optional"
-                                     plotScale="none">
-                        <Documentation>The upper-bound x-axis value from which the specified filter was used..
-                        </Documentation>
-                        <Quantity name="Reciprocal Length">
-                            &reciprocal_cm;
-                        </Quantity>
-                        <Quantity name="Length">
-                            &um; &nm; &pm;
-                        </Quantity>
-                        <Quantity name="Energy">
-                            &eV;
-                        </Quantity>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Filter Description" seriesType="String" dependency="dependent"
-                                     modality="required" plotScale="none">
-                    </SeriesBlueprint>
-                </SeriesSetBlueprint>
-                <ParameterBlueprint name="Sample Holder Position" parameterType="String" modality="optional">
-                    <Documentation>The position of the sample within the sample holder unit. Note: This is not intended
-                        for auto sampler information.
-                    </Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Sample Path Length" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E131-05">The distance, measured in the direction of
-                        propagation of the beam of radiant energy, between the surface of the specimen on which the
-                        radiant energy is incident and the surface of the specimen from which it is emergent.
-                    </Documentation>
-                    <Quantity name="Length">
-                        &cm; &mm;
+                <ParameterBlueprint name="Signal Noise" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E685-93">Short term noise of the signal.</Documentation>
+                    <Quantity name="Percent">
+                        &percent;
+                    </Quantity>
+                    <Quantity name="Arbitrary">
+                        &arbitrary;
+                    </Quantity>
+                    <Quantity name="Degree">
+                        &degree;
+                    </Quantity>
+                    <Quantity name="Voltage">
+                        &mV;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Optical Path Environment" parameterType="String" modality="optional">
-                    <Documentation>Describes the environment of the optical path.</Documentation>
+                <ParameterBlueprint name="Signal Drift" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E685-93">The signal drift of the detector.
+                    </Documentation>
+                    <Quantity name="Percent">
+                        &percent;
+                    </Quantity>
+                    <Quantity name="Arbitrary">
+                        &arbitrary;
+                    </Quantity>
+                    <Quantity name="Degree">
+                        &degree;
+                    </Quantity>
+                    <Quantity name="Voltage">
+                        &mV;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Sampling Rate" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Quantity name="frequency">
+                        &Hz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Description" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation>Details on the optical component of the detector.</Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Light Source" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation>Comments about the light source.</Documentation>
                     <AllowedValue>
-                        <S>Ambient air</S>
+                        <S>LED</S>
                     </AllowedValue>
                     <AllowedValue>
-                        <S>Dry air</S>
+                        <S>Laser</S>
                     </AllowedValue>
                     <AllowedValue>
-                        <S>Vacuum</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Nitrogen</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Argon</S>
+                        <S>Halogen</S>
                     </AllowedValue>
                     <AllowedValue>
                         <S>Other</S>
                     </AllowedValue>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Optical Path Pressure" parameterType="Float" modality="optional">
-                    <Documentation>Ambient pressure in the optical path of the instrument.</Documentation>
-                    <Quantity name="Pressure">
-                        &Pa; &psig; &bar;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Dispersive Method" modality="optional">
-            <Documentation>Specific parameters for dispersive measurements.</Documentation>
-            <CategoryBlueprint name="Instrument Properties">
-                <Documentation>Fixed characteristics of the instrument, specific to dispersive measurements.
-                </Documentation>
-                <ParameterBlueprint name="Dispersion Element" parameterType="String" modality="optional">
-                    <Documentation/>
-                    <AllowedValue>
-                        <S>Prism</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Grating</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Prism Material" parameterType="String">
-                    <Documentation>Material from which the prism is made.</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Grating Ruling" parameterType="Int">
-                    <Documentation>Number of lines per unit distance in the grating.</Documentation>
-                    <Quantity name="lines per distance">
-                        <Unit label="lines/mm">
-                            <SIUnit factor="10e-3" exponent="-1">m</SIUnit>
-                        </Unit>
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Grating Blaze Angle" parameterType="Float">
-                    <Documentation>Angle at which grating lines have been cut.</Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Instrument Type" parameterType="String" modality="optional">
-                    <Documentation>Whether the instrument is a single beam, double beam, or diode array instrument.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>single beam</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>double beam</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>array-based</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Linear Dispersion" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E131-05">The wavelength dispersion at the exit slit of
-                        the instrument.
-                    </Documentation>
-                    <Quantity name="Ratio">
-                        <Unit label="nm/mm">
-                            <SIUnit exponent="1" factor="1e-9">m</SIUnit>
-                            <SIUnit exponent="1" factor="1e-3">m</SIUnit>
-                        </Unit>
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Physical Resolution" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector. Resolution
-                        - &Delta;&lambda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy, the
-                        wavelength interval, &Delta;&lambda;, or wavenumber interval, &Delta;v, of radiant energy leaving
-                        the exit slit of a monochromator measured at half the peak detected radiant power.
-                    </Documentation>
-                    <Quantity name="Energy">
-                        &eV;
-                    </Quantity>
-                    <Quantity name="Reciprocal Length">
-                        &reciprocal_cm;
-                    </Quantity>
-                    <Quantity name="Wavelength">
-                        &nm;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings">
-                <Documentation>Variable characteristics or configuration parameters of the instrument, specific to
-                    dispersive measurements.
-                </Documentation>
-                <ParameterBlueprint name="Slit Function" parameterType="String" modality="optional">
-                    <Documentation>Adjustment of the slit width to maintain constant resolution or constant energy over
-                        the course of the scan.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>Constant resolution</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Constant energy</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Spectral Slit Width" parameterType="Float" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E131-05">Mechanical width of the exit slit, divided by
-                        the linear dispersion in the exit slit plan. Use parameter if constant.
-                    </Documentation>
-                    <Quantity name="Length">
-                        &nm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Slit Width" parameterType="Float" modality="optional">
-                    <Documentation>Mechanical width of the monochromator slits. Use parameter if constant.
-                    </Documentation>
-                    <Quantity name="Length">
-                        &mm; &nm;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Integration Period" parameterType="Float" modality="optional">
-                    <Documentation>The time interval over which discrete detector readings are averaged to produce a
-                        data point. Use this parameter only to state how the data were acquired.
-                    </Documentation>
+                <ParameterBlueprint name="Light Source Life Time" parameterType="Numeric" modality="optional"
+                                    maxOccurs="1">
                     <Quantity name="Time">
-                        &ms; &s;
+                        &min;
                     </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Spectral Bandwidth" modality="optional" parameterType="Float">
-                    <Documentation literatureReferenceID="ASTM E131-05">The wavelength interval of radiant energy
-                        leaving the exit slit of a monochromator measured at half the peak detected radiant power.
-                    </Documentation>
-                    <Quantity name="Length">
+                <ParameterBlueprint name="Measurement Wavelength" parameterType="Float" modality="optional">
+                    <Documentation>Wavelength of the light source</Documentation>
+                    <Quantity name="wavelength">
                         &nm;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Scattering Angle" parameterType="Numeric" modality="optional"
+                                    maxOccurs="1">
+                    <Quantity name="degree">
+                        &degree;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Measurement Range" parameterType="Numeric" modality="optional"
+                                    maxOccurs="1">
+                    <Quantity name="light scatter units">
+                        &arbitrary; &AU;
+                    </Quantity>
+                </ParameterBlueprint>
+                <CategoryBlueprint name="Eluent Flow" modality="optional">
+                    <Documentation>Eluent flow specifications</Documentation>
+                    <ParameterBlueprint name="Eluent Minimum Flow" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="rate">
+                            &L_per_min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Eluent Maximum Flow" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="rate">
+                            &L_per_min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Nebulizer Properties" modality="optional">
+                    <Documentation>Nebulizer specifications</Documentation>
+                    <ParameterBlueprint name="Gas Minimum Pressure" parameterType="Float" modality="optional">
+                        <Quantity name="pressure">
+                            &bar; &psig;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Maximum Pressure" parameterType="Float" modality="optional">
+                        <Quantity name="pressure">
+                            &bar; &psig;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Consumption Rate" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="Rate"> <!-- please check name -->
+                            &L_per_min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Minimum Flow" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="rate">
+                            &L_per_min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Gas Maximum Flow" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="rate">
+                            &L_per_min;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Nebulizer Minimum Temperature" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="temperature">
+                            &degC; &K; &degF;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Nebulizer Maximum Temperature" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="temperature">
+                            &degC; &K; &degF;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Evaporator Properties" modality="optional">
+                    <ParameterBlueprint name="Evaporator Minimum Temperature" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="temperature">
+                            &degC; &K; &degF;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Evaporator Maximum Temperature" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Quantity name="temperature">
+                            &degC; &K; &degF;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Instrument Settings" modality="required">
+                <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
+                <ParameterBlueprint name="LED Intensity" parameterType="Numeric" modality="optional">
+                    <Documentation>The adjusted intensity of the LED in Percent</Documentation>
+                    <Quantity name="Intensity">
+                        &percent;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Smoothing" parameterType="Numeric" modality="optional">
+                    <Documentation>Smoothing (some vendors Response Time) sets a time range over which the data is
+                        averaged.
+                    </Documentation>
+                    <Quantity name="Response Time">
+                        &s;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Eluent Flow" parameterType="Numeric" modality="optional">
+                    <Quantity name="Liter per Minute">
+                        &L_per_min;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Gas Type" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation>The types of gas, that can be used with the detector (typically Nitrogen or Argon).
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Gas Flow" parameterType="Numeric" modality="optional">
+                    <Documentation>The evaporator gas flow is used to control the ELS detector’s evaporation
+                        process.
+                    </Documentation>
+                    <Quantity name="Liter per Minute">
+                        &L_per_min;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Gas Pressure" parameterType="Numeric" modality="optional">
+                    <Quantity name="pressure">
+                        &bar; &psig;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Nebulizer Temperature" parameterType="Numeric" modality="optional">
+                    <Documentation>Temperature of the Nebulizer</Documentation>
+                    <Quantity name="Temperature">
+                        <Unit label="degree">
+                            <SIUnit>K</SIUnit>
+                        </Unit>
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Evaporator Temperature" parameterType="Numeric" modality="optional">
+                    <Documentation>Temperature range of the Evaporator</Documentation>
+                    <Quantity name="Temperature">
+                        <Unit label="degree">
+                            <SIUnit>K</SIUnit>
+                        </Unit>
                     </Quantity>
                 </ParameterBlueprint>
             </CategoryBlueprint>
@@ -952,7 +619,7 @@
                 -->
             <ParameterBlueprint name="Channel ID" parameterType="String" modality="optional">
                 <Documentation>A/D converter channel ID, e.g. 'A', 'B', ... or '1', '2', ...</Documentation>
-            </ParameterBlueprint>
+            </ParameterBlueprint> <!-- TODO: check if the setting match the ELSD technique -->
             <ParameterBlueprint name="Mode" parameterType="String" modality="optional">
                 <Documentation>Acquisition scheme for detection.</Documentation>
                 <AllowedValue>
@@ -961,7 +628,7 @@
                 <AllowedValue>
                     <S>differential</S>
                 </AllowedValue>
-            </ParameterBlueprint>
+            </ParameterBlueprint> <!-- TODO: check if the setting match the ELSD technique -->
             <ParameterBlueprint name="Range" parameterType="Float" modality="optional">
                 <Documentation>Maximum full-scale voltage of the A/D converter.</Documentation>
                 <Quantity name="Voltage">
@@ -988,7 +655,9 @@
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Digitization Rate" parameterType="Float" modality="optional">
-                <Documentation>Number of data points collected per second (after any averaging).</Documentation>
+                <Documentation>Number of data points collected per second (after any averaging). Some devices offer this
+                    setting via an "expected peak width" option.
+                </Documentation>
                 <Quantity name="Frequency">
                     &Hz;
                 </Quantity>
@@ -998,31 +667,29 @@
                 <Quantity name="Count"/>
             </ParameterBlueprint>
         </CategoryBlueprint>
+        <CategoryBlueprint name="Signal Filter" modality="optional">
+            <Documentation>Filter specifics have to be handled with an extension.</Documentation>
+            <ParameterBlueprint name="Filter Type" parameterType="String" modality="optional">
+                <Documentation>The type(s) of filter that can be used to smooth the electrical output signal.
+                </Documentation>
+            </ParameterBlueprint>
+        </CategoryBlueprint>
     </MethodBlueprint>
-    <ResultBlueprint name="UV/Vis Trace" modality="optional">
-        <Documentation>Time-base trace of UV/Vis detector data.</Documentation>
-        <SeriesSetBlueprint name="UV/Vis Trace" modality="optional">
-            <SeriesBlueprint name="Time" seriesType="Numeric" modality="required" plotScale="linear" dependency="independent">
-                <Documentation>Detector trace time steps at which data is acquired.</Documentation>
+    <ResultBlueprint name="ELSD Trace" modality="optional">
+        <Documentation>Time-based trace of ELS detector data.</Documentation>
+        <SeriesSetBlueprint name="ELSD Trace" modality="optional">
+            <SeriesBlueprint name="Time" seriesType="Numeric" modality="required" dependency="independent"
+                             plotScale="linear">
+                <Documentation>TODO</Documentation>
                 <Quantity name="Time">
                     &ms; &s; &min;
                 </Quantity>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Intensity" seriesType="Numeric" modality="required" plotScale="linear"
-                             dependency="dependent">
-                <Documentation literatureReferenceID="ASTM E131-05">Intensity can be measured in transmittance or
-                    absorbance units; the dependent variable in the experiment. Transmittance is the ratio of radiant
-                    power transmitted by the sample to the radiant power incident on the sample. Reflectance is the
-                    ratio of the radiant power reflected by the sample to the radiant power incident on the sample.
-                </Documentation>
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" modality="required" dependency="dependent"
+                             plotScale="linear">
+                <Documentation>The amount of light scattered by the eluent</Documentation>
                 <Quantity name="Absorbance">
-                    &AU; &A;
-                </Quantity>
-                <Quantity name="Transmittance">
-                    &T; &percentT;
-                </Quantity>
-                <Quantity name="Reflectance">
-                    &R; &percentR;
+                    &AU;
                 </Quantity>
                 <Quantity name="Arbitrary">
                     &arbitrary;
@@ -1031,12 +698,6 @@
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="optional">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
-            <ParameterBlueprint name="Acquisition Wavelength" parameterType="Numeric" modality="optional">
-                <Documentation>The wavelength at which the observation takes place in this experiment step.</Documentation>
-                <Quantity name="Wavelength">
-                    &nm;
-                </Quantity>
-            </ParameterBlueprint>
             <ParameterBlueprint name="Experiment Duration" parameterType="Numeric" modality="optional">
                 <Documentation>Duration of the entire experiment covered by this ExperimentStep.</Documentation>
                 <Quantity name="Time">
@@ -1051,9 +712,6 @@
             </ParameterBlueprint>
             <ParameterBlueprint name="Scan Number" parameterType="Int" modality="optional">
                 <Documentation>Number of this scan.</Documentation>
-                <Quantity name="Number">
-                    &A;
-                </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
                 <Documentation>The overall number of scans performed when acquiring this spectrum.</Documentation>
@@ -1108,6 +766,10 @@
             ASTM Standard E2077-00 (2005): Standard Specification for Analytical Data Interchange Protocol for Mass
             Spectrometric Data, DOI: 10.1520/E2077-00R05
         </LiteratureReference>
+        <LiteratureReference literatureReferenceID="ASTM E685-93">
+            ASTM E685 - 93(2013), Standard Practice for Testing Fixed-Wavelength Photometric Detectors Used in Liquid
+            Chromatography, DOI: 10.1520/E0685-93R13
+        </LiteratureReference>
         <LiteratureReference literatureReferenceID="JCAMP-DX IR">
             McDonald, R. S., Wilks, P. A., "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer
             Readable Form," Appl. Spectrosc., Vol 42, No 1, 1988, pp. 151-162.
@@ -1128,10 +790,17 @@
         <LiteratureReference literatureReferenceID="IEEE 421A-1978">
             IEEE Standard 421A-1978
         </LiteratureReference>
-        <LiteratureReference literatureReferenceID="Pure Appl Chem 97">Pure Appl. Chem., 1997, Vol. 69, No. 5, pp. 1137-1152
-            http://dx.doi.org/10.1351/pac199769051137</LiteratureReference>
-        <LiteratureReference literatureReferenceID="CAS">Chemical Abstracts Service, https://www.cas.org</LiteratureReference>
-        <LiteratureReference literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier, http://iupac.org/who-we-are/divisions/division-details/inchi/</LiteratureReference>
-        <LiteratureReference literatureReferenceID="Beilstein">Warr, Wendy A. Graphics for Chemical Structures: Intregration with Text and Data. American chemical society, 1987.</LiteratureReference>
+        <LiteratureReference literatureReferenceID="Pure Appl Chem 97">Pure Appl. Chem., 1997, Vol. 69, No. 5, pp.
+            1137-1152
+            http://dx.doi.org/10.1351/pac199769051137
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="CAS">Chemical Abstracts Service, https://www.cas.org
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier,
+            http://iupac.org/who-we-are/divisions/division-details/inchi/
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="Beilstein">Warr, Wendy A. Graphics for Chemical Structures:
+            Intregration with Text and Data. American chemical society, 1987.
+        </LiteratureReference>
     </Bibliography>
 </Technique>

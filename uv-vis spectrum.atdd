@@ -2,79 +2,7 @@
 <!-- edited with XMLSPY v2004 rel. 3 U (http://www.xmlspy.com) by Burkhard Schaefer (BSSN Software) -->
 <!-- edited by Patrick Boba (BSSN Software) 2016 -->
 
-<!DOCTYPE Technique [
-        <!-- letters -->
-        <!ENTITY lamda "&#955;">
-        <!ENTITY Delta "&#916;">
-
-        <!-- Various simple units-->
-        <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
-        <!ENTITY percent "<Unit label='percent'><SIUnit factor='1e-2'>1</SIUnit></Unit>">
-        <!ENTITY arbitrary "<Unit label='arbitrary'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-
-        <!-- Mass -->
-        <!ENTITY mg "<Unit label='mg'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit></Unit>">
-
-        <!-- Length -->
-        <!ENTITY cm "<Unit label='cm'><SIUnit factor='1e-2' exponent='1'>m</SIUnit></Unit>">
-        <!ENTITY mm "<Unit label='mm'><SIUnit factor='1e-3' exponent='1'>m</SIUnit></Unit>">
-        <!ENTITY um "<Unit label='µm'><SIUnit factor='1e-6' exponent='1'>m</SIUnit></Unit>">
-        <!ENTITY nm "<Unit label='nm'><SIUnit factor='1e-9' exponent='1'>m</SIUnit></Unit>">
-        <!ENTITY pm "<Unit label='pm'><SIUnit factor='1e-12' exponent='1'>m</SIUnit></Unit>">
-
-        <!-- Volume -->
-        <!ENTITY L "<Unit label='L'><SIUnit exponent='3' factor='1e-3'>m</SIUnit></Unit>">
-        <!ENTITY mL "<Unit label='mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit></Unit>">
-
-        <!-- Time -->
-        <!ENTITY hr "<Unit label='hr'><SIUnit factor='3600'>s</SIUnit></Unit>">
-        <!ENTITY min "<Unit label='min'><SIUnit factor='60'>s</SIUnit></Unit>">
-        <!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
-        <!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
-
-        <!-- Pressure -->
-        <!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY bar "<Unit label='bar'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='100000' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY psig "<Unit label='psig'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='6894.757' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-        <!ENTITY torr "<Unit label='torr'><SIUnit exponent='-1'>m</SIUnit><SIUnit factor='133.3224' exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">
-
-        <!-- Temperature -->
-        <!ENTITY degC "<Unit label='°C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
-        <!ENTITY degK "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
-        <!ENTITY degF "<Unit label='°F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
-
-        <!-- Frequency -->
-        <!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
-
-        <!-- Voltage -->
-        <!ENTITY V "<Unit label='V'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
-
-        <!-- Absorbance -->
-        <!ENTITY A "<Unit label='A'><SIUnit>1</SIUnit></Unit>"> <!-- same label as Current !!! -->
-        <!ENTITY AU "<Unit label='AU'><SIUnit>1</SIUnit></Unit>">
-        <!ENTITY AU_per_hour "<Unit label='AU/hr'><SIUnit>1</SIUnit><SIUnit exponent='-1' factor='3.6e-3'>s</SIUnit></Unit>">
-
-        <!-- Energy -->
-        <!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
-
-        <!-- Concentration -->
-        <!ENTITY mg_per_mL "<Unit label='mg/mL'><SIUnit exponent='1' factor='1e-6'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-        <!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
-        <!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
-        <!ENTITY g_per_cm3 "<Unit label='g/cm3'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-2'>m</SIUnit></Unit>">
-        <!ENTITY g_per_mol "<Unit label='g/mol'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
-        <!ENTITY kg_per_mol "<Unit label='kg/mol'><SIUnit exponent='1' factor='1'>kg</SIUnit><SIUnit exponent='-1' factor='1'>mol</SIUnit></Unit>">
-        <!ENTITY mol_per_liter "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
-
-        <!-- MISC -->
-        <!ENTITY reciprocal_cm "<Unit label='1/cm'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit></Unit>">
-        <!ENTITY reciprocal_cm_per_s "<Unit label='1/cm per s'><SIUnit exponent='-1' factor='1e-2'>m</SIUnit><SIUnit exponent='-1' factor='1'>s</SIUnit></Unit>">
-        <!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY R "<Unit label='R'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY percentT "<Unit label='percentT'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        <!ENTITY percentR "<Unit label='percentR'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>">
-        ]>
-
+<!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
 <Technique name="UV/Vis" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
@@ -106,7 +34,7 @@
             <ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation>Concentration of sample in solvent, if applicable.</Documentation>
                 <Quantity name="Concentration">
-                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
+                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
@@ -183,7 +111,7 @@
                     room temperature.
                 </Documentation>
                 <Quantity name="Temperature">
-                    &degK; &degC; &degF;
+                    &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
@@ -208,13 +136,13 @@
                         boiling "point".
                     </Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                     <Documentation>Upper bound of boiling temperature range.</Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
@@ -235,13 +163,13 @@
                         melting "point".
                     </Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                     <Documentation>Upper bound of melting temperature range.</Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
             </CategoryBlueprint>
@@ -256,7 +184,7 @@
                 <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                     <Documentation>Temperature at which the refractive index has been determined.</Documentation>
                     <Quantity name="Temperature">
-                        &degK; &degC; &degF;
+                        &K; &degC; &degF;
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
@@ -282,7 +210,7 @@
                 <Documentation literatureReferenceID="Appl Spectrosc">Concentration of known components and impurities;
                 </Documentation>
                 <Quantity name="Concentration">
-                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_liter;
+                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
@@ -903,9 +831,9 @@
                 <ParameterBlueprint name="Physical Resolution" parameterType="Numeric" modality="optional">
                     <Documentation literatureReferenceID="ASTM E131-05">Physical resolution of the detector.
                         Resolution
-                        - &Delta;&lamda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy,
+                        - &Delta;&lambda;, &Delta;v, n - of a dispersive spectrometer, in molecular spectroscopy,
                         the
-                        wavelength interval, &Delta;&lamda;, or wavenumber interval, &Delta;v, of radiant energy
+                        wavelength interval, &Delta;&lambda;, or wavenumber interval, &Delta;v, of radiant energy
                         leaving
                         the exit slit of a monochromator measured at half the peak detected radiant power.
                     </Documentation>
@@ -1191,7 +1119,7 @@
                     </Quantity>
                 </SeriesBlueprint>
                 <SeriesBlueprint name="Wavelength" seriesType="Numeric" plotScale="linear" dependency="independent">
-                    <Documentation literatureReferenceID="ASTM E131-05">&lamda; - the distance, measured along the line
+                    <Documentation literatureReferenceID="ASTM E131-05">&lambda; - the distance, measured along the line
                         of propagation, between two points that are in phase on adjacent waves.
                     </Documentation>
                     <Quantity name="Wavelength">
@@ -1221,8 +1149,8 @@
             </SeriesBlueprint>
             <SeriesBlueprint name="Resolution" seriesType="Numeric" modality="optional" plotScale="none"
                              dependency="dependent">
-                <Documentation literatureReferenceID="ASTM E131-05">&Delta;&lamda;, &Delta;v, n - of a dispersive
-                    spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lamda;, or wavenumber
+                <Documentation literatureReferenceID="ASTM E131-05">&Delta;&lambda;, &Delta;v, n - of a dispersive
+                    spectrometer, in molecular spectroscopy, the wavelength interval, &Delta;&lambda;, or wavenumber
                     interval, &Delta;v, of radiant energy leaving the exit slit of a monochromator measured at half the
                     peak detected radiant power. Use this series if resolution is variable.
                 </Documentation>
@@ -1274,13 +1202,13 @@
                     the sample.
                 </Documentation>
                 <Quantity name="Temperature">
-                    &degK; &degC; &degF;
+                    &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Sample Holder Temperature" parameterType="Float" modality="optional">
                 <Documentation>Measured temparature of the sample holder.</Documentation>
                 <Quantity name="Temperature">
-                    &degK; &degC; &degF;
+                    &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
@@ -1296,7 +1224,7 @@
             <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional">
                 <Documentation>Measured temperature in the optical path of the instrument.</Documentation>
                 <Quantity name="Temperature">
-                    &degK; &degC; &degF;
+                    &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>

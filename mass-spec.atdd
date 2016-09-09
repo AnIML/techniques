@@ -129,7 +129,7 @@
                 <Documentation>Lot or batch name/number/ID</Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation>TODO</Documentation><!-- TODO: update this parameter with documentation -->
+                <Documentation>Where the sample was obtained from.</Documentation>
             </ParameterBlueprint>
             <CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
                 <Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under
@@ -391,7 +391,6 @@
                     <S>Pressure Injection</S>
                 </AllowedValue>
             </ParameterBlueprint>
-            <!-- TODO: add content -->
         </CategoryBlueprint>
         <CategoryBlueprint name="Ionization Method" modality="optional">
             <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.
@@ -558,26 +557,25 @@
                     </AllowedValue>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Polarity" parameterType="String"
-                                    modality="optional"> <!-- TODO: maybe required? -->
+                                    modality="optional">
                     <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
                         information is crucial for the interpretation of the data.
                     </Documentation>
                     <AllowedValue>
                         <S>"+"</S>
-                    </AllowedValue> <!-- TODO: atm. "+" and "positive" as different entries. Maybe consolidate? -->
-                    <AllowedValue>
-                        <S>"positive"</S>
                     </AllowedValue>
                     <AllowedValue>
                         <S>"-"</S>
                     </AllowedValue>
                     <AllowedValue>
-                        <S>"negative"</S>
+                        <S>"both"</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>"unknown"</S>
                     </AllowedValue>
                 </ParameterBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>
-
         <CategoryBlueprint name="Detector Components" modality="optional">
             <SeriesSetBlueprint name="Detector Components">
                 <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
@@ -634,7 +632,6 @@
             </ParameterBlueprint>
             <ParameterBlueprint name="Basepeak Mass" parameterType="Numeric">
                 <Quantity name="Mass">
-                    <!-- TODO: do we have to put u and m/z in relation somehow ..? -->
                     &atomic_mass_unit;
                 </Quantity>
             </ParameterBlueprint>

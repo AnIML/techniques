@@ -565,15 +565,15 @@
                     </Documentation>
                     <AllowedValue>
                         <S>"+"</S>
-                    </AllowedValue> <!-- TODO: atm. "+" and "positive" as different entries. Maybe consolidate? -->
-                    <AllowedValue>
-                        <S>"positive"</S>
                     </AllowedValue>
                     <AllowedValue>
                         <S>"-"</S>
                     </AllowedValue>
                     <AllowedValue>
-                        <S>"negative"</S>
+                        <S>"both"</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>"unknown"</S>
                     </AllowedValue>
                 </ParameterBlueprint>
             </CategoryBlueprint>

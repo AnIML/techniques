@@ -8,6 +8,9 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
 <Documentation>A time trace acquired from a mass spectrometry measurement.</Documentation>
+    <!-- SampleRole, ExperimentDataRole and Method are identical to the mass-spec.atdd.
+    The reason is, that almost all this information might be as well put here, when the
+    machine is working in SIM mode. -->
     <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
                          inheritable="true">
         <Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory
@@ -125,7 +128,7 @@
                 <Documentation>Lot or batch name/number/ID</Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation>TODO</Documentation><!-- TODO: update this parameter with documentation -->
+                <Documentation>Where the sample was obtained from.</Documentation>
             </ParameterBlueprint>
             <CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
                 <Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under
@@ -390,7 +393,6 @@
                     <S>Pressure Injection</S>
                 </AllowedValue>
             </ParameterBlueprint>
-            <!-- TODO: add content -->
         </CategoryBlueprint>
         <CategoryBlueprint name="Ionization Method" modality="optional">
             <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.
@@ -557,7 +559,7 @@
                     </AllowedValue>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Polarity" parameterType="String"
-                                    modality="optional"> <!-- TODO: maybe required? -->
+                                    modality="optional">
                     <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
                         information is crucial for the interpretation of the data.
                     </Documentation>
@@ -591,31 +593,33 @@
             </SeriesSetBlueprint>
         </CategoryBlueprint>
     </MethodBlueprint>
-    <ResultBlueprint name="Mass Spectrum Trace">
-        <SeriesSetBlueprint name="Extracted Ion Chromatogram" modality="optional">
-            <Documentation>
-                <!-- TODO: Documentation -->
-            </Documentation>
-            <SeriesBlueprint name="Mass" seriesType="Numeric" dependency="independent" modality="required" plotScale="linear">
+    <ResultBlueprint name="Mass Spectrum Time Trace" modality="optional">
+        <SeriesSetBlueprint name="Ion Chromatogram" modality="optional">
+            <SeriesBlueprint name="Time" seriesType="Numeric" dependency="independent" modality="required" plotScale="linear">
                 <Documentation>
-                    <!-- TODO: Documentation -->
+                    Time steps at which data is acquired.
                 </Documentation>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="optional">
-                <Documentation>
-                    <!-- TODO: Documentation -->
-                </Documentation>
-            </SeriesBlueprint>
-        </SeriesSetBlueprint>
-        <SeriesSetBlueprint name="Total Ion Chromatogram" modality="optional">
-            <Documentation>
-                <!-- TODO: Documentation -->
-            </Documentation>
-            <SeriesBlueprint name="Mass" seriesType="Numeric" dependency="independent" modality="required">
-                <Documentation>
-                    <!-- TODO: Documentation -->
-                </Documentation>
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
+                             plotScale="linear">
+                <Quantity name="Abundance">
+                    &AU; &arbitrary; &percent;
+                </Quantity>
+                <Quantity name="Counts">
+                    &counts;
+                </Quantity>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
+        <CategoryBlueprint name="Chromatogram Type" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Type" parameterType="String" modality="required">
+                <AllowedValue>
+                    <S>Extracted-ion Chromatogram</S>
+                    <S>Total Ion Chromatogram</S>
+                    <S>Selected-ion Monitoring</S> <!-- Is the result of a SIM comparable to a EIC? -->
+                    <S>Base Peak Chromatogram</S>
+                    <S>Other</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+        </CategoryBlueprint>
     </ResultBlueprint>
 </Technique>

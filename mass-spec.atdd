@@ -391,7 +391,6 @@
                     <S>Pressure Injection</S>
                 </AllowedValue>
             </ParameterBlueprint>
-            <!-- TODO: add content -->
         </CategoryBlueprint>
         <CategoryBlueprint name="Ionization Method" modality="optional">
             <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.
@@ -564,9 +563,6 @@
                     </Documentation>
                     <AllowedValue>
                         <S>"+"</S>
-                    </AllowedValue> <!-- TODO: atm. "+" and "positive" as different entries. Maybe consolidate? -->
-                    <AllowedValue>
-                        <S>"positive"</S>
                     </AllowedValue>
                     <AllowedValue>
                         <S>"-"</S>
@@ -602,7 +598,6 @@
                     &arbitrary;
                 </Quantity>
             </SeriesBlueprint>
-            <!-- MSConstants enthält "CHARGE_SERIES_NAME". Weiß nicht so recht, was ich damit anfangen soll -->
             <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
                              plotScale="linear">
                 <Quantity name="Abundance">
@@ -611,6 +606,18 @@
                 <Quantity name="Counts">
                     &counts;
                 </Quantity>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Polarity" seriesType="String" dependency="dependent" modality="optional" maxOccurs="1" plotScale="none">
+                <Documentation>This series is only required, when the result is containing both polarity results from a scan.</Documentation>
+                <AllowedValue>
+                    <S>"+"</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>"-"</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>"unknown"</S>
+                </AllowedValue>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="optional">
@@ -634,7 +641,6 @@
             </ParameterBlueprint>
             <ParameterBlueprint name="Basepeak Mass" parameterType="Numeric">
                 <Quantity name="Mass">
-                    <!-- TODO: do we have to put u and m/z in relation somehow ..? -->
                     &atomic_mass_unit;
                 </Quantity>
             </ParameterBlueprint>

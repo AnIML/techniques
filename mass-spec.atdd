@@ -568,6 +568,8 @@
                         <S>"-"</S>
                     </AllowedValue>
                     <AllowedValue>
+                        <Documentation>Sometimes vendors store both polarities in a single scan. There is additional information ona the polartiy needed for each time step if the data is stored this way.
+                        </Documentation>
                         <S>"both"</S>
                     </AllowedValue>
                     <AllowedValue>
@@ -576,19 +578,49 @@
                 </ParameterBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Detector Components" modality="optional">
-            <SeriesSetBlueprint name="Detector Components">
-                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
-                                 modality="optional">
-                    <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
-                        quadrupole would be 0, and the TOF 1"
-                    </Documentation>
-                </SeriesBlueprint>
-                <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
-                                 dependency="dependent">
-                    <Documentation>The name of the detector component.</Documentation>
-                </SeriesBlueprint>
-            </SeriesSetBlueprint>
+        <CategoryBlueprint name="Detector" modality="optional">
+            <CategoryBlueprint name="Detector Type">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    The type of detector used to detect the charged ions.
+                </Documentation>
+                <ParameterBlueprint name="Type" parameterType="String" modality="optional">
+                    <AllowedValue>
+                        <S>Electron Multiplier</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Photomultiplier</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Faraday Cup</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Conversion Dynode Electron Multiplier</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Conversion Dynode Photomultiplier</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Multi-Collector</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Other</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Detector Components">
+                <SeriesSetBlueprint name="Detector Components">
+                    <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
+                                     modality="optional">
+                        <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
+                            quadrupole would be 0, and the TOF 1"
+                        </Documentation>
+                    </SeriesBlueprint>
+                    <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
+                                     dependency="dependent">
+                        <Documentation>The name of the detector component.</Documentation>
+                    </SeriesBlueprint>
+                </SeriesSetBlueprint>
+            </CategoryBlueprint>
         </CategoryBlueprint>
     </MethodBlueprint>
     <ResultBlueprint name="Spectrum" modality="optional">
@@ -600,7 +632,6 @@
                     &arbitrary;
                 </Quantity>
             </SeriesBlueprint>
-            <!-- MSConstants enthält "CHARGE_SERIES_NAME". Weiß nicht so recht, was ich damit anfangen soll -->
             <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
                              plotScale="linear">
                 <Quantity name="Abundance">
@@ -609,6 +640,18 @@
                 <Quantity name="Counts">
                     &counts;
                 </Quantity>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Polarity" seriesType="String" dependency="dependent" modality="optional" maxOccurs="1" plotScale="none">
+                <Documentation>This series is only required, when the result is containing both polarity results from a scan.</Documentation>
+                <AllowedValue>
+                    <S>"+"</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>"-"</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>"unknown"</S>
+                </AllowedValue>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="optional">

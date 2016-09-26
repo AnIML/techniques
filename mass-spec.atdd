@@ -106,9 +106,10 @@
             <ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation>The pressure of the used sample, if different and separated from environment.
                 </Documentation>
-                <Quantity name="Pressure">
+                <Quantity
+                        name="Pressure"> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
                     &Pa; &psig; &bar;
-                </Quantity> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
+                </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation literatureReferenceID="JCAMP-DX IR">Sample temperature if significantly different from
@@ -359,7 +360,8 @@
                 </Documentation>
             </CategoryBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Separation Type" modality="optional">
+        <CategoryBlueprint name="Separation Type"
+                           modality="optional"> <!-- TODO: This category might be obsolete if there is a separation (chromatography.atdd) step referenced before -->
             <ParameterBlueprint name="Separation Type" parameterType="String" maxOccurs="1" modality="optional">
                 <Documentation>The separation method before running the MS</Documentation>
                 <AllowedValue>
@@ -395,9 +397,9 @@
                 <Documentation>
                     Specifying the inlet temperature, if applicable.
                 </Documentation>
-                <AllowedValue>
-                    &K; &degC;
-                </AllowedValue>
+                <Quantity name="Temperature">
+                    &K; &degC; &degF;
+                </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Ionization Mode" modality="optional"> <!-- TODO: Changed from "Method" to "Mode", as it is in ANDI, ACAML and JCAMP -->
@@ -480,15 +482,87 @@
                     <S>Other</S>
                 </AllowedValue>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Reagent Gas" parameterType="Sting" modality="optional">
-                <Documentation>
+            <ParameterBlueprint name="Polarity" parameterType="String"
+                                modality="optional">
+                <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
+                    information is crucial for the interpretation of the data.
+                </Documentation>
+                <AllowedValue>
+                    <S>"+"</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>"-"</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>"unknown"</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Source Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    The temperature of the source.
+                </Documentation>
+                <Quantity name="temperature">
+                    &K; &degF; &degC;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Laser Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    The wavelength of the laser in case of laser desorption ionization.
+                </Documentation>
+                <Quantity name="wavelength">
+                    &nm;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Reagent Gas" parameterType="String" modality="optional">
+                <Documentation literatureReferenceID="ASTM E2077-00">
                     The gas used for ionization (only applicable for chemical ionization).
                 </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Reagent Gas Pressure" parameterType="Float" modality="optional">
-                <Documentation>
+                <Documentation literatureReferenceID="ASTM E2077-00">
                     The pressure of the reagent gas (only applicable for chemical ionization).
                 </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Electron Energy" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    The electron energy used for ionization (applicable to electron impact ionization only).
+                </Documentation>
+                <Quantity name="Volt">
+                    &V;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="FAB Matrix" parameterType="String" maxOccurs="1" modality="optional">
+                <Documentation literatureReferenceID="ASTM E2077-00">Specifies the matrix used for fast atom bombardment
+                    (if applicable).
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="FAB Type" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">Specifies the atom used for the bombardment gun (if
+                    applicable).
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Filament Current" parameterType="Numeric" maxOccurs="1" modality="optional">
+                <Documentation literatureReferenceID="ASTM E2077-00">Specifies the filament input current
+                </Documentation>
+                <Quantity name="Current">
+                    &A;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Emission Current" parameterType="Numeric" maxOccurs="1" modality="optional">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    The filament emission current (applicable for EI and CI).
+                </Documentation>
+                <Quantity name="current">
+                    &mA; &uA;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Accelerating Potential" parameterType="Float" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    The accelerating potential in Volts.
+                </Documentation>
+                <Quantity name="Voltage">
+                    &V;
+                </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Analyzer" modality="optional">
@@ -519,57 +593,84 @@
                     <S>Orbitrap</S>
                 </AllowedValue>
                 <AllowedValue>
+                    <S>Fourier Transform Ion Cyclotron Resonance</S>
+                </AllowedValue>
+                <AllowedValue>
                     <S>other</S>
                 </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Detector" modality="optional">
-            <CategoryBlueprint name="Detector Type">
+            <SeriesSetBlueprint name="Detector Components">
+                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
+                                 modality="optional">
+                    <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF,
+                        the
+                        quadrupole would be 0, and the TOF 1"
+                    </Documentation>
+                </SeriesBlueprint>
+                <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
+                                 dependency="dependent">
+                    <Documentation>The name of the detector component.</Documentation>
+                </SeriesBlueprint>
+            </SeriesSetBlueprint>
+            <ParameterBlueprint name="Detector Type" parameterType="String" modality="optional">
                 <Documentation literatureReferenceID="ASTM E2077-00">
                     The type of detector used to detect the charged ions.
                 </Documentation>
-                <ParameterBlueprint name="Type" parameterType="String" modality="optional">
-                    <AllowedValue>
-                        <S>Electron Multiplier</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Photomultiplier</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Focal Plane Array</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Faraday Cup</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Conversion Dynode Electron Multiplier</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Conversion Dynode Photomultiplier</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Multi-Collector</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Detector Components">
-                <SeriesSetBlueprint name="Detector Components">
-                    <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
-                                     modality="optional">
-                        <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF,
-                            the
-                            quadrupole would be 0, and the TOF 1"
-                        </Documentation>
-                    </SeriesBlueprint>
-                    <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
-                                     dependency="dependent">
-                        <Documentation>The name of the detector component.</Documentation>
-                    </SeriesBlueprint>
-                </SeriesSetBlueprint>
-            </CategoryBlueprint>
+                <AllowedValue>
+                    <S>Electron Multiplier</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Photomultiplier</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Focal Plane Array</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Faraday Cup</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Conversion Dynode Electron Multiplier</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Conversion Dynode Photomultiplier</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Multi-Collector</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Other</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Detector Entrance Potential" parameterType="Float" modality="optional"
+                                maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    The potential across the detector in volts (if applicable).
+                </Documentation>
+                <Quantity name="Voltage">
+                    &V;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Detector Potential" parameterType="Float" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    The potential across the detector in volts (if applicable, e.g. electron multipliers or conversion
+                    dynodes).
+                </Documentation>
+                <Quantity name="Voltage">
+                    &V;
+                </Quantity>
+            </ParameterBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="A/D Converter Settings" modality="optional">
+            <ParameterBlueprint name="Digitization Rate" parameterType="Numeric" maxOccurs="1" modality="optional">
+                <Documentation>
+                    At which rate the signal is detected by the Detector
+                </Documentation>
+                <Quantity name="Hertz">
+                    &Hz;
+                </Quantity>
+            </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Common Method" modality="optional">
             <Documentation>Information describing the instrument and its environment.</Documentation>
@@ -577,12 +678,11 @@
                 <Documentation>Fixed characteristics of the instrument.</Documentation>
                 <ParameterBlueprint name="Resolution" parameterType="Numeric" modality="optional">
                     <Documentation literatureReferenceID="PAC-REC-06-04-06">Resolution in mass spectrometry defined as
-                        the m/delta_m, where m is the
-                        mass of the ion of interest and delta_m is the peak width (peak width definition) or the spacing
-                        between two
-                        equal intensity peaks with a valley between them no more than 10 % of their height (10 % valley
-                        definition).
+                        the m/delta_m, where m is the mass of the ion of interest and delta_m is the peak width (peak
+                        width definition) or the spacing between two equal intensity peaks with a valley between them
+                        no more than 10 % of their height (10 % valley definition).
                     </Documentation>
+                    <!-- TODO: This is handled differently in ANDI: resolution-method (e.g. 10% peak valley, etc.) and resolution type (constant over mass range or proportional).  -->
                     <Quantity name="m/z">
                         &mz;
                     </Quantity>
@@ -609,7 +709,7 @@
                     </ParameterBlueprint>
                 </CategoryBlueprint>
                 <CategoryBlueprint name="Scan Duration" modality="optional" maxOccurs="1">
-                    <Documentation>Time required to acquire the scan.</Documentation>
+                    <Documentation>Time required to acquire the single scan of this spectrum.</Documentation>
                 </CategoryBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="Instrument Settings" modality="optional">
@@ -625,26 +725,27 @@
                         <S>Other</S>
                     </AllowedValue>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Polarity" parameterType="String"
-                                    modality="optional">
-                    <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
-                        information is crucial for the interpretation of the data.
+                <ParameterBlueprint name="Scan Law" parameterType="String" maxOccurs="1" modality="optional">
+                    <Documentation>
+                        Specification of the mass scan law.
                     </Documentation>
                     <AllowedValue>
-                        <S>"+"</S>
+                        <S>linear</S>
                     </AllowedValue>
                     <AllowedValue>
-                        <S>"-"</S>
+                        <S>exponential</S>
                     </AllowedValue>
                     <AllowedValue>
-                        <Documentation>Sometimes vendors store both polarities in a single scan. There is additional
-                            information ona the polartiy needed for each time step if the data is stored this way.
-                        </Documentation>
-                        <S>"both"</S>
+                        <S>quadratic</S>
                     </AllowedValue>
                     <AllowedValue>
-                        <S>"unknown"</S>
+                        <S>Other</S>
                     </AllowedValue>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional" maxOccurs="1">
+                    <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable samples
+                        (FALSE)
+                    </Documentation>
                 </ParameterBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>
@@ -667,21 +768,6 @@
                     &counts;
                 </Quantity>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Polarity" seriesType="String" dependency="dependent" modality="optional"
-                             maxOccurs="1" plotScale="none">
-                <Documentation>This series is only required, when the result is containing both polarity results from a
-                    scan.
-                </Documentation>
-                <AllowedValue>
-                    <S>"+"</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>"-"</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>"unknown"</S>
-                </AllowedValue>
-            </SeriesBlueprint>
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="optional">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
@@ -694,6 +780,13 @@
             <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
                 <Documentation>The total number of scans performed. This should be identical for the each single scan
                 </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Total Run Time" parameterType="Numeric" maxOccurs="1" modality="optional">
+                <Documentation>The overall run time from beginning of the first injection to the end of the last scan.
+                </Documentation>
+                <Quantity name="time">
+                    &s; &min;
+                </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Spectrum Details" modality="optional" maxOccurs="1">

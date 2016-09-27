@@ -19,9 +19,16 @@
             This sample role represents the sample that is analyzed in the given ExperimentStep.
         </Documentation>
         <CategoryBlueprint name="Description" modality="optional" maxOccurs="1">
-            <Documentation>Parameters describing the test sample</Documentation>
+            <Documentation>
+                Parameters describing the test sample
+            </Documentation>
             <ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
                 <Documentation>Common, trade, or other names.</Documentation>
+            </ParameterBlueprint> <!-- TODO: We have another Parameter "Descriptive Name" in the "Substance Description" Category. Duplicate or different meaning? -->
+            <ParameterBlueprint name="Sample ID" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation>
+                    A unique identifier given either by the device or the user.
+                </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Mass" parameterType="Float" modality="optional">
                 <Documentation>Mass of the sample used to prepare the test material.</Documentation>
@@ -85,10 +92,14 @@
                 </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="ASTM E2077-00">Storage conditions for the sample.</Documentation>
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    Storage conditions for the sample.
+                </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation>Location where sample is stored.</Documentation>
+                <Documentation>
+                    Location where sample is stored.
+                </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Receipt Time Stamp" parameterType="DateTime" modality="optional" maxOccurs="1">
                 <Documentation literatureReferenceID="ASTM E2077-00">Date and time the sample was received in the
@@ -179,9 +190,8 @@
                 </ParameterBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
-                <Documentation literatureReferenceID="ASTM E131-05">The phase velocity of radiant power in a vacuum
-                    divided by the phase velocity of the same radiant power in a specified medium. When one medium is a
-                    vacuum, n is the ratio of the sine of the angle of incidence to the sine of the angle of refraction.
+                <Documentation literatureReferenceID="ASTM E131-05">
+                    The phase velocity of radiant power in a vacuum divided by the phase velocity of the same radiant power in a specified medium. When one medium is a vacuum, n is the ratio of the sine of the angle of incidence to the sine of the angle of refraction.
                 </Documentation>
                 <ParameterBlueprint name="Refractive Index" parameterType="Float" modality="required" maxOccurs="1">
                     <Documentation>Refractive index of the sample.</Documentation>
@@ -193,8 +203,8 @@
                     </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
-                    <Documentation>Wavelength at which the refractive index has been determined. If not given, the
-                        Sodium-D line is assumed.
+                    <Documentation>
+                        Wavelength at which the refractive index has been determined. If not given, the Sodium-D line is assumed.
                     </Documentation>
                     <Quantity name="Length">
                         &nm;
@@ -234,6 +244,14 @@
             </ParameterBlueprint>
             <ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
                 <Documentation>The molar mass is a physical property defined as the mass of a given compound divided by
+                    the amount of it.
+                </Documentation>
+                <Quantity name="Molar Mass">
+                    &g_per_mol; &kg_per_mol;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Nominal Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>The nominal mass is a physical property defined as the mass of the most abundant isotope of a given compound divided by
                     the amount of it.
                 </Documentation>
                 <Quantity name="Molar Mass">
@@ -298,6 +316,26 @@
                         locating information in Beilstein databases. The code contains only structural information and
                         can be generated locally on microcomputers from connection table data alone. A simple
                         description of the algorithm has been published (see Bibliography).
+                    </Documentation>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="External Database" modality="optional" maxOccurs="unbounded">
+                <Documentation>
+                    A reference to an external database like NIST, etc.
+                </Documentation>
+                <ParameterBlueprint name="Database Name" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation>
+                        Official database name
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Entry Name" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The substance name as found in the database. May not be identical with other parameters like "Descriptive Name".
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Entry ID" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        An identifier that specifies the Substance in an external library.
                     </Documentation>
                 </ParameterBlueprint>
             </CategoryBlueprint>
@@ -664,12 +702,18 @@
         </CategoryBlueprint>
         <CategoryBlueprint name="A/D Converter Settings" modality="optional">
             <ParameterBlueprint name="Digitization Rate" parameterType="Numeric" maxOccurs="1" modality="optional">
-                <Documentation>
+                <Documentation literatureReferenceID="ASTM E2077-00">
                     At which rate the signal is detected by the Detector
                 </Documentation>
                 <Quantity name="Hertz">
                     &Hz;
                 </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Averaging Factor" parameterType="Float" modality="optional">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                Number of raw values averaged to obtain a data point.
+                </Documentation>
+                <Quantity name="Count"/>
             </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Common Method" modality="optional">
@@ -694,7 +738,9 @@
                     <Documentation>Comments about the instrument.</Documentation>
                 </CategoryBlueprint>
                 <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
-                    <Documentation>The mass detection range of the instrumen.</Documentation>
+                    <Documentation>
+                        The mass detection range of the instrumen.
+                    </Documentation>
                     <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
                                         maxOccurs="1">
                         <Quantity name="Mass">
@@ -747,6 +793,29 @@
                         (FALSE)
                     </Documentation>
                 </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="SIM Mode Settings" modality="optional">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    This section is recommended when operating the mass spectrometer in SIM mode.
+                </Documentation>
+            <SeriesSetBlueprint name="Group of Monitored Masses">
+                <SeriesBlueprint name="Masses" seriesType="Numeric" dependency="independent">
+                    <Quantity name="mass/charge">
+                        &mz;
+                    </Quantity>
+                </SeriesBlueprint>
+                <SeriesBlueprint name="Sampling Time" seriesType="Numeric" dependency="dependent">
+                    <Quantity name="time">
+                        &s; &ms;
+                    </Quantity>
+                </SeriesBlueprint>
+                <SeriesBlueprint name="Delay Time" seriesType="Numeric" dependency="dependent">
+                    <Quantity name="time">
+                        &s; &ms;
+                    </Quantity>
+                </SeriesBlueprint>
+            </SeriesSetBlueprint>
+
             </CategoryBlueprint>
         </CategoryBlueprint>
     </MethodBlueprint>

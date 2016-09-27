@@ -251,11 +251,24 @@
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Nominal Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation>The nominal mass is a physical property defined as the mass of the most abundant isotope of a given compound divided by
-                    the amount of it.
+                <Documentation>The nominal mass is a physical property defined as the integer mass (without mass defect) of the most abundant isotopes of a given compound.
                 </Documentation>
-                <Quantity name="Molar Mass">
-                    &g_per_mol; &kg_per_mol;
+                <Quantity name="Mass">
+                    &g; &ug; &ng;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Mono Isotopic Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>The nominal mass is a physical property defined as the mass of the most abundant isotopes of a given compound.
+                </Documentation>
+                <Quantity name="Mass">
+                    &g; &ug; &ng;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Average Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>The average mass is a physical property defined as the mass (without mass defect) of the average mass of all isotope of a given compound.
+                </Documentation>
+                <Quantity name="Mass">
+                    &g; &ug; &ng;
                 </Quantity>
             </ParameterBlueprint>
             <CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
@@ -876,6 +889,16 @@
                 <Quantity name="Counts">
                     &counts;
                 </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Data Type" parameterType="String" maxOccurs="1" modality="optional">
+                <Documentation>
+                    Whether the spectrum is continuus data or centroided.
+                </Documentation>
+                <AllowedValue>
+                    <S>Centroided</S>
+                    <S>Continuus</S>
+                    <S>Unknown</S>
+                </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
     </ResultBlueprint>

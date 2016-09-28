@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- edited by Patrick Boba(BSSN Software) -->
-<!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
 
 <Technique name="Mass Spectrum Time Trace"
            version="0.90"

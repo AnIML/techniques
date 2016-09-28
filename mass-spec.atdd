@@ -623,7 +623,7 @@
         <CategoryBlueprint name="Measurement Description" modality="optional">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
             <ParameterBlueprint name="Scan Number" parameterType="Int" modality="optional">
-                <Documentation>Duration of a single scan.</Documentation>
+                <Documentation>Index of a single scan.</Documentation>
                 <Quantity name="Number">
                     &arbitrary;
                 </Quantity>

@@ -1,3 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited by Patrick Boba(BSSN Software) -->
+
+<!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
 
 <Technique name="Mass Spectrum Time Trace"
            version="0.90"
@@ -5,7 +9,7 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
     <Documentation>A time trace acquired from a mass spectrometry measurement.</Documentation>
-    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional">
+    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional" maxOccurs="unbounded"> <!-- TODO: The cardinality has to be unbounded if the trace should reference all the spectra. -->
         <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the
             spectra (if applicable).
         </Documentation>
@@ -33,7 +37,7 @@
                         definition).
                     </Documentation>
                     <Quantity name="m/z">
-                        &mz;
+                        &arbitrary;
                     </Quantity>
                 </ParameterBlueprint>
                 <CategoryBlueprint name="Description" modality="optional">
@@ -108,11 +112,20 @@
             </SeriesSetBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Chromatogram Type" modality="optional" maxOccurs="1">
-            <ParameterBlueprint name="Type" parameterType="String" modality="required">
+            <ParameterBlueprint name="Type" parameterType="String"  modality="required">
+                <Documentation>
+                    The type of the chromatogram extracted from the referenced spectra.
+                </Documentation>
                 <AllowedValue>
                     <S>Extracted-Ion Chromatogram</S>
+                </AllowedValue>
+                <AllowedValue>
                     <S>Total Ion Chromatogram</S>
+                </AllowedValue>
+                <AllowedValue>
                     <S>Base Peak Chromatogram</S>
+                </AllowedValue>
+                <AllowedValue>
                     <S>Other</S>
                 </AllowedValue>
             </ParameterBlueprint>
@@ -142,12 +155,12 @@
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="optional">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
-            <ParameterBlueprint name="Scan Number" parameterType="Int" modality="optional">
-                <Documentation>Duration of a single scan.</Documentation>
+            <ParameterBlueprint  name="Scan Number" parameterType="Int" modality="optional">
+                <Documentation>Index of a single scan.</Documentation>
                 <Quantity name="Number">
                     &arbitrary;
                 </Quantity>
-            </ParameterBlueprint>
+            </ParameterBlueprint >
             <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
                 <Documentation>The total number of scans performed. This should be identical for the each single scan
                 </Documentation>

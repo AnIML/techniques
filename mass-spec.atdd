@@ -120,7 +120,7 @@
                 <Quantity
                         name="Pressure"> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
                     &Pa; &psig; &bar;
-                </Quantity>
+                </Quantity> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
             </ParameterBlueprint>
             <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation literatureReferenceID="JCAMP-DX IR">Sample temperature if significantly different from
@@ -374,12 +374,6 @@
         <Documentation>The material sample or lamp used to calibrate the device.
         </Documentation>
     </SampleRoleBlueprint>
-    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed"
-                                 modality="optional"> <!-- This name doesn't explain the reference -->
-        <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the
-            spectra (if applicable).
-        </Documentation>
-    </ExperimentDataRoleBlueprint>
     <MethodBlueprint>
         <CategoryBlueprint name="Method Description" modality="optional">
             <Documentation>Basic contextual information about the measurement method.</Documentation>
@@ -390,7 +384,7 @@
                 <Documentation>External reference to measurement method.</Documentation>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Instrument System Description" modality="optional" maxOccurs="1">
+        <CategoryBlueprint name="Instrument System Description" modality="optional" maxOccurs="1"><!--TODO: move to right spot -->
             <CategoryBlueprint name="Manufacturer" modality="optional" maxOccurs="1">
                 <Documentation>Information about the vendor.</Documentation>
             </CategoryBlueprint>
@@ -616,9 +610,10 @@
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Analyzer" modality="optional">
+        <CategoryBlueprint name="Mass Selection" modality="optional">
             <ParameterBlueprint name="Mass Selection" parameterType="String" maxOccurs="1" modality="optional">
                 <!-- this is just a coarse grained list. More details? Extensions? ... -->
+                <!--TODO: compare with mzml: single entry, multiple for each detec. or simple text field? -->
                 <AllowedValue>
                     <S>Sector Mass Spectrometer</S>
                 </AllowedValue>
@@ -645,6 +640,9 @@
                 </AllowedValue>
                 <AllowedValue>
                     <S>Fourier Transform Ion Cyclotron Resonance</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Quadrupole Time-Of-Flight</S>
                 </AllowedValue>
                 <AllowedValue>
                     <S>other</S>
@@ -770,6 +768,42 @@
                 <CategoryBlueprint name="Scan Duration" modality="optional" maxOccurs="1">
                     <Documentation>Time required to acquire the single scan of this spectrum.</Documentation>
                 </CategoryBlueprint>
+        <CategoryBlueprint name="Instrument Properties" modality="optional">
+            <Documentation>Fixed characteristics of the instrument.</Documentation>
+            <ParameterBlueprint name="Resolution" parameterType="Numeric" modality="optional">
+                <Documentation literatureReferenceID="PAC-REC-06-04-06">Resolution in mass spectrometry defined as
+                    the m/delta_m, where m is the
+                    mass of the ion of interest and delta_m is the peak width (peak width definition) or the spacing
+                    between two
+                    equal intensity peaks with a valley between them no more than 10 % of their height (10 % valley
+                    definition).
+                </Documentation>
+                <Quantity name="m/z">
+                    &mz;
+                </Quantity>
+            </ParameterBlueprint>
+            <CategoryBlueprint name="Description" modality="optional">
+                <Documentation>A textual description of the instrument.</Documentation>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Comments" modality="optional">
+                <Documentation>Comments about the instrument.</Documentation>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
+                <Documentation>The mass detection range of the instrumen.</Documentation>
+                <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
+                                    maxOccurs="1">
+                    <Quantity name="Mass">
+                        &atomic_mass_unit;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
+                                    maxOccurs="1">
+                    <Quantity name="Mass">
+                        &atomic_mass_unit;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Year Built" maxOccurs="1" modality="optional">
             </CategoryBlueprint>
             <CategoryBlueprint name="Instrument Settings" modality="optional">
                 <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
@@ -800,11 +834,53 @@
                     <AllowedValue>
                         <S>Other</S>
                     </AllowedValue>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Instrument Settings" modality="optional">
+            <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
+            <ParameterBlueprint name="Operation Mode" parameterType="String" modality="optional">
+                <AllowedValue>
+                    <S>Scan</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Selected Ion Monitoring</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Other</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Polarity" parameterType="String"
+                                modality="optional"> <!-- TODO: maybe required? -->
+                <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
+                    information is crucial for the interpretation of the data.
+                </Documentation>
+                <AllowedValue>
+                    <S>+</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>-</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>unknown</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
+                <Documentation>The mass detection range of the instrumen.</Documentation>
+                <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
+                                    maxOccurs="1">
+                    <Quantity name="Mass">
+                        &atomic_mass_unit;
+                    </Quantity>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional" maxOccurs="1">
                     <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable samples
                         (FALSE)
                     </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
+                                    maxOccurs="1">
+                    <Quantity name="Mass">
+                        &atomic_mass_unit;
+                    </Quantity>
                 </ParameterBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="SIM Mode Settings" modality="optional">
@@ -816,6 +892,14 @@
                     <Quantity name="mass/charge">
                         &mz;
                     </Quantity>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Detector Components" modality="optional"> <!-- TODO: into Mass Selction -->
+            <SeriesSetBlueprint name="Detector Components" modality="optional">
+                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
+                                 modality="required">
+                    <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
+                        quadrupole would be 0, and the TOF 1"
+                    </Documentation>
                 </SeriesBlueprint>
                 <SeriesBlueprint name="Sampling Time" seriesType="Numeric" dependency="dependent">
                     <Quantity name="time">
@@ -828,8 +912,6 @@
                     </Quantity>
                 </SeriesBlueprint>
             </SeriesSetBlueprint>
-
-            </CategoryBlueprint>
         </CategoryBlueprint>
     </MethodBlueprint>
     <ResultBlueprint name="Spectrum" modality="optional">
@@ -838,9 +920,10 @@
                              plotScale="linear">
                 <Documentation>The x-axis of the mass spectrum</Documentation>
                 <Quantity name="Mass/Charge Ratio">
-                    &arbitrary;
+                    &m/z; <!-- TODO: unit -->
                 </Quantity>
             </SeriesBlueprint>
+            <!-- MSConstants enthält "CHARGE_SERIES_NAME". Weiß nicht so recht, was ich damit anfangen soll -->
             <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
                              plotScale="linear">
                 <Quantity name="Abundance">
@@ -859,6 +942,7 @@
                     &arbitrary;
                 </Quantity>
             </ParameterBlueprint>
+            <!-- TODO: scan duration -->
             <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
                 <Documentation>The total number of scans performed. This should be identical for the each single scan
                 </Documentation>
@@ -872,13 +956,14 @@
             </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Spectrum Details" modality="optional" maxOccurs="1">
-            <ParameterBlueprint name="Basepeak Intensity" parameterType="Numeric">
+            <ParameterBlueprint name="Base Peak Intensity" parameterType="Numeric">
                 <Quantity name="Abundance">
                     &AU; &arbitrary;
                 </Quantity>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Basepeak Mass" parameterType="Numeric">
+            <ParameterBlueprint name="Base Peak Mass" parameterType="Numeric">
                 <Quantity name="Mass">
+                    <!-- TODO: do we have to put u and m/z in relation somehow ..? -->
                     &atomic_mass_unit;
                 </Quantity>
             </ParameterBlueprint>
@@ -902,7 +987,7 @@
             </ParameterBlueprint>
         </CategoryBlueprint>
     </ResultBlueprint>
-    <Bibliography>
+    <Bibliography> <!-- TODO: check references. Include mzml -->
         <LiteratureReference literatureReferenceID="ASTM D1129-06A">
             ASTM Standard D1129-06A: Standard Terminology Relating to Water, DOI: 10.1520/D1129-06A
         </LiteratureReference>

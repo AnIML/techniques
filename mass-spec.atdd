@@ -12,44 +12,45 @@
         that are characterized by their mass and charge. "Standard Definitions of Terms Relating to Mass Spectrometry",
         Second Draft, May 2006 IUPAC, Analytical Chemistry Division. It is a detection (sample measuring) technique.
     </Documentation>
-    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
-                         inheritable="true">
+    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="true">
         <Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory
             sample which has a suitable sample weight or volume for one or more determinations by chemical analysis.
             This sample role represents the sample that is analyzed in the given ExperimentStep.
         </Documentation>
-        <CategoryBlueprint name="Description" modality="optional" maxOccurs="1">
+        <CategoryBlueprint name="Sample Description" modality="optional" maxOccurs="1">
             <Documentation>
                 Parameters describing the test sample
             </Documentation>
             <ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation>Common, trade, or other names.</Documentation>
-            </ParameterBlueprint> <!-- TODO: We have another Parameter "Descriptive Name" in the "Substance Description" Category. Duplicate or different meaning? -->
-            <ParameterBlueprint name="Sample ID" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000002">
+                    Common, trade, or other names.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="ID" parameterType="String" modality="optional" maxOccurs="1">
                 <Documentation>
                     A unique identifier given either by the device or the user.
                 </Documentation>
             </ParameterBlueprint>
             <ParameterBlueprint name="Mass" parameterType="Float" modality="optional">
-                <Documentation>Mass of the sample used to prepare the test material.</Documentation>
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000004">Mass of the sample used to prepare the test material.</Documentation>
                 <Quantity name="Mass">
                     &mg;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
-                <Documentation>Volume of the sample used to prepare the test material.</Documentation>
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000005">Volume of the sample used to prepare the test material.</Documentation>
                 <Quantity name="Volume">
                     &mL; &L;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
-                <Documentation>Concentration of sample in solvent, if applicable.</Documentation>
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000006">Concentration of sample in solvent, if applicable.</Documentation>
                 <Quantity name="Concentration">
                     &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="JCAMP-DX IR">Phase of matter of the sample.</Documentation>
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000003">Phase of matter of the sample.</Documentation>
                 <AllowedValue>
                     <S>solid</S>
                 </AllowedValue>
@@ -191,7 +192,9 @@
             </CategoryBlueprint>
             <CategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
                 <Documentation literatureReferenceID="ASTM E131-05">
-                    The phase velocity of radiant power in a vacuum divided by the phase velocity of the same radiant power in a specified medium. When one medium is a vacuum, n is the ratio of the sine of the angle of incidence to the sine of the angle of refraction.
+                    The phase velocity of radiant power in a vacuum divided by the phase velocity of the same radiant
+                    power in a specified medium. When one medium is a vacuum, n is the ratio of the sine of the angle of
+                    incidence to the sine of the angle of refraction.
                 </Documentation>
                 <ParameterBlueprint name="Refractive Index" parameterType="Float" modality="required" maxOccurs="1">
                     <Documentation>Refractive index of the sample.</Documentation>
@@ -204,7 +207,8 @@
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
                     <Documentation>
-                        Wavelength at which the refractive index has been determined. If not given, the Sodium-D line is assumed.
+                        Wavelength at which the refractive index has been determined. If not given, the Sodium-D line is
+                        assumed.
                     </Documentation>
                     <Quantity name="Length">
                         &nm;
@@ -251,21 +255,24 @@
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Nominal Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation>The nominal mass is a physical property defined as the integer mass (without mass defect) of the most abundant isotopes of a given compound.
+                <Documentation>The nominal mass is a physical property defined as the integer mass (without mass defect)
+                    of the most abundant isotopes of a given compound.
                 </Documentation>
                 <Quantity name="Mass">
                     &g; &ug; &ng;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Mono Isotopic Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation>The nominal mass is a physical property defined as the mass of the most abundant isotopes of a given compound.
+                <Documentation>The nominal mass is a physical property defined as the mass of the most abundant isotopes
+                    of a given compound.
                 </Documentation>
                 <Quantity name="Mass">
                     &g; &ug; &ng;
                 </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Average Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation>The average mass is a physical property defined as the mass (without mass defect) of the average mass of all isotope of a given compound.
+                <Documentation>The average mass is a physical property defined as the mass (without mass defect) of the
+                    average mass of all isotope of a given compound.
                 </Documentation>
                 <Quantity name="Mass">
                     &g; &ug; &ng;
@@ -343,7 +350,8 @@
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Entry Name" parameterType="String" modality="optional" maxOccurs="1">
                     <Documentation literatureReferenceID="ASTM E2077-00">
-                        The substance name as found in the database. May not be identical with other parameters like "Descriptive Name".
+                        The substance name as found in the database. May not be identical with other parameters like
+                        "Descriptive Name".
                     </Documentation>
                 </ParameterBlueprint>
                 <ParameterBlueprint name="Entry ID" parameterType="String" modality="optional" maxOccurs="1">
@@ -384,28 +392,166 @@
                 <Documentation>External reference to measurement method.</Documentation>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Instrument System Description" modality="optional" maxOccurs="1"><!--TODO: move to right spot -->
-            <CategoryBlueprint name="Manufacturer" modality="optional" maxOccurs="1">
-                <Documentation>Information about the vendor.</Documentation>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Device" modality="optional" maxOccurs="1">
-                <Documentation>Information about the device model</Documentation>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Year Built" maxOccurs="1" modality="optional">
-                <Documentation>
-                    The date of when device was built
+        <CategoryBlueprint name="Instrument Properties" modality="optional"
+                           maxOccurs="1">
+            <Documentation>Fixed characteristics of the instrument.</Documentation>
+            <ParameterBlueprint name="Resolution" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="PAC-REC-06-04-06">Resolution in mass spectrometry defined as
+                    the m/delta_m, where m is the mass of the ion of interest and delta_m is the peak width (peak
+                    width definition) or the spacing between two equal intensity peaks with a valley between them
+                    no more than 10 % of their height (10 % valley definition).
                 </Documentation>
-                <ParameterBlueprint name="Date" parameterType="Numeric" modality="optional" maxOccurs="1">
-                    <!-- TODO: Allowed value DateTime  -->
-                </ParameterBlueprint>
+                <!-- TODO: This is handled differently in ANDI: resolution-method (e.g. 10% peak valley, etc.) and resolution type (constant over mass range or proportional).  -->
+                <Quantity name="m/z">
+                    &mz;
+                </Quantity>
+            </ParameterBlueprint>
+            <CategoryBlueprint name="Vendor" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001269">
+                    The vendor of the instrument.
+                </Documentation>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Model" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000031">Information about the device model (not including vendor's name).</Documentation>
             </CategoryBlueprint>
             <CategoryBlueprint name="Serial Number" maxOccurs="1" modality="optional">
-                <Documentation>
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000529">
                     The manufacturer's serial number for the device.
                 </Documentation>
             </CategoryBlueprint>
+            <CategoryBlueprint name="Description" modality="optional">
+                <Documentation>A textual description of the instrument.</Documentation>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
+                <Documentation>
+                    The mass detection range of the instrumen.
+                </Documentation>
+                <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
+                                    maxOccurs="1">
+                    <Quantity name="Mass">
+                        &atomic_mass_unit;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
+                                    maxOccurs="1">
+                    <Quantity name="Mass">
+                        &atomic_mass_unit;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Comments" modality="optional">
+                <Documentation>Comments about the instrument.</Documentation>
+            </CategoryBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Separation Type"
+        <CategoryBlueprint name="Instrument Settings" modality="optional">
+            <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
+            <ParameterBlueprint name="Operation Mode" parameterType="String" modality="optional">
+                <AllowedValue>
+                    <S>Full Spectrum Scan</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Selected Ion Monitoring</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000583">
+                        SRM can have the synonym MRM.
+                    </Documentation>
+                    <S>Selected Reaction Monitoring Spectrum</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Other</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <CategoryBlueprint name="Scan Settings" maxOccurs="1" modality="optional">
+                <ParameterBlueprint name="Polarity" parameterType="String"
+                                    modality="optional"> <!-- TODO: maybe modality=required? -->
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000465">Mass spectrometers can work in either positive or negative ion mode. This
+                        information is crucial for the interpretation of the data.
+                    </Documentation>
+                    <AllowedValue>
+                        <S>+</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>-</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>unknown</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Direction" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
+                    <AllowedValue>
+                        <S>High to Low</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Low to High</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+                <CategoryBlueprint name="Law">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
+                        Description of the function of the mass scan law.
+                    </Documentation>
+                </CategoryBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="SRM Mode Settings" modality="optional" maxOccurs="1">
+                <ParameterBlueprint name="Precursor Ion" parameterType="Numeric" maxOccurs="unbounded" modality="optional">
+                    <Quantity name="mass/charge">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="SIM Mode Settings" modality="optional">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    This section is recommended when operating the mass spectrometer in SIM mode.
+                </Documentation>
+                <SeriesSetBlueprint name="Monitored Masses">
+                    <SeriesBlueprint name="Masses" seriesType="Numeric" dependency="independent">
+                        <Quantity name="mass/charge">
+                            &mz;
+                        </Quantity>
+                    </SeriesBlueprint>
+                </SeriesSetBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Full Scan Mode Settings" maxOccurs="1" modality="optional">
+                <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
+                    <Documentation>The mass detection range of the instrumen.</Documentation>
+                    <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional" maxOccurs="1">
+                        <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable samples
+                            (FALSE)
+                        </Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="A/D Converter Settings" modality="optional">
+                <ParameterBlueprint name="Digitization Rate" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        At which rate the signal is detected by the Detector
+                    </Documentation>
+                    <Quantity name="Hertz">
+                        &Hz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Averaging Factor" parameterType="Float" modality="optional">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        Number of raw values averaged to obtain a data point.
+                    </Documentation>
+                    <Quantity name="Count"/>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Separation"
                            modality="optional"> <!-- TODO: This category might be obsolete if there is a separation (chromatography.atdd) step referenced before -->
             <ParameterBlueprint name="Separation Type" parameterType="String" maxOccurs="1" modality="optional">
                 <Documentation>The separation method before running the MS</Documentation>
@@ -434,11 +580,10 @@
             <Documentation>
                 Information about the inlet used for the sample introduction.
             </Documentation>
-            <ParameterBlueprint name="Inlet Type"
-                                parameterType="String"> <!-- TODO: Because of the variaty of inlet type, I chose to omit the list of allowed values ! -->
+            <ParameterBlueprint name="Type" parameterType="String">
                 <Documentation>The type of inlet that introduces the sample into the vacuum chamber.</Documentation>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Inlet Temperature" parameterType="Numeric" maxOccurs="1" modality="optional">
+            <ParameterBlueprint name="Temperature" parameterType="Numeric" maxOccurs="1" modality="optional">
                 <Documentation>
                     Specifying the inlet temperature, if applicable.
                 </Documentation>
@@ -447,10 +592,14 @@
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Ionization Mode" modality="optional"> <!-- TODO: Changed from "Method" to "Mode", as it is in ANDI, ACAML and JCAMP -->
+        <CategoryBlueprint name="Ionization" modality="optional"
+                           maxOccurs="1">
             <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.
             </Documentation>
-            <ParameterBlueprint name="Ion Source" parameterType="String" modality="optional">
+            <ParameterBlueprint name="Type" parameterType="String" modality="optional">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000008">
+                    The Method by which gas phase ions are created from the sample.
+                </Documentation>
                 <AllowedValue>
                     <S>Atmospheric Pressure Chemical Ionization</S>
                 </AllowedValue>
@@ -610,59 +759,65 @@
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Mass Selection" modality="optional">
-            <ParameterBlueprint name="Mass Selection" parameterType="String" maxOccurs="1" modality="optional">
-                <!-- this is just a coarse grained list. More details? Extensions? ... -->
-                <!--TODO: compare with mzml: single entry, multiple for each detec. or simple text field? -->
-                <AllowedValue>
-                    <S>Sector Mass Spectrometer</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Time-Of-Flight</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Quadrupole</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Triple Quadrupole</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>3d Quadrupole Ion Trap</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Cylindrical Ion Trap</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Linear Quadrupole Ion Trap</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Orbitrap</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Fourier Transform Ion Cyclotron Resonance</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Quadrupole Time-Of-Flight</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>other</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Detector" modality="optional">
-            <SeriesSetBlueprint name="Detector Components">
+        <CategoryBlueprint name="Mass Selection" modality="optional" maxOccurs="unbounded">
+            <SeriesSetBlueprint name="Analyzer Components">
                 <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
                                  modality="optional">
                     <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF,
-                        the
-                        quadrupole would be 0, and the TOF 1"
+                        the quadrupole would be 0, and the TOF 1"
                     </Documentation>
                 </SeriesBlueprint>
-                <SeriesBlueprint name="Name" seriesType="String" maxOccurs="1" modality="required"
+                <SeriesBlueprint name="Analyzer Type" seriesType="String" maxOccurs="1" modality="required"
                                  dependency="dependent">
-                    <Documentation>The name of the detector component.</Documentation>
+                    <Documentation  literatureReferenceID="psi-ms" literatureAccession="MS:1000443">The type of the mass analyzer.</Documentation>
+                    <!--TODO: compare with mzml: single entry, multiple for each detec. or simple text field? -->
+                    <AllowedValue>
+                        <S>Sector Mass Spectrometer</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Time-Of-Flight</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Quadrupole</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Triple Quadrupole</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>3d Quadrupole Ion Trap</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Cylindrical Ion Trap</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Linear Quadrupole Ion Trap</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Orbitrap</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Fourier Transform Ion Cyclotron Resonance</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Quadrupole Time-Of-Flight</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>other</S>
+                    </AllowedValue>
+                </SeriesBlueprint>
+                <SeriesBlueprint name="Sampling Time" seriesType="Numeric" dependency="dependent">
+                    <Quantity name="time">
+                        &s; &ms;
+                    </Quantity>
+                </SeriesBlueprint>
+                <SeriesBlueprint name="Delay Time" seriesType="Numeric" dependency="dependent">
+                    <Quantity name="time">
+                        &s; &ms;
+                    </Quantity>
                 </SeriesBlueprint>
             </SeriesSetBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Detector" modality="optional" maxOccurs="1">
             <ParameterBlueprint name="Detector Type" parameterType="String" modality="optional">
                 <Documentation literatureReferenceID="ASTM E2077-00">
                     The type of detector used to detect the charged ions.
@@ -711,208 +866,6 @@
                 </Quantity>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="A/D Converter Settings" modality="optional">
-            <ParameterBlueprint name="Digitization Rate" parameterType="Numeric" maxOccurs="1" modality="optional">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    At which rate the signal is detected by the Detector
-                </Documentation>
-                <Quantity name="Hertz">
-                    &Hz;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Averaging Factor" parameterType="Float" modality="optional">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                Number of raw values averaged to obtain a data point.
-                </Documentation>
-                <Quantity name="Count"/>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Common Method" modality="optional">
-            <Documentation>Information describing the instrument and its environment.</Documentation>
-            <CategoryBlueprint name="Instrument Properties" modality="optional">
-                <Documentation>Fixed characteristics of the instrument.</Documentation>
-                <ParameterBlueprint name="Resolution" parameterType="Numeric" modality="optional">
-                    <Documentation literatureReferenceID="PAC-REC-06-04-06">Resolution in mass spectrometry defined as
-                        the m/delta_m, where m is the mass of the ion of interest and delta_m is the peak width (peak
-                        width definition) or the spacing between two equal intensity peaks with a valley between them
-                        no more than 10 % of their height (10 % valley definition).
-                    </Documentation>
-                    <!-- TODO: This is handled differently in ANDI: resolution-method (e.g. 10% peak valley, etc.) and resolution type (constant over mass range or proportional).  -->
-                    <Quantity name="m/z">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <CategoryBlueprint name="Description" modality="optional">
-                    <Documentation>A textual description of the instrument.</Documentation>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Comments" modality="optional">
-                    <Documentation>Comments about the instrument.</Documentation>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
-                    <Documentation>
-                        The mass detection range of the instrumen.
-                    </Documentation>
-                    <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1">
-                        <Quantity name="Mass">
-                            &atomic_mass_unit;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1">
-                        <Quantity name="Mass">
-                            &atomic_mass_unit;
-                        </Quantity>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Scan Duration" modality="optional" maxOccurs="1">
-                    <Documentation>Time required to acquire the single scan of this spectrum.</Documentation>
-                </CategoryBlueprint>
-        <CategoryBlueprint name="Instrument Properties" modality="optional">
-            <Documentation>Fixed characteristics of the instrument.</Documentation>
-            <ParameterBlueprint name="Resolution" parameterType="Numeric" modality="optional">
-                <Documentation literatureReferenceID="PAC-REC-06-04-06">Resolution in mass spectrometry defined as
-                    the m/delta_m, where m is the
-                    mass of the ion of interest and delta_m is the peak width (peak width definition) or the spacing
-                    between two
-                    equal intensity peaks with a valley between them no more than 10 % of their height (10 % valley
-                    definition).
-                </Documentation>
-                <Quantity name="m/z">
-                    &mz;
-                </Quantity>
-            </ParameterBlueprint>
-            <CategoryBlueprint name="Description" modality="optional">
-                <Documentation>A textual description of the instrument.</Documentation>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Comments" modality="optional">
-                <Documentation>Comments about the instrument.</Documentation>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
-                <Documentation>The mass detection range of the instrumen.</Documentation>
-                <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
-                                    maxOccurs="1">
-                    <Quantity name="Mass">
-                        &atomic_mass_unit;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
-                                    maxOccurs="1">
-                    <Quantity name="Mass">
-                        &atomic_mass_unit;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Year Built" maxOccurs="1" modality="optional">
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Instrument Settings" modality="optional">
-                <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-                <ParameterBlueprint name="Operation Mode" parameterType="String" modality="optional">
-                    <AllowedValue>
-                        <S>Mass Scan</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Selected Ion Monitoring</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Other</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Scan Law" parameterType="String" maxOccurs="1" modality="optional">
-                    <Documentation>
-                        Specification of the mass scan law.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>linear</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>exponential</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>quadratic</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Other</S>
-                    </AllowedValue>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Instrument Settings" modality="optional">
-            <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
-            <ParameterBlueprint name="Operation Mode" parameterType="String" modality="optional">
-                <AllowedValue>
-                    <S>Scan</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Selected Ion Monitoring</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Other</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Polarity" parameterType="String"
-                                modality="optional"> <!-- TODO: maybe required? -->
-                <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
-                    information is crucial for the interpretation of the data.
-                </Documentation>
-                <AllowedValue>
-                    <S>+</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>-</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>unknown</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
-                <Documentation>The mass detection range of the instrumen.</Documentation>
-                <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
-                                    maxOccurs="1">
-                    <Quantity name="Mass">
-                        &atomic_mass_unit;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional" maxOccurs="1">
-                    <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable samples
-                        (FALSE)
-                    </Documentation>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
-                                    maxOccurs="1">
-                    <Quantity name="Mass">
-                        &atomic_mass_unit;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="SIM Mode Settings" modality="optional">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    This section is recommended when operating the mass spectrometer in SIM mode.
-                </Documentation>
-            <SeriesSetBlueprint name="Group of Monitored Masses">
-                <SeriesBlueprint name="Masses" seriesType="Numeric" dependency="independent">
-                    <Quantity name="mass/charge">
-                        &mz;
-                    </Quantity>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Detector Components" modality="optional"> <!-- TODO: into Mass Selction -->
-            <SeriesSetBlueprint name="Detector Components" modality="optional">
-                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
-                                 modality="required">
-                    <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF, the
-                        quadrupole would be 0, and the TOF 1"
-                    </Documentation>
-                </SeriesBlueprint>
-                <SeriesBlueprint name="Sampling Time" seriesType="Numeric" dependency="dependent">
-                    <Quantity name="time">
-                        &s; &ms;
-                    </Quantity>
-                </SeriesBlueprint>
-                <SeriesBlueprint name="Delay Time" seriesType="Numeric" dependency="dependent">
-                    <Quantity name="time">
-                        &s; &ms;
-                    </Quantity>
-                </SeriesBlueprint>
-            </SeriesSetBlueprint>
-        </CategoryBlueprint>
     </MethodBlueprint>
     <ResultBlueprint name="Spectrum" modality="optional">
         <SeriesSetBlueprint name="Spectrum" modality="required">
@@ -920,7 +873,7 @@
                              plotScale="linear">
                 <Documentation>The x-axis of the mass spectrum</Documentation>
                 <Quantity name="Mass/Charge Ratio">
-                    &m/z; <!-- TODO: unit -->
+                    &mz;
                 </Quantity>
             </SeriesBlueprint>
             <!-- MSConstants enthält "CHARGE_SERIES_NAME". Weiß nicht so recht, was ich damit anfangen soll -->
@@ -981,7 +934,11 @@
                 </Documentation>
                 <AllowedValue>
                     <S>Centroided</S>
-                    <S>Continuus</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Continuous</S>
+                </AllowedValue>
+                <AllowedValue>
                     <S>Unknown</S>
                 </AllowedValue>
             </ParameterBlueprint>
@@ -1034,5 +991,6 @@
         <LiteratureReference literatureReferenceID="Beilstein">Warr, Wendy A. Graphics for Chemical Structures:
             Intregration with Text and Data. American chemical society, 1987.
         </LiteratureReference>
+        <LiteratureReference literatureReferenceID="psi-ms">psi-ms-cv version 4.0.3</LiteratureReference>
     </Bibliography>
 </Technique>

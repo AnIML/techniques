@@ -422,6 +422,226 @@
             <CategoryBlueprint name="Description" modality="optional">
                 <Documentation>A textual description of the instrument.</Documentation>
             </CategoryBlueprint>
+            <CategoryBlueprint name="Comments" modality="optional">
+                <Documentation>Comments about the instrument.</Documentation>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
+                <Documentation>
+                    Information about the inlet used for the sample introduction.
+                </Documentation>
+                <ParameterBlueprint name="Type" parameterType="String">
+                    <Documentation>The type of inlet that introduces the sample into the vacuum chamber.</Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Temperature" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Documentation>
+                        Specifying the inlet temperature, if applicable.
+                    </Documentation>
+                    <Quantity name="Temperature">
+                        &K; &degC; &degF;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Ionization" modality="optional"
+                               maxOccurs="1">
+                <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.
+                </Documentation>
+                <ParameterBlueprint name="Type" parameterType="String" modality="optional">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000008">
+                        The Method by which gas phase ions are created from the sample.
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Source Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The temperature of the source.
+                    </Documentation>
+                    <Quantity name="temperature">
+                        &K; &degF; &degC;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Laser Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The wavelength of the laser in case of laser desorption ionization.
+                    </Documentation>
+                    <Quantity name="wavelength">
+                        &nm;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Reagent Gas" parameterType="String" modality="optional">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The gas used for ionization (only applicable for chemical ionization).
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Reagent Gas Pressure" parameterType="Float" modality="optional">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The pressure of the reagent gas (only applicable for chemical ionization).
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Electron Energy" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The electron energy used for ionization (applicable to electron impact ionization only).
+                    </Documentation>
+                    <Quantity name="Volt">
+                        &V;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="FAB Matrix" parameterType="String" maxOccurs="1" modality="optional">
+                    <Documentation literatureReferenceID="ASTM E2077-00">Specifies the matrix used for fast atom bombardment
+                        (if applicable).
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="FAB Type" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">Specifies the atom used for the bombardment gun (if
+                        applicable).
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Filament Current" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Documentation literatureReferenceID="ASTM E2077-00">Specifies the filament input current
+                    </Documentation>
+                    <Quantity name="Current">
+                        &A;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Emission Current" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The filament emission current (applicable for EI and CI).
+                    </Documentation>
+                    <Quantity name="current">
+                        &mA; &uA;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Accelerating Potential" parameterType="Float" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The accelerating potential in Volts.
+                    </Documentation>
+                    <Quantity name="Voltage">
+                        &V;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Analyzer" modality="optional" maxOccurs="unbounded">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000451"></Documentation>
+                <SeriesSetBlueprint name="Components">
+                    <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
+                                     modality="optional">
+                        <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF,
+                            the quadrupole would be 0, and the TOF 1"
+                        </Documentation>
+                    </SeriesBlueprint>
+                    <SeriesBlueprint name="Type" seriesType="String" maxOccurs="1" modality="required"
+                                     dependency="dependent">
+                        <Documentation  literatureReferenceID="psi-ms" literatureAccession="MS:1000443">The type of the mass analyzer.</Documentation>
+                        <!--TODO: compare with mzml: single entry, multiple for each detec. or simple text field? -->
+                        <AllowedValue>
+                            <S>Sector Mass Spectrometer</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Time-Of-Flight</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Quadrupole</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Triple Quadrupole</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>3d Quadrupole Ion Trap</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Cylindrical Ion Trap</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Linear Quadrupole Ion Trap</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Orbitrap</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Fourier Transform Ion Cyclotron Resonance</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Quadrupole Time-Of-Flight</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>other</S>
+                        </AllowedValue>
+                    </SeriesBlueprint>
+                    <SeriesBlueprint name="Sampling Time" seriesType="Numeric" dependency="dependent">
+                        <Quantity name="time">
+                            &s; &ms;
+                        </Quantity>
+                    </SeriesBlueprint>
+                    <SeriesBlueprint name="Delay Time" seriesType="Numeric" dependency="dependent">
+                        <Quantity name="time">
+                            &s; &ms;
+                        </Quantity>
+                    </SeriesBlueprint>
+                </SeriesSetBlueprint>
+                <CategoryBlueprint name="TOF Path Length">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000022">
+
+                    </Documentation>
+                </CategoryBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Detector" modality="optional" maxOccurs="1">
+                <ParameterBlueprint name="Detector Type" parameterType="String" modality="optional">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The type of detector used to detect the charged ions.
+                    </Documentation>
+                    <AllowedValue>
+                        <S>Electron Multiplier</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Photomultiplier</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Focal Plane Array</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Faraday Cup</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Conversion Dynode Electron Multiplier</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Conversion Dynode Photomultiplier</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Multi-Collector</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Other</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Detector Entrance Potential" parameterType="Float" modality="optional"
+                                    maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The potential across the detector in volts (if applicable).
+                    </Documentation>
+                    <Quantity name="Voltage">
+                        &V;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Detector Potential" parameterType="Float" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The potential across the detector in volts (if applicable, e.g. electron multipliers or conversion
+                        dynodes).
+                    </Documentation>
+                    <Quantity name="Voltage">
+                        &V;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint parameterType="String" name="Reflectron State" maxOccurs="1" modality="optional">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000021">
+                        Status of the reflectron.
+                    </Documentation>
+                    <AllowedValue>
+                        <S>On</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Off</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
             <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
                 <Documentation>
                     The mass detection range of the instrumen.
@@ -439,12 +659,11 @@
                     </Quantity>
                 </ParameterBlueprint>
             </CategoryBlueprint>
-            <CategoryBlueprint name="Comments" modality="optional">
-                <Documentation>Comments about the instrument.</Documentation>
-            </CategoryBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Instrument Settings" modality="optional">
-            <Documentation>Variable characteristics or configuration parameters of the instrument.</Documentation>
+            <Documentation>
+                Variable characteristics or configuration parameters of the instrument.
+            </Documentation>
             <ParameterBlueprint name="Operation Mode" parameterType="String" modality="optional">
                 <AllowedValue>
                     <S>Full Spectrum Scan</S>
@@ -462,22 +681,7 @@
                     <S>Other</S>
                 </AllowedValue>
             </ParameterBlueprint>
-            <CategoryBlueprint name="Scan Settings" maxOccurs="1" modality="optional">
-                <ParameterBlueprint name="Polarity" parameterType="String"
-                                    modality="optional"> <!-- TODO: maybe modality=required? -->
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000465">Mass spectrometers can work in either positive or negative ion mode. This
-                        information is crucial for the interpretation of the data.
-                    </Documentation>
-                    <AllowedValue>
-                        <S>+</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>-</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>unknown</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
+            <CategoryBlueprint name="General Scan Settings" maxOccurs="1" modality="optional">
                 <ParameterBlueprint name="Direction" parameterType="String" modality="optional" maxOccurs="1">
                     <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
                     <AllowedValue>
@@ -495,9 +699,33 @@
             </CategoryBlueprint>
             <CategoryBlueprint name="SRM Mode Settings" modality="optional" maxOccurs="1">
                 <ParameterBlueprint name="Precursor Ion" parameterType="Numeric" maxOccurs="unbounded" modality="optional">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000341">
+                        The mass of the precursor ion.
+                    </Documentation>
                     <Quantity name="mass/charge">
                         &mz;
                     </Quantity>
+                </ParameterBlueprint>
+                <CategoryBlueprint name="Transition ID" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001829">
+
+                    </Documentation>
+                </CategoryBlueprint>
+                <ParameterBlueprint parameterType="String" name="Transition Type" maxOccurs="1" modality="optional">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1002006">
+                        The type of the transitions, e.g. target or decoy.
+                    </Documentation>
+                    <AllowedValue>
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1002007"></Documentation>
+                        <S>Target</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1002008"></Documentation>
+                        <S>Decoy</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <S>Other</S>
+                    </AllowedValue>
                 </ParameterBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="SIM Mode Settings" modality="optional">
@@ -576,296 +804,6 @@
                 </AllowedValue>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
-            <Documentation>
-                Information about the inlet used for the sample introduction.
-            </Documentation>
-            <ParameterBlueprint name="Type" parameterType="String">
-                <Documentation>The type of inlet that introduces the sample into the vacuum chamber.</Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Temperature" parameterType="Numeric" maxOccurs="1" modality="optional">
-                <Documentation>
-                    Specifying the inlet temperature, if applicable.
-                </Documentation>
-                <Quantity name="Temperature">
-                    &K; &degC; &degF;
-                </Quantity>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Ionization" modality="optional"
-                           maxOccurs="1">
-            <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.
-            </Documentation>
-            <ParameterBlueprint name="Type" parameterType="String" modality="optional">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000008">
-                    The Method by which gas phase ions are created from the sample.
-                </Documentation>
-                <AllowedValue>
-                    <S>Atmospheric Pressure Chemical Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Atmospheric Pressure Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Atmospheric Pressure Matrix-Assisted Laser Desorption/Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Atmospheric Pressure Photoionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Continuous Flow Fast Atom Bombardment</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Chemical Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Continuous Flow Matrix-Assisted Laser Desorption/Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Desorption Chemical Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Desorption Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Desorption Ionization on Silicon</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Dielectric Barrier Discharge Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Electrospray Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Fast Atom Bombardment</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Fast Ion Bombardment</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Field Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Laser Desorption Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Laser Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Matrix-Assisted Laser Desorption/Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Negative Ion Chemical Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Spray Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Surface-Assisted Laser Desorption/Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Surface-Enhanced Laser Desorption/Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Thermal Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Thermospray Ionization</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Other</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Polarity" parameterType="String"
-                                modality="optional">
-                <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
-                    information is crucial for the interpretation of the data.
-                </Documentation>
-                <AllowedValue>
-                    <S>"+"</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>"-"</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>"unknown"</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Source Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The temperature of the source.
-                </Documentation>
-                <Quantity name="temperature">
-                    &K; &degF; &degC;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Laser Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The wavelength of the laser in case of laser desorption ionization.
-                </Documentation>
-                <Quantity name="wavelength">
-                    &nm;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Reagent Gas" parameterType="String" modality="optional">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The gas used for ionization (only applicable for chemical ionization).
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Reagent Gas Pressure" parameterType="Float" modality="optional">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The pressure of the reagent gas (only applicable for chemical ionization).
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Electron Energy" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The electron energy used for ionization (applicable to electron impact ionization only).
-                </Documentation>
-                <Quantity name="Volt">
-                    &V;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="FAB Matrix" parameterType="String" maxOccurs="1" modality="optional">
-                <Documentation literatureReferenceID="ASTM E2077-00">Specifies the matrix used for fast atom bombardment
-                    (if applicable).
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="FAB Type" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="ASTM E2077-00">Specifies the atom used for the bombardment gun (if
-                    applicable).
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Filament Current" parameterType="Numeric" maxOccurs="1" modality="optional">
-                <Documentation literatureReferenceID="ASTM E2077-00">Specifies the filament input current
-                </Documentation>
-                <Quantity name="Current">
-                    &A;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Emission Current" parameterType="Numeric" maxOccurs="1" modality="optional">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The filament emission current (applicable for EI and CI).
-                </Documentation>
-                <Quantity name="current">
-                    &mA; &uA;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Accelerating Potential" parameterType="Float" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The accelerating potential in Volts.
-                </Documentation>
-                <Quantity name="Voltage">
-                    &V;
-                </Quantity>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Mass Selection" modality="optional" maxOccurs="unbounded">
-            <SeriesSetBlueprint name="Analyzer Components">
-                <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
-                                 modality="optional">
-                    <Documentation>"Zero-based order of analytical components after the source.(e.g., in a Q-TOF,
-                        the quadrupole would be 0, and the TOF 1"
-                    </Documentation>
-                </SeriesBlueprint>
-                <SeriesBlueprint name="Analyzer Type" seriesType="String" maxOccurs="1" modality="required"
-                                 dependency="dependent">
-                    <Documentation  literatureReferenceID="psi-ms" literatureAccession="MS:1000443">The type of the mass analyzer.</Documentation>
-                    <!--TODO: compare with mzml: single entry, multiple for each detec. or simple text field? -->
-                    <AllowedValue>
-                        <S>Sector Mass Spectrometer</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Time-Of-Flight</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Quadrupole</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Triple Quadrupole</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>3d Quadrupole Ion Trap</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Cylindrical Ion Trap</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Linear Quadrupole Ion Trap</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Orbitrap</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Fourier Transform Ion Cyclotron Resonance</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>Quadrupole Time-Of-Flight</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <S>other</S>
-                    </AllowedValue>
-                </SeriesBlueprint>
-                <SeriesBlueprint name="Sampling Time" seriesType="Numeric" dependency="dependent">
-                    <Quantity name="time">
-                        &s; &ms;
-                    </Quantity>
-                </SeriesBlueprint>
-                <SeriesBlueprint name="Delay Time" seriesType="Numeric" dependency="dependent">
-                    <Quantity name="time">
-                        &s; &ms;
-                    </Quantity>
-                </SeriesBlueprint>
-            </SeriesSetBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Detector" modality="optional" maxOccurs="1">
-            <ParameterBlueprint name="Detector Type" parameterType="String" modality="optional">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The type of detector used to detect the charged ions.
-                </Documentation>
-                <AllowedValue>
-                    <S>Electron Multiplier</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Photomultiplier</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Focal Plane Array</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Faraday Cup</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Conversion Dynode Electron Multiplier</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Conversion Dynode Photomultiplier</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Multi-Collector</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Other</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Detector Entrance Potential" parameterType="Float" modality="optional"
-                                maxOccurs="1">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The potential across the detector in volts (if applicable).
-                </Documentation>
-                <Quantity name="Voltage">
-                    &V;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Detector Potential" parameterType="Float" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="ASTM E2077-00">
-                    The potential across the detector in volts (if applicable, e.g. electron multipliers or conversion
-                    dynodes).
-                </Documentation>
-                <Quantity name="Voltage">
-                    &V;
-                </Quantity>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
     </MethodBlueprint>
     <ResultBlueprint name="Spectrum" modality="optional">
         <SeriesSetBlueprint name="Spectrum" modality="required">
@@ -876,7 +814,6 @@
                     &mz;
                 </Quantity>
             </SeriesBlueprint>
-            <!-- MSConstants enthält "CHARGE_SERIES_NAME". Weiß nicht so recht, was ich damit anfangen soll -->
             <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
                              plotScale="linear">
                 <Quantity name="Abundance">
@@ -884,6 +821,14 @@
                 </Quantity>
                 <Quantity name="Counts">
                     &counts;
+                </Quantity>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Percent Base Peak" seriesType="Numeric" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000132">
+                    Magnitude of a peak in a spectrum relative to the base peak instensity of the spectrum.
+                </Documentation>
+                <Quantity name="Percent">
+                    &percent;
                 </Quantity>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
@@ -942,6 +887,26 @@
                     <S>Unknown</S>
                 </AllowedValue>
             </ParameterBlueprint>
+            <ParameterBlueprint name="Scan Polarity" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
+                    information is crucial for the interpretation of the data.
+                </Documentation>
+                <AllowedValue>
+                    <S>+</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>-</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Alternating Start +</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Alternating Start -</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>unknown</S>
+                </AllowedValue>
+            </ParameterBlueprint><!-- TODO: moved 'Polarity' completely out of method. Reason: The result needs to conatin this information anyway. -->
         </CategoryBlueprint>
     </ResultBlueprint>
     <Bibliography> <!-- TODO: check references. Include mzml -->

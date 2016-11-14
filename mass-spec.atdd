@@ -130,7 +130,7 @@
                 <Quantity
                         name="Pressure"> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
                     &Pa; &psig; &bar;
-                </Quantity> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
+                </Quantity>
             </ParameterBlueprint>
             <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation literatureReferenceID="JCAMP-DX IR">Sample temperature if significantly different from
@@ -427,8 +427,7 @@
             </CategoryBlueprint>
             <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
                 <!-- TODO: Should we have Serial Numbers for each component? -->
-                <CategoryBlueprint name="Separation"
-                                   modality="optional"> <!-- TODO: This category might be obsolete if there is a separation (chromatography.atdd) step referenced before -->
+                <CategoryBlueprint name="Separation" modality="optional"> <!-- TODO: This category might be obsolete if there is a separation (chromatography.atdd) step referenced before -->
                     <ParameterBlueprint name="Type" parameterType="String" maxOccurs="1" modality="optional">
                         <Documentation>The separation method before running the MS</Documentation>
                         <AllowedValue>
@@ -575,7 +574,7 @@
                     <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000451">
                         Descriptive details about the used mass analyzer.
                     </Documentation>
-                    <SeriesSetBlueprint name="Components"> <!-- TODO: We might need another name here -->
+                    <SeriesSetBlueprint name="Components"> <!-- TODO: We might need another name here, since it might be confusing with 'components' used before -->
                         <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
                                          modality="optional">
                             <Documentation>"Zero-based order of analytical components after the source.(e.g., in a
@@ -710,50 +709,14 @@
                     </AllowedValue>
                 </ParameterBlueprint>
                 <CategoryBlueprint name="SRM Settings" modality="optional" maxOccurs="1">
-                    <ParameterBlueprint name="Precursor Ion" parameterType="Numeric" maxOccurs="unbounded"
-                                        modality="optional">
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000341">
-                            The mass of the precursor ion.
-                        </Documentation>
-                        <Quantity name="mass/charge">
-                            &mz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Transition Type" parameterType="String" maxOccurs="1" modality="optional">
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1002006">
-                            The type of the transitions, e.g. target or decoy.
-                        </Documentation>
-                        <AllowedValue>
-                            <Documentation literatureReferenceID="psi-ms"
-                                           literatureAccession="MS:1002007"></Documentation>
-                            <S>Target</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <Documentation literatureReferenceID="psi-ms"
-                                           literatureAccession="MS:1002008"></Documentation>
-                            <S>Decoy</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Other</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                    <CategoryBlueprint name="Transition ID" modality="optional" maxOccurs="1">
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001829">
-
-                        </Documentation>
-                    </CategoryBlueprint>
+                    <Documentation>
+                        This section is recommended when operating the mass spectrometer in SRM mode.
+                    </Documentation>
                 </CategoryBlueprint>
                 <CategoryBlueprint name="SIM Settings" modality="optional">
                     <Documentation literatureReferenceID="ASTM E2077-00">
                         This section is recommended when operating the mass spectrometer in SIM mode.
                     </Documentation>
-                    <SeriesSetBlueprint name="Monitored Ion"> <!-- TODO: This might be obsolete, since it will be already in the result -->
-                        <SeriesBlueprint name="Masses" seriesType="Numeric" dependency="independent">
-                            <Quantity name="mass/charge">
-                                &mz;
-                            </Quantity>
-                        </SeriesBlueprint>
-                    </SeriesSetBlueprint>
                 </CategoryBlueprint>
                 <CategoryBlueprint name="Full Scan Settings" maxOccurs="1" modality="optional">
                     <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
@@ -960,14 +923,31 @@
     </MethodBlueprint>
     <ResultBlueprint name="Spectrum" modality="optional">
         <SeriesSetBlueprint name="Spectrum" modality="required">
-            <SeriesBlueprint name="Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
-                             plotScale="linear">
-                <Documentation>The x-axis of the mass spectrum</Documentation>
+            <SeriesBlueprintChoice>
+                <SeriesBlueprint name="Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
+                                 plotScale="linear">
+                    <Documentation>The x-axis of the mass spectrum</Documentation>
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </SeriesBlueprint>
+                <SeriesBlueprint name="Product Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
+                                 plotScale="linear">
+                    <Documentation>The x-axis of the mass spectrum, if it is an SRM run.</Documentation>
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </SeriesBlueprint>
+            </SeriesBlueprintChoice>
+            <SeriesBlueprint name="Precursor Mass/Charge" seriesType="Numeric" dependency="independent" maxOccurs="1" modality="optional" plotScale="linear">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000341">
+                    The masses of the precursor ions.
+                </Documentation>
                 <Quantity name="Mass/Charge Ratio">
                     &mz;
                 </Quantity>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="optional"
                              plotScale="linear">
                 <Quantity name="Abundance">
                     &AU; &arbitrary; &percent;
@@ -984,6 +964,29 @@
                 <Quantity name="Percent">
                     &percent;
                 </Quantity>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Transition Type" seriesType="String" maxOccurs="1" modality="optional" dependency="dependent" plotScale="none">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1002006">
+                    The type of the transitions, e.g. target or decoy.
+                </Documentation>
+                <AllowedValue>
+                    <Documentation literatureReferenceID="psi-ms"
+                                   literatureAccession="MS:1002007"></Documentation>
+                    <S>Target</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <Documentation literatureReferenceID="psi-ms"
+                                   literatureAccession="MS:1002008"></Documentation>
+                    <S>Decoy</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Other</S>
+                </AllowedValue>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Transition ID" seriesType="String"  modality="optional" maxOccurs="1" dependency="dependent" plotScale="none">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001829">
+
+                </Documentation>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="optional">
@@ -1011,6 +1014,12 @@
                     &s; &min;
                 </Quantity>
             </ParameterBlueprint>
+            <ParameterBlueprint name="MS Level" parameterType="Int" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000580">
+                    MSn refers to multi-stage MS2 experiments designed to record product ion spectra where n is the number of product ion stages (progeny ions). For ion traps, sequential MS/MS experiments can be undertaken where n > 2 whereas for a simple triple quadrupole system n=2. Use the term ms level (MS:1000511) for specifying n." [PSI:MS]
+                    synonym: "multiple-stage mass spectrometry spectrum
+                </Documentation>
+            </ParameterBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Spectrum Details" modality="optional" maxOccurs="1">
             <ParameterBlueprint name="Base Peak Intensity" parameterType="Numeric">
@@ -1020,7 +1029,6 @@
             </ParameterBlueprint>
             <ParameterBlueprint name="Base Peak Mass" parameterType="Numeric">
                 <Quantity name="Mass">
-                    <!-- TODO: do we have to put u and m/z in relation somehow ..? -->
                     &atomic_mass_unit;
                 </Quantity>
             </ParameterBlueprint>
@@ -1068,7 +1076,7 @@
             </ParameterBlueprint><!-- TODO: moved 'Polarity' completely out of method. Reason: The result needs to conatin this information anyway. -->
         </CategoryBlueprint>
     </ResultBlueprint>
-    <Bibliography> <!-- TODO: check references. Include mzml -->
+    <Bibliography>
         <LiteratureReference literatureReferenceID="ASTM D1129-06A">
             ASTM Standard D1129-06A: Standard Terminology Relating to Water, DOI: 10.1520/D1129-06A
         </LiteratureReference>

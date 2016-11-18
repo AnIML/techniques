@@ -4,6 +4,7 @@
         <!ENTITY bits "<Unit label='bits'><SIUnit>1</SIUnit></Unit>">
         <!ENTITY percent "<Unit label='&#37;'><SIUnit factor='1'>1</SIUnit></Unit>">
         <!ENTITY counts "<Unit label='Counts'><SIUnit factor='1'>1</SIUnit></Unit>">
+        <!ENTITY cps "<Unit label='cps'><SIUnit factor='1'>1</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
         <!ENTITY degree "<Unit label='°'><SIUnit>1</SIUnit></Unit>">
 
         <!-- Base SI Units -->
@@ -15,7 +16,7 @@
         <!ENTITY pg "<Unit label='pg'><SIUnit factor='1e-18'>kg</SIUnit></Unit>">
         <!ENTITY atomic_mass_unit "<Unit label='u'><SIUnit exponent='-27' factor='1.660539040'>kg</SIUnit></Unit>" >
         <!ENTITY mz "<Unit label='m/z'><SIUnit factor='1'>1</SIUnit></Unit>">
-
+        <!ENTITY mz_per_s "<Unit label='m/z'><SIUnit factor='1'>1</SIUnit><SIUnit exponent='-1'>s</SIUnit></Unit>">
 
         <!-- Length -->
         <!ENTITY m "<Unit label='m'><SIUnit factor='1' exponent='1'>m</SIUnit></Unit>">
@@ -38,6 +39,7 @@
         <!ENTITY s "<Unit label='s'><SIUnit>s</SIUnit></Unit>">
         <!ENTITY ms "<Unit label='ms'><SIUnit exponent='1' factor='1e-3'>s</SIUnit></Unit>">
         <!ENTITY us "<Unit label='µs'><SIUnit exponent='1' factor='1e-6'>s</SIUnit></Unit>">
+        <!ENTITY ns "<Unit label='ns'><SIUnit exponent='1' factor='1e-9'>s</SIUnit></Unit>">
 
         <!-- Frequency -->
         <!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
@@ -80,6 +82,7 @@
         <!ENTITY ug_per_mL "<Unit label='µg/mL'><SIUnit exponent='1' factor='1e-12'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
         <!ENTITY mol_per_L "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
         <!ENTITY kg_per_cm2 "<Unit label='kgf/cm²'><SIUnit exponent='1'>kg</SIUnit><SIUnit factor='1e-2' exponent='-2'>m</SIUnit></Unit>">
+        <!ENTITY ppm "<Unit label='ppm'><SIUnit exponent='-6'>s</SIUnit></Unit>">
 
         <!-- Current per Voltage -->
         <!ENTITY A_per_V "<Unit label='A/V'><SIUnit exponent='2'>A</SIUnit><SIUnit exponent='3'>s</SIUnit><SIUnit exponent='-1'>kg</SIUnit><SIUnit exponent='-2'>m</SIUnit></Unit>">
@@ -95,6 +98,8 @@
 
         <!-- Energy -->
         <!ENTITY eV "<Unit label='eV'><SIUnit factor='1.60218e-19' exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit></Unit>">
+        <!ENTITY tesla "<Unit label='T'><SIUnit exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit><SIUnit factor='1' exponent='-1'>A</SIUnit></Unit>">
+        <!ENTITY J "<Unit label='J'><SIUnit exponent='1'>kg</SIUnit><SIUnit factor='1' exponent='-2'>s</SIUnit><SIUnit factor='1' exponent='2'>m</SIUnit></Unit>">
 
         <!-- Pressure -->
         <!ENTITY Pa "<Unit label='Pa'><SIUnit exponent='-1'>m</SIUnit><SIUnit exponent='1'>kg</SIUnit><SIUnit exponent='-2'>s</SIUnit></Unit>">

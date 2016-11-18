@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- created by Patrick Boba(BSSN Software) -->
+
+<!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
+
+<Technique name="Mass Spectrometry Annotation"
+           version="0.90"
+           xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
+
+    <ResultBlueprint name="Spectrum Annotation">
+        <SeriesSetBlueprint name="Annotations" modality="optional">
+            <SeriesBlueprint name="Mass/Charge" seriesType="Numeric" dependency="independent" plotScale="linear" maxOccurs="1" modality="required">
+            <Documentation>The m/z value that should be annotated.</Documentation>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Assignment Type" seriesType="String" dependency="dependent" modality="optional" maxOccurs="1" plotScale="none">
+                <AllowedValue>
+                    <S>Matched Peak</S>
+                </AllowedValue>
+            </SeriesBlueprint>
+        </SeriesSetBlueprint>
+    </ResultBlueprint>
+</Technique>

@@ -427,8 +427,7 @@
             </CategoryBlueprint>
             <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
                 <!-- TODO: Should we have Serial Numbers for each component? -->
-                <CategoryBlueprint name="Separation"
-                                   modality="optional"> <!-- TODO: This category might be obsolete if there is a separation (chromatography.atdd) step referenced before -->
+                <CategoryBlueprint name="Separation" modality="optional"> <!-- TODO: This category might be obsolete if there is a separation (chromatography.atdd) step referenced before -->
                     <ParameterBlueprint name="Type" parameterType="String" maxOccurs="1" modality="optional">
                         <Documentation>The separation method before running the MS</Documentation>
                         <AllowedValue>
@@ -461,8 +460,7 @@
                         </Documentation>
                     </ParameterBlueprint>
                 </CategoryBlueprint>
-                <CategoryBlueprint name="Ionization" modality="optional"
-                                   maxOccurs="1"> <!-- TODO: some of those might rather be settings -->
+                <CategoryBlueprint name="Ionization" modality="optional" maxOccurs="1"> <!-- TODO: some of those might rather be settings -->
                     <Documentation literatureReferenceID="PAC-REC-06-04-06">The method used to ionize the sample.
                     </Documentation>
                     <ParameterBlueprint name="Type" parameterType="String" modality="optional">
@@ -475,8 +473,7 @@
                             The gas used for ionization (only applicable for chemical ionization).
                         </Documentation>
                     </ParameterBlueprint>
-                    <ParameterBlueprint name="Electron Energy" parameterType="Numeric" modality="optional"
-                                        maxOccurs="1">
+                    <ParameterBlueprint name="Electron Energy" parameterType="Numeric" modality="optional" maxOccurs="1">
                         <Documentation literatureReferenceID="ASTM E2077-00">
                             The electron energy used for ionization (applicable to electron impact ionization only).
                         </Documentation>
@@ -508,8 +505,7 @@
                                 &nm;
                             </Quantity>
                         </ParameterBlueprint>
-                        <ParameterBlueprint name="Focus Diameter" parameterType="Numeric" modality="optional"
-                                            maxOccurs="1">
+                        <ParameterBlueprint name="Focus Diameter" parameterType="Numeric" modality="optional" maxOccurs="1">
                             <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000845">
                                 The diameter of the laser beam.
                             </Documentation>
@@ -517,28 +513,23 @@
                                 &um;
                             </Quantity>
                         </ParameterBlueprint>
-                        <ParameterBlueprint name="Pulse Energy" parameterType="Numeric" maxOccurs="1"
-                                            modality="optional">
+                        <ParameterBlueprint name="Pulse Energy" parameterType="Numeric" maxOccurs="1" modality="optional">
                             <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000846">
-                                Describes output energy of the laser system. May be attenuated by filters or other
-                                means.
+                                Describes output energy of the laser system. May be attenuated by filters or other means.
                             </Documentation>
                             <Quantity name="Energy">
                                 &J;
                             </Quantity>
                         </ParameterBlueprint>
-                        <ParameterBlueprint name="Pulse Duration" parameterType="Numeric" modality="optional"
-                                            maxOccurs="1">
+                        <ParameterBlueprint name="Pulse Duration" parameterType="Numeric" modality="optional" maxOccurs="1">
                             <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000847">
-                                Describes output energy of the laser system. May be attenuated by filters or other
-                                means.
+                                Describes output energy of the laser system. May be attenuated by filters or other means.
                             </Documentation>
                             <Quantity name="Time">
                                 &ns;
                             </Quantity>
                         </ParameterBlueprint>
-                        <ParameterBlueprint name="Attenuation" parameterType="Numeric" maxOccurs="1"
-                                            modality="optional">
+                        <ParameterBlueprint name="Attenuation" parameterType="Numeric" maxOccurs="1" modality="optional">
                             <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000848">
                                 Describes the reduction of the intensity of the laser beam energy.
                             </Documentation>
@@ -546,8 +537,7 @@
                                 &percent;
                             </Quantity>
                         </ParameterBlueprint>
-                        <ParameterBlueprint name="Impact Angle" parameterType="Numeric" maxOccurs="1"
-                                            modality="optional">
+                        <ParameterBlueprint name="Impact Angle" parameterType="Numeric" maxOccurs="1" modality="optional">
                             <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000849">
                                 The angle between the laser beam and the sample target.
                             </Documentation>
@@ -556,25 +546,21 @@
                             </Quantity>
                         </ParameterBlueprint>
                         <CategoryBlueprint name="Type" maxOccurs="1" modality="optional">
-                            <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000842">Type of laser
-                                used for desorption purpose.
-                            </Documentation>
+                            <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000842">Type of laser used for desorption purpose.</Documentation>
                         </CategoryBlueprint>
                     </CategoryBlueprint>
                     <CategoryBlueprint name="MALDI Matrix Application" maxOccurs="1" modality="optional">
                         <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000832">
                             Attributes to describe the technique how the sample is prepared with the matrix solution.
                         </Documentation>
-                        <ParameterBlueprint name="Solution Concentration" parameterType="Numeric" maxOccurs="1"
-                                            modality="optional">
+                        <ParameterBlueprint name="Solution Concentration" parameterType="Numeric" maxOccurs="1" modality="optional">
                             <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000835">
                                 Concentration of the chemical solution used as matrix.
                             </Documentation>
                         </ParameterBlueprint>
                         <CategoryBlueprint name="Type" modality="optional" maxOccurs="1">
                             <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000833">
-                                Describes the technique how the matrix is put on the sample target (e.g. printed,
-                                sprayed, etc.).
+                                Describes the technique how the matrix is put on the sample target (e.g. printed, sprayed, etc.).
                             </Documentation>
                         </CategoryBlueprint>
                         <CategoryBlueprint name="Solution" modality="optional" maxOccurs="1">
@@ -588,8 +574,7 @@
                     <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000451">
                         Descriptive details about the used mass analyzer.
                     </Documentation>
-                    <SeriesSetBlueprint
-                            name="Components"> <!-- TODO: We might need another name here, since it might be confusing with 'components' used before -->
+                    <SeriesSetBlueprint name="Components"> <!-- TODO: We might need another name here, since it might be confusing with 'components' used before -->
                         <SeriesBlueprint name="Order" seriesType="Int" dependency="independent" maxOccurs="1"
                                          modality="optional">
                             <Documentation>"Zero-based order of analytical components after the source.(e.g., in a
@@ -687,9 +672,7 @@
                         </Quantity>
                     </ParameterBlueprint>
                     <ParameterBlueprint name="Accuracy" parameterType="Numeric" modality="optional" maxOccurs="1">
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000014">Accuracy is the
-                            degree of conformity of a measured mass to its actual value
-                        </Documentation>
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000014">Accuracy is the degree of conformity of a measured mass to its actual value</Documentation>
                         <Quantity name="Parts Per Million">
                             &ppm;
                         </Quantity>
@@ -710,117 +693,32 @@
                 Variable characteristics or configuration parameters of the instrument.
             </Documentation>
             <CategoryBlueprint name="Operation Mode" modality="optional" maxOccurs="1">
-                <CategoryBlueprint name="Spectrum" maxOccurs="1" modality="optional">
-                    <ParameterBlueprint name="Type" parameterType="String" maxOccurs="1" modality="optional">
-                        <AllowedValue>
-                            <S>Mass</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Constant Neutral Loss</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Constant Neutral Gain</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Precursor Ion</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Product Ion</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <Documentation literatureReferenceID="ASTM E2077-00">
-                                This section is recommended when operating the mass spectrometer in SIM mode.
-                            </Documentation>
-                            <S>Selected Ion Monitoring</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Selected Reaction Monitoring</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>other</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="MS Level" parameterType="Int" maxOccurs="1" modality="optional">
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Scan Direction" parameterType="String" modality="optional" maxOccurs="1">
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
-                        <AllowedValue>
-                            <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000092">Decreasing
-                                from
-                                high to low m/z
-                            </Documentation>
-                            <S>Decreasing</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000093">Increasing
-                                from
-                                low to high m/z
-                            </Documentation>
-                            <S>Increasing</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                    <CategoryBlueprint name="Neutral Loss Scan" maxOccurs="1" modality="optional">
-                        <ParameterBlueprint name="Mass Offset" parameterType="Numeric" modality="optional"
-                                            maxOccurs="1">
-                            <Documentation></Documentation>
-                            <Quantity name="Mass">
-                                &atomic_mass_unit;
-                            </Quantity>
-                        </ParameterBlueprint>
-                    </CategoryBlueprint>
-                    <CategoryBlueprint name="Precursor Ion Scan" modality="optional" maxOccurs="1">
-                        <ParameterBlueprint name="Precursor Ion Mass" parameterType="Numeric" modality="optional"
-                                            maxOccurs="1">
-                            <Quantity name="Mass">
-                                &atomic_mass_unit;
-                            </Quantity>
-                        </ParameterBlueprint>
-                    </CategoryBlueprint>
-                    <CategoryBlueprint name="Product Ion Scan" modality="optional" maxOccurs="1">
-                        <ParameterBlueprint name="Product Ion Mass" parameterType="Numeric" modality="optional"
-                                            maxOccurs="1">
-                            <Quantity name="Mass">
-                                &atomic_mass_unit;
-                            </Quantity>
-                        </ParameterBlueprint>
-                    </CategoryBlueprint>
-                    <CategoryBlueprint name="Selected Reaction Monitoring" modality="optional" maxOccurs="1">
-                        <Documentation>
-                            This section is recommended when operating the mass spectrometer in SRM mode.
+                <ParameterBlueprint name="Direction" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
+                    <AllowedValue>
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000092">Decreasing from
+                            high to low m/z
                         </Documentation>
-                        <CategoryBlueprint name="Collision Gas" maxOccurs="1" modality="optional">
-                            <!-- TODO: better documentation in this category! -->
-                            <!-- TODO: maybe this must be part of the analyzer category ... -->
-                            <ParameterBlueprint name="Type" parameterType="String">
-                                <Documentation>
-                                    The neutral gas that is used to collide with the target ions.
-                                </Documentation>
-                            </ParameterBlueprint>
-                            <ParameterBlueprint name="Pressure" parameterType="Numeric" maxOccurs="1"
-                                                modality="optional">
-                                <Documentation>
-                                    Gas pressure of the collision cell.
-                                </Documentation>
-                            </ParameterBlueprint>
-                            <ParameterBlueprint name="Energy" parameterType="Numeric" modality="optional" maxOccurs="1">
-                                <Documentation>
-                                    The collision energy.
-                                </Documentation>
-                                <Quantity name="energy">
-                                    &eV;
-                                </Quantity>
-                            </ParameterBlueprint>
-                            <ParameterBlueprint name="Normalized Energy" parameterType="Numeric" modality="optional"
-                                                maxOccurs="1">
-                                <Documentation>
-                                    The normalized collision energy.
-                                </Documentation>
-                                <Quantity name="normalized energy">
-                                    &arbitrary;
-                                </Quantity>
-                            </ParameterBlueprint>
-                        </CategoryBlueprint>
-                    </CategoryBlueprint>
+                        <S>Decreasing</S>
+                    </AllowedValue>
+                    <AllowedValue>
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000093">Increasing from
+                            low to high m/z
+                        </Documentation>
+                        <S>Increasing</S>
+                    </AllowedValue>
+                </ParameterBlueprint>
+                <CategoryBlueprint name="MRM Settings" modality="optional" maxOccurs="1">
+                    <Documentation>
+                        This section is recommended when operating the mass spectrometer for Selected Reaction Monitoring.
+                    </Documentation>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="SIM Settings" modality="optional">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        This section is recommended when operating the mass spectrometer in SIM mode.
+                    </Documentation>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Full Scan Settings" maxOccurs="1" modality="optional">
                     <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
                         <Documentation>The mass detection range of the instrumen.</Documentation>
                         <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
@@ -843,215 +741,207 @@
                             </Quantity>
                         </ParameterBlueprint>
                     </CategoryBlueprint>
-                    <CategoryBlueprint name="Scan Law">
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
-                            Description of the function of the mass scan law.
-                        </Documentation>
-                    </CategoryBlueprint>
                 </CategoryBlueprint>
-                <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
-                    <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
-                        <ParameterBlueprint name="Temperature" parameterType="Numeric" maxOccurs="1"
+                <CategoryBlueprint name="Scan Law">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
+                        Description of the function of the mass scan law.
+                    </Documentation>
+                </CategoryBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
+                <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
+                    <ParameterBlueprint name="Temperature" parameterType="Numeric" maxOccurs="1" modality="optional">
+                        <Documentation>
+                            Specifying the inlet temperature, if applicable.
+                        </Documentation>
+                        <Quantity name="Temperature">
+                            &K; &degC; &degF;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Ionization" modality="optional" maxOccurs="1">
+                    <ParameterBlueprint name="Temperature" parameterType="Numeric" modality="optional" maxOccurs="1">
+                        <Documentation literatureReferenceID="ASTM E2077-00">
+                            The temperature of the source.
+                        </Documentation>
+                        <Quantity name="temperature">
+                            &K; &degF; &degC;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Reagent Gas Pressure" parameterType="Float" modality="optional">
+                        <Documentation literatureReferenceID="ASTM E2077-00">
+                            The pressure of the reagent gas (only applicable for chemical ionization).
+                        </Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Filament Current" parameterType="Numeric" maxOccurs="1" modality="optional">
+                        <Documentation literatureReferenceID="ASTM E2077-00">Specifies the filament input current
+                        </Documentation>
+                        <Quantity name="Current">
+                            &A;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Emission Current" parameterType="Numeric" maxOccurs="1" modality="optional">
+                        <Documentation literatureReferenceID="ASTM E2077-00">
+                            The filament emission current (applicable for EI and CI).
+                        </Documentation>
+                        <Quantity name="current">
+                            &mA; &uA;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Accelerating Potential" parameterType="Float" modality="optional" maxOccurs="1">
+                        <Documentation literatureReferenceID="ASTM E2077-00">
+                            The accelerating potential in Volts.
+                        </Documentation>
+                        <Quantity name="Voltage">
+                            &V;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Analyzer" modality="optional" maxOccurs="unbounded">
+                    <ParameterBlueprint name="Magnetic Field Strength" parameterType="Numeric" maxOccurs="unbounded"
+                                        modality="optional">
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000025">
+                            Strength of the magnetic field of the mass analyzer.
+                        </Documentation>
+                        <Quantity name="Field Strength">
+                            &tesla;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Scan Offset" parameterType="Numeric">
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000803">
+                            Offset between two analyzers in a constant neutral loss or neutral gain scan. The value corresponds to the neutral loss or neutral gain value.
+                        </Documentation>
+                        <Quantity name="mass/charge">
+                            &mz;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Detector" modality="optional" maxOccurs="1">
+                    <ParameterBlueprint name="Entrance Potential" parameterType="Float" modality="optional"
+                                        maxOccurs="1">
+                        <Documentation literatureReferenceID="ASTM E2077-00">
+                            The potential across the detector in volts (if applicable).
+                        </Documentation>
+                        <Quantity name="Voltage">
+                            &V;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Potential" parameterType="Float" modality="optional" maxOccurs="1">
+                        <Documentation literatureReferenceID="ASTM E2077-00">
+                            The potential across the detector in volts (if applicable, e.g. electron multipliers or
+                            conversion
+                            dynodes).
+                        </Documentation>
+                        <Quantity name="Voltage">
+                            &V;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Reflectron State" parameterType="String" maxOccurs="1" modality="optional">
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000021">
+                            Status of the reflectron.
+                        </Documentation>
+                        <AllowedValue>
+                            <S>On</S>
+                        </AllowedValue>
+                        <AllowedValue>
+                            <S>Off</S>
+                        </AllowedValue>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Scan Rate" parameterType="Numeric" maxOccurs="1" modality="optional"> <!-- TODO: This could be a duplicate of Digitization Rate. But both terms are described in psi-ms-cv -->
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000015">The scan rate describes the number of scans that can be recorded per second.</Documentation>
+                        <Quantity name="scan rate">
+                            &mz_per_s;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <CategoryBlueprint name="A/D Converter" modality="optional">
+                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000117">
+                            An electronic integrated circuit (i/c) that converts continuous signals to discrete digital numbers.
+                        </Documentation>
+                        <ParameterBlueprint name="Digitization Rate" parameterType="Numeric" maxOccurs="1"
                                             modality="optional">
-                            <Documentation>
-                                Specifying the inlet temperature, if applicable.
-                            </Documentation>
-                            <Quantity name="Temperature">
-                                &K; &degC; &degF;
-                            </Quantity>
-                        </ParameterBlueprint>
-                    </CategoryBlueprint>
-                    <CategoryBlueprint name="Ionization" modality="optional" maxOccurs="1">
-                        <ParameterBlueprint name="Temperature" parameterType="Numeric" modality="optional"
-                                            maxOccurs="1">
                             <Documentation literatureReferenceID="ASTM E2077-00">
-                                The temperature of the source.
+                                At which rate the signal is detected by the Detector
                             </Documentation>
-                            <Quantity name="temperature">
-                                &K; &degF; &degC;
+                            <Quantity name="Hertz">
+                                &Hz;
                             </Quantity>
                         </ParameterBlueprint>
-                        <ParameterBlueprint name="Reagent Gas Pressure" parameterType="Float" modality="optional">
+                        <ParameterBlueprint name="Averaging Factor" parameterType="Float" modality="optional">
                             <Documentation literatureReferenceID="ASTM E2077-00">
-                                The pressure of the reagent gas (only applicable for chemical ionization).
+                                Number of raw values averaged to obtain a data point.
                             </Documentation>
+                            <Quantity name="Count"/>
                         </ParameterBlueprint>
-                        <ParameterBlueprint name="Filament Current" parameterType="Numeric" maxOccurs="1"
-                                            modality="optional">
-                            <Documentation literatureReferenceID="ASTM E2077-00">Specifies the filament input current
-                            </Documentation>
-                            <Quantity name="Current">
-                                &A;
-                            </Quantity>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Emission Current" parameterType="Numeric" maxOccurs="1"
-                                            modality="optional">
-                            <Documentation literatureReferenceID="ASTM E2077-00">
-                                The filament emission current (applicable for EI and CI).
-                            </Documentation>
-                            <Quantity name="current">
-                                &mA; &uA;
-                            </Quantity>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Accelerating Potential" parameterType="Float" modality="optional"
-                                            maxOccurs="1">
-                            <Documentation literatureReferenceID="ASTM E2077-00">
-                                The accelerating potential in Volts.
-                            </Documentation>
-                            <Quantity name="Voltage">
-                                &V;
-                            </Quantity>
-                        </ParameterBlueprint>
-                    </CategoryBlueprint>
-                    <CategoryBlueprint name="Analyzer" modality="optional" maxOccurs="unbounded">
-                        <ParameterBlueprint name="Magnetic Field Strength" parameterType="Numeric" maxOccurs="unbounded"
-                                            modality="optional">
-                            <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000025">
-                                Strength of the magnetic field of the mass analyzer.
-                            </Documentation>
-                            <Quantity name="Field Strength">
-                                &tesla;
-                            </Quantity>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Scan Offset" parameterType="Numeric">
-                            <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000803">
-                                Offset between two analyzers in a constant neutral loss or neutral gain scan. The value
-                                corresponds to the neutral loss or neutral gain value.
-                            </Documentation>
-                            <Quantity name="mass/charge">
-                                &mz;
-                            </Quantity>
-                        </ParameterBlueprint>
-                    </CategoryBlueprint>
-                    <CategoryBlueprint name="Detector" modality="optional" maxOccurs="1">
-                        <ParameterBlueprint name="Entrance Potential" parameterType="Float" modality="optional"
-                                            maxOccurs="1">
-                            <Documentation literatureReferenceID="ASTM E2077-00">
-                                The potential across the detector in volts (if applicable).
-                            </Documentation>
-                            <Quantity name="Voltage">
-                                &V;
-                            </Quantity>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Potential" parameterType="Float" modality="optional" maxOccurs="1">
-                            <Documentation literatureReferenceID="ASTM E2077-00">
-                                The potential across the detector in volts (if applicable, e.g. electron multipliers or
-                                conversion
-                                dynodes).
-                            </Documentation>
-                            <Quantity name="Voltage">
-                                &V;
-                            </Quantity>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Reflectron State" parameterType="String" maxOccurs="1"
-                                            modality="optional">
-                            <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000021">
-                                Status of the reflectron.
-                            </Documentation>
-                            <AllowedValue>
-                                <S>On</S>
-                            </AllowedValue>
-                            <AllowedValue>
-                                <S>Off</S>
-                            </AllowedValue>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Scan Rate" parameterType="Numeric" maxOccurs="1"
-                                            modality="optional"> <!-- TODO: This could be a duplicate of Digitization Rate. But both terms are described in psi-ms-cv -->
-                            <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000015">The scan rate
-                                describes the number of scans that can be recorded per second.
-                            </Documentation>
-                            <Quantity name="scan rate">
-                                &mz_per_s;
-                            </Quantity>
-                        </ParameterBlueprint>
-                        <CategoryBlueprint name="A/D Converter" modality="optional">
-                            <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000117">
-                                An electronic integrated circuit (i/c) that converts continuous signals to discrete
-                                digital
-                                numbers.
-                            </Documentation>
-                            <ParameterBlueprint name="Digitization Rate" parameterType="Numeric" maxOccurs="1"
-                                                modality="optional">
-                                <Documentation literatureReferenceID="ASTM E2077-00">
-                                    At which rate the signal is detected by the Detector
-                                </Documentation>
-                                <Quantity name="Hertz">
-                                    &Hz;
-                                </Quantity>
-                            </ParameterBlueprint>
-                            <ParameterBlueprint name="Averaging Factor" parameterType="Float" modality="optional">
-                                <Documentation literatureReferenceID="ASTM E2077-00">
-                                    Number of raw values averaged to obtain a data point.
-                                </Documentation>
-                                <Quantity name="Count"/>
-                            </ParameterBlueprint>
-                        </CategoryBlueprint>
                     </CategoryBlueprint>
                 </CategoryBlueprint>
             </CategoryBlueprint>
-            <CategoryBlueprint name="Spectrum Processing" modality="optional" maxOccurs="unbounded">
-                <Documentation>
-                    Algorithms and processing steps that are applied after the acquisition of the scan.
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Spectrum Processing" modality="optional" maxOccurs="unbounded">
+            <Documentation>
+                Algorithms and processing steps that are applied after the acquisition of the scan.
+            </Documentation>
+            <ParameterBlueprint name="Deisotoping" parameterType="Boolean" maxOccurs="1" modality="optional">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000033">
+                    The removal of isotope peaks to represent the fragment ion as one data point and is commonly done to reduce complexity. It is done in conjunction with the charge state deconvolution.
                 </Documentation>
-                <ParameterBlueprint name="Deisotoping" parameterType="Boolean" maxOccurs="1" modality="optional">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000033">
-                        The removal of isotope peaks to represent the fragment ion as one data point and is commonly
-                        done to
-                        reduce complexity. It is done in conjunction with the charge state deconvolution.
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Charge Deconvolution" parameterType="Boolean" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000034">
+                    The determination of the mass of an ion based on the mass spectral peaks that represent multiple-charge ions."
+                </Documentation>
+            </ParameterBlueprint>
+            <CategoryBlueprint name="Isolation Window" maxOccurs="unbounded" modality="optional">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000792">
+                    <!-- TODO: not sure whether this is the m/z window used, as a m/z tolerance for e.g. SIM mode -->
+                </Documentation>
+                <ParameterBlueprint name="Target" parameterType="Numeric" modality="required">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000827">
+                        Target for which the isolation window is defined.
                     </Documentation>
+                    <Quantity name="mass/charge">
+                        &mz;
+                    </Quantity>
                 </ParameterBlueprint>
-                <ParameterBlueprint name="Charge Deconvolution" parameterType="Boolean" modality="optional"
-                                    maxOccurs="1">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000034">
-                        The determination of the mass of an ion based on the mass spectral peaks that represent
-                        multiple-charge ions."
+                <ParameterBlueprint name="Lower Offset" parameterType="Numeric" modality="required">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000828">
+                        Lower offset of the target for which the isolation window is defined.
                     </Documentation>
+                    <Quantity name="mass/charge">
+                        &mz;
+                    </Quantity>
                 </ParameterBlueprint>
-                <CategoryBlueprint name="Isolation Window" maxOccurs="unbounded" modality="optional">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000792">
-                        <!-- TODO: not sure whether this is the m/z window used, as a m/z tolerance for e.g. SIM mode -->
+                <ParameterBlueprint name="Upper Offset" parameterType="Numeric" modality="required">
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000829">
+                        Upper offset of the target for which the isolation window is defined.
                     </Documentation>
-                    <ParameterBlueprint name="Target" parameterType="Numeric" modality="required">
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000827">
-                            Target for which the isolation window is defined.
-                        </Documentation>
-                        <Quantity name="mass/charge">
-                            &mz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Lower Offset" parameterType="Numeric" modality="required">
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000828">
-                            Lower offset of the target for which the isolation window is defined.
-                        </Documentation>
-                        <Quantity name="mass/charge">
-                            &mz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Upper Offset" parameterType="Numeric" modality="required">
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000829">
-                            Upper offset of the target for which the isolation window is defined.
-                        </Documentation>
-                        <Quantity name="mass/charge">
-                            &mz;
-                        </Quantity>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
+                    <Quantity name="mass/charge">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>
     </MethodBlueprint>
     <ResultBlueprint name="Spectrum" modality="optional">
-        <SeriesSetBlueprint name="Spectrum" modality="optional">
-            <SeriesBlueprint name="Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
-                             plotScale="linear">
-                <Documentation>The x-axis of the mass spectrum</Documentation>
-                <Quantity name="Mass/Charge Ratio">
-                    &mz;
-                </Quantity>
-            </SeriesBlueprint>
-            <SeriesBlueprint name="Precursor Mass/Charge" seriesType="Numeric" dependency="dependent" maxOccurs="1"
-                             modality="optional" plotScale="linear">
-                <Documentation>
-                    The mass of the precursor ions, when doing Selected Ion Monitoring.
+        <SeriesSetBlueprint name="Spectrum" modality="required">
+            <SeriesBlueprintChoice>
+                <SeriesBlueprint name="Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
+                                 plotScale="linear">
+                    <Documentation>The x-axis of the mass spectrum</Documentation>
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </SeriesBlueprint>
+                <SeriesBlueprint name="Product Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
+                                 plotScale="linear">
+                    <Documentation>The x-axis of the mass spectrum, if it is an SRM run.</Documentation>
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </SeriesBlueprint>
+            </SeriesBlueprintChoice>
+            <SeriesBlueprint name="Precursor Mass/Charge" seriesType="Numeric" dependency="independent" maxOccurs="1" modality="optional" plotScale="linear">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000341">
+                    The masses of the precursor ions.
                 </Documentation>
                 <Quantity name="Mass/Charge Ratio">
                     &mz;
@@ -1075,8 +965,7 @@
                     &percent;
                 </Quantity>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Transition Type" seriesType="String" maxOccurs="1" modality="optional"
-                             dependency="dependent" plotScale="none">
+            <SeriesBlueprint name="Transition Type" seriesType="String" maxOccurs="1" modality="optional" dependency="dependent" plotScale="none">
                 <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1002006">
                     The type of the transitions, e.g. target or decoy.
                 </Documentation>
@@ -1094,8 +983,7 @@
                     <S>Other</S>
                 </AllowedValue>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Transition ID" seriesType="String" modality="optional" maxOccurs="1"
-                             dependency="dependent" plotScale="none">
+            <SeriesBlueprint name="Transition ID" seriesType="String"  modality="optional" maxOccurs="1" dependency="dependent" plotScale="none">
                 <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001829">
 
                 </Documentation>
@@ -1128,10 +1016,7 @@
             </ParameterBlueprint>
             <ParameterBlueprint name="MS Level" parameterType="Int" modality="optional" maxOccurs="1">
                 <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000580">
-                    MSn refers to multi-stage MS2 experiments designed to record product ion spectra where n is the
-                    number of product ion stages (progeny ions). For ion traps, sequential MS/MS experiments can be
-                    undertaken where n > 2 whereas for a simple triple quadrupole system n=2. Use the term ms level
-                    (MS:1000511) for specifying n." [PSI:MS]
+                    MSn refers to multi-stage MS2 experiments designed to record product ion spectra where n is the number of product ion stages (progeny ions). For ion traps, sequential MS/MS experiments can be undertaken where n > 2 whereas for a simple triple quadrupole system n=2. Use the term ms level (MS:1000511) for specifying n." [PSI:MS]
                     synonym: "multiple-stage mass spectrometry spectrum
                 </Documentation>
             </ParameterBlueprint>

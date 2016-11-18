@@ -708,9 +708,9 @@
                         <S>Increasing</S>
                     </AllowedValue>
                 </ParameterBlueprint>
-                <CategoryBlueprint name="SRM Settings" modality="optional" maxOccurs="1">
+                <CategoryBlueprint name="MRM Settings" modality="optional" maxOccurs="1">
                     <Documentation>
-                        This section is recommended when operating the mass spectrometer in SRM mode.
+                        This section is recommended when operating the mass spectrometer for Selected Reaction Monitoring.
                     </Documentation>
                 </CategoryBlueprint>
                 <CategoryBlueprint name="SIM Settings" modality="optional">

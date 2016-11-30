@@ -331,8 +331,21 @@
                 </ParameterBlueprint>
                 <CategoryBlueprint name="SRM Settings" modality="optional" maxOccurs="1">
                     <Documentation>
-                        This section is recommended when operating the mass spectrometer in SRM mode.
+                        When operating the mass spectrometer in Selected Reaction Monitoring Mode.
                     </Documentation>
+                    <SeriesSetBlueprint name="Transitions">
+                        <SeriesBlueprint name="Stage" seriesType="Int" dependency="independent">
+                            <Documentation>
+                                Describing the number of stages from precursor ion(1) to the final product ion(n). Compare with MSn level.
+                            </Documentation>
+                        </SeriesBlueprint>
+                        <SeriesBlueprint name="Ion Mass" seriesType="Numeric" dependency="dependent">
+                            <Documentation>The involved masses from precursor ion(1) to the final product ion(n).</Documentation>
+                            <Quantity name="mass">
+                                &atomic_mass_unit;
+                            </Quantity>
+                        </SeriesBlueprint>
+                    </SeriesSetBlueprint>
                 </CategoryBlueprint>
                 <CategoryBlueprint name="SIM Settings" modality="optional">
                     <Documentation literatureReferenceID="ASTM E2077-00">
@@ -536,10 +549,6 @@
                     Time steps at which data is acquired.
                 </Documentation>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Scan" seriesType="Int" dependency="dependent" modality="optional" maxOccurs="1"
-                             plotScale="linear">
-                <Documentation>Number of the scan of the separation.</Documentation>
-            </SeriesBlueprint>
             <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
                              plotScale="linear">
                 <Quantity name="Abundance">
@@ -552,16 +561,6 @@
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="optional">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
-            <ParameterBlueprint  name="Scan Number" parameterType="Int" modality="optional">
-                <Documentation>Index of a single scan.</Documentation>
-                <Quantity name="Number">
-                    &arbitrary;
-                </Quantity>
-            </ParameterBlueprint >
-            <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
-                <Documentation>The total number of scans performed. This should be identical for the each single scan
-                </Documentation>
-            </ParameterBlueprint>
         </CategoryBlueprint>
     </ResultBlueprint>
 </Technique>

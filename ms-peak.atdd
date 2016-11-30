@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited by Patrick Boba(BSSN Software) -->
+
+<!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
+
+<Technique name="Mass Spectrometry Peak Annotation"
+           version="0.90"
+           xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
+    <Documentation>Definition for a mass spectrum peak annotation (peak table).
+    </Documentation>
+    <ResultBlueprint name="Annotations" modality="optional">
+        <SeriesSetBlueprint name="Spectrum Annotations" modality="required">
+            <SeriesBlueprint name="Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
+                             plotScale="linear">
+                <Documentation>The x-axis of the mass spectrum</Documentation>
+                <Quantity name="Mass/Charge Ratio">
+                    &mz; <!-- TODO: unit -->
+                </Quantity>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required" plotScale="linear">
+                <Documentation>The intensity of the target peaks.</Documentation>
+                <Quantity name="Abundance">
+                    &AU; &arbitrary; &percent;
+                </Quantity>
+                <Quantity name="Counts">
+                    &counts;
+                </Quantity>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Score" seriesType="Numeric" dependency="dependent" maxOccurs="1" modality="optional" plotScale="linear">
+                <Documentation>The score of a matched peak (usually a single score will be assigned to a group of peaks).</Documentation>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Adduct Group Name" seriesType="String" dependency="dependent" plotScale="none" modality="optional" maxOccurs="1">
+                <Documentation>The common name of the matched adduct (e.g. M+H, 2M+Hac-H, etc.) </Documentation>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Adduct Group Number" seriesType="Int" dependency="dependent" plotScale="none" modality="optional" maxOccurs="1">
+                <Documentation>
+                    Usually the matching/scoring is done with a group of peaks (isotope pattern). This parameter can be used to identify peaks that belong to a group
+                </Documentation>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Adduct Group Formula" seriesType="String" dependency="dependent" maxOccurs="1" modality="optional" plotScale="none">
+                <Documentation>
+                    The chemical formula that belongs to that isotope pattern.
+                </Documentation>
+            </SeriesBlueprint>
+        </SeriesSetBlueprint>
+    </ResultBlueprint>
+    <Bibliography> <!-- TODO: check references. Include mzml -->
+        <LiteratureReference literatureReferenceID="ASTM D1129-06A">
+            ASTM Standard D1129-06A: Standard Terminology Relating to Water, DOI: 10.1520/D1129-06A
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="ASTM E131-05">
+            ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="ASTM E135-09">
+            ASTM Standard E135-09: Standard Terminology Relating to Analytical Chemistry for Metals, Ores, and Related
+            Materials, DOI: 10.1520/E0135-09
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="ASTM E1142-07">
+            ASTM Standard E1142-07: Standard Terminology Relating to Thermophysical Properties, DOI: 10.1520/E1142-07
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="ASTM E2077-00">
+            ASTM Standard E2077-00 (2005): Standard Specification for Analytical Data Interchange Protocol for Mass
+            Spectrometric Data, DOI: 10.1520/E2077-00R05
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="JCAMP-DX IR">
+            McDonald, R. S., Wilks, P. A., "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer
+            Readable Form," Appl. Spectrosc., Vol 42, No 1, 1988, pp. 151-162.
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="CML">
+            Murray-Rust, P., Rzepa, H. S., "Chemical markup Language and XML Part I. Basic principles," J. Chem. Inf.
+            Comp. Sci., 1999, 39, 928.
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="Wiswesser">
+            Smith, E. G., "The Wiswesser Line-Formula Chemical Notation," 2nd ed., McGraw-Hill, New York, 1968
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="SMILES">
+            van de Waterbeemd, H., Carter, R.E., Grassy, G., Kubinyi, H., Martin, Y.C., Tute, M.S., Willett, P.,
+            "Glossary of terms used in computational drug design (IUPAC Recommendations 1997)," Pure Appl. Chem. 1997,
+            69, 1137-1152, DOI: 10.1351/pac199769051137
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="Appl Spectrosc">Appl. Spectrosc. 42, 1, 1988</LiteratureReference>
+        <LiteratureReference literatureReferenceID="Pure Appl Chem 97">Pure Appl. Chem., 1997, Vol. 69, No. 5, pp.
+            1137-1152
+            http://dx.doi.org/10.1351/pac199769051137
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="CAS">Chemical Abstracts Service, https://www.cas.org
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier,
+            http://iupac.org/who-we-are/divisions/division-details/inchi/
+        </LiteratureReference>
+        <LiteratureReference literatureReferenceID="Beilstein">Warr, Wendy A. Graphics for Chemical Structures:
+            Intregration with Text and Data. American chemical society, 1987.
+        </LiteratureReference>
+    </Bibliography>
+</Technique>

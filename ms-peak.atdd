@@ -29,17 +29,32 @@
                 </Documentation>
             </ParameterBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Scoring" maxOccurs="1" modality="optional">
+        <CategoryBlueprint name="Target Compound">
+            <CategoryBlueprint name="Name">
+
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Formula">
+
+            </CategoryBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Scoring Method" maxOccurs="1" modality="optional">
+            <Documentation>
+                Description of the applied scoring method.
+            </Documentation>
+        </CategoryBlueprint>
+    </MethodBlueprint>
+    <ResultBlueprint name="Scoring" modality="optional">
+        <CategoryBlueprint name="Scoring" modality="required">
+            <ParameterBlueprint name="Monoisotopic Mass" parameterType="Numeric">
+                <Quantity name="mass/charge">
+                    &mz;
+                </Quantity>
+            </ParameterBlueprint>
             <ParameterBlueprint name="Score" parameterType="Numeric">
                 <Documentation>
                     The score of a matched adduct isotope pattern.
                 </Documentation>
             </ParameterBlueprint>
-            <CategoryBlueprint name="Method">
-                <Documentation>
-                    Description of the applied scoring method.
-                </Documentation>
-            </CategoryBlueprint>
         </CategoryBlueprint>
-    </MethodBlueprint>
+    </ResultBlueprint>
 </Technique>

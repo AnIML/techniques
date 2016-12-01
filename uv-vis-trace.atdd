@@ -1031,12 +1031,6 @@
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Measurement Description" modality="optional">
             <Documentation>Information regarding the actual measurement performed.</Documentation>
-            <ParameterBlueprint name="Acquisition Wavelength" parameterType="Numeric" modality="optional">
-                <Documentation>The wavelength at which the observation takes place in this experiment step.</Documentation>
-                <Quantity name="Wavelength">
-                    &nm;
-                </Quantity>
-            </ParameterBlueprint>
             <ParameterBlueprint name="Experiment Duration" parameterType="Numeric" modality="optional">
                 <Documentation>Duration of the entire experiment covered by this ExperimentStep.</Documentation>
                 <Quantity name="Time">
@@ -1072,6 +1066,20 @@
                     &K; &degC; &degF;
                 </Quantity>
             </ParameterBlueprint>
+            <CategoryBlueprint name="Acquisition Wavelength" modality="optional" maxOccurs="1">
+                <ParameterBlueprint name="Lower Bound" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Documentation>The wavelength at which the observation takes place in this experiment step.</Documentation>
+                    <Quantity name="Wavelength">
+                        &nm;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Upper Bound" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Documentation>The wavelength at which the observation takes place in this experiment step.</Documentation>
+                    <Quantity name="Wavelength">
+                        &nm;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Ambient Conditions" modality="optional">
             <Documentation>Ambient temperature and pressure in the optical chamber during the experiment.

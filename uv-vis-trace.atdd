@@ -654,9 +654,9 @@
                 <Documentation>Sequence of polarizing elements used to modify the detector polarization for the
                     given wavelength ranges.
                 </Documentation>
-                <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="optional"
-                                 plotScale="none">
-                    <Documentation>The lower-bound x-axis value from which the given polarizer was used.
+                <SeriesBlueprint name="Lower Bound" seriesType="Float" dependency="dependent" modality="optional" plotScale="none">
+                    <Documentation>
+                        The lower-bound x-axis value from which the given polarizer was used.
                     </Documentation>
                     <Quantity name="Reciprocal Length">
                         &reciprocal_cm;

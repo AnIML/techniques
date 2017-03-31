@@ -9,7 +9,7 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
     <Documentation>A time trace acquired from a mass spectrometry measurement.</Documentation>
-    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional" maxOccurs="unbounded"> <!-- TODO: The cardinality has to be unbounded if the trace should reference all the spectra. -->
+    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional" maxOccurs="unbounded">
         <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the
             spectra (if applicable).
         </Documentation>
@@ -48,30 +48,6 @@
             </CategoryBlueprint>
             <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
                 <!-- TODO: Should we have Serial Numbers for each component? -->
-                <CategoryBlueprint name="Separation" modality="optional"> <!-- TODO: This category might be obsolete if there is a separation (chromatography.atdd) step referenced before -->
-                    <ParameterBlueprint name="Type" parameterType="String" maxOccurs="1" modality="optional">
-                        <Documentation>The separation method before running the MS</Documentation>
-                        <AllowedValue>
-                            <Documentation>Gas Chromatography</Documentation>
-                            <S>Gas Chromatography</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <Documentation>Liquid Chromatography</Documentation>
-                            <S>Liquid Chromatography</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <Documentation>Capillary Electrophoresis</Documentation>
-                            <S>Capillary Electrophoresis</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <Documentation>Ion Mobility Spectrometry</Documentation>
-                            <S>Ion Mobility Spectrometry</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Other</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
                 <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
                     <Documentation>
                         Information about the inlet used for the sample introduction.

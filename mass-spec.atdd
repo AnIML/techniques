@@ -127,8 +127,7 @@
             <ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
                 <Documentation>The pressure of the used sample, if different and separated from environment.
                 </Documentation>
-                <Quantity
-                        name="Pressure"> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
+                <Quantity name="Pressure"> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
                     &Pa; &psig; &bar;
                 </Quantity>
             </ParameterBlueprint>
@@ -399,6 +398,9 @@
             <ParameterBlueprint name="Method Name" parameterType="String" modality="optional">
                 <Documentation>Name of the method used for the measurement.</Documentation>
             </ParameterBlueprint>
+            <ParameterBlueprint name="Method ID" parameterType="String" maxOccurs="1" modality="optional">
+
+            </ParameterBlueprint>
             <ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
                 <Documentation>External reference to measurement method.</Documentation>
             </ParameterBlueprint>
@@ -407,7 +409,7 @@
             <Documentation>
                 Fixed characteristics of the instrument.
             </Documentation>
-            <CategoryBlueprint name="Description" modality="optional">
+            <CategoryBlueprint name="Device Information" modality="optional">
                 <Documentation>A textual description of the instrument.</Documentation>
                 <CategoryBlueprint name="Vendor" modality="optional" maxOccurs="1">
                     <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001269">
@@ -692,62 +694,6 @@
             <Documentation>
                 Variable characteristics or configuration parameters of the instrument.
             </Documentation>
-            <CategoryBlueprint name="Operation Mode" modality="optional" maxOccurs="1">
-                <ParameterBlueprint name="Direction" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
-                    <AllowedValue>
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000092">Decreasing from
-                            high to low m/z
-                        </Documentation>
-                        <S>Decreasing</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000093">Increasing from
-                            low to high m/z
-                        </Documentation>
-                        <S>Increasing</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <CategoryBlueprint name="SRM Settings" modality="optional" maxOccurs="1">
-                    <Documentation>
-                        When operating the mass spectrometer in Selected Reaction Monitoring Mode.
-                    </Documentation>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="SIM Settings" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E2077-00">
-                        This section is recommended when operating the mass spectrometer in SIM mode.
-                    </Documentation>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Full Scan Settings" maxOccurs="1" modality="optional">
-                    <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
-                        <Documentation>The mass detection range of the instrumen.</Documentation>
-                        <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
-                                            maxOccurs="1">
-                            <Quantity name="Mass">
-                                &atomic_mass_unit;
-                            </Quantity>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional"
-                                            maxOccurs="1">
-                            <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable
-                                samples
-                                (FALSE)
-                            </Documentation>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
-                                            maxOccurs="1">
-                            <Quantity name="Mass">
-                                &atomic_mass_unit;
-                            </Quantity>
-                        </ParameterBlueprint>
-                    </CategoryBlueprint>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Scan Law">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
-                        Description of the function of the mass scan law.
-                    </Documentation>
-                </CategoryBlueprint>
-            </CategoryBlueprint>
             <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
                 <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
                     <ParameterBlueprint name="Temperature" parameterType="Numeric" maxOccurs="1" modality="optional">
@@ -874,6 +820,75 @@
                         </ParameterBlueprint>
                     </CategoryBlueprint>
                 </CategoryBlueprint>
+            </CategoryBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Operation Mode" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="MSn Stages" parameterType="Numeric">
+                <Documentation>Total number of MS stages in a multi-stage MS experiment (In an SRM experiment the first stage would be the precursor, then product and so on).
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Direction" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
+                <AllowedValue>
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000092">Decreasing from
+                        high to low m/z
+                    </Documentation>
+                    <S>Decreasing</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000093">Increasing from
+                        low to high m/z
+                    </Documentation>
+                    <S>Increasing</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <CategoryBlueprint name="SRM Settings" modality="optional" maxOccurs="1">
+                <Documentation>
+                    When operating the mass spectrometer in Selected Reaction Monitoring Mode.
+                </Documentation>
+                <CategoryBlueprint name="Mass Resolution" maxOccurs="unbounded" modality="optional">
+                    <!-- TODO: Hi/Lo resolution for Waters as an extension? -->
+                    <ParameterBlueprint name="Q" parameterType="Numeric" maxOccurs="1" modality="required">
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Resolution" parameterType="Numeric" maxOccurs="1" modality="required">
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+                <CategoryBlueprint name="Mass Range">
+                    <ParameterBlueprint name="Start" parameterType="Numeric" modality="required" maxOccurs="1">
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Stop" parameterType="Numeric" modality="required" maxOccurs="1">
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Step" parameterType="Numeric" modality="required" maxOccurs="1"></ParameterBlueprint>
+                </CategoryBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Full Scan Settings" maxOccurs="1" modality="optional">
+                <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
+                    <Documentation>The mass detection range of the instrumen.</Documentation>
+                    <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional"
+                                        maxOccurs="1">
+                        <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable
+                            samples
+                            (FALSE)
+                        </Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Scan Law">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
+                    Description of the function of the mass scan law.
+                </Documentation>
             </CategoryBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Spectrum Processing" modality="optional" maxOccurs="unbounded">
@@ -1054,7 +1069,7 @@
                     <S>Unknown</S>
                 </AllowedValue>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Scan Polarity" parameterType="String" modality="optional" maxOccurs="1">
+            <ParameterBlueprint name="Polarity" parameterType="String" modality="optional" maxOccurs="1">
                 <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
                     information is crucial for the interpretation of the data.
                 </Documentation>

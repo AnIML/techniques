@@ -404,29 +404,146 @@
             <ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
                 <Documentation>External reference to measurement method.</Documentation>
             </ParameterBlueprint>
+            <ParameterBlueprint name="MSn Stages" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>Total number of MS stages in a multi-stage MS experiment (In an SRM experiment the first stage would be the precursor, then product and so on).
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="MS Level" parameterType="Int" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000580">
+                    MSn refers to multi-stage MS2 experiments designed to record product ion spectra where n is the number of product ion stages (progeny ions). For ion traps, sequential MS/MS experiments can be undertaken where n > 2 whereas for a simple triple quadrupole system n=2. Use the term ms level (MS:1000511) for specifying n." [PSI:MS]
+                    synonym: "multiple-stage mass spectrometry spectrum
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Direction" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
+                <AllowedValue>
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000092">Decreasing from
+                        high to low m/z
+                    </Documentation>
+                    <S>Decreasing</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000093">Increasing from
+                        low to high m/z
+                    </Documentation>
+                    <S>Increasing</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <CategoryBlueprint name="MS" modality="optional" maxOccurs="1">
+                <ParameterBlueprint name="Start" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Stop" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Step" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="MSMS" modality="optional" maxOccurs="1">
+                <ParameterBlueprint name="Start" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Stop" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Step" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Precursor Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="MS3" modality="optional" maxOccurs="1">
+                <ParameterBlueprint name="Start" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Stop" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Step" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Precursor Mass 1" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Precursor Mass 2" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Full Scan Settings" maxOccurs="1" modality="optional">
+                <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
+                    <Documentation>The mass detection range of the instrumen.</Documentation>
+                    <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional"
+                                        maxOccurs="1">
+                        <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable
+                            samples
+                            (FALSE)
+                        </Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
+                                        maxOccurs="1">
+                        <Quantity name="Mass">
+                            &atomic_mass_unit;
+                        </Quantity>
+                    </ParameterBlueprint>
+                </CategoryBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Scan Law">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
+                    Description of the function of the mass scan law.
+                </Documentation>
+            </CategoryBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Instrument Properties" modality="optional" maxOccurs="1">
             <Documentation>
                 Fixed characteristics of the instrument.
             </Documentation>
-            <CategoryBlueprint name="Device Information" modality="optional">
-                <Documentation>A textual description of the instrument.</Documentation>
-                <CategoryBlueprint name="Vendor" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001269">
-                        The vendor of the instrument.
-                    </Documentation>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Model" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000031">Information about the
-                        device model (not including vendor's name).
-                    </Documentation>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Serial Number" maxOccurs="1" modality="optional">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000529">
-                        The manufacturer's serial number for the device.
-                    </Documentation>
-                </CategoryBlueprint>
-            </CategoryBlueprint>
+            <ParameterBlueprint name="Vendor" parameterType="String" modality="optional">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001269">
+                    The vendor of the instrument.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Model" parameterType="String" modality="optional">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000031">Information about the
+                    device model (not including vendor's name).
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Serial Number" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000529">
+                    The manufacturer's serial number for the device.
+                </Documentation>
+            </ParameterBlueprint>
             <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
                 <!-- TODO: Should we have Serial Numbers for each component? -->
                 <CategoryBlueprint name="Separation" modality="optional"> <!-- TODO: This category might be obsolete if there is a separation (chromatography.atdd) step referenced before -->
@@ -799,6 +916,33 @@
                             &mz_per_s;
                         </Quantity>
                     </ParameterBlueprint>
+                    <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
+                        <Documentation>The total number of scans performed. This should be identical for the each single scan
+                        </Documentation>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Scan Number" parameterType="Int" modality="optional">
+                        <Documentation>Scan number of the current spectrum.</Documentation>
+                        <Quantity name="Number">
+                            &arbitrary;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Transition Type" parameterType="String" maxOccurs="1" modality="optional">
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Transition ID" parameterType="String" modality="optional" maxOccurs="1">
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Scan Duration" parameterType="Numeric" modality="optional">
+                        <Documentation>The time it took to create a single spectrum.</Documentation>
+                        <Quantity name="Time">
+                            &ms; &s;
+                        </Quantity>
+                    </ParameterBlueprint>
+                    <ParameterBlueprint name="Total Run Time" parameterType="Numeric" maxOccurs="1" modality="optional">
+                        <Documentation>The overall run time from beginning of the first injection to the end of the last scan.
+                        </Documentation>
+                        <Quantity name="time">
+                            &s; &min;
+                        </Quantity>
+                    </ParameterBlueprint>
                     <CategoryBlueprint name="A/D Converter" modality="optional">
                         <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000117">
                             An electronic integrated circuit (i/c) that converts continuous signals to discrete digital numbers.
@@ -820,75 +964,6 @@
                         </ParameterBlueprint>
                     </CategoryBlueprint>
                 </CategoryBlueprint>
-            </CategoryBlueprint>
-        </CategoryBlueprint>
-        <CategoryBlueprint name="Operation Mode" modality="optional" maxOccurs="1">
-            <ParameterBlueprint name="MSn Stages" parameterType="Numeric">
-                <Documentation>Total number of MS stages in a multi-stage MS experiment (In an SRM experiment the first stage would be the precursor, then product and so on).
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Direction" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
-                <AllowedValue>
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000092">Decreasing from
-                        high to low m/z
-                    </Documentation>
-                    <S>Decreasing</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000093">Increasing from
-                        low to high m/z
-                    </Documentation>
-                    <S>Increasing</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <CategoryBlueprint name="SRM Settings" modality="optional" maxOccurs="1">
-                <Documentation>
-                    When operating the mass spectrometer in Selected Reaction Monitoring Mode.
-                </Documentation>
-                <CategoryBlueprint name="Mass Resolution" maxOccurs="unbounded" modality="optional">
-                    <!-- TODO: Hi/Lo resolution for Waters as an extension? -->
-                    <ParameterBlueprint name="Q" parameterType="Numeric" maxOccurs="1" modality="required">
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Resolution" parameterType="Numeric" maxOccurs="1" modality="required">
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Mass Range">
-                    <ParameterBlueprint name="Start" parameterType="Numeric" modality="required" maxOccurs="1">
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Stop" parameterType="Numeric" modality="required" maxOccurs="1">
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Step" parameterType="Numeric" modality="required" maxOccurs="1"></ParameterBlueprint>
-                </CategoryBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Full Scan Settings" maxOccurs="1" modality="optional">
-                <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
-                    <Documentation>The mass detection range of the instrumen.</Documentation>
-                    <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1">
-                        <Quantity name="Mass">
-                            &atomic_mass_unit;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional"
-                                        maxOccurs="1">
-                        <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable
-                            samples
-                            (FALSE)
-                        </Documentation>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1">
-                        <Quantity name="Mass">
-                            &atomic_mass_unit;
-                        </Quantity>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Scan Law">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
-                    Description of the function of the mass scan law.
-                </Documentation>
             </CategoryBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Spectrum Processing" modality="optional" maxOccurs="unbounded">
@@ -937,6 +1012,8 @@
         </CategoryBlueprint>
     </MethodBlueprint>
     <ResultBlueprint name="Spectrum" modality="optional">
+        <Documentation>The result of a mass spectrometry scan; in this case a spectrum.
+        </Documentation>
         <SeriesSetBlueprint name="Spectrum" modality="required">
             <SeriesBlueprintChoice>
                 <SeriesBlueprint name="Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
@@ -954,14 +1031,6 @@
                     </Quantity>
                 </SeriesBlueprint>
             </SeriesBlueprintChoice>
-            <SeriesBlueprint name="Precursor Mass/Charge" seriesType="Numeric" dependency="independent" maxOccurs="1" modality="optional" plotScale="linear">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000341">
-                    The masses of the precursor ions.
-                </Documentation>
-                <Quantity name="Mass/Charge Ratio">
-                    &mz;
-                </Quantity>
-            </SeriesBlueprint>
             <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="optional"
                              plotScale="linear">
                 <Quantity name="Abundance">
@@ -980,73 +1049,9 @@
                     &percent;
                 </Quantity>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Transition Type" seriesType="String" maxOccurs="1" modality="optional" dependency="dependent" plotScale="none">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1002006">
-                    The type of the transitions, e.g. target or decoy.
-                </Documentation>
-                <AllowedValue>
-                    <Documentation literatureReferenceID="psi-ms"
-                                   literatureAccession="MS:1002007"></Documentation>
-                    <S>Target</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <Documentation literatureReferenceID="psi-ms"
-                                   literatureAccession="MS:1002008"></Documentation>
-                    <S>Decoy</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Other</S>
-                </AllowedValue>
-            </SeriesBlueprint>
-            <SeriesBlueprint name="Transition ID" seriesType="String"  modality="optional" maxOccurs="1" dependency="dependent" plotScale="none">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001829">
-
-                </Documentation>
-            </SeriesBlueprint>
         </SeriesSetBlueprint>
-        <CategoryBlueprint name="Measurement Description" modality="optional">
-            <Documentation>Information regarding the actual measurement performed.</Documentation>
-            <ParameterBlueprint name="Scan Number" parameterType="Int" modality="optional">
-                <Documentation>Scan number of the current spectrum.</Documentation>
-                <Quantity name="Number">
-                    &arbitrary;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Scan Duration" parameterType="Numeric" modality="optional">
-                <Documentation>The time it took to create a single spectrum.</Documentation>
-                <Quantity name="Time">
-                    &ms; &s;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
-                <Documentation>The total number of scans performed. This should be identical for the each single scan
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Total Run Time" parameterType="Numeric" maxOccurs="1" modality="optional">
-                <Documentation>The overall run time from beginning of the first injection to the end of the last scan.
-                </Documentation>
-                <Quantity name="time">
-                    &s; &min;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="MS Level" parameterType="Int" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000580">
-                    MSn refers to multi-stage MS2 experiments designed to record product ion spectra where n is the number of product ion stages (progeny ions). For ion traps, sequential MS/MS experiments can be undertaken where n > 2 whereas for a simple triple quadrupole system n=2. Use the term ms level (MS:1000511) for specifying n." [PSI:MS]
-                    synonym: "multiple-stage mass spectrometry spectrum
-                </Documentation>
-            </ParameterBlueprint>
-        </CategoryBlueprint>
+        <!-- TODO: I'm currently uncertain about some of those parameters. They might be moved into the method section. -->
         <CategoryBlueprint name="Spectrum Details" modality="optional" maxOccurs="1">
-            <ParameterBlueprint name="Base Peak Intensity" parameterType="Numeric">
-                <Quantity name="Abundance">
-                    &AU; &arbitrary;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Base Peak Mass" parameterType="Numeric">
-                <Quantity name="Mass">
-                    &atomic_mass_unit;
-                </Quantity>
-            </ParameterBlueprint>
             <ParameterBlueprint name="Total Ion Current" parameterType="Numeric">
                 <Quantity name="Abundance">
                     &AU; &arbitrary;
@@ -1070,9 +1075,9 @@
                 </AllowedValue>
             </ParameterBlueprint>
             <ParameterBlueprint name="Polarity" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
-                    information is crucial for the interpretation of the data.
-                </Documentation>
+                <!-- TODO: moved 'Polarity' completely out of method. Reason: The result needs to conatin this information anyway. -->                <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
+                information is crucial for the interpretation of the data.
+            </Documentation>
                 <AllowedValue>
                     <S>+</S>
                 </AllowedValue>
@@ -1088,7 +1093,19 @@
                 <AllowedValue>
                     <S>unknown</S>
                 </AllowedValue>
-            </ParameterBlueprint><!-- TODO: moved 'Polarity' completely out of method. Reason: The result needs to conatin this information anyway. -->
+            </ParameterBlueprint>
+            <CategoryBlueprint name="Base Peak" maxOccurs="1">
+                <ParameterBlueprint name="Mass" parameterType="Numeric">
+                    <Quantity name="Mass">
+                        &atomic_mass_unit;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Intensity" parameterType="Numeric">
+                    <Quantity name="Abundance">
+                        &AU; &arbitrary;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
         </CategoryBlueprint>
     </ResultBlueprint>
     <Bibliography>

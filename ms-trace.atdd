@@ -9,6 +9,385 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
     <Documentation>A time trace acquired from a mass spectrometry measurement.</Documentation>
+    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="true">
+        <Documentation literatureReferenceID="ASTM E135-09">A sub-sample selected from the properly prepared laboratory
+            sample which has a suitable sample weight or volume for one or more determinations by chemical analysis.
+            This sample role represents the sample that is analyzed in the given ExperimentStep.
+        </Documentation>
+        <CategoryBlueprint name="Sample Description" modality="optional" maxOccurs="1">
+            <Documentation>
+                Parameters describing the test sample
+            </Documentation>
+            <ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000002">
+                    Common, trade, or other names.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="ID" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation>
+                    A unique identifier given either by the device or the user.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Mass" parameterType="Float" modality="optional">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000004">Mass of the sample used
+                    to prepare the test material.
+                </Documentation>
+                <Quantity name="Mass">
+                    &mg;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Volume" parameterType="Float" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000005">Volume of the sample used
+                    to prepare the test material.
+                </Documentation>
+                <Quantity name="Volume">
+                    &mL; &L;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000006">Concentration of sample
+                    in solvent, if applicable.
+                </Documentation>
+                <Quantity name="Concentration">
+                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="State" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000003">Phase of matter of the
+                    sample.
+                </Documentation>
+                <AllowedValue>
+                    <S>solid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>amorphous solid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>crystalline solid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>liquid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>liquid crystal</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>gas</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>supercritical fluid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>colloid</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>plasma</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>crystal</S>
+                </AllowedValue>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Disposal Procedure" parameterType="String" modality="optional">
+                <Documentation literatureReferenceID="ASTM E2077-00">Sample disposal procedure, also in accordance with
+                    the U.S. Department of Labor Occupational Safety and Health Administration (OSHA) regulations.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Handling Precautions" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">Any safety issues which are of concern when the
+                    sample is manually handled.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Storage Information" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    Storage conditions for the sample.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Storage Location" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation>
+                    Location where sample is stored.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Receipt Time Stamp" parameterType="DateTime" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">Date and time the sample was received in the
+                    laboratory or submitted for analysis. This date and time is usually earlier than the ExperimentStep
+                    date/time stamp, and may be important when analysis of a sample must occur within a specified period
+                    after receipt.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Preparation Procedure" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">Textual description or name of the procedure used
+                    to prepare the sample for analysis and select a sample from its natural (bulk) matrix. For example:
+                    &quot;supercritical fluid extraction.&quot;.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
+                <Documentation>The pressure of the used sample, if different and separated from environment.
+                </Documentation>
+                <Quantity name="Pressure"> <!-- TODO: Don't know whether this parameter makes sense in this context. Documentation maybe wrong therefore. -->
+                    &Pa; &psig; &bar;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="JCAMP-DX IR">Sample temperature if significantly different from
+                    room temperature.
+                </Documentation>
+                <Quantity name="Temperature">
+                    &K; &degC; &degF;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Density" parameterType="Float" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="Appl Spectrosc">Density of the test sample.</Documentation>
+                <Quantity name="Density">
+                    &g_per_cm3;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Batch ID" parameterType="String" modality="optional"
+                                maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000053">
+                    Lot or batch name/number/ID
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Origin/Supplier" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation>Where the sample was obtained from.</Documentation>
+            </ParameterBlueprint>
+            <CategoryBlueprint name="Boiling Point" maxOccurs="1" modality="optional">
+                <Documentation>Temperature at which the vapor pressure of the sample equals ambient pressure under
+                    equilibrium boiling conditions.
+                </Documentation>
+                <ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
+                    <Documentation>Lower bound of boiling temperature range. Use only this value if sample has an actual
+                        boiling "point".
+                    </Documentation>
+                    <Quantity name="Temperature">
+                        &K; &degC; &degF;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+                    <Documentation>Upper bound of boiling temperature range.</Documentation>
+                    <Quantity name="Temperature">
+                        &K; &degC; &degF;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Pressure" parameterType="Float" modality="optional" maxOccurs="1">
+                    <Documentation>Pressure at which the boiling point has been determined. If not given, ambient
+                        pressure is assumed.
+                    </Documentation>
+                    <Quantity name="Pressure">
+                        &Pa; &psig; &bar;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Melting Point" maxOccurs="1" modality="optional">
+                <Documentation literatureReferenceID="ASTM E1142-07">In a phase diagram, the temperature at which the
+                    liquidus and solidus coincide at an invariant point.
+                </Documentation>
+                <ParameterBlueprint name="Minimum Temperature" parameterType="Float" modality="required" maxOccurs="1">
+                    <Documentation>Lower bound of melting temperature range. Use only this value if sample has an actual
+                        melting "point".
+                    </Documentation>
+                    <Quantity name="Temperature">
+                        &K; &degC; &degF;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Maximum Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+                    <Documentation>Upper bound of melting temperature range.</Documentation>
+                    <Quantity name="Temperature">
+                        &K; &degC; &degF;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Refractive Index" maxOccurs="1" modality="optional">
+                <Documentation literatureReferenceID="ASTM E131-05">
+                    The phase velocity of radiant power in a vacuum divided by the phase velocity of the same radiant
+                    power in a specified medium. When one medium is a vacuum, n is the ratio of the sine of the angle of
+                    incidence to the sine of the angle of refraction.
+                </Documentation>
+                <ParameterBlueprint name="Index" parameterType="Float" modality="required" maxOccurs="1">
+                    <Documentation>Refractive index of the sample.</Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Temperature" parameterType="Float" modality="optional" maxOccurs="1">
+                    <Documentation>Temperature at which the refractive index has been determined.</Documentation>
+                    <Quantity name="Temperature">
+                        &K; &degC; &degF;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Wavelength" parameterType="Numeric" modality="optional" maxOccurs="1">
+                    <Documentation>
+                        Wavelength at which the refractive index has been determined. If not given, the Sodium-D line is
+                        assumed.
+                    </Documentation>
+                    <Quantity name="Length">
+                        &nm;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+        </CategoryBlueprint>
+        <CategoryBlueprint name="Substance Description" modality="optional" maxOccurs="unbounded">
+            <Documentation>Parameters describing a substance in the sample. A sample may contain multiple substances.
+            </Documentation>
+            <ParameterBlueprint name="Descriptive Name" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation>User-assigned common, trade, or other substance name.</Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Concentration" parameterType="Float" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="Appl Spectrosc">Concentration of known components and impurities;
+                </Documentation>
+                <Quantity name="Concentration">
+                    &mg_per_mL; &mL_per_mL; &ug_per_g; &mol_per_L;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Molecular Formula" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="JCAMP-DX IR">Molecular formula. Elemental symbols are arranged
+                    with carbon first, followed by hydrogen, and then remaining element symbols in alphabetical order.
+                    The first letter of each elemental symbol is capitalized. The second letter, if required, is lower
+                    case. One-letter symbols must be separated from the next symbol by a blank or digit.
+                    Sub-/superscripts are indicated by the prefixes / and ^, respectively. Sub-/superscripts are
+                    terminated by the next nondigit. Slash may be omitted for subscripts. For readability, each atomic
+                    symbol may be separated from its predecessor by a space. For substances which are represented by
+                    dot-disconnected formulas (hydrates, etc.), each fragment is represented in the above order, and the
+                    dot is represented by *. Isotopic mass is specified by a leading superscript. D and T may be used
+                    for deuterium and tritium, respectively. Examples: C2H4O2 or C2 H4 O2 (acetic acid), C6 H9 Cr O6 *
+                    H2 O (chromic acetate monohydrate), H2 ^17O (water, mass 17 oxygen).
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Molar Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>The molar mass is a physical property defined as the mass of a given compound divided by
+                    the amount of it.
+                </Documentation>
+                <Quantity name="Molar Mass">
+                    &g_per_mol; &kg_per_mol;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Nominal Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>The nominal mass is a physical property defined as the integer mass (without mass defect)
+                    of the most abundant isotopes of a given compound.
+                </Documentation>
+                <Quantity name="Mass">
+                    &g; &ug; &ng;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Mono Isotopic Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>The nominal mass is a physical property defined as the mass of the most abundant isotopes
+                    of a given compound.
+                </Documentation>
+                <Quantity name="Mass">
+                    &g; &ug; &ng;
+                </Quantity>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Average Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
+                <Documentation>The average mass is a physical property defined as the mass (without mass defect) of the
+                    average mass of all isotope of a given compound.
+                </Documentation>
+                <Quantity name="Mass">
+                    &g; &ug; &ng;
+                </Quantity>
+            </ParameterBlueprint>
+            <CategoryBlueprint name="Chemical Structure" maxOccurs="1" modality="optional">
+                <Documentation>Description of the chemical structure</Documentation>
+                <ParameterBlueprint name="SMILES" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="SMILES">Chemical structure as a string using the Simplified
+                        Molecular Input Line Entry System (SMILES) syntax.
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Wiswesser" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="Wiswesser">The Wiswesser line notation is a precise and
+                        concise means of expressing structural formulas as character strings. The basic idea is to use
+                        letter symbols to denote functional groups and numbers to express the lengths of chains and the
+                        sizes of rings.
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="MOL File" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="Pure Appl Chem 97">Chemical structure expressed as MOL File.
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="CML" parameterType="EmbeddedXML" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="CML">Chemical structure expressed in the Chemical Markup
+                        Language (CML).
+                    </Documentation>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Chemical Identifier" maxOccurs="1" modality="optional">
+                <Documentation literatureReferenceID="CAS">Set of different identifiers describing a substance.
+                </Documentation>
+                <ParameterBlueprint name="CAS Name" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="CAS">Name according to Chemical Abstracts naming conventions.
+                        See Appendix IV of the 1985
+                        CAS Index Guide.
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="CAS Registry Number" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="CAS">CAS Registry Numbers for many compounds can be found in
+                        Chemical Abstracts indices,
+                        Merck Index, or CAS ONLINE.
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="InChI" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier of the
+                        substance. See Chem. Intl. 2006, 28,
+                        12.
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="InChI Key" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="IUPAC InChI">Hash value of IUPAC International Chemical
+                        Identifier of the substance. See Chem.
+                        Intl. 2006, 28, 12.
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Beilstein Lawson Number" parameterType="String" modality="optional"
+                                    maxOccurs="1">
+                    <Documentation literatureReferenceID="Beilstein">Structural formula clustering code based on the
+                        Beilstein System. It is used for
+                        locating information in Beilstein databases. The code contains only structural information and
+                        can be generated locally on microcomputers from connection table data alone. A simple
+                        description of the algorithm has been published (see Bibliography).
+                    </Documentation>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Database" modality="optional" maxOccurs="unbounded">
+                <Documentation>
+                    A reference to an external database like NIST, etc.
+                </Documentation>
+                <ParameterBlueprint name="External" parameterType="Boolean" maxOccurs="1" modality="optional">
+                    <Documentation>Using either an internal or external database.</Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Name" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation>
+                        Official database name
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Entry Name" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        The substance name as found in the database. May not be identical with other parameters like
+                        "Descriptive Name".
+                    </Documentation>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Entry ID" parameterType="String" modality="optional" maxOccurs="1">
+                    <Documentation literatureReferenceID="ASTM E2077-00">
+                        An identifier that specifies the Substance in an external library.
+                    </Documentation>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+        </CategoryBlueprint>
+    </SampleRoleBlueprint>
+    <SampleRoleBlueprint name="Reference Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
+                         inheritable="true">
+    </SampleRoleBlueprint>
+    <SampleRoleBlueprint name="Qualification Reference" samplePurpose="consumed" modality="optional" maxOccurs="1"
+                         inheritable="false">
+        <Documentation>Reference to the sample used for calibration. A document reference about the qualification test
+            often used in a QA/QC setting. This is only a reference, so no parameters are required.
+        </Documentation>
+    </SampleRoleBlueprint>
+    <SampleRoleBlueprint name="Proficiency Reference" samplePurpose="consumed" modality="optional" maxOccurs="1"
+                         inheritable="false">
+        <Documentation>Reference to the most recent successful proficiency test sample the analyst/system has been
+            confronted with. This is only a reference, so no parameters are required.
+        </Documentation>
+    </SampleRoleBlueprint>
+    <SampleRoleBlueprint name="Calibration Reference" samplePurpose="consumed" modality="optional"
+                         maxOccurs="1" inheritable="false">
+        <Documentation>The material sample or lamp used to calibrate the device.
+        </Documentation>
+    </SampleRoleBlueprint>
     <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional" maxOccurs="unbounded">
         <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the
             spectra (if applicable).
@@ -23,29 +402,60 @@
             <ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
                 <Documentation>External reference to measurement method.</Documentation>
             </ParameterBlueprint>
+
+
+            <CategoryBlueprint name="SRM Settings" modality="optional" maxOccurs="1">
+                <Documentation>
+                    When operating the mass spectrometer in Selected Reaction Monitoring Mode.
+                </Documentation>
+                <ParameterBlueprint name="Dwell Time" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Time">
+                        &min; &s;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Q1 Mass" parameterType="Numeric" maxOccurs="unbounded" modality="optional">
+                    <Documentation>The mass selected in the first detection step (Q1).</Documentation>
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Q3 Mass" parameterType="Numeric" maxOccurs="unbounded" modality="optional">
+                    <Documentation>The mass selected in the second detection step (Q3).</Documentation>
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="SIM" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    This section is recommended when operating the mass spectrometer in SIM mode.
+                </Documentation>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="Scan Law">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
+                    Description of the function of the mass scan law.
+                </Documentation>
+            </CategoryBlueprint>
         </CategoryBlueprint>
         <CategoryBlueprint name="Instrument Properties" modality="optional" maxOccurs="1">
             <Documentation>
                 Fixed characteristics of the instrument.
             </Documentation>
-            <CategoryBlueprint name="Description" modality="optional">
-                <Documentation>A textual description of the instrument.</Documentation>
-                <CategoryBlueprint name="Vendor" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001269">
-                        The vendor of the instrument.
-                    </Documentation>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Model" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000031">Information about the
-                        device model (not including vendor's name).
-                    </Documentation>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Serial Number" maxOccurs="1" modality="optional">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000529">
-                        The manufacturer's serial number for the device.
-                    </Documentation>
-                </CategoryBlueprint>
-            </CategoryBlueprint>
+            <ParameterBlueprint name="Vendor" parameterType="String" modality="optional">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1001269">
+                    The vendor of the instrument.
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Model" parameterType="String" modality="optional">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000031">Information about the
+                    device model (not including vendor's name).
+                </Documentation>
+            </ParameterBlueprint>
+            <ParameterBlueprint name="Serial Number" parameterType="String" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000529">
+                    The manufacturer's serial number for the device.
+                </Documentation>
+            </ParameterBlueprint>
             <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
                 <!-- TODO: Should we have Serial Numbers for each component? -->
                 <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
@@ -289,75 +699,6 @@
             <Documentation>
                 Variable characteristics or configuration parameters of the instrument.
             </Documentation>
-            <CategoryBlueprint name="Operation Mode" modality="optional" maxOccurs="1">
-                <ParameterBlueprint name="Direction" parameterType="String" modality="optional" maxOccurs="1">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
-                    <AllowedValue>
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000092">Decreasing from
-                            high to low m/z
-                        </Documentation>
-                        <S>Decreasing</S>
-                    </AllowedValue>
-                    <AllowedValue>
-                        <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000093">Increasing from
-                            low to high m/z
-                        </Documentation>
-                        <S>Increasing</S>
-                    </AllowedValue>
-                </ParameterBlueprint>
-                <CategoryBlueprint name="SRM Settings" modality="optional" maxOccurs="1">
-                    <Documentation>
-                        When operating the mass spectrometer in Selected Reaction Monitoring Mode.
-                    </Documentation>
-                    <SeriesSetBlueprint name="Transitions">
-                        <SeriesBlueprint name="Stage" seriesType="Int" dependency="independent">
-                            <Documentation>
-                                Describing the number of stages from precursor ion(1) to the final product ion(n). Compare with MSn level.
-                            </Documentation>
-                        </SeriesBlueprint>
-                        <SeriesBlueprint name="Ion Mass" seriesType="Numeric" dependency="dependent">
-                            <Documentation>The involved masses from precursor ion(1) to the final product ion(n).</Documentation>
-                            <Quantity name="mass">
-                                &atomic_mass_unit;
-                            </Quantity>
-                        </SeriesBlueprint>
-                    </SeriesSetBlueprint>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="SIM Settings" modality="optional">
-                    <Documentation literatureReferenceID="ASTM E2077-00">
-                        This section is recommended when operating the mass spectrometer in SIM mode.
-                    </Documentation>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Full Scan Settings" maxOccurs="1" modality="optional">
-                    <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
-                        <Documentation>The mass detection range of the instrumen.</Documentation>
-                        <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
-                                            maxOccurs="1">
-                            <Quantity name="Mass">
-                                &atomic_mass_unit;
-                            </Quantity>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional"
-                                            maxOccurs="1">
-                            <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable
-                                samples
-                                (FALSE)
-                            </Documentation>
-                        </ParameterBlueprint>
-                        <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
-                                            maxOccurs="1">
-                            <Quantity name="Mass">
-                                &atomic_mass_unit;
-                            </Quantity>
-                        </ParameterBlueprint>
-                    </CategoryBlueprint>
-                </CategoryBlueprint>
-                <CategoryBlueprint name="Scan Law">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
-                        Description of the function of the mass scan law.
-                    </Documentation>
-                </CategoryBlueprint>
-            </CategoryBlueprint>
             <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
                 <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
                     <ParameterBlueprint name="Temperature" parameterType="Numeric" maxOccurs="1" modality="optional">
@@ -486,10 +827,32 @@
                 </CategoryBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Chromatogram Type" modality="optional" maxOccurs="1">
-            <ParameterBlueprint name="Type" parameterType="String"  modality="required">
+    </MethodBlueprint>
+    <ResultBlueprint name="Ion Chromatogram" modality="optional">
+        <Documentation>The result of a mass spectrometry scan. In this
+            case it contains data recorded along the time axis (a chromatogram).
+        </Documentation>
+        <SeriesSetBlueprint name="Ion Chromatogram" modality="optional">
+            <SeriesBlueprint name="Time" seriesType="Numeric" dependency="independent" modality="required"
+                             plotScale="linear">
                 <Documentation>
-                    The type of the chromatogram extracted from the referenced spectra.
+                    Time steps at which data is acquired.
+                </Documentation>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
+                             plotScale="linear">
+                <Quantity name="Abundance">
+                    &AU; &arbitrary; &percent;
+                </Quantity>
+                <Quantity name="Counts">
+                    &counts;
+                </Quantity>
+            </SeriesBlueprint>
+        </SeriesSetBlueprint>
+        <CategoryBlueprint name="Data Description">
+            <ParameterBlueprint name="Data Type" parameterType="String"  modality="required">
+                <Documentation>
+                    The type of the chromatogram (trace) extracted from the referenced spectra.
                 </Documentation>
                 <AllowedValue>
                     <Documentation>Extracted Ion Chromatogram</Documentation>
@@ -512,31 +875,13 @@
                     <S>SRM</S>
                 </AllowedValue>
                 <AllowedValue>
+                    <Documentation>Multiple Reaction Monitoring</Documentation>
+                    <S>MRM</S>
+                </AllowedValue>
+                <AllowedValue>
                     <S>Other</S>
                 </AllowedValue>
             </ParameterBlueprint>
-        </CategoryBlueprint>
-    </MethodBlueprint>
-    <ResultBlueprint name="Mass Spectrum Time Trace" modality="optional">
-        <SeriesSetBlueprint name="Ion Chromatogram" modality="optional">
-            <SeriesBlueprint name="Time" seriesType="Numeric" dependency="independent" modality="required"
-                             plotScale="linear">
-                <Documentation>
-                    Time steps at which data is acquired.
-                </Documentation>
-            </SeriesBlueprint>
-            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
-                             plotScale="linear">
-                <Quantity name="Abundance">
-                    &AU; &arbitrary; &percent;
-                </Quantity>
-                <Quantity name="Counts">
-                    &counts;
-                </Quantity>
-            </SeriesBlueprint>
-        </SeriesSetBlueprint>
-        <CategoryBlueprint name="Measurement Description" modality="optional">
-            <Documentation>Information regarding the actual measurement performed.</Documentation>
         </CategoryBlueprint>
     </ResultBlueprint>
 </Technique>

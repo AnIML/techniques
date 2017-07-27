@@ -828,11 +828,11 @@
             </CategoryBlueprint>
         </CategoryBlueprint>
     </MethodBlueprint>
-    <ResultBlueprint name="Ion Chromatogram" modality="optional">
+    <ResultBlueprint name="Mass Chromatogram" modality="optional">
         <Documentation>The result of a mass spectrometry scan. In this
             case it contains data recorded along the time axis (a chromatogram).
         </Documentation>
-        <SeriesSetBlueprint name="Ion Chromatogram" modality="optional">
+        <SeriesSetBlueprint name="Mass Chromatogram" modality="optional">
             <SeriesBlueprint name="Time" seriesType="Numeric" dependency="independent" modality="required"
                              plotScale="linear">
                 <Documentation>
@@ -855,11 +855,11 @@
                     The type of the chromatogram (trace) extracted from the referenced spectra.
                 </Documentation>
                 <AllowedValue>
-                    <Documentation>Extracted Ion Chromatogram</Documentation>
+                    <Documentation>Extracted Mass Chromatogram</Documentation>
                     <S>XIC</S>
                 </AllowedValue>
                 <AllowedValue>
-                    <Documentation>Total Ion Chromatogram</Documentation>
+                    <Documentation>Total Mass Chromatogram</Documentation>
                     <S>TIC</S>
                 </AllowedValue>
                 <AllowedValue>

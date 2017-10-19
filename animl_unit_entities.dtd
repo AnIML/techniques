@@ -76,6 +76,7 @@
         <!ENTITY mL_per_mL "<Unit label='mL/mL'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
         <!ENTITY mL_per_L "<Unit label='mL/L'><SIUnit exponent='3' factor='1e-6'>m</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">
         <!ENTITY ug_per_g "<Unit label='µg/g'><SIUnit exponent='1' factor='1e-9'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>kg</SIUnit></Unit>">
+        <!ENTITY ng_per_mL "<Unit label='ng/g'><SIUnit exponent='1' factor='1e-12'>kg</SIUnit><SIUnit exponent='-1' factor='1e-3'>m</SIUnit></Unit>">
         <!ENTITY g_per_mL "<Unit label='g/mL'><SIUnit exponent='1' factor='1e-3'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
         <!ENTITY ug_per_mL "<Unit label='µg/mL'><SIUnit exponent='1' factor='1e-12'>kg</SIUnit><SIUnit exponent='-3' factor='1e-6'>m</SIUnit></Unit>">
         <!ENTITY mol_per_L "<Unit label='mol/L'><SIUnit exponent='1' factor='1'>mol</SIUnit><SIUnit exponent='-3' factor='1e-3'>m</SIUnit></Unit>">

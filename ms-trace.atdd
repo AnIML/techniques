@@ -3,18 +3,14 @@
 
 <!DOCTYPE Technique SYSTEM "animl_unit_entities.dtd">
 
-<Technique name="Mass Spectrometry"
+<Technique name="Mass Spectrum Time Trace"
            version="0.90"
            xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
-    <Documentation>Technique Definition for Mass Spectrometry (The study of matter through the formation of gaseous ions
-        that are characterized by their mass and charge. "Standard Definitions of Terms Relating to Mass Spectrometry",
-        Second Draft, May 2006 IUPAC, Analytical Chemistry Division. It is a detection (sample measuring) technique.
-    </Documentation>
-    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="optional" maxOccurs="1"
-                         inheritable="true">
-        <Documentation literatureReferenceID="ASTM E135-09">A subsample selected from the properly prepared laboratory
+    <Documentation>A time trace acquired from a mass spectrometry measurement.</Documentation>
+    <SampleRoleBlueprint name="Test Sample" samplePurpose="consumed" modality="optional" maxOccurs="1" inheritable="true">
+        <Documentation literatureReferenceID="ASTM E135-09">A sub-sample selected from the properly prepared laboratory
             sample which has a suitable sample weight or volume for one or more determinations by chemical analysis.
             This sample role represents the sample that is analyzed in the given ExperimentStep.
         </Documentation>
@@ -392,132 +388,48 @@
         <Documentation>The material sample or lamp used to calibrate the device.
         </Documentation>
     </SampleRoleBlueprint>
+    <ExperimentDataRoleBlueprint name="Data Source" experimentStepPurpose="consumed" modality="optional" maxOccurs="unbounded">
+        <Documentation>Reference to the chromatography separation or indexing experiment step. This step would hold the
+            spectra (if applicable).
+        </Documentation>
+    </ExperimentDataRoleBlueprint>
     <MethodBlueprint>
         <CategoryBlueprint name="Method Description" modality="optional">
             <Documentation>Basic contextual information about the measurement method.</Documentation>
             <ParameterBlueprint name="Method Name" parameterType="String" modality="optional">
                 <Documentation>Name of the method used for the measurement.</Documentation>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Method ID" parameterType="String" maxOccurs="1" modality="optional">
-
-            </ParameterBlueprint>
             <ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
                 <Documentation>External reference to measurement method.</Documentation>
             </ParameterBlueprint>
-            <ParameterBlueprint name="MSn Stages" parameterType="Numeric" modality="optional" maxOccurs="1">
-                <Documentation>Total number of MS stages in a multi-stage MS experiment (In an SRM experiment the first stage would be the precursor, then product and so on).
+
+
+            <CategoryBlueprint name="SRM Settings" modality="optional" maxOccurs="1">
+                <Documentation>
+                    When operating the mass spectrometer in Selected Reaction Monitoring Mode.
                 </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="MS Level" parameterType="Int" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000580">
-                    MSn refers to multi-stage MS2 experiments designed to record product ion spectra where n is the number of product ion stages (progeny ions). For ion traps, sequential MS/MS experiments can be undertaken where n > 2 whereas for a simple triple quadrupole system n=2. Use the term ms level (MS:1000511) for specifying n." [PSI:MS]
-                    synonym: "multiple-stage mass spectrometry spectrum
+                <ParameterBlueprint name="Dwell Time" parameterType="Numeric" maxOccurs="1" modality="optional">
+                    <Quantity name="Time">
+                        &min; &s;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Q1 Mass" parameterType="Numeric" maxOccurs="unbounded" modality="optional">
+                    <Documentation>The mass selected in the first detection step (Q1).</Documentation>
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+                <ParameterBlueprint name="Q3 Mass" parameterType="Numeric" maxOccurs="unbounded" modality="optional">
+                    <Documentation>The mass selected in the second detection step (Q3).</Documentation>
+                    <Quantity name="Mass/Charge Ratio">
+                        &mz;
+                    </Quantity>
+                </ParameterBlueprint>
+            </CategoryBlueprint>
+            <CategoryBlueprint name="SIM" modality="optional" maxOccurs="1">
+                <Documentation literatureReferenceID="ASTM E2077-00">
+                    This section is recommended when operating the mass spectrometer in SIM mode.
                 </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Direction" parameterType="String" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000018"></Documentation>
-                <AllowedValue>
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000092">Decreasing from
-                        high to low m/z
-                    </Documentation>
-                    <S>Decreasing</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000093">Increasing from
-                        low to high m/z
-                    </Documentation>
-                    <S>Increasing</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <CategoryBlueprint name="MS" modality="optional" maxOccurs="1">
-                <ParameterBlueprint name="Start" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Stop" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Step" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="MSMS" modality="optional" maxOccurs="1">
-                <ParameterBlueprint name="Start" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Stop" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Step" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Precursor Mass" parameterType="Numeric" modality="optional" maxOccurs="1">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="MS3" modality="optional" maxOccurs="1">
-                <ParameterBlueprint name="Start" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Stop" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Step" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Precursor Mass 1" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Precursor Mass 2" parameterType="Numeric" maxOccurs="1" modality="optional">
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-            <CategoryBlueprint name="Full Scan Settings" maxOccurs="1" modality="optional">
-                <CategoryBlueprint name="Mass Range" modality="optional" maxOccurs="1">
-                    <Documentation>The mass detection range of the instrumen.</Documentation>
-                    <ParameterBlueprint name="Lower Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1">
-                        <Quantity name="Mass">
-                            &atomic_mass_unit;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Uniform Sampling" parameterType="Boolean" modality="optional"
-                                        maxOccurs="1">
-                        <Documentation>Wether the samplings happen uniformly in time (TRUE) or with time variable
-                            samples
-                            (FALSE)
-                        </Documentation>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Upper Mass Limit" parameterType="Numeric"
-                                        maxOccurs="1">
-                        <Quantity name="Mass">
-                            &atomic_mass_unit;
-                        </Quantity>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
             </CategoryBlueprint>
             <CategoryBlueprint name="Scan Law">
                 <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000019">
@@ -546,30 +458,6 @@
             </ParameterBlueprint>
             <CategoryBlueprint name="Components" maxOccurs="1" modality="optional">
                 <!-- TODO: Should we have Serial Numbers for each component? -->
-                <CategoryBlueprint name="Separation" modality="optional"> <!-- TODO: This category might be obsolete if there is a separation (chromatography.atdd) step referenced before -->
-                    <ParameterBlueprint name="Type" parameterType="String" maxOccurs="1" modality="optional">
-                        <Documentation>The separation method before running the MS</Documentation>
-                        <AllowedValue>
-                            <Documentation>Gas Chromatography</Documentation>
-                            <S>Gas Chromatography</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <Documentation>Liquid Chromatography</Documentation>
-                            <S>Liquid Chromatography</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <Documentation>Capillary Electrophoresis</Documentation>
-                            <S>Capillary Electrophoresis</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <Documentation>Ion Mobility Spectrometry</Documentation>
-                            <S>Ion Mobility Spectrometry</S>
-                        </AllowedValue>
-                        <AllowedValue>
-                            <S>Other</S>
-                        </AllowedValue>
-                    </ParameterBlueprint>
-                </CategoryBlueprint>
                 <CategoryBlueprint name="Inlet" maxOccurs="1" modality="optional">
                     <Documentation>
                         Information about the inlet used for the sample introduction.
@@ -916,33 +804,6 @@
                             &mz_per_s;
                         </Quantity>
                     </ParameterBlueprint>
-                    <ParameterBlueprint name="Number of Scans" parameterType="Int" modality="optional">
-                        <Documentation>The total number of scans performed. This should be identical for the each single scan
-                        </Documentation>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Scan Number" parameterType="Int" modality="optional">
-                        <Documentation>Scan number of the current spectrum.</Documentation>
-                        <Quantity name="Number">
-                            &arbitrary;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Transition Type" parameterType="String" maxOccurs="1" modality="optional">
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Transition ID" parameterType="String" modality="optional" maxOccurs="1">
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Scan Duration" parameterType="Numeric" modality="optional">
-                        <Documentation>The time it took to create a single spectrum.</Documentation>
-                        <Quantity name="Time">
-                            &ms; &s;
-                        </Quantity>
-                    </ParameterBlueprint>
-                    <ParameterBlueprint name="Total Run Time" parameterType="Numeric" maxOccurs="1" modality="optional">
-                        <Documentation>The overall run time from beginning of the first injection to the end of the last scan.
-                        </Documentation>
-                        <Quantity name="time">
-                            &s; &min;
-                        </Quantity>
-                    </ParameterBlueprint>
                     <CategoryBlueprint name="A/D Converter" modality="optional">
                         <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000117">
                             An electronic integrated circuit (i/c) that converts continuous signals to discrete digital numbers.
@@ -966,195 +827,61 @@
                 </CategoryBlueprint>
             </CategoryBlueprint>
         </CategoryBlueprint>
-        <CategoryBlueprint name="Spectrum Processing" modality="optional" maxOccurs="unbounded">
-            <Documentation>
-                Algorithms and processing steps that are applied after the acquisition of the scan.
-            </Documentation>
-            <ParameterBlueprint name="Deisotoping" parameterType="Boolean" maxOccurs="1" modality="optional">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000033">
-                    The removal of isotope peaks to represent the fragment ion as one data point and is commonly done to reduce complexity. It is done in conjunction with the charge state deconvolution.
-                </Documentation>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Charge Deconvolution" parameterType="Boolean" modality="optional" maxOccurs="1">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000034">
-                    The determination of the mass of an ion based on the mass spectral peaks that represent multiple-charge ions."
-                </Documentation>
-            </ParameterBlueprint>
-            <CategoryBlueprint name="Isolation Window" maxOccurs="unbounded" modality="optional">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000792">
-                    <!-- TODO: not sure whether this is the m/z window used, as a m/z tolerance for e.g. SIM mode -->
-                </Documentation>
-                <ParameterBlueprint name="Target" parameterType="Numeric" modality="required">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000827">
-                        Target for which the isolation window is defined.
-                    </Documentation>
-                    <Quantity name="mass/charge">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Lower Offset" parameterType="Numeric" modality="required">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000828">
-                        Lower offset of the target for which the isolation window is defined.
-                    </Documentation>
-                    <Quantity name="mass/charge">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Upper Offset" parameterType="Numeric" modality="required">
-                    <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000829">
-                        Upper offset of the target for which the isolation window is defined.
-                    </Documentation>
-                    <Quantity name="mass/charge">
-                        &mz;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
-        </CategoryBlueprint>
     </MethodBlueprint>
-    <ResultBlueprint name="Spectrum" modality="optional">
-        <Documentation>The result of a mass spectrometry scan; in this case a spectrum.
+    <ResultBlueprint name="Mass Chromatogram" modality="optional">
+        <Documentation>The result of a mass spectrometry scan. In this
+            case it contains data recorded along the time axis (a chromatogram).
         </Documentation>
-        <SeriesSetBlueprint name="Spectrum" modality="required">
-            <SeriesBlueprintChoice>
-                <SeriesBlueprint name="Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
-                                 plotScale="linear">
-                    <Documentation>The x-axis of the mass spectrum</Documentation>
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </SeriesBlueprint>
-                <SeriesBlueprint name="Product Mass/Charge" seriesType="Numeric" dependency="independent" modality="required"
-                                 plotScale="linear">
-                    <Documentation>The x-axis of the mass spectrum, if it is an SRM run.</Documentation>
-                    <Quantity name="Mass/Charge Ratio">
-                        &mz;
-                    </Quantity>
-                </SeriesBlueprint>
-            </SeriesBlueprintChoice>
-            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="optional"
+        <SeriesSetBlueprint name="Mass Chromatogram" modality="optional">
+            <SeriesBlueprint name="Time" seriesType="Numeric" dependency="independent" modality="required"
+                             plotScale="linear">
+                <Documentation>
+                    Time steps at which data is acquired.
+                </Documentation>
+            </SeriesBlueprint>
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
                              plotScale="linear">
                 <Quantity name="Abundance">
                     &AU; &arbitrary; &percent;
                 </Quantity>
                 <Quantity name="Counts">
-                    &counts; &cps;
-                </Quantity>
-            </SeriesBlueprint>
-            <SeriesBlueprint name="Percent Base Peak" seriesType="Numeric" dependency="dependent" maxOccurs="1"
-                             modality="optional" plotScale="linear">
-                <Documentation literatureReferenceID="psi-ms" literatureAccession="MS:1000132">
-                    Magnitude of a peak in a spectrum relative to the base peak instensity of the spectrum.
-                </Documentation>
-                <Quantity name="Percent">
-                    &percent;
+                    &counts;
                 </Quantity>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
-        <!-- TODO: I'm currently uncertain about some of those parameters. They might be moved into the method section. -->
-        <CategoryBlueprint name="Spectrum Details" modality="optional" maxOccurs="1">
-            <ParameterBlueprint name="Total Ion Current" parameterType="Numeric">
-                <Quantity name="Abundance">
-                    &AU; &arbitrary;
-                </Quantity>
-                <Quantity name="Counts">
-                    &counts;
-                </Quantity>
-            </ParameterBlueprint>
-            <ParameterBlueprint name="Type" parameterType="String" maxOccurs="1" modality="optional">
+        <CategoryBlueprint name="Data Description">
+            <ParameterBlueprint name="Data Type" parameterType="String"  modality="required">
                 <Documentation>
-                    Whether the spectrum is continuus or centroided.
+                    The type of the chromatogram (trace) extracted from the referenced spectra.
                 </Documentation>
                 <AllowedValue>
-                    <S>Centroided</S>
+                    <Documentation>Extracted Mass Chromatogram</Documentation>
+                    <S>XIC</S>
                 </AllowedValue>
                 <AllowedValue>
-                    <S>Continuous</S>
+                    <Documentation>Total Mass Chromatogram</Documentation>
+                    <S>TIC</S>
                 </AllowedValue>
                 <AllowedValue>
-                    <S>Unknown</S>
+                    <Documentation>Base Peak Chromatogram</Documentation>
+                    <S>BPC</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <Documentation>Selected Ion Monitoring</Documentation>
+                    <S>SIM</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <Documentation>Selected Reaction Monitoring</Documentation>
+                    <S>SRM</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <Documentation>Multiple Reaction Monitoring</Documentation>
+                    <S>MRM</S>
+                </AllowedValue>
+                <AllowedValue>
+                    <S>Other</S>
                 </AllowedValue>
             </ParameterBlueprint>
-            <ParameterBlueprint name="Polarity" parameterType="String" modality="optional" maxOccurs="1">
-                <!-- TODO: moved 'Polarity' completely out of method. Reason: The result needs to conatin this information anyway. -->                <Documentation>Mass spectrometers can work in either positive or negative ion mode. This
-                information is crucial for the interpretation of the data.
-            </Documentation>
-                <AllowedValue>
-                    <S>+</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>-</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Alternating Start +</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>Alternating Start -</S>
-                </AllowedValue>
-                <AllowedValue>
-                    <S>unknown</S>
-                </AllowedValue>
-            </ParameterBlueprint>
-            <CategoryBlueprint name="Base Peak" maxOccurs="1">
-                <ParameterBlueprint name="Mass" parameterType="Numeric">
-                    <Quantity name="Mass">
-                        &atomic_mass_unit;
-                    </Quantity>
-                </ParameterBlueprint>
-                <ParameterBlueprint name="Intensity" parameterType="Numeric">
-                    <Quantity name="Abundance">
-                        &AU; &arbitrary;
-                    </Quantity>
-                </ParameterBlueprint>
-            </CategoryBlueprint>
         </CategoryBlueprint>
     </ResultBlueprint>
-    <Bibliography>
-        <LiteratureReference literatureReferenceID="ASTM D1129-06A">
-            ASTM Standard D1129-06A: Standard Terminology Relating to Water, DOI: 10.1520/D1129-06A
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E131-05">
-            ASTM Standard E131-05: Standard Terminology Relating to Molecular Spectroscopy, DOI: 10.1520/E0131-05
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E135-09">
-            ASTM Standard E135-09: Standard Terminology Relating to Analytical Chemistry for Metals, Ores, and Related
-            Materials, DOI: 10.1520/E0135-09
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E1142-07">
-            ASTM Standard E1142-07: Standard Terminology Relating to Thermophysical Properties, DOI: 10.1520/E1142-07
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="ASTM E2077-00">
-            ASTM Standard E2077-00 (2005): Standard Specification for Analytical Data Interchange Protocol for Mass
-            Spectrometric Data, DOI: 10.1520/E2077-00R05
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="JCAMP-DX IR">
-            McDonald, R. S., Wilks, P. A., "JCAMP-DX: A Standard Form for Exchange of Infrared Spectra in Computer
-            Readable Form," Appl. Spectrosc., Vol 42, No 1, 1988, pp. 151-162.
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="CML">
-            Murray-Rust, P., Rzepa, H. S., "Chemical markup Language and XML Part I. Basic principles," J. Chem. Inf.
-            Comp. Sci., 1999, 39, 928.
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="Wiswesser">
-            Smith, E. G., "The Wiswesser Line-Formula Chemical Notation," 2nd ed., McGraw-Hill, New York, 1968
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="SMILES">
-            van de Waterbeemd, H., Carter, R.E., Grassy, G., Kubinyi, H., Martin, Y.C., Tute, M.S., Willett, P.,
-            "Glossary of terms used in computational drug design (IUPAC Recommendations 1997)," Pure Appl. Chem. 1997,
-            69, 1137-1152, DOI: 10.1351/pac199769051137
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="Appl Spectrosc">Appl. Spectrosc. 42, 1, 1988</LiteratureReference>
-        <LiteratureReference literatureReferenceID="Pure Appl Chem 97">Pure Appl. Chem., 1997, Vol. 69, No. 5, pp.
-            1137-1152
-            http://dx.doi.org/10.1351/pac199769051137
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="CAS">Chemical Abstracts Service, https://www.cas.org
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="IUPAC InChI">IUPAC International Chemical Identifier,
-            http://iupac.org/who-we-are/divisions/division-details/inchi/
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="Beilstein">Warr, Wendy A. Graphics for Chemical Structures:
-            Intregration with Text and Data. American chemical society, 1987.
-        </LiteratureReference>
-        <LiteratureReference literatureReferenceID="psi-ms">psi-ms-cv version 4.0.3</LiteratureReference>
-    </Bibliography>
 </Technique>

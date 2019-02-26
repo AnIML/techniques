@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Author: Patrick Boba (BSSN Software) -->
+
+<Technique name="Weighing" version="0.90" xmlns="urn:org:astm:animl:schema:technique:draft:0.90"
+		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		   xsi:schemaLocation="urn:org:astm:animl:schema:technique:draft:0.90 http://schemas.animl.org/current/animl-technique.xsd">
+	<Documentation>Technique definition for a weighing measurement by a scientific balance.</Documentation>
+
+	<MethodBlueprint>
+
+		<CategoryBlueprint name="Balance Properties">
+			<Documentation>Fixed, unchangeable properties of the balance like the vendor and model, etc. Also see the 'Device' attribute in the AnIML Standard definition.</Documentation>
+			<CategoryBlueprint name="Weighing Range">
+				<Documentation>The vendors specified range of operation in terms of weight.</Documentation>
+				<ParameterBlueprint name="Minimum Weight" parameterType="Float64">
+					<Quantity name="Mass">
+						<Unit label="mg">
+							<SIUnit factor="1e-3">kg</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Maximum Weight" parameterType="Float64">
+					<Quantity name="Mass">
+						<Unit label="mg">
+							<SIUnit factor="1e-3">kg</SIUnit>
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+			<ParameterBlueprint name="Supported Protocol" parameterType="String">
+				<AllowedValue>
+					<Documentation>Most common protocols are the Sartorius Balance Interface (SBI) and the Mettler Toledo - Standard Interface Command Set (MT-SICS). </Documentation>
+					<S>SBI</S>
+					<S>MT-SICS</S>
+					<S>Other</S>
+				</AllowedValue>
+			</ParameterBlueprint>
+			<ParameterBlueprint name="Protocol Level" parameterType="String">
+				<Documentation>Most Vendors have different versions or levels for the protocols that support different features for communicating with the balance.</Documentation>
+			</ParameterBlueprint>
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Instrument Settings">
+			<ParameterBlueprint name="Balance ID" parameterType="String">
+				<Documentation>An identifier, that can be set by the user of the balance (typically called 'Balance ID' or 'Balance Name'.</Documentation>
+			</ParameterBlueprint>
+
+		</CategoryBlueprint>
+		<CategoryBlueprint name="Balance Connection Settings">
+			<CategoryBlueprint name="Serial Port Settings">
+				<ParameterBlueprint name="Port Name" parameterType="String">
+					<Documentation>The name of the computer port (e.g. on Windows Systems 'COM3', on Linux '/dev/ttyS0', etc.).</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Data Rate" parameterType="int32">
+					<Documentation>The bit (or baud) rate set on the port (e.g. 9600 bit/s) set in integers.</Documentation>
+					<Quantity name="Bit Rate">
+						<Unit label="bit/s">
+							
+						</Unit>
+					</Quantity>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Data Bits" parameterType="int32">
+					<Documentation>The number of data bits for each transmitted character.</Documentation>
+					<AllowedValue>
+						<I>5</I>
+						<I>6</I>
+						<I>7</I>
+						<I>8</I>
+						<I>9</I>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Stop Bit" parameterType="int32">
+					<Documentation>The set number of stop bits per character.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Parity Bit" parameterType="String">
+					<Documentation>The used parity method to detect errors.</Documentation>
+					<AllowedValue>
+						<S>None</S>
+						<S>Odd</S>
+						<S>Even</S>
+						<S>Mark</S>
+						<S>Space</S>
+					</AllowedValue>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Flow Control" parameterType="String">
+					<Documentation>The handshaking method used by the device.</Documentation>
+					<AllowedValue>
+						<S>Hardware</S>
+						<S>Software</S>
+						<S>None</S>
+					</AllowedValue>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+
+			<CategoryBlueprint name="USB Port Settings">
+
+			</CategoryBlueprint>
+
+			<CategoryBlueprint name="Network Settings">
+				<Documentation>Settings for balances using a network interface.</Documentation>
+				<ParameterBlueprint name="Name" parameterType="String">
+					<Documentation>The specified DNS name of the balance.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="IP Address" parameterType="String">
+					<Documentation>The network IP address of the device.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Subnet Mask" parameterType="String">
+					<Documentation>The subnet mask of the network.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="DNS Server" parameterType="String">
+					<Documentation>The network IP address of the DNS server.</Documentation>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+		</CategoryBlueprint>
+	</MethodBlueprint>
+	
+	
+	<ResultBlueprint name="Weighing">
+		
+		<CategoryBlueprint name="Weighing" modality="optional">
+			<ParameterBlueprint name="Weight Value" parameterType="Float64">
+				<Quantity name="Mass">
+					<Unit label="mg">
+						<SIUnit factor="1e-3">
+							kg
+						</SIUnit>
+					</Unit>
+				</Quantity>
+			</ParameterBlueprint>
+			<CategoryBlueprint name="Result Attributes">
+				<Documentation>Additional information that is transferred as part of the result.</Documentation>
+				<ParameterBlueprint name="Precision Digits" parameterType="int32">
+					<Documentation>Some balance provide a result that shows additional digits that are declared uncertain. Usually in a result format that looks like: '12.34(56) mg'. The numbers in brackets indicate uncertainty.</Documentation>
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Stable Weight" parameterType="Boolean">
+					<Documentation>The balance sent the current net weight regardless of stability if 'false'.</Documentation>
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+			<CategoryBlueprint name="Traceability">
+				<ParameterBlueprint name="Leveled" parameterType="Boolean">
+
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Power-on Time" parameterType="DateTime">
+
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Last Tare Time" parameterType="DateTime">
+
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Last Zero Time" parameterType="DateTime">
+
+				</ParameterBlueprint>
+				<ParameterBlueprint name="Last Calibration Time" parameterType="DateTime">
+
+				</ParameterBlueprint>
+			</CategoryBlueprint>
+
+		</CategoryBlueprint>
+	
+	</ResultBlueprint>
+	
+</Technique>

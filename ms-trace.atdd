@@ -847,6 +847,9 @@
                 <Quantity name="Counts">
                     &counts;
                 </Quantity>
+                <Quantity name="Counts per Time">
+                    &cps;
+                </Quantity>
             </SeriesBlueprint>
         </SeriesSetBlueprint>
         <CategoryBlueprint name="Data Description">

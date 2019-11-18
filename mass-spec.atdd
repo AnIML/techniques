@@ -1031,7 +1031,7 @@
                     </Quantity>
                 </SeriesBlueprint>
             </SeriesBlueprintChoice>
-            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="optional"
+            <SeriesBlueprint name="Intensity" seriesType="Numeric" dependency="dependent" modality="required"
                              plotScale="linear">
                 <Quantity name="Abundance">
                     &AU; &arbitrary; &percent;

@@ -1037,7 +1037,10 @@
                     &AU; &arbitrary; &percent;
                 </Quantity>
                 <Quantity name="Counts">
-                    &counts; &cps;
+                    &counts;
+                </Quantity>
+                <Quantity name="Counts per Time">
+                    &cps;
                 </Quantity>
             </SeriesBlueprint>
             <SeriesBlueprint name="Percent Base Peak" seriesType="Numeric" dependency="dependent" maxOccurs="1"

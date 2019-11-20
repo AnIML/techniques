@@ -31,7 +31,7 @@
         <!-- Temperature -->
         <!ENTITY degC "<Unit label='&#176;C'><SIUnit offset='-273.15'>K</SIUnit></Unit>">
         <!ENTITY K "<Unit label='K'><SIUnit>K</SIUnit></Unit>">
-        <!ENTITY degF "<Unit label='&#176;F'><SIUnit factor='1.8' offset='434.07'>K</SIUnit></Unit>">
+        <!ENTITY degF "<Unit label='&#176;F'><SIUnit factor='1.8' offset='-459.67'>K</SIUnit></Unit>">
 
         <!-- Time -->
         <!ENTITY h "<Unit label='h'><SIUnit factor='3600'>s</SIUnit></Unit>">

@@ -184,7 +184,7 @@
         <Documentation>Time-base trace of FID detector data.</Documentation>
         <SeriesSetBlueprint name="FID Trace" modality="required">
             <SeriesBlueprint name="Time" seriesType="Float" plotScale="linear" dependency="independent">
-                <Documentation>TODO</Documentation>
+                <Documentation>Retention Time</Documentation>
                 <Quantity name="Time"> &ms; &s; &min; </Quantity>
             </SeriesBlueprint>
             <SeriesBlueprint name="Signal" seriesType="Float" modality="required" plotScale="linear"

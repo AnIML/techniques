@@ -767,7 +767,7 @@
                 <Documentation>This is a textual description of the type of a peak's shape or other  properties (e.g. a shoulder or skimmed).
                 </Documentation>
             </SeriesBlueprint>
-            <SeriesBlueprint name="Peak Number ISTD" seriesType="Int" modality="optional" dependency="dependency">
+            <SeriesBlueprint name="Peak Number ISTD" seriesType="Int" modality="optional" dependency="dependent">
                 <Documentation>The number of the peak used as an internal standard.</Documentation>
             </SeriesBlueprint>
             <SeriesBlueprint name="Assignment ID" seriesType="String" modality="optional" plotScale="none"

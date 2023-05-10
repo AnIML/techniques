@@ -648,6 +648,7 @@
                 <Quantity name="Amount">
                     &mg_per_mL;
                     &mL_per_mL;
+                    &mol_per_L;
                 </Quantity>
             </SeriesBlueprint>
             <SeriesBlueprint name="Plate Number Half-Height" seriesType="Numeric" modality="optional"

@@ -62,6 +62,9 @@
         <!ENTITY nA "<Unit label='nA'><SIUnit factor='1e-09'>A</SIUnit></Unit>">
         <!ENTITY pA "<Unit label='pA'><SIUnit factor='1e-12'>A</SIUnit></Unit>">
         <!ENTITY fA "<Unit label='fA'><SIUnit factor='1e-15'>A</SIUnit></Unit>">
+        
+        <!-- Power -->
+        <!ENTITY W "<Unit label='W'><SIUnit>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">
 
         <!-- Optical -->
         <!ENTITY T "<Unit label='T'><SIUnit exponent='1' factor='1'>1</SIUnit></Unit>"> <!-- Transmittance -->

@@ -44,6 +44,8 @@
         <!-- Frequency -->
         <!ENTITY Hz "<Unit label='Hz'><SIUnit exponent='-1'>s</SIUnit></Unit>">
         <!ENTITY kHz "<Unit label='kHz'><SIUnit exponent='-1' factor='1e+3'>s</SIUnit></Unit>">
+        <!ENTITY MHz "<Unit label='MHz'><SIUnit exponent='-1' factor='1e+6'>s</SIUnit></Unit>">
+        <!ENTITY GHz "<Unit label='GHz'><SIUnit exponent='-1' factor='1e+9'>s</SIUnit></Unit>">
 
         <!-- Voltage -->
         <!ENTITY kV "<Unit label='kV'><SIUnit factor='1e+03'>kg</SIUnit><SIUnit exponent='2'>m</SIUnit><SIUnit exponent='-1'>A</SIUnit><SIUnit exponent='-3'>s</SIUnit></Unit>">

@@ -11,6 +11,9 @@
     <MethodBlueprint>
         <CategoryBlueprint name="Method Description" modality="optional">
             <Documentation>Basic contextual information about the measurement method.</Documentation>
+            <ParameterBlueprint name="Method Name" parameterType="String" modality="optional">
+                <Documentation>Name of the method used for the measurement.</Documentation>
+            </ParameterBlueprint>
             <ParameterBlueprint name="Method Reference" parameterType="String" modality="optional">
                 <Documentation>External reference to measurement method.</Documentation>
             </ParameterBlueprint>
